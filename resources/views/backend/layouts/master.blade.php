@@ -239,7 +239,7 @@
                     <img src="{{asset('img/about/about-us.jpg')}}" class="img-responsive img-circle" alt="user">
                 </a>
                 <ul class="dropdown-menu dropdown-user right-swip">
-                    <li><a href="{{url('admin/app-profile')}}"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    <li><a href="{{url('admin/profile')}}"><i class="fa fa-user fa-fw"></i> User Profile</a>
                     </li>
                     <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                     </li>
@@ -452,10 +452,11 @@
     </div>
         @include('backend.partials.footer')
 </div>
+
 <!-- /#wrapper -->
 <!-- jQuery -->
 @include('backend.partials.script')
-
+@yield('scripts')
 </body>
 </html>
 

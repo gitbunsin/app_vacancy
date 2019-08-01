@@ -6,7 +6,7 @@
         </button>
         <!-- Start Header Navigation -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="{{url('/app')}}">
+            <a class="navbar-brand" href="{{url('/job')}}">
                 <img style="margin-top: -20px;" src="{{asset('img/logo-1.png')}}" class="logo logo-scrolled" alt="">
             </a>
         </div>
@@ -14,26 +14,28 @@
         <div class="collapse navbar-collapse" id="navbar-menu">
             <ul class="nav navbar-nav navbar-left" data-in="fadeInDown" data-out="fadeOutUp">
                 <li></li> <li></li> <li></li>
-                <li><a href="{{url('app-about')}}">About Us</a></li>
-                <li><a href="{{url('app-pricing')}}">Service</a></li>
+                <li class="{{ (request()->segment(2) == 'about') ? 'active' : '' }}">
+                      <a href="{{url('about')}}">About Us</a>
+                </li>
+                <li><a href="{{url('pricing')}}">Service</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Candidate</a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="{{url('register')}}">Register</a></li>
                         <li><a href="{{url('login')}}">SignIn</a></li>
-{{--                        <li><a href="{{url('app-create-resume')}}">Create Resume</a></li>--}}
+{{--                        <li><a href="{{url('create-resume')}}">Create Resume</a></li>--}}
+                        <li><a href="{{url('user-profile')}}">Candidate Dashboard</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Employer</a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{url('admin/register')}}">Register</a></li>
+                        <li><a href="{{url('admin-register')}}">Register</a></li>
                         <li><a href="{{url('admin-login')}}">Sign In</a></li>
-                        <li><a href="{{url('app-mange-Candidate')}}">Browse Candidate</a></li>
+
                     </ul>
                 </li>
             </ul>
-
             <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
                 @guest
                 <li class="left-br">

@@ -32,6 +32,8 @@
     <!-- Scripts
     ================================================== -->
    @include('frontend.partials.script')
+   @include('frontend.partials.footer')
+
 </div>
 </body>
 </html>

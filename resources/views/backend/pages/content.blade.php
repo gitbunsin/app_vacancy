@@ -356,3 +356,10 @@
     </div>
 </div>
 @endsection
+@section('scripts')
+
+    <script src="{{asset('back/js/raphael.min.js')}}"></script>
+    <script src="{{asset('back/js/morris.min.js')}}"></script>
+    <script src="{{asset('back/js/dashboard-4.js')}}"></script>
+
+@endsection

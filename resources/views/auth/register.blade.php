@@ -15,7 +15,7 @@
                     <div class="sidebar-wrapper">
 
                         <div class="sidebar-box-header bb-1">
-                            <h4 style="text-align: center;">Register  An Cadidate Account</h4>
+                            <h4 style="text-align: center;">Register  An Candidate Account</h4>
                         </div>
 
                         <form method="POST" action="{{ route('register') }}">

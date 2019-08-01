@@ -7,7 +7,7 @@
             <div class="card">
 
                 <div class="card-header">
-                    <h4>Welcome Adam Mock!</h4>
+                    <h4>Welcome  {{auth()->guard('admin')->user()->name}} !</h4>
                 </div>
 
                 <div class="card-body">

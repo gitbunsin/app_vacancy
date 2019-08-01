@@ -18,7 +18,7 @@
                             <h4 style="text-align: center;">Register  An Employer Account</h4>
                         </div>
 
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="{{ route('admin-register') }}">
                                 @csrf
                             <div class="row">
                                 <div class="col-xs-12">

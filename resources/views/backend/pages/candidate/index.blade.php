@@ -18,6 +18,8 @@
                     <input type="text" class="form-control wide-width" placeholder="Search & type" />
                 </div>
 
+                @if(!empty($user))
+                    @foreach($user as $users)
                 <div class="card-body">
                     <ul class="list">
                         <li class="manage-list-row clearfix">
@@ -26,11 +28,10 @@
                                     <img src="{{asset('img/about/about-us.jpg')}}" class="attachment-thumbnail" alt="Academy Pro Theme">
                                 </div>
                                 <div class="job-details">
-                                    <h3 class="job-name"><a class="job_name_tag" href="#">Adam L. Mock</a></h3>
-                                    <small class="job-company"><i class="ti-home"></i>Web Designer</small>
-                                    <small class="job-sallery"><i class="ti-time"></i>3 Year Ex.</small>
-                                    <small class="job-sallery"><i class="ti-location-pin"></i>London</small>
-                                    <div class="shortlisted-can">shortlisted</div>
+                                    <h3 class="job-name"><a class="job_name_tag" href="#">{{$users->name}}</a></h3>
+                                    <small class="job-company"><i class="ti-home"></i>Apply For : Web Designer</small>
+                                    <small class="job-sallery"><i class="ti-time"></i>Date Apply : 2019-07-31</small>
+                                    <div class="shortlisted-can">Application Initiated</div>
                                     <div class="candi-skill">
                                         <span class="skill-tag">css</span>
                                         <span class="skill-tag">HTML</span>
@@ -39,161 +40,15 @@
                                 </div>
                             </div>
                             <div class="job-buttons">
-                                <a href="#" class="btn btn-gary manage-btn" data-toggle="tooltip" data-placement="top" title="Download Resume"><i class="ti-download"></i></a>
+                                <a href="#" class="btn btn-gary manage-btn" data-toggle="tooltip" data-placement="top" title="Download Resume"><i class="ti-check"></i></a>
                                 <a href="#SendMessage"  data-toggle="modal" class="btn btn-blue manage-btn" data-toggle="tooltip" data-placement="top" title="Message"><i class="ti-email"></i></a>
                                 <a href="#" class="btn btn-cancel manage-btn" data-toggle="tooltip" data-placement="top" title="Remove"><i class="ti-close"></i></a>
                             </div>
                         </li>
-
-                        <li class="manage-list-row clearfix">
-                            <div class="job-info">
-                                <div class="job-img">
-                                    <img src="{{asset('img/about/about-us.jpg')}}" class="attachment-thumbnail" alt="Academy Pro Theme">
-                                </div>
-                                <div class="job-details">
-                                    <h3 class="job-name"><a class="job_name_tag" href="#">Shriya Rukwai</a></h3>
-                                    <small class="job-company"><i class="ti-home"></i>Project Manager</small>
-                                    <small class="job-sallery"><i class="ti-time"></i>4 Year Ex.</small>
-                                    <small class="job-sallery"><i class="ti-location-pin"></i>United State</small>
-                                    <div class="candi-skill">
-                                        <span class="skill-tag">css</span>
-                                        <span class="skill-tag">HTML</span>
-                                        <span class="skill-tag">Photoshop</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="job-buttons">
-                                <a href="#" class="btn btn-gary manage-btn" data-toggle="tooltip" data-placement="top" title="Download Resume"><i class="ti-download"></i></a>
-                                <a href="#" class="btn btn-shortlist manage-btn" data-toggle="tooltip" data-placement="top" title="Shortlist"><i class="ti-check"></i></a>
-                                <a href="#" class="btn btn-cancel manage-btn" data-toggle="tooltip" data-placement="top" title="Remove"><i class="ti-close"></i></a>
-                            </div>
-                        </li>
-
-                        <li class="manage-list-row clearfix">
-                            <div class="job-info">
-                                <div class="job-img">
-                                    <img src="{{asset('img/about/about-us.jpg')}}" class="attachment-thumbnail" alt="Academy Pro Theme">
-                                </div>
-                                <div class="job-details">
-                                    <h3 class="job-name"><a class="job_name_tag" href="#">Ushwan Uslaf</a></h3>
-                                    <small class="job-company"><i class="ti-home"></i>Web Developer</small>
-                                    <small class="job-sallery"><i class="ti-time"></i>4 Year Ex.</small>
-                                    <small class="job-sallery"><i class="ti-location-pin"></i>United State</small>
-                                    <div class="shortlisted-can">shortlisted</div>
-                                    <div class="candi-skill">
-                                        <span class="skill-tag">css</span>
-                                        <span class="skill-tag">HTML</span>
-                                        <span class="skill-tag">Photoshop</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="job-buttons">
-                                <a href="#" class="btn btn-gary manage-btn" data-toggle="tooltip" data-placement="top" title="Download Resume"><i class="ti-download"></i></a>
-                                <a href="#SendMessage"  data-toggle="modal" class="btn btn-blue manage-btn" data-toggle="tooltip" data-placement="top" title="Message"><i class="ti-email"></i></a>
-                                <a href="#" class="btn btn-cancel manage-btn" data-toggle="tooltip" data-placement="top" title="Remove"><i class="ti-close"></i></a>
-                            </div>
-                        </li>
-
-                        <li class="manage-list-row clearfix">
-                            <div class="job-info">
-                                <div class="job-img">
-                                    <img src="{{asset('img/about/about-us.jpg')}}" class="attachment-thumbnail" alt="Academy Pro Theme">
-                                </div>
-                                <div class="job-details">
-                                    <h3 class="job-name"><a class="job_name_tag" href="#">Riya Rajputr</a></h3>
-                                    <small class="job-company"><i class="ti-home"></i>Team Lead</small>
-                                    <small class="job-sallery"><i class="ti-time"></i>8 Year Ex.</small>
-                                    <small class="job-sallery"><i class="ti-location-pin"></i>United State</small>
-                                    <div class="candi-skill">
-                                        <span class="skill-tag">css</span>
-                                        <span class="skill-tag">HTML</span>
-                                        <span class="skill-tag">Photoshop</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="job-buttons">
-                                <a href="#" class="btn btn-gary manage-btn" data-toggle="tooltip" data-placement="top" title="Download Resume"><i class="ti-download"></i></a>
-                                <a href="#" class="btn btn-shortlist manage-btn" data-toggle="tooltip" data-placement="top" title="Shortlist"><i class="ti-check"></i></a>
-                                <a href="#" class="btn btn-cancel manage-btn" data-toggle="tooltip" data-placement="top" title="Remove"><i class="ti-close"></i></a>
-                            </div>
-                        </li>
-
-                        <li class="manage-list-row clearfix">
-                            <div class="job-info">
-                                <div class="job-img">
-                                    <img src="{{asset('img/about/about-us.jpg')}}" class="attachment-thumbnail" alt="Academy Pro Theme">
-                                </div>
-                                <div class="job-details">
-                                    <h3 class="job-name"><a class="job_name_tag" href="#">Mo. Raj Mishra</a></h3>
-                                    <small class="job-company"><i class="ti-home"></i>Java Developer</small>
-                                    <small class="job-sallery"><i class="ti-time"></i>6 Year Ex.</small>
-                                    <small class="job-sallery"><i class="ti-location-pin"></i>United State</small>
-                                    <div class="shortlisted-can">shortlisted</div>
-                                    <div class="candi-skill">
-                                        <span class="skill-tag">css</span>
-                                        <span class="skill-tag">HTML</span>
-                                        <span class="skill-tag">Photoshop</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="job-buttons">
-                                <a href="#" class="btn btn-gary manage-btn" data-toggle="tooltip" data-placement="top" title="Download Resume"><i class="ti-download"></i></a>
-                                <a href="#SendMessage"  data-toggle="modal" class="btn btn-blue manage-btn" data-toggle="tooltip" data-placement="top" title="Message"><i class="ti-email"></i></a>
-                                <a href="#" class="btn btn-cancel manage-btn" data-toggle="tooltip" data-placement="top" title="Remove"><i class="ti-close"></i></a>
-                            </div>
-                        </li>
-
-                        <li class="manage-list-row clearfix">
-                            <div class="job-info">
-                                <div class="job-img">
-                                    <img src="{{asset('img/about/about-us.jpg')}}" class="attachment-thumbnail" alt="Academy Pro Theme">
-                                </div>
-                                <div class="job-details">
-                                    <h3 class="job-name"><a class="job_name_tag" href="#">Neeta Uswan</a></h3>
-                                    <small class="job-company"><i class="ti-home"></i>Php Developer</small>
-                                    <small class="job-sallery"><i class="ti-time"></i>7 Year Ex.</small>
-                                    <small class="job-sallery"><i class="ti-location-pin"></i>United State</small>
-                                    <div class="candi-skill">
-                                        <span class="skill-tag">css</span>
-                                        <span class="skill-tag">HTML</span>
-                                        <span class="skill-tag">Photoshop</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="job-buttons">
-                                <a href="#" class="btn btn-gary manage-btn" data-toggle="tooltip" data-placement="top" title="Download Resume"><i class="ti-download"></i></a>
-                                <a href="#" class="btn btn-shortlist manage-btn" data-toggle="tooltip" data-placement="top" title="Shortlist"><i class="ti-check"></i></a>
-                                <a href="#" class="btn btn-cancel manage-btn" data-toggle="tooltip" data-placement="top" title="Remove"><i class="ti-close"></i></a>
-                            </div>
-                        </li>
-
-                        <li class="manage-list-row clearfix">
-                            <div class="job-info">
-                                <div class="job-img">
-                                    <img src="{{asset('img/about/about-us.jpg')}}" class="attachment-thumbnail" alt="Academy Pro Theme">
-                                </div>
-                                <div class="job-details">
-                                    <h3 class="job-name"><a class="job_name_tag" href="#">Daniel Duke</a></h3>
-                                    <small class="job-company"><i class="ti-home"></i>UI/UX Developer</small>
-                                    <small class="job-sallery"><i class="ti-time"></i>5.5 Year Ex.</small>
-                                    <small class="job-sallery"><i class="ti-location-pin"></i>United State</small>
-                                    <div class="shortlisted-can">shortlisted</div>
-                                    <div class="candi-skill">
-                                        <span class="skill-tag">css</span>
-                                        <span class="skill-tag">HTML</span>
-                                        <span class="skill-tag">Photoshop</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="job-buttons">
-                                <a href="#" class="btn btn-gary manage-btn" data-toggle="tooltip" data-placement="top" title="Download Resume"><i class="ti-download"></i></a>
-                                <a href="#SendMessage"  data-toggle="modal" class="btn btn-blue manage-btn" data-toggle="tooltip" data-placement="top" title="Message"><i class="ti-email"></i></a>
-                                <a href="#" class="btn btn-cancel manage-btn" data-toggle="tooltip" data-placement="top" title="Remove"><i class="ti-close"></i></a>
-                            </div>
-                        </li>
-
                     </ul>
-
+                </div>
+                    @endforeach
+                @endif
                     <div class="flexbox padd-10">
                         <ul class="pagination">
                             <li class="page-item">

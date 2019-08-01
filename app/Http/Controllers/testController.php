@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\job;
+use App\Model\jobAttachment;
 use Illuminate\Http\Request;
 
 class testController extends Controller
@@ -30,10 +32,7 @@ class testController extends Controller
 
         return view('frontend.pages.login');
     }
-    public function jobDetails(){
 
-        return view('frontend.pages.job-apply-detail');
-    }
     public function about(){
 
         return view('frontend.pages.about');
@@ -49,7 +48,7 @@ class testController extends Controller
     public function profileDetails()
     {
 
-        return view('frontend.pages.candidate-profile');
+        return view('frontend.pages.user-profile');
     }
 
     /**

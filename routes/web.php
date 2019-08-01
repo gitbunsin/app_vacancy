@@ -11,46 +11,55 @@
 |
 */
 
-/************************************************************************************
- *                                  Frontend routes
- ************************************************************************************/
-
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+
 /************************************************************************************
  *                                  Backend routes
  ************************************************************************************/
 
+Route::get('admin-login', 'Auth\AdminLoginController@showLoginForm');
+Route::post('admin-login', ['as'=>'admin-login','uses'=>'Auth\AdminLoginController@login']);
+Route::get('admin-logout', ['as'=>'admin-logout','uses'=>'Auth\AdminLoginController@logout']);
+Route::get('admin-register', ['as'=>'admin-register','uses'=>'Auth\AdminRegisterController@showLoginForm']);
+Route::post('admin-register', ['as'=>'admin-register','uses'=>'Auth\AdminRegisterController@register']);
+
 Route::group(['namespace' => 'Backend', 'prefix' => 'admin'], function ($request) {
 
     Route::get('app','AppController@index');
-    Route::get('register','AppController@register');
     Route::get('login','AppController@login');
-    Route::get('app-manage-job','AppController@manageJob');
-    Route::resource('app-job','JobController');
-    Route::get('app-profile','JobController@profile');
+    Route::resource('company','CompanyController');
+    Route::resource('job','JobController');
+    Route::get('profile','JobController@profile');
     Route::resource('app-candidate','CandidateController');
+    Route::resource('user','UserController');
+    Route::post('user-cv/{id}','UserController@userCV');
     Route::get('create-resume','CandidateController@createResume');
 
 
 });
 
-Route::get('app','testController@index');
-Route::get('app-pricing','testController@pricing');
-//Route::get('register','testController@register');
-//Route::get('login','testController@login');
-Route::get('app-job-apply-details','testController@jobDetails');
-Route::get('app-about','testController@about');
-Route::get('app-create-resume','testController@createResume');
-Route::get('app-mange-Candidate','testController@mangeCandidate');
-Route::get('app-profile-Candidate','testController@profileDetails');
 
-Route::get('admin-login', 'Auth\AdminLoginController@showLoginForm');
-Route::post('admin-login', ['as'=>'admin-login','uses'=>'Auth\AdminLoginController@login']);
-Route::get('admin-logout', ['as'=>'admin-logout','uses'=>'Auth\AdminLoginController@logout']);
+/************************************************************************************
+ *                                  Frontend routes
+ ************************************************************************************/
+
+
+Route::get('job','Backend\JobController@job');
+Route::get('job-apply/{job_id}','Backend\JobController@jobApply');
+Route::get('job-apply-details/{id}','Backend\JobController@jobDetails');
+Route::get('job-download-company/{filename}','Backend\JobController@getDownloadCompany');
+Route::get('pricing','testController@pricing');
+Route::get('about','testController@about');
+Route::get('create-resume','testController@createResume')->middleware('auth');;
+Route::get('app-mange-Candidate','testController@mangeCandidate');
+Route::get('user-profile','testController@profileDetails')->middleware('auth');
+
+
+//Route::post('user-cv','testController@')->middleware('auth');
 
 Auth::routes();
 

@@ -50,7 +50,7 @@ class AdminLoginController extends Controller
 
      */
 
-    protected $redirectTo = '/admin/app';
+    protected $redirectTo = '/admin/profile';
 
 
 
@@ -79,7 +79,7 @@ class AdminLoginController extends Controller
 
         if (auth()->guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
 
-           return redirect('/admin/app');
+           return redirect('/admin/profile');
            // dd(auth()->guard('admin')->user()->name);
         }
         return back()->withErrors(['email' => 'Email or password are wrong.']);
@@ -87,6 +87,6 @@ class AdminLoginController extends Controller
 
     public function logout() {
         Auth::logout();
-        return redirect('/app');
+        return redirect('/admin-login');
     }
 }

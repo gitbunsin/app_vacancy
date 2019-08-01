@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/app';
+    protected $redirectTo = '/user-profile';
 
     /**
      * Create a new controller instance.
@@ -39,6 +39,6 @@ class LoginController extends Controller
 
     public function logout() {
         Auth::logout();
-        return redirect('/app');
+        return redirect('/login');
     }
 }
