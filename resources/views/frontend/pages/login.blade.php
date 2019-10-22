@@ -2,7 +2,6 @@
 @section('content')
 <!-- End Navigation -->
 <div class="clearfix"></div>
-
 <!-- Title Header Start -->
 <section class="login-plane-sec">
     <div class="container">
@@ -10,7 +9,7 @@
             <div class="col-md-6 col-md-offset-3">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Sign In</h3>
+                        <h3 class="panel-title">Sign In1</h3>
                     </div>
                     <div class="panel-body">
                         <img src="" class="img-responsive" />
@@ -37,12 +36,4 @@
         </div>
     </div>
 </section>
-<br/><br/><br/>
-<footer class="">
-    <div class="row copyright">
-        <div class="container">
-            <p>Copyright Love Jobs © 2019. All Rights Reserved </p>
-        </div>
-    </div>
-</footer>
 @endsection
