@@ -8485,7 +8485,7 @@ label.btn-bs-file.btn {
     height:42px;
 }
 .form-control {
-    height: 50px;
+    /* height: 50px; */
     border: 1px solid #dde6ef;
     margin-bottom: 10px;
     box-shadow: none;

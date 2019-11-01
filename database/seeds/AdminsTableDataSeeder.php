@@ -17,7 +17,7 @@ class AdminsTableDataSeeder extends Seeder
            Admin::create([
                 'name' => "admin",
                 'email' => 'admin@gmail.com',
-                'password' => '$2y$10$dBqiHWa/4fw12M/iseqtKOV1hJakRuOVEadCp0SlxeDoQ9d65.hli'
+                'password' => Hash::make("123456")
             ]);
         }
     }

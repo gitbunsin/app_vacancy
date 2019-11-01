@@ -92,7 +92,7 @@
 
         //Return Styles 
         return this.css({
-            'backgroundColor':settings.bgColor,
+            // 'backgroundColor':settings.bgColor,
             'zIndex':settings.zIndex
         });
 

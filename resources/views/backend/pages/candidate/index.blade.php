@@ -75,5 +75,32 @@
     <!-- /row -->
 </div>
 </div>
+<!-- Send Message -->
+<div id="SendMessage" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header theme-bg">						
+                    <h4 class="modal-title">Send Message</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">					
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <textarea class="form-control big-height"></textarea>
+                    </div>					
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <input type="submit" class="btn btn-success" value="Send">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <!-- /#page-wrapper -->
 @endsection

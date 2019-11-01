@@ -27,7 +27,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><img style="max-width: 171px;margin-top: -16px;" src="{{asset('img/back-logo-1.png')}}" class="img-responsive" alt="Logo"></a>
+            <a class="navbar-brand" href="#"><img src="{{asset('img/logo-1.png')}}" class="img-responsive" alt="Logo"></a>
         </div>
         <!-- /.navbar-header -->
 
