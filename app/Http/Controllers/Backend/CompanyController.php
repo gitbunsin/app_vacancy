@@ -17,7 +17,7 @@ class CompanyController extends Controller
     {
         //
 
-        $company = company::with(['city','country'])->orderBy('created_at')->get();
+        $company = company::with(['city','country'])->orderBy('id' , 'DESC')->paginate(10);
         //dd($company);
         return view('backend.pages.company.index',compact('company'));
 
@@ -42,14 +42,24 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //dd('hello');
-        $job = company::create($request->all());
-        $job->admin_id = auth()->guard('admin')->user()->id;
-        $job->city()->associate($request->city_id);
-        $job->country()->associate($request->country_id);
-        $job->save();
-        return redirect('/admin/company');
-        //
+        $company = new Company();
+        $company->company_name = $request->company_name;
+        $company->phone = $request->phone;
+        $company->email = $request->email;
+        $company->zip_code = $request->zip_code;
+        $company->state  = $request->state;
+        $company->city_id = $request->city_id;
+        $company->country_id = $request->country_id;
+        $company->address = $request->address;
+        $company->website_link = $request->website_link;
+        $company->facebook_link = $request->facebook_link;
+        $company->google_link = $request->google_link;
+        $company->twitter_link = $request->twitter_link;
+        $company->linkedIn_link = $request->linkedIn_link;
+        $company->pinterest_link = $request->pinterest_link;
+        $company->instagram_link = $request->instagram_link;
+        $company->save();
+        return response()->json($company);
     }
 
     /**
@@ -61,6 +71,7 @@ class CompanyController extends Controller
     public function show($id)
     {
         //
+        
     }
 
     /**
@@ -71,7 +82,8 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $company = company::find($id);
+        return response()->json($company);
     }
 
     /**
@@ -84,6 +96,24 @@ class CompanyController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $company = company::find($id);
+        $company->company_name = $request->company_name;
+        $company->phone = $request->phone;
+        $company->email = $request->email;
+        $company->zip_code = $request->zip_code;
+        $company->state  = $request->state;
+        $company->city_id = $request->city_id;
+        $company->country_id = $request->country_id;
+        $company->address = $request->address;
+        $company->website_link = $request->website_link;
+        $company->facebook_link = $request->facebook_link;
+        $company->google_link = $request->google_link;
+        $company->twitter_link = $request->twitter_link;
+        $company->linkedIn_link = $request->linkedIn_link;
+        $company->pinterest_link = $request->pinterest_link;
+        $company->instagram_link = $request->instagram_link;
+        $company->save();
+        return response()->json($company);
     }
 
     /**
@@ -94,6 +124,9 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
+            $company = company::find($id);
+            $company->delete();
+            return response()->json($company);
         //
     }
 }
