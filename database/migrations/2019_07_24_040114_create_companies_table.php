@@ -18,10 +18,10 @@ class CreateCompaniesTable extends Migration
             $table->increments('id');
             $table->integer('admin_id')->unsigned()->nullable();
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
-            $table->integer('city_id')->unsigned()->nullable();
-            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
-            $table->integer('country_id')->unsigned()->nullable();
-            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
+            // $table->integer('city_id')->unsigned()->nullable();
+            // $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
+            // $table->integer('country_id')->unsigned()->nullable();
+            // $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->string('company_name')->nullable();
             $table->string('email')->nullable();
             $table->string('zip_code')->nullable();

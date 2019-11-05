@@ -56,13 +56,5 @@
             </div>
         </div>
     </section>
-    <br/><br/><br/>
-    <footer class="">
-        <div class="row copyright">
-            <div class="container">
-                <p>Copyright Love Jobs © 2019. All Rights Reserved </p>
-            </div>
-        </div>
-    </footer>
 @endsection
 

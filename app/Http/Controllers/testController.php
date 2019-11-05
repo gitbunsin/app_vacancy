@@ -37,6 +37,10 @@ class testController extends Controller
 
         return view('frontend.pages.about');
     }
+    public function contact(){
+
+        return view('frontend.pages.contact');
+    }
     public function createResume(){
 
         return view('frontend.pages.create-resume');

@@ -129,11 +129,11 @@
                         
                                                     <div class="col-sm-4">
                                                         <label>City</label>
-                                                        <?php $city = city::all(); ?>
+                                                        <?php //$city = city::all(); ?>
                                                         <select name="city_id_edit" id="city_id_edit" class="form-control">
-                                                            @foreach( $city as $cities)
+                                                            {{-- @foreach( $city as $cities)
                                                               <option value="{{$cities->id}}">{{$cities->name}}</option>
-                                                            @endforeach
+                                                            @endforeach --}}
                                                         </select>
                                                     </div>
                                                     <div class="col-sm-4">
@@ -142,11 +142,11 @@
                                                     </div>
                                                     <div class="col-sm-4 m-clear">
                                                         <label>Country</label>
-                                                        <?php $country = country::all(); ?>
+                                                        <?php //$country = country::all(); ?>
                                                         <select class="form-control" id="country_id_edit" name="country_id_edit">
-                                                            @foreach( $country as $countries)
+                                                            {{-- @foreach( $country as $countries)
                                                                 <option value="{{$countries->id}}">{{$countries->name}}</option>
-                                                            @endforeach
+                                                            @endforeach --}}
                                                         </select>
                                                     </div>
                                                     <div class="col-sm-4 m-clear">
@@ -245,11 +245,11 @@
                         
                                                     <div class="col-sm-4">
                                                         <label>City</label>
-                                                        <?php $city = city::all(); ?>
+                                                        <?php //$city = city::all(); ?>
                                                         <select name="city_id" id="city_id" class="form-control">
-                                                            @foreach( $city as $cities)
+                                                            {{-- @foreach( $city as $cities)
                                                               <option value="{{$cities->id}}">{{$cities->name}}</option>
-                                                            @endforeach
+                                                            @endforeach --}}
                                                         </select>
                                                     </div>
                                                     <div class="col-sm-4">
@@ -258,11 +258,11 @@
                                                     </div>
                                                     <div class="col-sm-4 m-clear">
                                                         <label>Country</label>
-                                                        <?php $country = country::all(); ?>
+                                                        <?php //$country = country::all(); ?>
                                                         <select class="form-control" id="country_id" name="country_id">
-                                                            @foreach( $country as $countries)
+                                                            {{-- @foreach( $country as $countries)
                                                                 <option value="{{$countries->id}}">{{$countries->name}}</option>
-                                                            @endforeach
+                                                            @endforeach --}}
                                                         </select>
                                                     </div>
                                                     <div class="col-sm-4 m-clear">

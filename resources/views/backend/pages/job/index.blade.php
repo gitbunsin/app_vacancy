@@ -19,7 +19,33 @@
                         <input type="text" class="form-control wide-width" placeholder="Search & type" />
                     </div>
                     <div class="card-body">
-                        <ul class="list">
+                            <table class="table" id='company_id'>
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">#No</th>
+                                        <th scope="col">Company Name</th>
+                                        <th scope="col">Phone</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Action</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>  
+                                    @foreach ($job as $key => $jobs)
+                                        <tr id="tbl_company">
+                                            <th scope="row">{{$key + 1}}</th>
+                                            <td>Company Name</td>
+                                            <td>Company Name</td>
+                                            <td>Company Name</td>
+                                            <th>
+                                                <a onclick="Edit();"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
+                                                <a onclick="Delete();" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
+                                            </th>
+                                        </tr>
+                                      @endforeach
+                                  
+                                    </tbody>
+                                  </table>
+                        {{-- <ul class="list">
                             @php $id = ""; $title = "";@endphp
                             @if ( !empty ( $job ) )
                             @foreach($job as $jobs)
@@ -48,8 +74,8 @@
                                 @else
                                     @php $jobs = ""; @endphp
                             @endif
-                        </ul>
-                        <div class="flexbox padd-10">
+                        </ul> --}}
+                        {{-- <div class="flexbox padd-10">
                             <ul class="pagination">
                                 <li class="page-item">
                                     <a class="page-link" href="#" aria-label="Previous">
@@ -67,7 +93,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -81,7 +107,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
 
-                <form method="POST" action="{{url('admin/job/'.$id)}}">
+                <form method="POST" action="{{url('admin/job/')}}">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
                     <div class="modal-header theme-bg">
@@ -90,7 +116,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>Are You Sure to Delete this item <b>{{$title}}</b> ?</label>
+                            <label>Are You Sure to Delete this item <b></b> ?</label>
                         </div>
                     </div>
                     <div class="modal-footer">

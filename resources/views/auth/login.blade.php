@@ -2,66 +2,45 @@
 @extends('frontend.layouts.template')
 @section('content')
     <!-- End Navigation -->
-    <div class="clearfix"></div>
+    <div class="tr-breadcrumb bg-image section-before">
+		<div class="container">
+			<div class="breadcrumb-info text-center">
+				<div class="page-title">
+					<h1>Sign In</h1>
+					<span>Lorem Ipsum is simply dummy text of the printing pesetting.</span>
+				</div>				
+			</div>
+		</div><!-- /.container -->
+	</div><!-- tr-breadcrumb -->	
 
-    <!-- Title Header Start -->
-    <section class="login-plane-sec">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="login-panel panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Sign In</h3>
-                        </div>
-                        <div class="panel-body">
-{{--                            <img src="" class="img-responsive" />--}}
-                            <form method="POST" action="{{ route('login') }}">--}}
-                                  @csrf
-                                <fieldset>
-                                    <input placeholder="email" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-                                    @error('email')
-                                    <span  style="color: red;" class="invalid-feedback" role="alert">
-                                            <strong style="">{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                    <div class="form-group">
-                                        <input placeholder="password" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                                        @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                    </span>
-                                        @enderror
-                                    </div>
-                                    <div class="pull-right">
-                                        @if (Route::has('password.request'))
-                                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                                {{ __('Forgot Your Password?') }}
-                                            </a>
-                                        @endif
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input  class="form-check-input pull-right" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                            <label class="form-check-label" for="remember">{{ __('Remember Me') }}</label>
-                                        </label>
-                                    </div><br/>
-                                    <!-- Change this to a button or input when using this as a form -->
-                                    <button type="submit" class="btn btn-primary center-block">{{ __('Login') }}</button>
-                                </fieldset>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <br/><br/><br/>
-    <footer class="">
-        <div class="row copyright">
-            <div class="container">
-                <p>Copyright Love Jobs © 2019. All Rights Reserved </p>
-            </div>
-        </div>
-    </footer>
+	<div class="tr-account section-padding">
+		<div class="container text-center">
+			<div class="user-account">
+				<div class="account-content">
+					<form action="#" class="tr-form">
+						<div class="form-group">
+							<input type="email" class="form-control" placeholder="Please Enter Your Email">
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control" placeholder="Password">
+						</div>
+						<div class="user-option">
+							<div class="checkbox">
+								<label for="logged"><input type="checkbox" name="logged" id="logged">Remember me</label>
+							</div>
+							<div class="forgot-password">
+								<a href="#">I forgot password</a>
+							</div>
+						</div>						
+						<button type="submit" class="btn btn-primary">Login</button>
+					</form>	
+					<div class="new-user text-center">
+						<span><a href="signup.html">Create a New Account</a> </span>
+					</div>
+				</div>
+			</div>			
+		</div><!-- container -->
+	</div><!-- /.tr-account-->	
+
 @endsection
 

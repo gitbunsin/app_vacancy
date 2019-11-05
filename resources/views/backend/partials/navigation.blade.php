@@ -6,8 +6,16 @@
                  <a href="{{'/admin/app'}}"><i class="fa fa-bullseye"></i>Dashboard</a>
             </li>
             <li>
-                <a href="create-membership.html"><i class="ti ti-star"></i>Create Membership</a>
-            </li>
+                    <a href="javascript:void(0)"><i class="ti ti-user"></i>Admin <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li class="{{ (request()->segment(2) == 'job') ? 'active' : '' }}">
+                            <a href="{{url('admin/vacancy')}}"> Vacancy</a>
+                        </li>
+                        {{-- <li class="">
+                        <a href="{{url('admin/job/create')}}">Create Jobs</a>
+                        </li> --}}
+                    </ul>
+                </li>
             <li>
                 <a href="javascript:void(0)"><i class="ti ti-user"></i>For Employer <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">

@@ -1,247 +1,278 @@
 @extends('frontend.layouts.template')
 @section('content')
-    <br/><br/> <br/><br/> <br/><br/><br/><br/>
-    <div class="clearfix"></div>
-    <!-- Title Header End -->
 
-    <!-- Candidate Detail Start -->
-    <section class="detail-desc">
-        <div class="container">
-            <div style="height: 160px;   " class="ur-detail-wrap top-lay">
+<div class="tr-breadcrumb bg-image section-before">
+    <div class="container">
+        <div class="breadcrumb-info text-center">
 
-                <div class="ur-detail-box">
-                    <div class="ur-thumb">
-                        <img  src="{{asset('img/job/com-1.jpg')}}" class="img-responsive img-circle" alt="" />
-                    </div>
-                    <div class="ur-caption">
-                        <h4 class="ur-title">{{ $job == ""  ? " " : $job->job_title }}</h4>
-                        <p class="ur-location"><i class="ti-location-pin mrg-r-5"></i>{{ $job->company->address }}</p>
-                    </div>
-
-                </div>
-
-                <div class="ur-detail-btn">
-                    <a style="margin-top: -8px;" href="{{url('job-download-company/'.$file->file_name)}}" class="btn btn-info full-width"><i class="ti-download mrg-r-5"></i>Download CV</a>
-                </div>&nbsp;  <div class="ur-detail-btn">
-                    <a href="#" class="btn btn-warning mrg-bot-10 full-width"><i class="ti-thumb-up mrg-r-5"></i>Save This Job</a>
-                </div>
-
+            <div class="page-title">
+                <h1>Graphics Designer @ Google inc</h1>
             </div>
+            <ul class="tr-list job-meta list-inline">
+                <li><i class="fa fa-map-signs" aria-hidden="true"></i>San Francisco, CA, US</li>
+                <li><i class="fa fa-map-marker" aria-hidden="true"></i>Full Time</li>
+                <li><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</li>
+                <li><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</li>
+                <li><i class="fa fa-hourglass-start" aria-hidden="true"></i>Application Deadline : Jun 27, 2017</li>
+            </ul>	
+            <div class="buttons">
+                <a href="#" class="btn btn-primary"><i class="fa fa-briefcase" aria-hidden="true"></i>Apply For This Job</a>
+                <a href="#" class="btn button-bookmark"><i class="fa fa-bookmark" aria-hidden="true"></i>Bookmark</a>
+                <span class="btn button-share"><i class="fa fa-share-alt" aria-hidden="true"></i>Share <span><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></span></span>
+            </div>		
         </div>
-    </section>
-    <!-- Candidate Detail End -->
+    </div><!-- /.container -->
+</div><!-- /.tr-breadcrumb -->
+{{-- <br/>
+<div class="tr-cta">
+    <div class="cta-content section">
+        <div class="cta-info">
+            <div class="pull-left">
+                <h1>Add your resume and let your next job find you.</h1>
+            </div>
+            <a href="#" class="btn btn-primary pull-right">Add Your Resume</a>
+        </div>
+    </div><!-- /.cta-content -->
+</div><!-- /.tr-cta --> --}}
 
-    <!-- company full detail Start -->
-    <section class="full-detail-description full-detail">
-        <div class="container">
-            <div class="row ">
-
-                <div class="col-lg-8 col-md-8 full-card  ">
-
-                    <div class="row-bottom">
-                        <br/>
-                        <h2 class="detail-title">Job Description</h2>
-                        <p>{!! $job->job_description !!}</p>
-                    </div>
-                    <h2 class="detail-title">
-                       Required Skills
-                    </h2>
-                    <ul class="skills">
-                            @foreach($job->skill as $skills)
-                            <li> {{$skills->name}} </li>
-                            @endforeach
+<div class="job-details section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-lg-9">
+                <div class="job-summary section">
+                    <span class="tr-title">Job Summary</span>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p> <br>
+                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni।</p>
+                    <span>Key Responsibilities:</span>
+                    <p>Execute all visual design stages of website design from concept to final hand-off to development Create print advertisements, social media advertisements, client collateral & digital resizes according to Client demands With direction of the Creative team, input into new design ideas for client branding Update & keep all agency collateral materials, including keeping records of Client's logos, fonts, images, etc. </p>
+                    <span>Minimum Requirements</span>
+                    <ul class="tr-list">
+                        <li>Bachelor's Degree</li>
+                        <li>2-5 years of relevant experience ( or equivalent educational experience)</li>
+                        <li>Experience developing in Wordpress and other web design platforms</li>
+                        <li>HTML, CSS and JavaScript experience a plus</li>
+                        <li>In depth knowledge & technical experience of Photoshop, Illustrator, InDesign, Adobe PDF, Keynote, PowerPoint, Microsoft Word & Excel</li>
+                        <li>Exceptional eye for design, deep understanding of creativity and ability to recognize fresh approaches to Advertising </li>
+                        <li>Must be fluent in Spanish; working written and spoken proficiency</li>
+                        <li>**All applicants must be eligible to work in the U.S. without sponsorship</li>
                     </ul>
-                    <div class="row-bottom">
-                        <h2 class="detail-title">Related Job</h2>
-                        <!--Browse Job In Grid-->
-                        <div class="row extra-mrg">
-                            <div class="col-md-6 col-sm-6">
-                                <div class="grid-view brows-job-list">
-                                    <div class="brows-job-company-img">
-                                        <img src="{{asset('img/job/com-1.jpg')}}" class="img-responsive" alt="" />
-                                    </div>
-                                    <div class="brows-job-position">
-                                        <h3><a href="job-detail.html">Web Developer</a></h3>
-                                        <p><span>Google</span></p>
-                                    </div>
-                                    <div class="job-position">
-                                        <span class="job-num">5 Position</span>
-                                    </div>
-                                    <div class="brows-job-type">
-                                        <span class="enternship">Internship</span>
-                                    </div>
-                                    <ul class="grid-view-caption">
-                                        <li>
-                                            <div class="brows-job-location">
-                                                <p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <p><span class="brows-job-sallery"><i class="fa fa-money"></i>$110 - 200</span></p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <div class="grid-view brows-job-list">
-                                    <div class="brows-job-company-img">
-                                        <img src="{{asset('img/job/com-1.jpg')}}" class="img-responsive" alt="" />
-                                    </div>
-                                    <div class="brows-job-position">
-                                        <h3><a href="job-detail.html">Web Developer</a></h3>
-                                        <p><span>Google</span></p>
-                                    </div>
-                                    <div class="job-position">
-                                        <span class="job-num">5 Position</span>
-                                    </div>
-                                    <div class="brows-job-type">
-                                        <span class="part-time">Part Time</span>
-                                    </div>
-                                    <ul class="grid-view-caption">
-                                        <li>
-                                            <div class="brows-job-location">
-                                                <p><i class="fa fa-map-marker"></i>QBL Park, C40</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <p><span class="brows-job-sallery"><i class="fa fa-money"></i>$110 - 200</span></p>
-                                        </li>
-                                    </ul>
-                                    <span class="tg-themetag tg-featuretag">Premium</span>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!--/.Browse Job In Grid-->
-
-                    </div>
-
                 </div>
-
-                <div class="col-lg-4 col-md-4">
-                    <div class="full-sidebar-wrap">
-                        <a href="{{url('job-apply/'.$job->id)}}" class="btn btn-info mrg-bot-15 full-width"><i class="ti-star mrg-r-5"></i>Apply This Job</a>
-                        <!-- Candidate overview -->
-                        <div class="sidebar-widgets">
-
-                            <div class="ur-detail-wrap">
-                                <div class="ur-detail-wrap-header">
-                                    <h4>Candidate Overview</h4>
-                                </div>
-                                <div class="ur-detail-wrap-body">
-                                    <ul class="ove-detail-list">
-
-                                        <li>
-                                            <i class="ti-wallet"></i>
-                                            <h5>Offer Salary</h5>
-                                            <span>£ {{ $job->offer_salary }}</span>
-                                        </li>
-                                        <li>
-                                            <i class="ti-user"></i>
-                                            <h5>Gender</h5>
-                                            <span>{{$job->gender}}</span>
-                                        </li>
-                                        <li>
-                                            <i class="ti-ink-pen"></i>
-                                            <h5>Career Level</h5>
-                                            <span>{{$job->career_level}}</span>
-                                        </li>
-                                        <li>
-                                            <i class="ti-home"></i>
-                                            <h5>Industry</h5>
-                                            <span>{{$job->industry}}</span>
-                                        </li>
-                                        <li>
-                                            <i class="ti-shield"></i>
-                                            <h5>Experience</h5>
-                                            <span>{{$job->experience}}</span>
-                                        </li>
-                                        <li>
-                                            <i class="ti-book"></i>
-                                            <h5>Qualification</h5>
-                                            <span>{{$job->qualification}}</span>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Company overview -->
-                        <div class="sidebar-widgets">
-
-                            <div class="ur-detail-wrap">
-                                <div class="ur-detail-wrap-header">
-                                    <h4>Company Overview</h4>
-                                </div>
-                                <div class="ur-detail-wrap-body">
-                                    <ul class="ove-detail-list">
-
-                                        <li>
-                                            <i class="ti-ruler-pencil"></i>
-                                            <h5>Established</h5>
-                                            <span>{{$job->company->created_at}}</span>
-                                        </li>
-
-                                        <li>
-                                            <i class="ti-user"></i>
-                                            <h5>Employees</h5>
-                                            <span>500 - 600</span>
-                                        </li>
-
-                                        <li>
-                                            <i class="ti-face-smile"></i>
-                                            <h5>Owner Name</h5>
-                                            <span>{{$job->admin->name}}</span>
-                                        </li>
-
-                                        <li>
-                                            <i class="ti-email"></i>
-                                            <h5>Email</h5>
-                                            <span>{{$job->company->email}}</span>
-                                        </li>
-
-                                        <li>
-                                            <i class="ti-mobile"></i>
-                                            <h5>Call</h5>
-                                            <span>{{$job->company->phone}}</span>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!-- /Company overview -->
-                        <!-- Follow Links -->
-                        <div class="sidebar-widgets">
-
-                            <div class="ur-detail-wrap">
-                                <div class="ur-detail-wrap-header">
-                                    <h4>Follow Links</h4>
-                                </div>
-                                <div class="ur-detail-wrap-body">
-                                    <ul class="follow-links">
-
-                                        <li><a href="{{$job->company->website_link}}"><i class="ti-link"></i>Website</a></li>
-                                        <li><a href="{{$job->company->facebook_link}}"><i class="ti-facebook"></i>Facebook</a></li>
-                                        <li><a href="{{$job->company->twitter_link}}"><i class="ti-twitter-alt"></i>Twitter</a></li>
-                                        <li><a href="{{$job->company->linkedIn_link}}"><i class="ti-linkedin"></i>Linked In</a></li>
-                                        <li><a href="{{$job->company->instagram_link}}"><i class="ti-instagram"></i>Instagram</a></li>
-
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!-- /Working Days -->
-                    </div>
-                </div>
-
             </div>
-        </div>
-    </section>
-    <!-- company full detail End -->
-    <!-- More Jobs -->
+            <div class="col-md-4 col-lg-3">
+                <div class="tr-sidebar">
+                    <div class="widget-area">
+                        <div class="widget short-info">
+                            <h3 class="widget_title">Short Info</h3>
+                            <ul class="tr-list">
+                                <li class="media"><div class="pull-left"><i class="fa fa-calendar" aria-hidden="true"></i></div> <div class="media-body"><span>Published:</span>1 Days ago</div></li>
+                                <li class="media"><div class="pull-left"><i class="fa fa-user-plus" aria-hidden="true"></i></div> <div class="media-body"><span>Job poster:</span>Lance Ladaga</div></li>
+                                <li class="media"><div class="pull-left"><i class="fa fa-industry" aria-hidden="true"></i></div> <div class="media-body"><span>Industry:</span>Marketing and Advertising</div></li>
+                                <li class="media"><div class="pull-left"><i class="fa fa-line-chart" aria-hidden="true"></i></div> <div class="media-body"><span>Experience:</span>Entry level</div></li>
+                                <li class="media"><div class="pull-left"><i class="fa fa-key" aria-hidden="true"></i></div> <div class="media-body"><span>Job function:</span>Advertising, Design, Art/Creative</div></li>
+                            </ul>
+                        </div><!-- /.widger -->
+                        <div class="widget cmpany-info">
+                            <h3 class="widget_title">Cmpany Info</h3>
+                            <span>Google Inc</span>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore </p>
+                            <ul class="tr-list">
+                                <li><span>Address:</span> London, UK</li>
+                                <li><span>Compnay SIze:</span>  2k Employee</li>
+                                <li><span>Industry:</span> <a href="#">Technology</a></li>
+                                <li><span>Phone:</span> +1234 567 8910</li>
+                                <li><span>Email:</span> <a href="#"><span class="__cf_email__" data-cfemail="4c25222a230c283e233c2e2334622f2321">[email&#160;protected]</span></a></li>
+                                <li><span>Website:</span> <a href="#">www.dropbox.com</a></li>
+                                <li><span></span></li>
+                            </ul>
+                            <div class="widget-social">
+                                <ul class="tr-list">
+                                    <li><a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-google-plus-square" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
+                                </ul>
+                            </div>
+                        </div><!-- /.widger -->
+                    </div><!-- /.widget-area -->
+                </div><!-- /.tr-sidebar -->
+            </div>
+        </div><!-- row -->
 
-    <!-- company full detail End -->
+      
+        
+        <div class="tr-job-posted similar-jobs">
+            <span class="tr-title">Similar Jobs Post</span>
+            <div class="row">
+                <div class="col-md-6 col-lg-3">
+                    <div class="job-item">
+                        <div class="item-overlay">
+                            <div class="job-info">
+                                <a href="#" class="btn btn-primary">Full Time</a>
+                                <span class="tr-title">
+                                    <a href="#">Project Manager</a>
+                                    <span><a href="#">Dig File</a></span>
+                                </span>
+                                <ul class="tr-list job-meta">
+                                    <li><i class="fa fa-map-signs" aria-hidden="true"></i>San Francisco, CA, US</li>
+                                    <li><i class="fa fa-briefcase" aria-hidden="true"></i>Mid Level</li>
+                                    <li><i class="fa fa-money" aria-hidden="true"></i>$5,000 - $6,000</li>
+                                </ul>
+                                <ul class="job-social tr-list">
+                                    <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-expand" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
+                                </ul>
+                            </div>										
+                        </div>
+                        <div class="job-info">
+                            <div class="company-logo">
+                                <img src="images/job/1.png" alt="images" class="img-fluid">
+                            </div>
+                            <span class="tr-title">
+                                <a href="#">Project Manager</a>
+                                <span><a href="#">Dig File</a></span>
+                            </span>
+                            <ul class="tr-list job-meta">
+                                <li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>San Francisco, CA, US</li>
+                                <li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>Mid Level</li>
+                                <li><span><i class="fa fa-money" aria-hidden="true"></i></span>$5,000 - $6,000</li>
+                            </ul>
+                            <div class="time">
+                                <a href="#"><span>Full Time</span></a>
+                                <span class="pull-right">Posted 23 hours ago</span>
+                            </div>																				
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="job-item">
+                        <div class="item-overlay">
+                            <div class="job-info">
+                                <a href="#" class="btn btn-primary">Part Time</a>
+                                <span class="tr-title">
+                                    <a href="#">Design Associate</a>
+                                    <span><a href="#">Loop</a></span>
+                                </span>
+                                <ul class="tr-list job-meta">
+                                    <li><i class="fa fa-map-signs" aria-hidden="true"></i>San Francisco, CA, US</li>
+                                    <li><i class="fa fa-briefcase" aria-hidden="true"></i>Mid Level</li>
+                                    <li><i class="fa fa-money" aria-hidden="true"></i>$5,000 - $6,000</li>
+                                </ul>
+                                <ul class="job-social tr-list">
+                                    <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-expand" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
+                                </ul>
+                            </div>										
+                        </div>								
+                        <div class="job-info">
+                            <div class="company-logo">
+                                <img src="images/job/2.png" alt="images" class="img-fluid">
+                            </div>
+                            <span class="tr-title">
+                                <a href="#">Design Associate</a>
+                                <span><a href="#">Loop</a></span>
+                            </span>
+                            <ul class="tr-list job-meta">
+                                <li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>San Francisco, CA, US</li>
+                                <li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>Mid Level</li>
+                                <li><span><i class="fa fa-money" aria-hidden="true"></i></span>$5,000 - $6,000</li>
+                            </ul>
+                            <div class="time">
+                                <a href="#"><span class="part-time">Part Time</span></a>
+                                <span class="pull-right">Posted 1 day ago</span>
+                            </div>			
+                        </div>
+                    </div>
+                </div>	
+                <div class="col-md-6 col-lg-3">
+                    <div class="job-item">
+                        <div class="item-overlay">
+                            <div class="job-info">
+                                <a href="#" class="btn btn-primary">Freelance</a>
+                                <span class="tr-title">
+                                    <a href="#">Graphic Designer</a>
+                                    <span><a href="#">Humanity Creative</a></span>
+                                </span>
+                                <ul class="tr-list job-meta">
+                                    <li><i class="fa fa-map-signs" aria-hidden="true"></i>San Francisco, CA, US</li>
+                                    <li><i class="fa fa-briefcase" aria-hidden="true"></i>Mid Level</li>
+                                    <li><i class="fa fa-money" aria-hidden="true"></i>$5,000 - $6,000</li>
+                                </ul>
+                                <ul class="job-social tr-list">
+                                    <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-expand" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
+                                </ul>
+                            </div>										
+                        </div>								
+                        <div class="job-info">
+                            <div class="company-logo">
+                                <img src="images/job/3.png" alt="images" class="img-fluid">
+                            </div>
+                            <span class="tr-title">
+                                <a href="#">Graphic Designer</a>
+                                <span><a href="#">Humanity Creative</a></span>
+                            </span>
+                            <ul class="tr-list job-meta">
+                                <li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>San Francisco, CA, US</li>
+                                <li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>Mid Level</li>
+                                <li><span><i class="fa fa-money" aria-hidden="true"></i></span>$5,000 - $6,000</li>
+                            </ul>
+                            <div class="time">
+                                <a href="#"><span class="freelance">Freelance</span></a>
+                                <span class="pull-right">Posted 10 day ago</span>
+                            </div>			
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="job-item">
+                        <div class="item-overlay">
+                            <div class="job-info">
+                                <a href="#" class="btn btn-primary">Full Time</a>
+                                <span class="tr-title">
+                                    <a href="#">Design Consultant</a>
+                                    <span><a href="#">Families</a></span>
+                                </span>
+                                <ul class="tr-list job-meta">
+                                    <li><i class="fa fa-map-signs" aria-hidden="true"></i>San Francisco, CA, US</li>
+                                    <li><i class="fa fa-briefcase" aria-hidden="true"></i>Mid Level</li>
+                                    <li><i class="fa fa-money" aria-hidden="true"></i>$5,000 - $6,000</li>
+                                </ul>
+                                <ul class="job-social tr-list">
+                                    <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-expand" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
+                                </ul>
+                            </div>										
+                        </div>								
+                        <div class="job-info">
+                            <div class="company-logo">
+                                <img src="images/job/4.png" alt="images" class="img-fluid">
+                            </div>
+                            <span class="tr-title">
+                                <a href="#">Design Consultant</a>
+                                <span><a href="#">Families</a></span>
+                            </span>
+                            <ul class="tr-list job-meta">
+                                <li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>San Francisco, CA, US</li>
+                                <li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>Mid Level</li>
+                                <li><span><i class="fa fa-money" aria-hidden="true"></i></span>$5,000 - $6,000</li>
+                            </ul>
+                            <div class="time">
+                                <a href="#"><span>Full Time</span></a>
+                                <span class="pull-right">Posted Oct 09, 2017</span>
+                            </div>				
+                        </div>
+                    </div>
+                </div>													
+            </div>
+        </div><!-- /.tr-job-posted -->		
+    </div><!-- /.container -->
+</div><!-- /.tr-details -->	
 @endsection

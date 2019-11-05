@@ -5,11 +5,10 @@
     <div class="container">
         <div class="breadcrumb-info text-center">
             <div class="page-title">
-                <h1>Graphics Designer</h1>
+                <h1>The Easiest Way to Get Your New Job</h1>
             </div>		
             <ol class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
-                <li class="active">Graphics Design</li>
+                <li><a href="index.html">We offer 12000 jobs vacation right now</a></li>
             </ol>
             <div class="banner-form">
                 <form action="#">
@@ -97,7 +96,7 @@
                                 <div class="job-info">
                                     <a href="#" class="btn btn-primary">Full Time</a>
                                     <span class="tr-title">
-                                        <a href="job-details.html">Project Manager</a>
+                                        <a href="{{url('vacancy/details')}}">Project Manager</a>
                                         <span><a href="#">Dig File</a></span>
                                     </span>
                                     <ul class="tr-list job-meta">
@@ -109,7 +108,7 @@
                                         <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
                                         <li><a href="#"><i class="fa fa-expand" aria-hidden="true"></i></a></li>
                                         <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-                                        <li><a href="job-details.html"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
+                                        <li><a href="{{url('/admin/job-apply-details/1')}}"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
                                     </ul>
                                 </div>										
                             </div>

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class AppController extends Controller
+class VacancyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,26 +14,8 @@ class AppController extends Controller
      */
     public function index()
     {
-        return view('backend.pages.content');
-    }
-    public function about(){
-
-        return view('frontend.pages.about');
-    }
-    
-    public function manageJob(){
-
-        return view('backend.pages.job.index');
-    }
-
-    public function login(){
-
-        return view('backend.auth.login');
-    }
-
-    public function register(){
-
-        return view('backend.auth.register');
+        //
+        return view('backend.pages.admin.vacancy.index',compact('job'));
     }
 
     /**

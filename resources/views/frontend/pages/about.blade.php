@@ -1,67 +1,72 @@
 @extends('frontend.layouts.template')
 @section('content')
-<!-- End Navigation -->
-<div class="clearfix"></div>
-
-
-<!-- Main Banner Section Start -->
-<div class="hero-banner" data-ride="carousel" data-pause="hover" data-interval="false" >
-    <div class="hero-img">
-        <img style="position: relative;right: -830px;top:55px;" src="{{asset('img/about/about-us.jpg')}}" class="img-responsive" alt="">
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col col-md-6 col-sm-8">
-                <div class="content">
-                    <h2>Talent?<br> Meet Opportunity.</h2>
-                    <div>Showcase what's important to you by adding photos, pages, groups and more to your featured section on your public profile.</div>
-                    <form class="banner-form" data-animation="animated fadeInUp">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search For...">
-                            <span class="input-group-btn">
-											<button type="button" class="btn bg-success">Go & Search</button>
-										</span>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="clearfix"></div>
-<!-- Main Banner Section End -->
-
-<!-- ========= start Call To Action section =========== -->
-<div class="clearfix"></div>
-<section class="call-to-act">
-    <div class="container-fluid">
-
-        <div class="col-md-6 col-sm-6 no-padd bl-dark">
-            <div class="call-to-act-caption">
-                <h2>We Are Expert In Web design and development</h2>
-                <h3>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo</h3>
-                <a href="#" class="btn bat-call-to-act">Hire Us</a>
-            </div>
-        </div>
-
-        <div class="col-md-6 col-sm-6 no-padd gr-dark">
-            <div class="call-to-act-caption">
-                <h2>We Are Expert In Web design and development</h2>
-                <h3>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo</h3>
-                <a href="#" class="btn bat-call-to-act">Join Us</a>
-            </div>
-        </div>
-
-    </div>
-</section>
-<br/><br/>
-<div class="clearfix"></div>
-<footer class="">
-    <div class="row copyright">
-        <div class="container">
-            <p>Copyright Love Jobs © 2019. All Rights Reserved </p>
-        </div>
-    </div>
-</footer>
-<!-- =========== Call To Action section End ============= -->
+<div class="tr-breadcrumb bg-image section-before">
+		<div class="container">
+			<div class="breadcrumb-info text-center">
+				<div class="page-title">
+					<h1>Contact Us</h1>
+				</div>		
+				<ol class="breadcrumb">
+					<li><a href="index.html">Home</a></li>
+					<li class="active">About Us</li>
+				</ol>			
+			</div>
+		</div><!-- /.container -->
+	</div><!-- /.tr-breadcrumb -->
+<div class="all-view section-padding">
+		<div class="container">
+			<div class="section">
+				<ul class="tr-list resume-info">
+					<li class="career-objective media">
+						<div class="icon">
+					        <i class="fa fa-black-tie" aria-hidden="true"></i>
+					    </div>  
+					    <div class="media-body">
+					    	<span class="tr-title">Company Info</span>
+					        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> <br>
+					        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni।</p>
+					    </div>
+					</li><!-- /.career-objective -->
+					<li class="mission-vision media">
+						<div class="icon">
+					        <i class="fa fa-anchor" aria-hidden="true"></i>
+					    </div>  
+					    <div class="media-body">
+					    	<span class="tr-title">Mission & Vision</span>
+					        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> <br>
+					        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni।</p>
+					    </div>
+					</li><!-- /.mission-vision -->	
+					<li class="company-achievement media">
+					    <div class="icon">
+					    	<i class="fa fa-book" aria-hidden="true"></i>
+					    </div>
+					    <div class="media-body">
+					    	<span class="tr-title">Company Achievement</span>
+					    	<ul class="tr-list">
+					    		<li>
+					    			<span>Introducing Our Mobile “Nexus”</span>
+					    			<ul class="tr-list">
+					    				<li>Year: 27 May, 2010</li>
+					    			</ul>
+					    			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+					    		</li>
+					    		<li>
+					    			<span>Win Award Stardom</span>
+					    			<ul class="tr-list">
+					    				<li>Year: 27 May, 2010</li>
+					    			</ul>
+					    			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+					    		</li>
+					    	</ul>
+					    </div>
+					</li><!-- /.company-achievement -->													
+				</ul>
+				<div class="buttons pull-right">
+					<a href="#" class="btn button-send"><i class="fa fa-envelope-o" aria-hidden="true"></i>Send Email</a>
+					<a href="#" class="btn btn-primary"><i class="fa fa-briefcase" aria-hidden="true"></i>See All Job Post</a>
+				</div>					
+			</div>
+		</div>	
+	</div>
 @endsection

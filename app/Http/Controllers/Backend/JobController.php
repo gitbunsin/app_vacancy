@@ -30,8 +30,8 @@ class JobController extends Controller
     }
     public function job()
     {
-        $job = job::with(['category','jobType','company'])->get();
-        return view('frontend.pages.job',compact('job'));
+       // $job = job::with(['category','jobType','company'])->get();
+        return view('frontend.pages.job');
     }
 
     public function jobDetails($id)
@@ -138,6 +138,10 @@ class JobController extends Controller
     public function show($id)
     {
         //
+        return view('frontend.pages.job-apply-detail');
+    }
+    public function details(){
+        return view('frontend.pages.job-apply-detail');
     }
 
     /**

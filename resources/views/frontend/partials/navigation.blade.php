@@ -11,29 +11,16 @@
             
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="nav navbar-nav">
-                    <li class="tr-dropdown active"><a href="#">Home</a>
-                        <ul class="tr-dropdown-menu left tr-list fadeInUp" role="menu">
-                            <li class="active"><a href="index.html">Home Page V-1</a></li>
-                            <li><a href="index1.html">Home Page V-2</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="job-post.html">Post A Job</a></li>
-                    <li><a href="listing.html">Job List</a></li>
-                    <li><a href="job-details.html">Job Details</a></li>
-                    <li class="tr-dropdown"><a href="#">Pages</a>
+                    <li class="tr-dropdown active"><a href="#">Home</a></li>
+                    <li><a href="{{url('about')}}">About Us</a></li>
+                    <li><a href="{{url('contact')}}">Contact Us</a></li>
+                    <li class="tr-dropdown"><a href="#">Candidate   </a>
                         <ul class="tr-dropdown-menu tr-list fadeInUp" role="menu">
-                            <li><a href="employee-profile.html">Employee Profile</a></li>
-                            <li><a href="employer-profile.html">Employer Profile</a></li>
+                            <li><a href="{{url('user-profile')}}">Employee Profile</a></li>
                             <li><a href="view-compnay.html">View Compnay</a></li>
                             <li><a href="view-resume.html">View Resume</a></li>
                             <li><a href="coming-soon.html">Coming Soon</a></li>
-                            <li><a href="notification.html">Notification</a></li>
-                            <li><a href="contact.html">Contact</a></li>
                             <li><a href="pricing.html">Pricing</a></li>
-                            <li><a href="signup.html">Sign Up</a></li>
-                            <li><a href="signin.html">Sign In</a></li>
-                            <li><a href="500.html">500 Opsss</a></li>
-                            <li><a href="404.html">404 Error</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -52,8 +39,8 @@
                 </div><!-- /.language-dropdown -->					
                 <ul class="sign-in tr-list">
                     <li><i class="fa fa-user"></i></li>
-                    <li><a href="signin.html">Sign In </a></li>
-                    <li><a href="signup.html">Register</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#exampleModal">Sign In </a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#examplRegister">Register</a></li>
                 </ul><!-- /.sign-in -->					
 
                 <a href="job-post.html" class="btn btn-primary">Post Job</a>
@@ -61,3 +48,153 @@
         </div><!-- /.container -->
     </nav><!-- /.navbar -->
 </header><!-- /.tr-header -->
+{{-- Register --}}
+<div class="modal fade" id="examplRegister" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div style="background-color:#008def" class="modal-header">
+          <h5 style="color:white;" class="modal-title" id="exampleModalLabel">Register</h5>
+        </div>
+        <div class="modal-body">
+                        <div class="text-center">
+                            <div class="user-account">
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs  nav-justified" role="tablist">
+                                    <li role="presentation"><a class="active" href="#seeker" aria-controls="seeker" role="tab" data-toggle="tab">Job Seeker</a></li>
+                                    <li role="presentation"><a href="#employers" aria-controls="employers" role="tab" data-toggle="tab">Employers</a></li>
+                                </ul>
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active" id="seeker">
+                                        <div class="account-content">
+                                            <form action="#" class="tr-form">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Full Name">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Username">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="email" class="form-control" placeholder="your Email">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" class="form-control" placeholder="Password">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" class="form-control" placeholder="Confirm Password">
+                                                </div>					
+                                                <button type="submit" class="btn btn-primary">Sign Up</button>
+                                            </form>	
+                                            <div class="new-user text-center">
+                                                <span>Already Registered? <a href="signin.html">Sign in</a> </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane" id="employers">
+                                        <div class="account-content">
+                                            <form action="#" class="tr-form">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Your Full Name">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Username">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="email" class="form-control" placeholder="your Email">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" class="form-control" placeholder="Password">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" class="form-control" placeholder="Confirm Password">
+                                                </div>												
+                                                <button type="submit" class="btn btn-primary">Sign Up</button>
+                                            </form>	
+                                            <div class="new-user text-center">
+                                                <span>Already Registered? <a href="signin.html">Sign in</a> </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>				
+                            </div>				
+                        </div><!-- container -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div style="background-color:#008def" class="modal-header">
+          <h5 style="color:white;" class="modal-title" id="exampleModalLabel">Sign In</h5>
+        </div>
+        <div class="modal-body">
+                <div class="text-center">
+                        <div class="user-account">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs  nav-justified" role="tablist">
+                                <li role="presentation"><a class="active" href="#seekerLogin" aria-controls="seeker" role="tab" data-toggle="tab">Job Seeker</a></li>
+                                <li role="presentation"><a href="#employersLogin" aria-controls="employers" role="tab" data-toggle="tab">Employers</a></li>
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="seekerLogin">
+                                    <div class="account-content">
+                                        <form action="#" class="tr-form">
+                                        
+                                            <div class="form-group">
+                                                <input type="email" class="form-control" placeholder="your Email">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" placeholder="Password">
+                                            </div>
+                                            <div class="user-option">
+                                                    <div class="checkbox">
+                                                        <label for="logged"><input type="checkbox" name="logged" id="logged">Remember me</label>
+                                                    </div>
+                                                    <div class="forgot-password">
+                                                        <a href="#">I forgot password</a>
+                                                    </div>
+                                                </div>	
+                                        				
+                                            <button type="submit" class="btn btn-primary">Sign Up</button>
+                                        </form>	
+                                        <div class="new-user text-center">
+                                            <span>Already Registered? <a href="signin.html">Register</a> </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="employersLogin">
+                                    <div class="account-content">
+                                        <form action="#" class="tr-form">
+                                           
+                                            <div class="form-group">
+                                                <input type="email" class="form-control" placeholder="your Email">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" placeholder="Password">
+                                            </div>
+                                            <div class="user-option">
+                                                    <div class="checkbox">
+                                                        <label for="logged"><input type="checkbox" name="logged" id="logged">Remember me</label>
+                                                    </div>
+                                                    <div class="forgot-password">
+                                                        <a href="#">I forgot password</a>
+                                                    </div>
+                                                </div>	
+                                           											
+                                            <button type="submit" class="btn btn-primary">Sign Up</button>
+                                        </form>	
+                                        <div class="new-user text-center">
+                                            <span>Already Registered? <a href="signin.html">Register</a> </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>				
+                        </div>				
+                    </div>
+        </div>
+      </div>
+    </div>
+  </div>

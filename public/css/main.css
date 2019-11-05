@@ -208,7 +208,8 @@ input:focus, textarea:focus, select:focus,
 	color: #2d3038;
 	margin-bottom: 20px;
 	border: 1px solid #e8e6e8;
-	background-color: #faf7fa;
+	/* background-color: #faf7fa; */
+	border-radius: 30px;
 }
 
 .form-control:focus {
@@ -1941,7 +1942,7 @@ input:focus, textarea:focus, select:focus,
 
 .user-account {
 	overflow: hidden;
-	width: 360px;
+	width: 470px;
 	display: inline-block;
 }
 
@@ -2088,6 +2089,7 @@ input:focus, textarea:focus, select:focus,
 	border: 0;
 	color: #fff;
 	background-color: #008def;
+	border-radius: 30px;
 }
 
 .tab-content .account-content {
@@ -2440,9 +2442,9 @@ input:focus, textarea:focus, select:focus,
     padding: 10px 20px;
     color: #2d3038;
     margin-top: 5px;
-    border-radius: 4px;
+    border-radius: 30px;
     border: 1px solid #e8e6e8;
-    background-color: #faf7fa;	
+    /* background-color: #faf7fa;	 */
 }
 
 .account-details li a {
@@ -2479,9 +2481,9 @@ input:focus, textarea:focus, select:focus,
 .jqte {
 	color: #2d3038;
 	padding: 30px;
-	background-color: #faf7fa;
+	/* background-color: #faf7fa; */
 	border: 1px solid #e8e6e8;
-	border-radius: 4px;
+	border-radius: 30px;
 }
 
 .code-edit p:last-of-type {
