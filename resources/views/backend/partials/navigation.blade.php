@@ -12,11 +12,11 @@
                 <a href="javascript:void(0)"><i class="ti ti-user"></i>For Employer <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li class="{{ (request()->segment(2) == 'job') ? 'active' : '' }}">
-                        <a href="{{url('admin/job')}}">Manage Jobs</a>
+                        <a href="{{url('admin/job')}}">Manage Vacancy</a>
                     </li>
-                    <li class="">
+                    {{-- <li class="">
                     <a href="{{url('admin/job/create')}}">Create Jobs</a>
-                    </li>
+                    </li> --}}
                 </ul>
             </li>
 
@@ -26,16 +26,6 @@
                     <li>
                         <a href="{{url('admin/user')}}">Manage Candidate</a>
                     </li>
-                    <li>
-                        <a href="bookmarked-jobs.html">Bookmarked Jobs</a>
-                    </li>
-                    <li>
-                        <a href="manage-resumes.html">Manage Resumes</a>
-                    </li>
-                    <li>
-                        <a href="{{url('admin/create-resume')}}">Create Resume</a>
-                    </li>
-
                 </ul>
             </li>
             <li>
@@ -44,9 +34,9 @@
                     <li class="">
                         <a href="{{url('admin/company')}}">Manage Company</a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="{{url('admin/company/create')}}">Crate Company</a>
-                    </li>
+                    </li> --}}
                 </ul>
             </li>
             <li><a href="settings.html"><i class="ti ti-settings"></i>Settings</a></li>
