@@ -55,7 +55,7 @@
                         <a href="messages.html">
                             <div class="message-apt">
                                 <div class="user-img">
-                                    <img src="{{asset('/img/user/user-1.jpg')}}" class="img-responsive img-circle" alt="">
+                                    <img src="{{asset('images/user/user-1.jpg')}}" class="img-responsive img-circle" alt="">
                                     <span class="profile-status online"></span>
                                 </div>
                                 <div class="message-body">
@@ -72,7 +72,7 @@
                         <a href="messages.html">
                             <div class="message-apt">
                                 <div class="user-img">
-                                    <img src="{{asset('/img/user/user-1.jpg')}}" class="img-responsive img-circle" alt="">
+                                    <img src="{{asset('images/user/user-1.jpg')}}" class="img-responsive img-circle" alt="">
                                     <span class="profile-status warning"></span>
                                 </div>
                                 <div class="message-body">
@@ -89,7 +89,7 @@
                         <a href="messages.html">
                             <div class="message-apt">
                                 <div class="user-img">
-                                    <img src="{{asset('/img/user/user-1.jpg')}}" class="img-responsive img-circle" alt="">
+                                    <img src="{{asset('images/user/user-1.jpg')}}" class="img-responsive img-circle" alt="">
                                     <span class="profile-status busy"></span>
                                 </div>
                                 <div class="message-body">
@@ -106,7 +106,7 @@
                         <a href="messages.html">
                             <div class="message-apt">
                                 <div class="user-img">
-                                    <img src="{{asset('/img/user/user-1.jpg')}}" class="img-responsive img-circle" alt="">
+                                    <img src="{{asset('images/user/user-1.jpg')}}" class="img-responsive img-circle" alt="">
                                     <span class="profile-status offline"></span>
                                 </div>
                                 <div class="message-body">
@@ -207,27 +207,27 @@
                 </a>
                 <div class="dropdown-menu dropdown-grid animated flipInX">
                     <a href="index.html" class="dropdown-item">
-                        <img src="{{asset('/img/user/user-1.jpg')}}" class="img-responsive" alt="" />
+                        <img src="{{asset('images/user/user-1.jpg')}}" class="img-responsive" alt="" />
                         <span class="dropdown-title">Dashboard</span>
                     </a>
                     <a href="messages.html" class="dropdown-item">
-                        <img src="{{asset('/img/user/user-1.jpg')}}" class="img-responsive" alt="" />
+                        <img src="{{asset('images/user/user-1.jpg')}}" class="img-responsive" alt="" />
                         <span class="dropdown-title">Chat</span>
                     </a>
                     <a href="settings.html" class="dropdown-item">
-                        <img src="{{asset('/img/user/user-1.jpg')}}" class="img-responsive" alt="" />
+                        <img src="{{asset('images/user/user-1.jpg')}}" class="img-responsive" alt="" />
                         <span class="dropdown-title">Settings</span>
                     </a>
                     <a href="create-jobs.html" class="dropdown-item">
-                        <img src="{{asset('/img/user/user-1.jpg')}}" class="img-responsive" alt="" />
+                        <img src="{{asset('images/user/user-1.jpg')}}" class="img-responsive" alt="" />
                         <span class="dropdown-title">New Jobs</span>
                     </a>
                     <a href="freelancers.html" class="dropdown-item">
-                        <img src="{{asset('/img/user/user-1.jpg')}}" class="img-responsive" alt="" />
+                        <img src="{{asset('images/user/user-1.jpg')}}" class="img-responsive" alt="" />
                         <span class="dropdown-title">Freelancers</span>
                     </a>
                     <a href="my-profile.html" class="dropdown-item">
-                        <img src="{{asset('/img/user/user-1.jpg')}}" class="img-responsive" alt="" />
+                        <img src="{{asset('images/user/user-1.jpg')}}" class="img-responsive" alt="" />
                         <span class="dropdown-title">Profile</span>
                     </a>
                 </div>
@@ -236,7 +236,7 @@
             <!-- /.dropdown -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <img src="{{asset('img/about/about-us.jpg')}}" class="img-responsive img-circle" alt="user">
+                    <img src="{{asset('images/user/user-1.jpg')}}" class="img-responsive img-circle" alt="user">
                 </a>
                 <ul class="dropdown-menu dropdown-user right-swip">
                     <li><a href="{{url('admin/profile')}}"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -281,7 +281,7 @@
         <div class="right-sidebar" id="side-scroll">
             <div class="user-box">
                 <div class="profile-img">
-                    <img src="{{asset('/img/user/user-1.jpg')}}" alt="user">
+                    <img src="{{asset('images/user/user-1.jpg')}}" alt="user">
                     <!-- this is blinking heartbit-->
                     <div class="notify setpos"> <span class="heartbit"></span> <span class="point"></span> </div>
                 </div>
@@ -312,7 +312,7 @@
                             <div class="accept-request">
                                 <div class="friend-overview">
                                     <div class="friend-overview-img">
-                                        <img src="{{asset('/img/user/user-1.jpg')}}" class="img-responsive img-circle" alt="">
+                                        <img src="{{asset('images/user/user-1.jpg')}}" class="img-responsive img-circle" alt="">
                                         <span class="fr-user-status online"></span>
                                     </div>
                                     <div class="fr-request-detail">
@@ -322,7 +322,7 @@
                                 </div>
                                 <div class="friend-overview">
                                     <div class="friend-overview-img">
-                                        <img src="{{asset('/img/user/user-1.jpg')}}" class="img-responsive img-circle" alt="">
+                                        <img src="{{asset('images/user/user-1.jpg')}}" class="img-responsive img-circle" alt="">
                                         <span class="fr-user-status offline"></span>
                                     </div>
                                     <div class="fr-request-detail">
@@ -332,7 +332,7 @@
                                 </div>
                                 <div class="friend-overview">
                                     <div class="friend-overview-img">
-                                        <img src="{{asset('/img/user/user-1.jpg')}}" class="img-responsive img-circle" alt="">
+                                        <img src="{{asset('images/user/user-1.jpg')}}" class="img-responsive img-circle" alt="">
                                         <span class="fr-user-status busy"></span>
                                     </div>
                                     <div class="fr-request-detail">
@@ -342,7 +342,7 @@
                                 </div>
                                 <div class="friend-overview">
                                     <div class="friend-overview-img">
-                                        <img src="{{asset('/img/user/user-1.jpg')}}" class="img-responsive img-circle" alt="">
+                                        <img src="{{asset('images/user/user-1.jpg')}}" class="img-responsive img-circle" alt="">
                                         <span class="fr-user-status offline"></span>
                                     </div>
                                     <div class="fr-request-detail">
@@ -405,7 +405,7 @@
                             <div class="accept-request">
                                 <div class="friend-overview">
                                     <div class="friend-overview-img">
-                                        <img src="{{asset('/img/user/user-1.jpg')}}" class="img-responsive img-circle" alt="">
+                                        <img src="{{asset('images/user/user-1.jpg')}}" class="img-responsive img-circle" alt="">
                                         <span class="fr-user-status online"></span>
                                     </div>
                                     <div class="fr-request-detail">
@@ -415,7 +415,7 @@
                                 </div>
                                 <div class="friend-overview">
                                     <div class="friend-overview-img">
-                                        <img src="{{asset('/img/user/user-1.jpg')}}" class="img-responsive img-circle" alt="">
+                                        <img src="{{asset('images/user/user-1.jpg')}}" class="img-responsive img-circle" alt="">
                                         <span class="fr-user-status offline"></span>
                                     </div>
                                     <div class="fr-request-detail">
@@ -425,7 +425,7 @@
                                 </div>
                                 <div class="friend-overview">
                                     <div class="friend-overview-img">
-                                        <img src="{{asset('/img/user/user-1.jpg')}}" class="img-responsive img-circle" alt="">
+                                        <img src="{{asset('images/user/user-1.jpg')}}" class="img-responsive img-circle" alt="">
                                         <span class="fr-user-status busy"></span>
                                     </div>
                                     <div class="fr-request-detail">
@@ -435,7 +435,7 @@
                                 </div>
                                 <div class="friend-overview">
                                     <div class="friend-overview-img">
-                                        <img src="{{asset('/img/user/user-1.jpg')}}" class="img-responsive img-circle" alt="">
+                                        <img src="{{asset('images/user/user-1.jpg')}}" class="img-responsive img-circle" alt="">
                                         <span class="fr-user-status offline"></span>
                                     </div>
                                     <div class="fr-request-detail">

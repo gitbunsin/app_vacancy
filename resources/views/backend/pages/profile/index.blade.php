@@ -5,11 +5,9 @@
     <div class="row">
         <div class="col-md-12 col-sm-12">
             <div class="card">
-
                 <div class="card-header">
                     <h4>Welcome  {{auth()->guard('admin')->user()->name}} !</h4>
                 </div>
-
                 <div class="card-body">
                     <div class="row">
                         <!-- col-md-6 -->

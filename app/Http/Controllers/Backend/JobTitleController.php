@@ -5,8 +5,10 @@ namespace App\Http\Controllers\backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\jobTitle;
-
-class VacancyController extends Controller
+use App\Model\Admin;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
+class JobTitleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +18,6 @@ class VacancyController extends Controller
     public function index()
     {
         //
-        $jobTitle = JobTitle::all();
-       // dd($jobTitle);
-        return view('backend/pages/admin/vacancy/index',compact('jobTitle'));
     }
 
     /**
@@ -39,7 +38,13 @@ class VacancyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $jobTitle = new JobTitle();
+        $jobTitle->name = $request->name;
+        $jobTitle->description = $request->description;
+        $jobTitle->admin_id = auth()->guard('admin')->user()->id;
+        $jobTitle->save();
+        return response::json($jobTitle);
+
     }
 
     /**
@@ -61,7 +66,8 @@ class VacancyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $jobTitle = jobTitle::find($id);
+        return response::json($jobTitle);
     }
 
     /**
@@ -73,7 +79,12 @@ class VacancyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $jobTitle = JobTitle::find($id);
+        $jobTitle->name = $request->name;
+        $jobTitle->description = $request->description;
+        $jobTitle->save();
+        return response::json($jobTitle);
+
     }
 
     /**
@@ -84,6 +95,8 @@ class VacancyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $jobTitle = JobTitle::find($id);
+        $jobTitle->delete();
+        return response::json($jobTitle);
     }
 }

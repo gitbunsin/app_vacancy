@@ -373,8 +373,6 @@
                                 });
                         }
                  });
-
-
                  function myfunc() {
                     $("#frmCompany").trigger("reset");
                            // $(this).find('form')[0].reset();

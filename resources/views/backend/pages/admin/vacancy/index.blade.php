@@ -1,77 +1,5 @@
 @extends('backend.layouts.master')
 @section('content')
-<style>
-
-/*  bhoechie tab */
-div.bhoechie-tab-container{
-  /* z-index: 10; */
-  /* background-color: #ffffff; */
-  padding: 0 !important;
-  /* border-radius: 4px; */
-  /* -moz-border-radius: 4px; */
-  /* border:1px solid #ddd; */
-  /* margin-top: 20px; */
-  /* margin-left: 50px; */
-  /* -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
-  box-shadow: 0 6px 12px rgba(0,0,0,.175);
-  -moz-box-shadow: 0 6px 12px rgba(0,0,0,.175); */
-  /* background-clip: padding-box; */
-  /* opacity: 0.97; */
-  /* filter: alpha(opacity=97); */
-}
-div.bhoechie-tab-menu{
-  padding-right: 0;
-  padding-left: 0;
-  padding-bottom: 0;
-}
-div.bhoechie-tab-menu div.list-group{
-  margin-bottom: 0;
-}
-div.bhoechie-tab-menu div.list-group>a{
-  margin-bottom: 0;
-}
-div.bhoechie-tab-menu div.list-group>a .glyphicon,
-div.bhoechie-tab-menu div.list-group>a .fa {
-  color: #5A55A3;
-}
-div.bhoechie-tab-menu div.list-group>a:first-child{
-  border-top-right-radius: 0;
-  -moz-border-top-right-radius: 0;
-}
-div.bhoechie-tab-menu div.list-group>a:last-child{
-  border-bottom-right-radius: 0;
-  -moz-border-bottom-right-radius: 0;
-}
-div.bhoechie-tab-menu div.list-group>a.active,
-div.bhoechie-tab-menu div.list-group>a.active .glyphicon,
-div.bhoechie-tab-menu div.list-group>a.active .fa{
-  background-color: #5A55A3;
-  background-image: #5A55A3;
-  color: #ffffff;
-}
-div.bhoechie-tab-menu div.list-group>a.active:after{
-  content: '';
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  margin-top: -13px;
-  border-left: 0;
-  border-bottom: 13px solid transparent;
-  border-top: 13px solid transparent;
-  border-left: 10px solid #5A55A3;
-}
-
-div.bhoechie-tab-content{
-  background-color: #ffffff;
-  /* border: 1px solid #eeeeee; */
-  padding-left: 20px;
-  padding-top: 10px;
-}
-
-div.bhoechie-tab div.bhoechie-tab-content:not(.active){
-  display: none;
-}
-</style>
 <div class="container-fluid">
         <!-- /row -->
         <div class="row">
@@ -79,35 +7,35 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
                 <div class="card">
                     <div class="card-body">
                             <div class="col-lg-11 col-md-5 col-sm-8 col-xs-10 bhoechie-tab-container">
-                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
                                       <div class="list-group">
-                                        <a href="#" class="list-group-item active text-center">
-                                                <h4 style="font-size:1em;color:black;" class="ti-trash"></h4>Job Title
+                                        <a href="#"  class="list-group-item active text-center">
+                                              Job Title
+                                        </a>
+                                        <a href="#"  class="list-group-item text-center">
+                                              Pay Grades<br/>
                                         </a>
                                         <a href="#" class="list-group-item text-center">
-                                                <h4 style="font-size:1em;color:black;" class="ti-trash"></h4>Pay Grades<br/>
+                                              Employement Status<br/>
                                         </a>
                                         <a href="#" class="list-group-item text-center">
-                                                <h4 style="font-size:1em;color:black;" class="ti-trash"></h4>Employement Status<br/>
+                                            Job Categories<br/>
                                         </a>
                                         <a href="#" class="list-group-item text-center">
-                                                <h4 style="font-size:1em;color:black;" class="ti-trash"></h4>Job Categories<br/>
-                                        </a>
-                                        <a href="#" class="list-group-item text-center">
-                                            <h4 style="font-size:1em;color:black;" class="ti-trash"></h4>Work Shift<br/>
+                                            Work Shift<br/>
                                         </a>
                                       </div>
                                     </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 bhoechie-tab">
+                                    <div class="col-lg-9 col-md-10 col-sm-9 col-xs-9 bhoechie-tab">
                                         <!-- flight section -->
                                         <div class="bhoechie-tab-content active">
                                             <div class="card-header">
                                                 <div class="pull-right">
-                                                    <a class="btn btn-primary" onclick="myfunc()" data-toggle="tooltip" data-placement="top" title="Company"><i class="ti-plus"></i></a>
+                                                    <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-placement="top" title="Job Title"><i class="ti-plus"></i></a>
                                                 </div>
                                                 <input type="text" class="form-control wide-width" placeholder="Search & type" />
                                             </div>
-                                                <table class="table">
+                                                <table class="table" id="tbl_job_title">
                                                         <thead>
                                                           <tr>
                                                             <th scope="col">#No</th>
@@ -117,15 +45,17 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
                                                           </tr>
                                                         </thead>
                                                         <tbody>
-                                                          <tr>
-                                                            <th scope="row">1</th>
-                                                            <td>Mark</td>
-                                                            <td>Otto</td>
-                                                            <td>
-                                                                    <a onclick="Edit();"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
-                                                                    <a onclick="Delete();" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
-                                                            </td>
-                                                          </tr>  
+                                                          @foreach ($jobTitle as $key => $item)
+                                                          <tr id="tr_job_title{{$item->id}}">
+                                                              <th scope="row">{{$key + 1}}</th>
+                                                              <td>{{$item->name}}</td>
+                                                              <td>{{$item->description}}</td>
+                                                              <th>
+                                                                    <a onclick="EditJobTitle({{$item->id}});"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
+                                                                    <a onclick="DeleteJobTitle({{$item->id}});" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
+                                                              </th>
+                                                            </tr>  
+                                                          @endforeach
                                                         </tbody>
                                                       </table>
                                         </div>
@@ -147,15 +77,17 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
                                                           </tr>
                                                         </thead>
                                                         <tbody>
-                                                          <tr>
-                                                            <th scope="row">1</th>
-                                                            <td>Mark</td>
-                                                            <td>Otto</td>
-                                                            <td>
-                                                                    <a onclick="Edit();"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
-                                                                    <a onclick="Delete();" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
-                                                            </td>
-                                                          </tr>  
+                                                            {{-- @foreach ($company as $key => $companies) --}}
+                                                            <tr>
+                                                              <th scope="row">1</th>
+                                                              <td></td>
+                                                              <td></td>
+                                                              <td>
+                                                                      <a onclick="Edit();"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
+                                                                      <a onclick="Delete();" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
+                                                              </td>
+                                                            </tr>  
+                                                          {{-- @endforeach --}}
                                                         </tbody>
                                                       </table>
                                         </div>
@@ -192,19 +124,92 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
     </div>
     </div>
     <!-- /#page-wrapper -->
+    <!-- Job Title -->
+    <div class="modal fade" id="jobTitleEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <form id="frmJobTitleEdit">
+                <input type="hidden" name="job_tittle_edit" id="job_tittle_edit">
+                <meta name="csrf-token" content="{{ csrf_token() }}">
+            <div class="modal-header" style="background:#0f66e8";>
+              <h5 class="modal-title" style="color:white;" id="exampleModalLabel">Edit Job Tittle</h5>
+            </div>
+            <div class="modal-body">
+            <div class="card-body">
+                <div class="row">
+                    <div>
+                        <label>Name</label>
+                        <input name="name_edit" id="name_edit" type="text" class="form-control">
+                    </div>
+                    <div>
+                      <label>Description</label>
+                      <textarea  name="description_edit" id="description_edit" class="form-control" cols='5' rows='5'></textarea>
+                  </div>
+                </div>
+            </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-success">Save</button>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    <div id="DeleteJobTtile" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="frmJobTitleDelete">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <input type="hidden" name="" val="" id="id_jobTitle">
+                    <div class="modal-header theme-bg">						
+                        <h4 class="modal-title">Job Title</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <h5> Do you want to delete job Title? </h5>
+                    </div>
+                    <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                            <input type="submit" class="btn btn-success" value="Yes">
+                    </div>
+                </form>
+            </div>
+        </div>
+ </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form id="frmJobTitle">
+          <meta name="csrf-token" content="{{ csrf_token() }}">
+      <div class="modal-header" style="background:#0f66e8";>
+        <h5 class="modal-title" style="color:white;" id="exampleModalLabel">Job Tittle</h5>
+      </div>
+      <div class="modal-body">
+      <div class="card-body">
+          <div class="row">
+              <div>
+                  <label>Name</label>
+                  <input name="name" id="name" type="text" class="form-control">
+              </div>
+              <div>
+                <label>Description</label>
+                <textarea  name="description" id="description" class="form-control" cols='5' rows='5'></textarea>
+            </div>
+          </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
 @endsection
 @section('scripts')
-
-    <script>
-        $(document).ready(function() {
-        $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
-        e.preventDefault();
-        $(this).siblings('a.active').removeClass("active");
-        $(this).addClass("active");
-        var index = $(this).index();
-        $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
-        $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
-    });
-});
-    </script>
+    <script src="{{asset('js/backend/vacancy.js')}}"></script>
 @endsection

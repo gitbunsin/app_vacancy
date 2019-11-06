@@ -13,6 +13,10 @@
  <script src="https://maps.google.com/maps/api/js?sensor=true"></script>
  <script src="https://demo.themeregion.com/seeker/js/gmaps.min.js"></script>
  <script src="https://demo.themeregion.com/seeker/js/main.js"></script>
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/additional-methods.min.js"></script>
+<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
  <script>
    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -21,4 +25,6 @@
 
    ga('create', 'UA-73239902-1', 'auto');
    ga('send', 'pageview');
+
+  //  alert('ok');
  </script> 

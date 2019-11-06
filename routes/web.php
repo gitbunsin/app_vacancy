@@ -27,13 +27,14 @@ Route::get('admin-logout', ['as'=>'admin-logout','uses'=>'Auth\AdminLoginControl
 Route::get('admin-register', ['as'=>'admin-register','uses'=>'Auth\AdminRegisterController@showLoginForm']);
 Route::post('admin-register', ['as'=>'admin-register','uses'=>'Auth\AdminRegisterController@register']);
 
-Route::group(['namespace' => 'Backend', 'prefix' => 'admin'], function ($request) {
+Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admin'], function ($request) {
 
     
     Route::get('app','AppController@index');
     Route::get('login','AppController@login');
     Route::resource('company','CompanyController');
     Route::resource('vacancy','vacancyController');
+    Route::resource('jobTitle','jobTitleController');
     Route::resource('job','JobController');
     Route::get('profile','JobController@profile');
     Route::resource('app-candidate','CandidateController');

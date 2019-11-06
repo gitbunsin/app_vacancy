@@ -11,9 +11,15 @@
             
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="nav navbar-nav">
-                    <li class="tr-dropdown active"><a href="#">Home</a></li>
-                    <li><a href="{{url('about')}}">About Us</a></li>
-                    <li><a href="{{url('contact')}}">Contact Us</a></li>
+                        <li class="{{ (request()->segment(1) == 'job') ? 'active' : '' }}">  
+                        <a href="{{'/job'}}">Home</a>
+                    </li>
+                    <li class="{{ (request()->segment(1) == 'about') ? 'active' : '' }}">  
+                        <a href="{{url('about')}}">About Us</a>
+                    </li>
+                    <li class="{{ (request()->segment(1) == 'contact') ? 'active' : '' }}"> 
+                        <a href="{{url('contact')}}">Contact Us</a>
+                    </li>
                     <li class="tr-dropdown"><a href="#">Candidate   </a>
                         <ul class="tr-dropdown-menu tr-list fadeInUp" role="menu">
                             <li><a href="{{url('user-profile')}}">Employee Profile</a></li>
@@ -25,7 +31,6 @@
                     </li>
                 </ul>
             </div>
-
             <div class="navbar-right">			
                 <div class="dropdown tr-change-dropdown">
                     <i class="fa fa-globe"></i>
@@ -39,8 +44,8 @@
                 </div><!-- /.language-dropdown -->					
                 <ul class="sign-in tr-list">
                     <li><i class="fa fa-user"></i></li>
-                    <li><a href="#" data-toggle="modal" data-target="#exampleModal">Sign In </a></li>
-                    <li><a href="#" data-toggle="modal" data-target="#examplRegister">Register</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#login">Sign In </a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#Register">Register</a></li>
                 </ul><!-- /.sign-in -->					
 
                 <a href="job-post.html" class="btn btn-primary">Post Job</a>
@@ -48,8 +53,12 @@
         </div><!-- /.container -->
     </nav><!-- /.navbar -->
 </header><!-- /.tr-header -->
-{{-- Register --}}
-<div class="modal fade" id="examplRegister" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+
+
+<!-- /.Register  -->
+<div class="modal fade" id="Register" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div style="background-color:#008def" class="modal-header">
@@ -123,7 +132,9 @@
     </div>
   </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+  <!-- /.Login  -->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div style="background-color:#008def" class="modal-header">
@@ -135,7 +146,7 @@
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs  nav-justified" role="tablist">
                                 <li role="presentation"><a class="active" href="#seekerLogin" aria-controls="seeker" role="tab" data-toggle="tab">Job Seeker</a></li>
-                                <li role="presentation"><a href="#employersLogin" aria-controls="employers" role="tab" data-toggle="tab">Employers</a></li>
+                                <li role="presentation"><a href="#admin" aria-controls="employers" role="tab" data-toggle="tab">Employers</a></li>
                             </ul>
                             <!-- Tab panes -->
                             <div class="tab-content">
@@ -144,7 +155,7 @@
                                         <form action="#" class="tr-form">
                                         
                                             <div class="form-group">
-                                                <input type="email" class="form-control" placeholder="your Email">
+                                                <input type="email" class="form-control" placeholder="your Email employers">
                                             </div>
                                             <div class="form-group">
                                                 <input type="password" class="form-control" placeholder="Password">
@@ -165,25 +176,24 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div role="tabpanel" class="tab-pane" id="employersLogin">
+                                <div role="tabpanel" class="tab-pane" id="admin">
                                     <div class="account-content">
-                                        <form action="#" class="tr-form">
-                                           
+                                        <form action="#" class="tr-form" id="frmLoginEmployer">
+                                            <meta name="csrf-token" content="{{ csrf_token() }}">
                                             <div class="form-group">
-                                                <input type="email" class="form-control" placeholder="your Email">
+                                                <input id="admin_email" name="admin_email" type="email" class="form-control" placeholder="admin email">
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" class="form-control" placeholder="Password">
+                                                <input id="admin_password" name="admin_password" type="password" class="form-control" placeholder="password">
                                             </div>
                                             <div class="user-option">
                                                     <div class="checkbox">
-                                                        <label for="logged"><input type="checkbox" name="logged" id="logged">Remember me</label>
+                                                        <label for="loggedAdmin"><input type="checkbox" name="loggedAdmin" id="loggedAdmin">Remember me</label>
                                                     </div>
                                                     <div class="forgot-password">
                                                         <a href="#">I forgot password</a>
                                                     </div>
-                                                </div>	
-                                           											
+                                                </div>				
                                             <button type="submit" class="btn btn-primary">Sign Up</button>
                                         </form>	
                                         <div class="new-user text-center">
@@ -198,3 +208,6 @@
       </div>
     </div>
   </div>
+  @section('scripts')
+        <script src="{{asset('js/login/admin.js')}}"></script>
+  @endsection

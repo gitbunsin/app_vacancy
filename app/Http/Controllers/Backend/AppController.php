@@ -4,9 +4,13 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Input;
 class AppController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,6 +18,7 @@ class AppController extends Controller
      */
     public function index()
     {
+        //dd($email);
         return view('backend.pages.content');
     }
     public function about(){

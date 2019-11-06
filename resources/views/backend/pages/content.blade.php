@@ -1,7 +1,9 @@
 @extends('backend.layouts.master')
 @section('content')
 
+
 <div class="container-fluid">
+        {{-- @php dd(auth()->guard('admin')->user()->email ) @endphp --}}
     <!-- /row -->
     <div class="row">
         <div class="col-md-3 col-sm-6">
