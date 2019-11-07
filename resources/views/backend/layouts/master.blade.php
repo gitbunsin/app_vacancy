@@ -27,10 +27,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><img src="{{asset('img/logo-1.png')}}" class="img-responsive" alt="Logo"></a>
+            <a class="navbar-brand" href="#"><img src="{{asset('images/logo-1.png')}}" class="img-responsive" alt="Logo"></a>
         </div>
         <!-- /.navbar-header -->
-
         <ul class="nav navbar-top-links navbar-left header-search-form hidden-xs">
             <li><a class="menu-brand" id="menu-toggle"><span class="ti-view-grid"></span></a></li>
             <li class="hidden-sm hidden-xs">

@@ -4,10 +4,11 @@ namespace App\Http\Controllers\backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\jobTitle;
-use App\Model\payGrade;
+use App\Model\PayGrade;
+use App\Model\currency;
+use Illuminate\Support\Facades\Response;
 
-class VacancyController extends Controller
+class PayGradeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +18,6 @@ class VacancyController extends Controller
     public function index()
     {
         //
-        $jobTitle = JobTitle::all();
-        $payGrade = PayGrade::with('currency')->get();
-        //dd($payGrade);
-        return view('backend/pages/admin/vacancy/index',compact('jobTitle','payGrade'));
     }
 
     /**
@@ -41,7 +38,18 @@ class VacancyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $payGrade = new payGrade();
+        $payGrade->name = $request->name;
+        $payGrade->admin_id = auth()->guard('admin')->user()->id;
+        $payGrade->save();
+        $currency_id = currency::find($request->currency_id);
+        $payGrade->currency()->attach($currency_id, [
+            'max_salary' => $request->max_salary , 
+            'min_salary' => $request->min_salary
+            ]);
+        $payGrade['currency'] = currency::find($currency_id);
+        $payGrade['payGrade'] = payGrade::with('currency')->where('id',$payGrade->id)->first();
+        return response::json($payGrade);
     }
 
     /**
@@ -64,6 +72,10 @@ class VacancyController extends Controller
     public function edit($id)
     {
         //
+        $payGrade = payGrade::with('currency')->where('id',$id)->first();
+        $payGrade['all_currency'] = currency::all();
+        return response::json($payGrade);
+
     }
 
     /**
@@ -75,7 +87,20 @@ class VacancyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+       $payGrade = PayGrade::find($id);
+       $payGrade->name = $request->name;
+       $payGrade->save();
+       $currency_id = currency::find($request->currency_id);
+       $payGrade->currency()->updateExistingPivot($currency_id, array(
+           'max_salary' => $request->max_salary,
+           'min_salary' => $request->min_salary
+           )
+        
+        );
+
+       return response::json($payGrade);
+
     }
 
     /**
@@ -85,7 +110,9 @@ class VacancyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+    {   
+        $payGrade = PayGrade::find($id);
+        $payGrade->delete();
+        return response::json($payGrade);
     }
 }

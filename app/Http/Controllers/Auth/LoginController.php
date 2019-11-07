@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     /*
@@ -36,9 +37,25 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    /**
+     * Create a new controller instance.
+     *
+     * login page users
+     */
+    public function login(Request $request)
+    {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            return response()->json("success");
+        }else {
+            return response()->json("error");
+        }
+    }
 
     public function logout() {
+
         Auth::logout();
-        return redirect('/login');
+        Auth::guard('admin')->logout();
+        return redirect('/job');
+
     }
 }

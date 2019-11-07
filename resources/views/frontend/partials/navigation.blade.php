@@ -31,32 +31,30 @@
                     </li>
                 </ul>
             </div>
-            <div class="navbar-right">			
-                <div class="dropdown tr-change-dropdown">
-                    <i class="fa fa-globe"></i>
-                    <a data-toggle="dropdown" href="#" aria-expanded="false"><span class="change-text">United Kingdom</span><i class="fa fa-angle-down"></i></a>
-                    <ul class="dropdown-menu tr-change tr-list">
-                        <li><a href="#">United Kingdom</a></li>
-                        <li><a href="#">United States</a></li>
-                        <li><a href="#">China</a></li>
-                        <li><a href="#">Russia</a></li>
-                    </ul>								
-                </div><!-- /.language-dropdown -->					
+            <div class="navbar-right">	
+                	
+                    @if (Auth::check())
+                    <div class="dropdown tr-change-dropdown">
+                            <i class="fa fa-user"></i>
+                            <a data-toggle="dropdown" href="#" aria-expanded="false"><span class="change-text"><b>
+                                    {{ Auth::user()->name }}
+                            </b></span><i class="fa fa-angle-down"></i></a>
+                            <ul class="dropdown-menu tr-list">
+                                {{-- <ul class="dropdown-menu tr-change tr-list"> --}}
+                                <li><a  href="{{url('/logout')}}">Logout</a></li>
+                            </ul>								
+                        </div><!-- /.language-dropdown -->	
+                @else
                 <ul class="sign-in tr-list">
-                    <li><i class="fa fa-user"></i></li>
-                    <li><a href="#" data-toggle="modal" data-target="#login">Sign In </a></li>
-                    <li><a href="#" data-toggle="modal" data-target="#Register">Register</a></li>
-                </ul><!-- /.sign-in -->					
-
-                <a href="job-post.html" class="btn btn-primary">Post Job</a>
+                        <li><i class="fa fa-user"></i></li>
+                        <li><a href="#" data-toggle="modal" data-target="#login">Sign In </a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#Register">Register</a></li>
+                    </ul><!-- /.sign-in -->	
+              @endif    					
             </div><!-- /.nav-right -->
         </div><!-- /.container -->
     </nav><!-- /.navbar -->
 </header><!-- /.tr-header -->
-
-
-
-
 <!-- /.Register  -->
 <div class="modal fade" id="Register" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -152,13 +150,13 @@
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane active" id="seekerLogin">
                                     <div class="account-content">
-                                        <form action="#" class="tr-form">
-                                        
+                                        <form action="#" id="frmUserLogin" class="tr-form">
+                                                <meta name="csrf-token" content="{{ csrf_token() }}">
                                             <div class="form-group">
-                                                <input type="email" class="form-control" placeholder="your Email employers">
+                                                <input type="email" id="email" name="email" class="form-control" placeholder="your Email employers">
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" class="form-control" placeholder="Password">
+                                                <input type="password" id="password" name="password" class="form-control" placeholder="Password">
                                             </div>
                                             <div class="user-option">
                                                     <div class="checkbox">

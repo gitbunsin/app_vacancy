@@ -26,7 +26,7 @@ Route::post('admin-login', ['as'=>'admin-login','uses'=>'Auth\AdminLoginControll
 Route::get('admin-logout', ['as'=>'admin-logout','uses'=>'Auth\AdminLoginController@logout']);
 Route::get('admin-register', ['as'=>'admin-register','uses'=>'Auth\AdminRegisterController@showLoginForm']);
 Route::post('admin-register', ['as'=>'admin-register','uses'=>'Auth\AdminRegisterController@register']);
-
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admin'], function ($request) {
 
     
@@ -35,6 +35,7 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
     Route::resource('company','CompanyController');
     Route::resource('vacancy','vacancyController');
     Route::resource('jobTitle','jobTitleController');
+    Route::resource('paygrade','PayGradeController');
     Route::resource('job','JobController');
     Route::get('profile','JobController@profile');
     Route::resource('app-candidate','CandidateController');

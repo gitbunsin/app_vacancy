@@ -1,4 +1,50 @@
-//Edit Company 
+        // User Login
+         $("#frmUserLogin").validate({
+            rules: {
+                email: {
+                required: true,
+            },
+            password : {
+                required : true
+            }
+        },submitHandler: function(form) 
+        {
+            // console.log('ok');
+            $email = $('#email').val();
+            $password = $('#password').val()
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            jQuery.ajax({
+                url: "login",
+                method: 'POST',
+                data: {
+                    "email" : $email,
+                    "password" : $password
+                },
+                success: function(result){
+                    //console.log(result);
+                    if(result == "success"){
+                        toastr.success('User' , 'logined succcess !');
+                        // redirectWithFlashMessage('/admin/app');
+                        window.location = '/job';
+                    }else{
+                        toastr.error('These credentials do not match our records.!');
+                    }
+
+                    console.log(result);
+                },error : function(err){
+
+                    console.log(err);
+                }
+            });
+        }
+        });
+
+
+        //Employer Login
         $("#frmLoginEmployer").validate({
             rules: {
                 admin_email: {
