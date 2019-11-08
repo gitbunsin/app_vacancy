@@ -31,7 +31,7 @@ $("#frmEditPayGrade").validate({
              "min_salary" : $('#min_salary_edit').val()
           },
           success: function (result) {
-          $('#ModalEditPayGrade').modal('show');
+
             console.log(result);
           },error : function(err){
 
@@ -52,20 +52,17 @@ function EditPayGrade(id)
       url: "/admin/paygrade" + "/" + id + "/edit",
       success: function(result)
       {
-         // console.log(result);
+         console.log(result);
          var payGrade = $('#currency_id_edit');
              payGrade.empty();
-       
+        
          $.each(result.all_currency, function (key , value) {
-
-               var isSelected = false;
-               
+                var isSelected = false;
                if(result.currency[0].id == value.id)
                {
                   isSelected = true;
                }
                payGrade.append('<option value="'+value.id+'" selected = "'+ isSelected+'">'+value.name+'</option>');
-
         });
          $('#ModalEditPayGrade').modal('show');
          $('#pay_grade_name_edit').val(result.name);
