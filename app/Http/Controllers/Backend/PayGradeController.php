@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\PayGrade;
+use App\Model\currency_pay_grade;
 use App\Model\currency;
 use Illuminate\Support\Facades\Response;
 
@@ -72,8 +73,10 @@ class PayGradeController extends Controller
     public function edit($id)
     {
         //
-        $payGrade = payGrade::with('currency')->where('id',$id)->first();
-        $payGrade['all_currency'] = currency::all();
+        $payGrade = payGrade::where('id',$id)->first();
+            $payGrade['currency'] = currency_pay_grade::where('pay_grade_id',$id)->first();
+            $payGrade['all_currency'] = currency::all();
+
         return response::json($payGrade);
 
     }
@@ -87,19 +90,21 @@ class PayGradeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
        $payGrade = PayGrade::find($id);
        $payGrade->name = $request->name;
        $payGrade->save();
-       $currency_id = currency::find($request->currency_id);
-       $payGrade->currency()->updateExistingPivot($currency_id, array(
-           'max_salary' => $request->max_salary,
-           'min_salary' => $request->min_salary
-           )
-        
-        );
-
-       return response::json($payGrade);
+       $cp = currency_pay_grade::where('pay_grade_id',$payGrade->id)->first();
+       $cp->currency_id = $request->currency_id;
+       $cp->pay_grade_id = $payGrade->id;
+        $max = sprintf("%.2f", $request->max_salary);
+        $min = sprintf("%.2f", $request->min_salary);
+       $cp->max_salary =  $max ;
+       $cp->min_salary =  $min ;
+       $cp->save();
+       $payGrade['currency'] = currency::find($request->currency_id);
+       $payGrade['pivot'] = currency_pay_grade::where('pay_grade_id',$payGrade->id)->first();
+       return response::json($payGrade); 
 
     }
 

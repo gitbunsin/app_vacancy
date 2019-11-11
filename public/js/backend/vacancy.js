@@ -21,6 +21,7 @@ $("#frmJobTitleEdit").validate({
                 "description": $('#description_edit').val()
             },
             success: function (result) {
+                
                 $('#jobTitleEdit').modal('hide');
                 toastr.success('Success', 'item has updated created !');
                 var job_title = '<tr id="tr_job_title' + result.id + '"> <th class="scope="row">' + result.id + '</><td>' + result.name + '</td><td>' + result.description + '</td>';
