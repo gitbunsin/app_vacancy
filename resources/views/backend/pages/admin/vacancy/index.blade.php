@@ -136,11 +136,33 @@
                                                   </table>
                                         </div>
                                         <div class="bhoechie-tab-content">
-                                            <center>
-                                              <h1 class="glyphicon glyphicon-cutlery" style="font-size:12em;color:#55518a"></h1>
-                                              <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
-                                              <h3 style="margin-top: 0;color:#55518a">Restaurant Diirectory</h3>
-                                            </center>
+                                          <div class="card-header">
+                                            <div class="pull-right">
+                                                <a class="btn btn-primary" onclick="LoadCategory()" data-toggle="tooltip" data-placement="top" title="Category"><i class="ti-plus"></i></a>
+                                            </div>
+                                            <h3><span class="ti-home"></span> Job Category</h3>
+                                        </div>
+                                            <table class="table" id="tbl_category">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col">#No</th>
+                                                        <th>Name</th>
+                                                        <th>Action</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                      @foreach ($category as $key => $categories)
+                                                      <tr id="tr_category{{$categories->id}}">
+                                                          <th scope="row">{{$key + 1}}</th>
+                                                          <td>{{$categories->name}}</td>
+                                                          <th>
+                                                                <a onclick="Editcategory({{$categories->id}});"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
+                                                                <a onclick="Deletecategory({{$categories->id}});" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
+                                                          </th>
+                                                        </tr>  
+                                                      @endforeach
+                                                    </tbody>
+                                                  </table>
                                         </div>
                                         <div class="bhoechie-tab-content">
                                             <center>
@@ -159,8 +181,100 @@
     </div>
     </div>
     <!-- /#page-wrapper -->
+<!-- /#JobCategory -->
+
+<div id="ModalEditJobCategory" class="modal fade">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <form id="frmEditCategory">
+              <meta name="csrf-token" content="{{ csrf_token() }}">
+              <input type="hidden" name="" val="" id="category_edit_id">
+              <div class="modal-header theme-bg">						
+                  <h4 class="modal-title"> Job Category</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              </div>
+              <div class="modal-body">
+                  <div class="card-body">
+                      <div class="row">
+                        <div>
+                            <div>
+                                <label> Name </label>
+                                <input  name="category_name_edit" id="category_name_edit" type="text" class="form-control">
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                      <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                      <input type="submit" class="btn btn-primary" value="Yes">
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+
+
+<div id="ModalAddJobCategory" class="modal fade">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <form id="frmAddCategory">
+              <meta name="csrf-token" content="{{ csrf_token() }}">
+              <input type="hidden" name="" val="" id="category_id">
+              <div class="modal-header theme-bg">						
+                  <h4 class="modal-title"> Job Category</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              </div>
+              <div class="modal-body">
+                  <div class="card-body">
+                      <div class="row">
+                        <div>
+                            <div>
+                                <label> Name </label>
+                                <input  name="category_name" id="category_name" type="text" class="form-control">
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                      <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                      <input type="submit" class="btn btn-primary" value="Yes">
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+
+
+
+<div id="DeleteJobCategory" class="modal fade">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <form id="frmJobCategoryDelete">
+              {{ csrf_field() }}
+              {{ method_field('DELETE') }}
+              <input type="hidden" name="" val="" id="category_id">
+              <div class="modal-header theme-bg">						
+                  <h4 class="modal-title"> Job Category </h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              </div>
+              <div class="modal-body">
+                  <h5> Do you want to delete Category ? </h5>
+              </div>
+              <div class="modal-footer">
+                      <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                      <input type="submit" class="btn btn-primary" value="Yes">
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+
 
 <!-- /#EmployeeStatus -->
+
+
 
 <div id="EmployeeEditStatus" class="modal fade">
     <div class="modal-dialog">
@@ -475,4 +589,5 @@
     <script src="{{asset('js/backend/vacancy.js')}}"></script>
     <script src="{{asset('js/backend/paygrade.js')}}"></script>
     <script src="{{asset('js/backend/status.js')}}"></script>
+    <script src="{{asset('js/backend/category.js')}}"></script>
 @endsection

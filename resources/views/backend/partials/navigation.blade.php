@@ -23,10 +23,13 @@
             </li>
 
             <li>
-                <a href="javascript:void(0)"><i class="ti ti-ruler-pencil"></i>For Candidate<span class="fa arrow"></span> <b class="badge bg-success pull-right">3</b></a>
+                <a href="javascript:void(0)"><i class="ti ti-ruler-pencil"></i>PIM<span class="fa arrow"></span> <b class="badge bg-success pull-right">3</b></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="{{url('admin/user')}}">Manage Candidate</a>
+                        <a href="{{url('admin/user')}}">Employee</a>
+                    </li>
+                    <li>
+                        <a href="{{url('admin/user')}}">Configuration</a>
                     </li>
                 </ul>
             </li>

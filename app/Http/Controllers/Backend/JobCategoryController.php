@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\backend;
+namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\jobTitle;
-use App\Model\payGrade;
-use App\Model\EmploymentStatus;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
 use App\Model\JobCategory;
 
-class VacancyController extends Controller
+class JobCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +17,7 @@ class VacancyController extends Controller
      */
     public function index()
     {
-        $jobTitle = JobTitle::all();
-        $payGrade = PayGrade::with('currency')->get();
-        $status = EmploymentStatus::all();
-        $category = JobCategory::all();
-        return view('backend/pages/admin/vacancy/index',compact('jobTitle','payGrade','status','category'));
+        //
     }
 
     /**
@@ -43,7 +38,12 @@ class VacancyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = new JobCategory();
+        $category->admin_id = auth()->guard('admin')->user()->id;
+        $category->name = $request->name;
+        $category->save();
+        return response::json($category);
+
     }
 
     /**
@@ -65,7 +65,8 @@ class VacancyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category =  JobCategory::find($id);
+        return response::json($category);
     }
 
     /**
@@ -77,7 +78,11 @@ class VacancyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category =  JobCategory::find($id);
+        $category->admin_id = auth()->guard('admin')->user()->id;
+        $category->name = $request->name;
+        $category->save();
+        return response::json($category);
     }
 
     /**
@@ -88,6 +93,8 @@ class VacancyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category =  JobCategory::find($id);
+        $category->delete();
+        return response::json($category);
     }
 }

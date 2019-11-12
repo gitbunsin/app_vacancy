@@ -17,38 +17,45 @@
                     </div>
                     <input type="text" class="form-control wide-width" placeholder="Search & type" />
                 </div>
-
+{{-- 
                 @if(!empty($user))
-                    @foreach($user as $users)
+                    @foreach($user as $users) --}}
                 <div class="card-body">
-                    <ul class="list">
-                        <li class="manage-list-row clearfix">
-                            <div class="job-info">
-                                <div class="job-img">
-                                    <img src="{{asset('img/about/about-us.jpg')}}" class="attachment-thumbnail" alt="Academy Pro Theme">
-                                </div>
-                                <div class="job-details">
-                                    <h3 class="job-name"><a class="job_name_tag" href="#">{{$users->name}}</a></h3>
-                                    <small class="job-company"><i class="ti-home"></i>Apply For : Web Designer</small>
-                                    <small class="job-sallery"><i class="ti-time"></i>Date Apply : 2019-07-31</small>
-                                    <div class="shortlisted-can">Application Initiated</div>
-                                    <div class="candi-skill">
-                                        <span class="skill-tag">css</span>
-                                        <span class="skill-tag">HTML</span>
-                                        <span class="skill-tag">Photoshop</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="job-buttons">
-                                <a href="#" class="btn btn-gary manage-btn" data-toggle="tooltip" data-placement="top" title="Download Resume"><i class="ti-check"></i></a>
-                                <a href="#SendMessage"  data-toggle="modal" class="btn btn-blue manage-btn" data-toggle="tooltip" data-placement="top" title="Message"><i class="ti-email"></i></a>
-                                <a href="#" class="btn btn-cancel manage-btn" data-toggle="tooltip" data-placement="top" title="Remove"><i class="ti-close"></i></a>
-                            </div>
-                        </li>
-                    </ul>
+                    <table class="table" id='company_id'>
+                        <thead>
+                          <tr>
+                            <th scope="col">#No</th>
+                            <th scope="col">First (& Middle) Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Job Title</th>
+                            <th scope="col">Employment Status</th>
+                            <th scope="col">SubUnit</th>
+                            <th scope="col">Supervisor</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>  
+                        {{-- @foreach ($company as $key => $companies) --}}
+                            <tr id="tbl_company">
+                                <th scope="row"></th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <th>
+                                    <a onclick="Edit();"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
+                                    <a onclick="Delete();" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
+                                </th>
+                            </tr>
+                          {{-- @endforeach --}}
+                      
+                        </tbody>
+                      </table>
                 </div>
-                    @endforeach
-                @endif
+                    {{-- @endforeach --}}
+                {{-- @endif --}}
                     <div class="flexbox padd-10">
                         <ul class="pagination">
                             <li class="page-item">
