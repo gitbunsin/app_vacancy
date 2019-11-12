@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\backend;
+namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\jobTitle;
-use App\Model\payGrade;
 use App\Model\EmploymentStatus;
-
-class VacancyController extends Controller
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
+class EmployeeStatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +17,6 @@ class VacancyController extends Controller
     public function index()
     {
         //
-        $jobTitle = JobTitle::all();
-        $payGrade = PayGrade::with('currency')->get();
-        $status = EmploymentStatus::all();
-       // dd($status);
-        return view('backend/pages/admin/vacancy/index',compact('jobTitle','payGrade','status'));
     }
 
     /**
@@ -43,7 +37,11 @@ class VacancyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            $status = new EmploymentStatus();
+            $status->admin_id = auth()->guard('admin')->user()->id;
+            $status->name = $request->name;
+            $status->save();
+            return response::json($status);
     }
 
     /**
@@ -56,7 +54,6 @@ class VacancyController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -65,9 +62,9 @@ class VacancyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $status =  EmploymentStatus::find($id);
+        return response::json($status);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -77,9 +74,12 @@ class VacancyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+            $status =  EmploymentStatus::find($id);
+            $status->admin_id = auth()->guard('admin')->user()->id;
+            $status->name = $request->name;
+            $status->save();
+            return response::json($status);
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -88,6 +88,8 @@ class VacancyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $status = EmploymentStatus::find($id);
+        $status->delete();
+        return response::json($status);
     }
 }

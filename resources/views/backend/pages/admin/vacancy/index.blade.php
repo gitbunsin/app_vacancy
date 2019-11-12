@@ -107,11 +107,33 @@
                             
                                         <!-- hotel search -->
                                         <div class="bhoechie-tab-content">
-                                            <center>
-                                              <h1 class="ti-trash" style="font-size:12em;color:#55518a"></h1>
-                                              <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
-                                              <h3 style="margin-top: 0;color:#55518a">Hotel Directory</h3>
-                                            </center>
+                                          <div class="card-header">
+                                            <div class="pull-right">
+                                                <a class="btn btn-primary" onclick="LoadStatus()" data-toggle="tooltip" data-placement="top" title="Status"><i class="ti-plus"></i></a>
+                                            </div>
+                                            <h3><span class="ti-home"></span> Employee Status</h3>
+                                        </div>
+                                            <table class="table" id="tbl_status">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col">#No</th>
+                                                        <th>Name</th>
+                                                        <th>Action</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                      @foreach ($status as $key => $statuses)
+                                                      <tr id="tr_status{{$statuses->id}}">
+                                                          <th scope="row">{{$key + 1}}</th>
+                                                          <td>{{$statuses->name}}</td>
+                                                          <th>
+                                                                <a onclick="EditStatus({{$statuses->id}});"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
+                                                                <a onclick="DeleteStatus({{$statuses->id}});" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
+                                                          </th>
+                                                        </tr>  
+                                                      @endforeach
+                                                    </tbody>
+                                                  </table>
                                         </div>
                                         <div class="bhoechie-tab-content">
                                             <center>
@@ -137,6 +159,95 @@
     </div>
     </div>
     <!-- /#page-wrapper -->
+
+<!-- /#EmployeeStatus -->
+
+<div id="EmployeeEditStatus" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="frmEditStatus">
+                <meta name="csrf-token" content="{{ csrf_token() }}">
+                <input type="hidden" name="" val="" id="status_edit_id">
+                <div class="modal-header theme-bg">						
+                    <h4 class="modal-title"> Employment Status </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-body">
+                        <div class="row">
+                          <div>
+                              <div>
+                                  <label> Name </label>
+                                  <input  name="status_name_edit" id="status_name_edit" type="text" class="form-control">
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                        <input type="submit" class="btn btn-primary" value="Yes">
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+
+<div id="EmployeeStatus" class="modal fade">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <form id="frmAddStatus">
+              <meta name="csrf-token" content="{{ csrf_token() }}">
+              <input type="hidden" name="" val="" id="status_id">
+              <div class="modal-header theme-bg">						
+                  <h4 class="modal-title"> Employment Status </h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              </div>
+              <div class="modal-body">
+                  <div class="card-body">
+                      <div class="row">
+                        <div>
+                            <div>
+                                <label> Name </label>
+                                <input  name="status_name" id="status_name" type="text" class="form-control">
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                      <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                      <input type="submit" class="btn btn-primary" value="Yes">
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+
+<div id="DeleteStatus" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="frmStatusDelete">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <input type="hidden" name="" val="" id="status_id">
+                <div class="modal-header theme-bg">						
+                    <h4 class="modal-title"> Status </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <h5> Do you want to delete Employment Status ? </h5>
+                </div>
+                <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                        <input type="submit" class="btn btn-primary" value="Yes">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
   <!-- /#PayGrade -->
   <div id="ModalEditPayGrade" class="modal fade">
     <div class="modal-dialog modal-lg">
@@ -363,4 +474,5 @@
 @section('scripts')
     <script src="{{asset('js/backend/vacancy.js')}}"></script>
     <script src="{{asset('js/backend/paygrade.js')}}"></script>
+    <script src="{{asset('js/backend/status.js')}}"></script>
 @endsection

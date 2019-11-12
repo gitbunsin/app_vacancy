@@ -11,9 +11,6 @@
                         <li class="{{ (request()->segment(2) == 'job') ? 'active' : '' }}">
                             <a href="{{url('admin/vacancy')}}"> Vacancy</a>
                         </li>
-                        {{-- <li class="">
-                        <a href="{{url('admin/job/create')}}">Create Jobs</a>
-                        </li> --}}
                     </ul>
                 </li>
             <li>
@@ -22,9 +19,6 @@
                     <li class="{{ (request()->segment(2) == 'job') ? 'active' : '' }}">
                         <a href="{{url('admin/job')}}">Manage Vacancy</a>
                     </li>
-                    {{-- <li class="">
-                    <a href="{{url('admin/job/create')}}">Create Jobs</a>
-                    </li> --}}
                 </ul>
             </li>
 
