@@ -36,6 +36,8 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
     Route::resource('vacancy','vacancyController');
     Route::resource('jobTitle','jobTitleController');
     Route::resource('jobCategory','jobCategoryController');
+    Route::resource('method','ReportingMethodController');
+    Route::resource('reason','TerminationReasonController');
     Route::resource('paygrade','PayGradeController');
     Route::resource('employmentstatus','EmployeeStatusController');
     Route::resource('job','JobController');

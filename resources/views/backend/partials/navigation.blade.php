@@ -29,7 +29,7 @@
                         <a href="{{url('admin/user')}}">Employee</a>
                     </li>
                     <li>
-                        <a href="{{url('admin/user')}}">Configuration</a>
+                        <a href="{{url('admin/method')}}">Configuration</a>
                     </li>
                 </ul>
             </li>
