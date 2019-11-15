@@ -9,7 +9,10 @@
                     <a href="javascript:void(0)"><i class="ti ti-user"></i>Admin <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li class="{{ (request()->segment(2) == 'job') ? 'active' : '' }}">
-                            <a href="{{url('admin/vacancy')}}"> Vacancy</a>
+                            <a href="{{url('admin/vacancy')}}"> Job</a>
+                        </li>
+                        <li class="{{ (request()->segment(2) == 'Qualifications') ? 'active' : '' }}">
+                            <a href="{{url('admin/skill')}}"> Qualifications</a>
                         </li>
                     </ul>
                 </li>

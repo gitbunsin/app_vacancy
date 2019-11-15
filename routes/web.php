@@ -38,6 +38,8 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
     Route::resource('jobCategory','jobCategoryController');
     Route::resource('method','ReportingMethodController');
     Route::resource('reason','TerminationReasonController');
+    Route::resource('skill','SkillController');
+    Route::resource('education','EducationController');
     Route::resource('paygrade','PayGradeController');
     Route::resource('employmentstatus','EmployeeStatusController');
     Route::resource('job','JobController');
