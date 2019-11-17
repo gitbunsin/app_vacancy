@@ -40,6 +40,9 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
     Route::resource('reason','TerminationReasonController');
     Route::resource('skill','SkillController');
     Route::resource('education','EducationController');
+    Route::resource('license','LicenseController');
+    Route::resource('language','LanguageController');
+    Route::resource('membership','MembershipController');
     Route::resource('paygrade','PayGradeController');
     Route::resource('employmentstatus','EmployeeStatusController');
     Route::resource('job','JobController');

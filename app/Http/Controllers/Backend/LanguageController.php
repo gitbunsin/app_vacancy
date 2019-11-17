@@ -4,19 +4,10 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\skill;
-use App\Model\payGrade;
-use App\Model\EmploymentStatus;
-use App\Model\JobCategory;
-use App\Model\educations;
-use App\Model\license;
-use App\Model\jobTitle;
 use App\Model\language;
-use App\Model\membership;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
-
-class SkillController extends Controller
+class LanguageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,12 +16,7 @@ class SkillController extends Controller
      */
     public function index()
     {
-        $skill = skill::all();
-        $education = educations::all();
-        $license = license::all();
-        $language = language::all();
-        $membership = membership::all();
-        return view('backend/pages/admin/vacancy/skill',compact('membership','skill','education','license','language'));
+        //
     }
 
     /**
@@ -51,12 +37,11 @@ class SkillController extends Controller
      */
     public function store(Request $request)
     {
-        $skill = new skill();
-        $skill->name = $request->name;
-        $skill->description = $request->description;
-        $skill->admin_id = auth()->guard('admin')->user()->id;
-        $skill->save();
-        return response::json($skill);
+        $language = new language();
+        $language->name = $request->name;
+        $language->admin_id = auth()->guard('admin')->user()->id;
+        $language->save();
+        return response::json($language);
     }
 
     /**
@@ -78,8 +63,8 @@ class SkillController extends Controller
      */
     public function edit($id)
     {
-        $skill = skill::find($id);
-        return response::json($skill);
+        $language = language::find($id);
+        return response::json($language);
     }
 
     /**
@@ -91,11 +76,11 @@ class SkillController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $skill = skill::find($id);
-        $skill->name = $request->name;
-        $skill->description = $request->description;
-        $skill->save();
-        return response::json($skill);
+        $language = language::find($id);
+        $language->name = $request->name;
+        $language->admin_id = auth()->guard('admin')->user()->id;
+        $language->save();
+        return response::json($language);
     }
 
     /**
@@ -106,8 +91,9 @@ class SkillController extends Controller
      */
     public function destroy($id)
     {
-        $skill = skill::find($id);
-        $skill->delete();
-        return response::json($skill);
+        $language = language::find($id);
+        $language->delete();
+        $language->save();
+        return response::json($language);
     }
 }

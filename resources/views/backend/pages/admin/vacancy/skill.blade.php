@@ -94,11 +94,11 @@
                                         <div class="bhoechie-tab-content">
                                           <div class="card-header">
                                             <div class="pull-right">
-                                                <a class="btn btn-primary" onclick="" data-toggle="tooltip" data-placement="top" title="Status"><i class="ti-plus"></i></a>
+                                                <a class="btn btn-primary" onclick="LoadLicense()" data-toggle="tooltip" data-placement="top" title="License"><i class="ti-plus"></i></a>
                                             </div>
-                                            <h3><span class="ti-home"></span> Employee Status</h3>
+                                            <h3><span class="ti-home"></span> License </h3>
                                         </div>
-                                            <table class="table" id="tbl_status">
+                                            <table class="table" id="tbl_license">
                                                     <thead>
                                                       <tr>
                                                         <th scope="col">#No</th>
@@ -107,13 +107,13 @@
                                                       </tr>
                                                     </thead>
                                                     <tbody>
-                                                      @foreach ($status as $key => $statuses)
-                                                      <tr id="tr_status{{$statuses->id}}">
+                                                      @foreach ($license as $key => $licenses)
+                                                      <tr id="tr_license{{$licenses->id}}">
                                                           <th scope="row">{{$key + 1}}</th>
-                                                          <td>{{$statuses->name}}</td>
+                                                          <td>{{$licenses->name}}</td>
                                                           <th>
-                                                                <a onclick="EditStatus({{$statuses->id}});"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
-                                                                <a onclick="DeleteStatus({{$statuses->id}});" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
+                                                                <a onclick="EditLicense({{$licenses->id}});"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
+                                                                <a onclick="DeleteLicense({{$licenses->id}});" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
                                                           </th>
                                                         </tr>  
                                                       @endforeach
@@ -123,11 +123,11 @@
                                         <div class="bhoechie-tab-content">
                                           <div class="card-header">
                                             <div class="pull-right">
-                                                <a class="btn btn-primary" onclick="" data-toggle="tooltip" data-placement="top" title="Category"><i class="ti-plus"></i></a>
+                                                <a class="btn btn-primary" onclick="LoadLanguage()" data-toggle="tooltip" data-placement="top" title="Language"><i class="ti-plus"></i></a>
                                             </div>
-                                            <h3><span class="ti-home"></span> Job Category</h3>
+                                            <h3><span class="ti-home"></span> Languages</h3>
                                         </div>
-                                            <table class="table" id="tbl_category">
+                                            <table class="table" id="tbl_language">
                                                     <thead>
                                                       <tr>
                                                         <th scope="col">#No</th>
@@ -136,13 +136,13 @@
                                                       </tr>
                                                     </thead>
                                                     <tbody>
-                                                      @foreach ($category as $key => $categories)
-                                                      <tr id="tr_category{{$categories->id}}">
+                                                      @foreach ($language as $key => $languages)
+                                                      <tr id="tr_language{{$languages->id}}">
                                                           <th scope="row">{{$key + 1}}</th>
-                                                          <td>{{$categories->name}}</td>
+                                                          <td>{{$languages->name}}</td>
                                                           <th>
-                                                                <a onclick="Editcategory({{$categories->id}});"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
-                                                                <a onclick="Deletecategory({{$categories->id}});" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
+                                                                <a onclick="EditLanguage({{$languages->id}});"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
+                                                                <a onclick="DeleteLanguage({{$languages->id}});" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
                                                           </th>
                                                         </tr>  
                                                       @endforeach
@@ -150,11 +150,33 @@
                                                   </table>
                                         </div>
                                         <div class="bhoechie-tab-content">
-                                            <center>
-                                              <h1 class="glyphicon glyphicon-credit-card" style="font-size:12em;color:#55518a"></h1>
-                                              <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
-                                              <h3 style="margin-top: 0;color:#55518a">Credit Card</h3>
-                                            </center>
+                                            <div class="card-header">
+                                                <div class="pull-right">
+                                                    <a class="btn btn-primary" onclick="LoadMemership()" data-toggle="tooltip" data-placement="top" title="Membership"><i class="ti-plus"></i></a>
+                                                </div>
+                                                <h3><span class="ti-home"></span> Memberships </h3>
+                                            </div>
+                                                <table class="table" id="tbl_membership">
+                                                        <thead>
+                                                          <tr>
+                                                            <th scope="col">#No</th>
+                                                            <th>Name</th>
+                                                            <th>Action</th>
+                                                          </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                          @foreach ($membership as $key => $memberships)
+                                                          <tr id="tr_memebership{{$memberships->id}}">
+                                                              <th scope="row">{{$key + 1}}</th>
+                                                              <td>{{$memberships->name}}</td>
+                                                              <th>
+                                                                    <a onclick="EditMembership({{$memberships->id}});"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
+                                                                    <a onclick="DeletMembership({{$memberships->id}});" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
+                                                              </th>
+                                                            </tr>  
+                                                          @endforeach
+                                                        </tbody>
+                                                      </table>
                                         </div>
                                     </div>
                                 </div>
@@ -166,7 +188,285 @@
     </div>
     </div>
     <!-- /#page-wrapper -->
-<!-- /#JobCategory -->
+
+    <!-- /#Membership-->
+
+
+    <div id="ModalDeleteMembership" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="frmDeleteMemebership">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <input type="hidden" name="" val="" id="membership_id">
+                    <div class="modal-header theme-bg">						
+                        <h4 class="modal-title"> Memberships </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <h5> Do you want to delete Memberships ? </h5>
+                    </div>
+                    <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                            <input type="submit" class="btn btn-primary" value="Yes">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div id="ModalEditMembership" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="frmEditMembership">
+                    <meta name="csrf-token" content="{{ csrf_token() }}">
+                    <input type="hidden" name="" val="" id="mebership_id_edit">
+                    <div class="modal-header theme-bg">						
+                        <h4 class="modal-title"> Memberships </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card-body">
+                            <div class="row">
+                              <div>
+                                  <div>
+                                      <label> Name </label>
+                                      <input  name="membership_name_edit" id="membership_name_edit" type="text" class="form-control">
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                            <input type="submit" class="btn btn-primary" value="Yes">
+                    </div>
+                </form>
+            </div>
+        </div>
+      </div>
+    
+    <div id="ModalAddMembership" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="frmAddMembership">
+                    <meta name="csrf-token" content="{{ csrf_token() }}">
+                    <input type="hidden" name="" val="" id="membership_id">
+                    <div class="modal-header theme-bg">						
+                        <h4 class="modal-title"> Memberships </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card-body">
+                            <div class="row">
+                              <div>
+                                  <div>
+                                      <label> Name </label>
+                                      <input  name="membership_name" id="membership_name" type="text" class="form-control">
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                            <input type="submit" class="btn btn-primary" value="Yes">
+                    </div>
+                </form>
+            </div>
+        </div>
+      </div>
+    
+
+
+    <!--  End Membership -->
+
+
+
+
+<!-- /#Langauge-->
+
+<div id="ModalDeleteLanguage" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="frmDeleteLangauge">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <input type="hidden" name="" val="" id="langauge_id">
+                <div class="modal-header theme-bg">						
+                    <h4 class="modal-title"> Education </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <h5> Do you want to delete Langauge ? </h5>
+                </div>
+                <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                        <input type="submit" class="btn btn-primary" value="Yes">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="ModalEditLanguage" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="frmEditLanguage">
+                <meta name="csrf-token" content="{{ csrf_token() }}">
+                <input type="hidden" name="" val="" id="language_id_edit">
+                <div class="modal-header theme-bg">						
+                    <h4 class="modal-title"> Language </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-body">
+                        <div class="row">
+                          <div>
+                              <div>
+                                  <label> Name </label>
+                                  <input  name="language_name_edit" id="language_name_edit" type="text" class="form-control">
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                        <input type="submit" class="btn btn-primary" value="Yes">
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+
+<div id="ModalAddLanguage" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="frmAddLanguage">
+                <meta name="csrf-token" content="{{ csrf_token() }}">
+                <input type="hidden" name="" val="" id="language_id">
+                <div class="modal-header theme-bg">						
+                    <h4 class="modal-title"> Language </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-body">
+                        <div class="row">
+                          <div>
+                              <div>
+                                  <label> Name </label>
+                                  <input  name="language_name" id="language_name" type="text" class="form-control">
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                        <input type="submit" class="btn btn-primary" value="Yes">
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+
+
+
+<!-- /#License -->
+
+<div id="ModalAddLicense" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="frmAddLicense">
+                <meta name="csrf-token" content="{{ csrf_token() }}">
+                <input type="hidden" name="" val="" id="license_id">
+                <div class="modal-header theme-bg">						
+                    <h4 class="modal-title"> License </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-body">
+                        <div class="row">
+                          <div>
+                              <div>
+                                  <label> Name </label>
+                                  <input  name="license_name" id="license_name" type="text" class="form-control">
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                        <input type="submit" class="btn btn-primary" value="Yes">
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+
+
+  <div id="ModalDeleteLicense" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="frmDeleteLicense">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <input type="hidden" name="" val="" id="license_id">
+                <div class="modal-header theme-bg">						
+                    <h4 class="modal-title"> License </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <h5> Do you want to delete License ? </h5>
+                </div>
+                <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                        <input type="submit" class="btn btn-primary" value="Yes">
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+
+
+  <div id="ModalEditLicense" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="frmEditLicense">
+                <meta name="csrf-token" content="{{ csrf_token() }}">
+                <input type="hidden" name="" val="" id="licenes_id_edit">
+                <div class="modal-header theme-bg">						
+                    <h4 class="modal-title"> License </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-body">
+                        <div class="row">
+                          <div>
+                              <div>
+                                  <label> Name </label>
+                                  <input  name="license_name_edit" id="license_name_edit" type="text" class="form-control">
+                              </div> 
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                        <input type="submit" class="btn btn-primary" value="Yes">
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+
+
+
+
+
+<!-- /#Skill -->
 
 <div id="ModalEditSkill" class="modal fade">
   <div class="modal-dialog">
@@ -203,6 +503,8 @@
       </div>
   </div>
 </div>
+
+
 
 
 <div id="ModalAddSkill" class="modal fade">
@@ -354,231 +656,12 @@
     </div>
 </div>
 
-
-  <!-- /#PayGrade -->
-  <div id="ModalEditPayGrade" class="modal fade">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <form id="frmEditPayGrade">
-              <meta name="csrf-token" content="{{ csrf_token() }}">
-                <input type="hidden" name="" val="" id="id_pay_grade_edit">
-                <div class="modal-header theme-bg">						
-                    <h4 class="modal-title">Pay Grades</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-lg-6">
-                          <div>
-                              <label>Pay Grades  </label>
-                              <input  name="pay_grade_name_edit" id="pay_grade_name_edit" type="text" class="form-control">
-                          </div>
-                      </div>
-                      <div class="col-lg-6">
-                          <div>
-                              <label>Currency</label>
-                              <select class="form-control" required id="currency_id_edit" name="currency_id_edit">
-                                  <option value="">  -- Pleae Select Currency -- </option>
-                                @php
-                                     use App\Model\currency ;$currency = currency::all();
-                                @endphp
-                                 @foreach ($currency as $currencies)
-                                 <option value="{{$currencies->id}}"> {{$currencies->name}}</option>                                     
-                                 @endforeach
-                              </select>
-                          </div>
-                      </div>
-                      <div class="col-lg-6">
-                          <div>
-                              <label> Max Salary </label>
-                              <input placeholder="$"  name="max_salary_edit" id="max_salary_edit" type="number" class="form-control">
-                          </div>
-                      </div>
-                      <div class="col-lg-6">
-                          <div>
-                              <label>Min Salary</label>
-                              <input placeholder="$" name="min_salary_edit" id="min_salary_edit" type="number" class="form-control">
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <input type="submit" class="btn btn-primary" value="Save">
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-    <div id="DeletePayGrade" class="modal fade">
-      <div class="modal-dialog">
-          <div class="modal-content">
-              <form id="frmPayGradeDelete">
-                  {{ csrf_field() }}
-                  {{ method_field('DELETE') }}
-                  <input type="hidden" name="" val="" id="pay_grade_id">
-                  <div class="modal-header theme-bg">						
-                      <h4 class="modal-title"> PayGrade </h4>
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                  </div>
-                  <div class="modal-body">
-                      <h5> Do you want to delete payGrade ? </h5>
-                  </div>
-                  <div class="modal-footer">
-                          <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
-                          <input type="submit" class="btn btn-primary" value="Yes">
-                  </div>
-              </form>
-          </div>
-      </div>
-  </div>
-
-    <div id="ModalPayGrade" class="modal fade">
-      <div class="modal-dialog  modal-lg">
-          <div class="modal-content">
-              <form id="frmAddPayGrade">
-                <meta name="csrf-token" content="{{ csrf_token() }}">
-                  <input type="hidden" name="" val="" id="id_jobTitle">
-                  <div class="modal-header theme-bg">						
-                      <h4 class="modal-title">Pay Grades</h4>
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-lg-6">
-                            <div>
-                                <label>Pay Grades  </label>
-                                <input  name="pay_grade_name" id="pay_grade_name" type="text" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div>
-                                <label>Currency</label>
-                                <select class="form-control" required id="currency_id" name="currency_id">
-                                    <option value="">  -- Pleae Select Currency -- </option>
-                                  @php $currency = currency::all(); @endphp
-                                   @foreach ($currency as $currencies)
-                                   <option value="{{$currencies->id}}"> {{$currencies->name}}</option>
-                                       
-                                   @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div>
-                                <label> Max Salary </label>
-                                <input placeholder="$"  name="max_salary" id="max_salary" type="number" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div>
-                                <label>Min Salary</label>
-                                <input placeholder="$" name="min_salary" id="min_salary" type="number" class="form-control">
-                            </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                          <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                          <input type="submit" class="btn btn-primary" value="Save">
-                  </div>
-              </form>
-          </div>
-      </div>
-</div>
-    <!-- Job Title -->
-    <div class="modal fade" id="jobTitleEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <form id="frmJobTitleEdit">
-                <input type="hidden" name="job_tittle_edit" id="job_tittle_edit">
-                <meta name="csrf-token" content="{{ csrf_token() }}">
-            <div class="modal-header" style="background:#0f66e8";>
-              <h5 class="modal-title" style="color:white;" id="exampleModalLabel">Edit Job Tittle</h5>
-            </div>
-            <div class="modal-body">
-            <div class="card-body">
-                <div class="row">
-                    <div>
-                        <label>Name</label>
-                        <input name="name_edit" id="name_edit" type="text" class="form-control">
-                    </div>
-                    <div>
-                      <label>Description</label>
-                      <textarea  name="description_edit" id="description_edit" class="form-control" cols='5' rows='5'></textarea>
-                  </div>
-                  
-                </div>
-            </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-success">Save</button>
-            </div>
-            </form>
-          </div>
-        </div>
-      </div>
-
-    <div id="DeleteJobTtile" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form id="frmJobTitleDelete">
-                    {{ csrf_field() }}
-                    {{ method_field('DELETE') }}
-                    <input type="hidden" name="" val="" id="id_jobTitle">
-                    <div class="modal-header theme-bg">						
-                        <h4 class="modal-title">Job Title</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <h5> Do you want to delete job Title? </h5>
-                    </div>
-                    <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
-                            <input type="submit" class="btn btn-success" value="Yes">
-                    </div>
-                </form>
-            </div>
-        </div>
- </div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <form id="frmJobTitle">
-          <meta name="csrf-token" content="{{ csrf_token() }}">
-      <div class="modal-header" style="background:#0f66e8";>
-        <h5 class="modal-title" style="color:white;" id="exampleModalLabel">Job Tittle</h5>
-      </div>
-      <div class="modal-body">
-      <div class="card-body">
-          <div class="row">
-              <div>
-                  <label>Name</label>
-                  <input name="name" id="name" type="text" class="form-control">
-              </div>
-              <div>
-                <label>Description</label>
-                <textarea  name="description" id="description" class="form-control" cols='5' rows='5'></textarea>
-            </div>
-          </div>
-      </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save</button>
-      </div>
-      </form>
-    </div>
-  </div>
 </div>
 @endsection
 @section('scripts')
     <script src="{{asset('js/backend/skill.js')}}"></script>
     <script src="{{asset('js/backend/education.js')}}"></script>
+    <script src="{{asset('js/backend/license.js')}}"></script>
+    <script src="{{asset('js/backend/language.js')}}"></script>
+    <script src="{{asset('js/backend/membership.js')}}"></script>
 @endsection
