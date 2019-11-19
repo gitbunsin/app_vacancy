@@ -17,10 +17,13 @@
                     </ul>
                 </li>
             <li>
-                <a href="javascript:void(0)"><i class="ti ti-user"></i>For Employer <span class="fa arrow"></span></a>
+                <a href="javascript:void(0)"><i class="ti ti-user"></i> Recruitment <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li class="{{ (request()->segment(2) == 'job') ? 'active' : '' }}">
-                        <a href="{{url('admin/job')}}">Manage Vacancy</a>
+                        <a href="{{url('admin/job')}}">vacancies</a>
+                    </li>
+                    <li class="{{ (request()->segment(2) == 'candidate') ? 'active' : '' }}">
+                        <a href="#">candidates</a>
                     </li>
                 </ul>
             </li>
@@ -29,7 +32,10 @@
                 <a href="javascript:void(0)"><i class="ti ti-ruler-pencil"></i>PIM<span class="fa arrow"></span> <b class="badge bg-success pull-right">3</b></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="{{url('admin/user')}}">Employee</a>
+                        <a href="{{url('admin/employee')}}">Employee List</a>
+                    </li>
+                    <li>
+                        <a href="{{url('admin/employee/create')}}">Add Employee</a>
                     </li>
                     <li>
                         <a href="{{url('admin/method')}}">Configuration</a>
