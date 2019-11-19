@@ -29,7 +29,18 @@ Route::post('admin-register', ['as'=>'admin-register','uses'=>'Auth\AdminRegiste
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admin'], function ($request) {
 
+
+
+    /* -- employee -- */
+    Route::post('employee/add/emergency/contact','EmployeeController@addEmergencyContact');
+    Route::get('employee/show/emergency/contact/{id}','EmployeeController@showEmergencyContact');
+    Route::post('employee/update/emergency/contact/{id}','EmployeeController@updateEmergencyContact');
+    Route::delete('employee/delete/emergency/contact/{id}','EmployeeController@deleteEmergencyContact');
+    Route::post('employee/update/contact/{id}','EmployeeController@updateContactEmployeeDetails');
+    Route::match(['post', 'put'], 'employee/update/user/{id}', 'EmployeeController@updateEmployeeLogin');
+
     
+
     Route::get('app','AppController@index');
     Route::get('login','AppController@login');
     Route::resource('company','CompanyController');

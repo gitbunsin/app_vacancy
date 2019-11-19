@@ -442,7 +442,7 @@
 
     <!-- /# ShowEmergencyContacts -->
     <div id="ShowEmergencyContacts" class="modal fade">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <form id="frmShowEmergencyContacts">
                     <input type="hidden" id="employee_assign_emergency_contacts" value="" />
@@ -452,19 +452,19 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col-sm-6">
                                 <label>Name</label>
                                 <input value="" name="name" id="name" type="text" class="form-control">
                             </div>
-                            <div class="col-sm-12">
+                            <div class="col-sm-6">
                                 <label>Relationship</label>
                                 <input value="" name="relationship" id="relationship" type="text" class="form-control">
                             </div>
-                            <div class="col-sm-12">
+                            <div class="col-sm-6">
                                 <label>Home Telephone</label>
                                 <input value="" name="home_telephone" id="home_telephone" type="text" class="form-control">
                             </div>
-                            <div class="col-sm-12">
+                            <div class="col-sm-6">
 
                                 <label>Mobile</label>
                                 <input value="" name="mobile" id="mobile" type="text" class="form-control">
@@ -487,7 +487,7 @@
 
     <!-- /# Edit Emergency Contact -->
     <div id="EditEmergencyContacts" class="modal fade">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <form id="frmEditEmergencyContacts">
                     <input type="hidden" id="emergency_contacts_edit" value="" />
@@ -497,19 +497,19 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col-sm-6">
                                 <label>Name</label>
                                 <input value="" name="name_edit" id="name_edit" type="text" class="form-control">
                             </div>
-                            <div class="col-sm-12">
+                            <div class="col-sm-6">
                                 <label>Relationship</label>
                                 <input value="" name="relationship_edit" id="relationship_edit" type="text" class="form-control">
                             </div>
-                            <div class="col-sm-12">
+                            <div class="col-sm-6">
                                 <label>Home Telephone</label>
                                 <input value="" name="home_telephone_edit" id="home_telephone_edit" type="text" class="form-control">
                             </div>
-                            <div class="col-sm-12">
+                            <div class="col-sm-6">
 
                                 <label>Mobile</label>
                                 <input value="" name="mobile_edit" id="mobile_edit" type="text" class="form-control">
@@ -606,6 +606,7 @@
                 let token = $("meta[name='csrf-token']").attr("content");
 
                 let id = $('#emergency_contacts_edit').val();
+               
 
                 $.ajax(
                     {
@@ -647,7 +648,7 @@
 
                         },error:function (err) {
 
-                            console.log(err);
+                           console.log(err);
                         }
                     });
             }
@@ -758,6 +759,8 @@
 
                             $('#ShowEmergencyContacts').modal('hide');
                             toastr.success('Emergency Contacts has been added  success !.', 'Success ', {timeOut: 5000})
+                        },error : function(err){
+                            console.log(err);
                         }
                     });
             }
