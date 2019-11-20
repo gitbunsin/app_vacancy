@@ -52,8 +52,8 @@
 							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
 							<ul class="tr-list info-list">
 								<li class="media"><i class="fa fa-map-signs" aria-hidden="true"></i> <span class="media-body"><span>44 Shirley Ave.</span> West Chicago, IL 60185</span></li>
-								<li class="media"><i class="fa fa-phone" aria-hidden="true"></i> <span class="media-body"><span>+0123 456 789</span> +0987 654 321</span></li>
-								<li class="media"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span class="media-body"><span><a href="#"><span class="__cf_email__" data-cfemail="533a3d353c13363e323a3f7d303c3e">[email&#160;protected]</span></a></span> <a href="#"><span class="__cf_email__" data-cfemail="285b5d5858475a5c684d45494144064b4745">[email&#160;protected]</span></a></span></li>
+								<li class="media"><i class="fa fa-phone" aria-hidden="true"></i> <span class="media-body"><span>+885 962711117</span> +885 70717512</span></li>
+								<li class="media"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span class="media-body"><span><a href="#"><span class="__cf_email__" data-cfemail="533a3d353c13363e323a3f7d303c3e">bunsin.toeng@gmail.com</span></a></span> <a href="#"><span class="__cf_email__" data-cfemail="285b5d5858475a5c684d45494144064b4745">[bunsin.info@gmail.com]</span></a></span></li>
 							</ul>
 							<span class="tr-title">Social Network</span>
 							<div class="social">

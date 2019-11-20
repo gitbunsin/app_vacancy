@@ -23,6 +23,7 @@ class EmployeeController extends Controller
     public function index()
     {
         $employee = Employee::all();
+        // dd($employee);
         return view('backend/pages/employee/index',compact('employee'));
     }
 

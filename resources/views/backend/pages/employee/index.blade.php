@@ -15,7 +15,6 @@
                                 <option>Most Popular</option>
                             </select>
                         </div>
-                                                    <a href="#" data-id="{{$employee->id}}" onclick="ShowEmergencyContacts(this);" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> Add </a>
                         <input type="text" class="form-control wide-width" placeholder="Search & type" />
                     </div>
                     <div class="card-body">
@@ -37,12 +36,6 @@
                                       <tr>
                                         <td scope="row">
                                             {{$key + 1}}
-                                                {{-- @if($employees->photo != " ")
-                                                <img width="50px" height="50px" src="{{asset('uploads/employee/'.$employees->photo)}}" class="attachment-thumbnail" alt="Academy Pro Theme">
-                                            @else
-
-                                                <img width="50px" height="50px" id="preview_image" src="{{asset('images/noimage.jpg')}}"/>
-                                            @endif --}}
                                         </td>
                                         <td><strong><a href="{{url('admin/employee/'.$employees->id.'/edit')}}"> {{$employees->first_name}} {{$employees->last_name}}</a></strong></td>
                                         <td>{{$employees->mobile}}</td>

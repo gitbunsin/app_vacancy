@@ -77,7 +77,7 @@
 									<li>Display Name<span>Jhon Doe</span></li>
 									<li>Address<span>San Francisco, CA, US</span></li>
 									<li>Phone Number<span>+0123456789</span></li>
-									<li>Email Id<span><a href="#"><span class="__cf_email__" data-cfemail="0b616364656f646e4b6c666a626725686466">[email&#160;protected]</span></a></span></li>
+									<li>Email<span>bunsin.toeng@gmail.com</span></li>
 									<li>Industry Expertise<span>UI & UX Designer</span></li>
 								</ul>								
 							</div><!-- /.display-information -->
