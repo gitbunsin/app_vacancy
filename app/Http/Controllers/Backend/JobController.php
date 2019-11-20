@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Model\job;
+use App\Model\vacancy;
 use App\Model\jobAttachment;
 use App\Model\skill;
 use App\Model\userCv;
@@ -24,19 +24,19 @@ class JobController extends Controller
      */
     public function index()
     {
-        $job = job::with(['category','jobType'])->orderBy('created_at')->paginate('10');
+        $job = vacancy::with(['category','jobType'])->orderBy('created_at')->paginate('10');
        // dd($job);
         return view('backend.pages.job.index',compact('job'));
     }
     public function job()
     {
-       // $job = job::with(['category','jobType','company'])->get();
-        return view('frontend.pages.job');
+        $job = vacancy::with(['category','jobType','company'])->get();
+        return view('frontend/pages/job',compact('job'));
     }
 
     public function jobDetails($id)
     {
-        $job = job::with(['category','jobType','company','admin','skill'])->where('id',$id)->first();
+        $job = vacancy::with(['category','jobType','company','admin','skill'])->where('id',$id)->first();
         $file = jobAttachment::with(['job'])->where('job_id',$id)->first();
         return view('frontend.pages.job-apply-detail',compact('job','file'));
     }
@@ -97,7 +97,7 @@ class JobController extends Controller
         $files = $request->file('filename');
        // dd($files);
         $data = request()->except(['skill','filename','salary']);
-        $job =  job::create($data);
+        $job =  vacancy::create($data);
         $job->admin_id = auth()->guard('admin')->user()->id;
         $job->category()->associate($request->category_id);
         $job->location()->associate($request->location_id);
@@ -152,7 +152,7 @@ class JobController extends Controller
      */
     public function edit($id)
     {
-        $job = job::find($id);
+        $job = vacancy::find($id);
         $all_skill = DB::table('job_skill')->where("job_id",$id)->get();
         $job_attachment = DB::table('job_attachments')->where("job_id",$id)->first();
         //dd( $job_attachment);
@@ -172,7 +172,7 @@ class JobController extends Controller
     {
 
         $file = $request->file('filename');
-        $job = job::whereId($id)->first();
+        $job = vacancy::whereId($id)->first();
         $data = request()->except(['skill','filename']);
         $job->update($data);
         $job->admin_id = $request->admin_id;
@@ -226,7 +226,7 @@ class JobController extends Controller
      */
     public function destroy($id)
     {
-        $job = job::find($id);
+        $job = vacancy::find($id);
         $job->delete();
         return redirect('admin/job');
         //

@@ -15,14 +15,22 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-
-                            <div class="col-sm-4">
-                                <label>Job Title</label>
-                                <input  name="job_title" required  type="text" class="form-control">
-                            </div>
+                                <div class="col-sm-4 m-clear">
+                                        <label> Vacancy Name</label>
+                                        <input name="vacancy_name" id="vacancy_name" type="text" class="form-control">
+                                    </div>
+                                <div class="col-sm-4">
+                                        <label>Job Title</label>
+                                        <?php use App\Model\jobTitle; $jobTitle = jobTitle::all();  ?>
+                                        <select name="category_id" class="form-control">
+                                            @foreach($jobTitle as $jobTitles)
+                                               <option value="{{$jobTitles->id}}"> {{$jobTitles->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                             <div class="col-sm-4">
                                 <label>Company Name</label>
-                                <?php use App\Model\Category;use App\Model\city;use App\Model\company;use App\Model\country;use App\Model\JobType;use App\Model\location;use App\Model\skill;$company  = company::all(); ?>
+                                <?php use App\Model\JobCategory;use App\Model\city;use App\Model\company;use App\Model\country;use App\Model\JobType;use App\Model\location;use App\Model\skill;$company  = company::all(); ?>
                                 <select name="company_id" class="form-control" required>
                                     @foreach($company as $companies)
                                         <option value="{{$companies->id}}"> {{$companies->company_name}}</option>
@@ -32,17 +40,14 @@
 
                             <div class="col-sm-4">
                                 <label>Category</label>
-                                <?php $category  = Category::all(); ?>
+                                <?php $category  = JobCategory::all(); ?>
                                 <select name="category_id" class="form-control">
                                     @foreach($category as $categories)
                                        <option value="{{$categories->id}}"> {{$categories->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-sm-4 m-clear">
-                                <label>Position</label>
-                                <input name="position" type="text" class="form-control">
-                            </div>
+                           
 
                             <div class="col-sm-4 m-clear">
                                 <label>No. Of Vacancy</label>

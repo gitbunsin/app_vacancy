@@ -15,41 +15,47 @@
                                 <option>Most Popular</option>
                             </select>
                         </div>
+                                                    <a href="#" data-id="{{$employee->id}}" onclick="ShowEmergencyContacts(this);" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> Add </a>
                         <input type="text" class="form-control wide-width" placeholder="Search & type" />
                     </div>
                     <div class="card-body">
-                        @php $id = ""; $name = "";@endphp
-                        @if(!empty($employee))
-                        @foreach($employee as $employees)
-                                @php $id = $employees->id;@endphp
-                        <ul id="tbl_company{{$id}}" class="list">
-                                <li class="manage-list-row clearfix">
-                                    <div class="job-info">
-                                        <div class="job-img">
-
-                                            @if($employees->photo != " ")
-                                                <img src="{{asset('uploads/employee/'.$employees->photo)}}" class="attachment-thumbnail" alt="Academy Pro Theme">
+                            <table class="table">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Job Title</th>
+                                        <th scope="col">Supervisor</th>
+                                        <th>Action</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                            @php $id = ""; $name = "";@endphp
+                                            @if(!empty($employee))
+                                            @foreach($employee as $key =>  $employees)
+                                                    @php $id = $employees->id;@endphp
+                                      <tr>
+                                        <td scope="row">
+                                            {{$key + 1}}
+                                                {{-- @if($employees->photo != " ")
+                                                <img width="50px" height="50px" src="{{asset('uploads/employee/'.$employees->photo)}}" class="attachment-thumbnail" alt="Academy Pro Theme">
                                             @else
 
-                                                <img width="100%" height="100%" id="preview_image" src="{{asset('images/noimage.jpg')}}"/>
-                                            @endif
-                                        </div>
-                                        <div class="job-details">
-                                            <h3 class="job-name"><strong><a href="{{url('admin/employee/'.$employees->id.'/edit')}}"> {{$employees->first_name}} {{$employees->last_name}}</a></strong></h3>
-                                            <small class="job-company"><i class="ti-mobile"></i> Mobile : {{$employees->mobile}}</small>
-                                            <small class="job-company"><i class="ti-github "></i> Gender : {{$employees->gender}}</small>
-                                            <small class="job-company"><i class="ti-server "></i> Supervisor : {{$employees->gender}}</small>
-                                            <span class="j-type part-time">Employee ID : {{$employees->employee_id}}</span>
-                                        </div>
-                                    </div>
-                                    <div class="job-buttons">
-                                        <a href="{{url('admin/employee/'.$employees->id.'/edit')}}" class="btn btn-gary manage-btn" data-toggle="tooltip" data-placement="top" title="Edit"><i class="ti-pencil-alt"></i></a>
-                                        <a href="#" data-id="{{$employees->id}}" onclick="deleteEmployee(this);" class="btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Remove"><i class="ti-close"></i></a>
-                                    </div>
-                                </li>
-                        </ul>
-                        @endforeach
+                                                <img width="50px" height="50px" id="preview_image" src="{{asset('images/noimage.jpg')}}"/>
+                                            @endif --}}
+                                        </td>
+                                        <td><strong><a href="{{url('admin/employee/'.$employees->id.'/edit')}}"> {{$employees->first_name}} {{$employees->last_name}}</a></strong></td>
+                                        <td>{{$employees->mobile}}</td>
+                                        <td>@mdo</td>
+                                        <td>
+                                                <a href="{{url('admin/employee/'.$employees->id.'/edit')}}"  class="btn btn-primary"  title="Edit"><i class="icon-edit"></i></a>
+                                                <a data-id="{{$employees->id}}" onclick="deleteEmployee(this);" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
+                                        </td>
+                                      </tr>
+                                      @endforeach
                         @endif
+                                    </tbody>
+                                  </table>
                         <div class="flexbox padd-10">
                             <ul class="pagination">
                             </ul>
@@ -60,7 +66,6 @@
         </div>
     </div>
 </div>
-
     <div id="Delete" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -84,7 +89,6 @@
             </div>
         </div>
     </div>
-
 @endsection
 @section('scripts')
     <script type="text/javascript">

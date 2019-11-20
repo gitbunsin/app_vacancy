@@ -1,3 +1,8 @@
+    function AddVacancy(){
+        $('#ModalAddVacacny').modal('show');
+    }
+
+
 //job title
 
 //update 
