@@ -7,6 +7,7 @@ use App\Model\EmployeeAttachment;
 use App\Model\EmployeeEmergencyContacts;
 use App\Model\role;
 use App\userEmployee;
+use App\Model\EmployeeBasicSalary;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -192,9 +193,9 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         $employee = Employee::with(['salary','emergencyContact','attachment'])->where('id',$id)->first();
-        //dd($employee);
-        //dd($employee->attachment);
-        return view('backend/pages/employee/edit',compact('employee'));
+        $basicSalary = EmployeeBasicSalary::with(['payPeriod','currency'])->where('employee_id',$employee->id)->first();
+        dd($basicSalary);
+        return view('backend/pages/employee/edit',compact('employee','basicSalary'));
     }
 
     /**

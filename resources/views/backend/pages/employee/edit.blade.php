@@ -389,18 +389,21 @@
                               </tr>
                             </thead>
                             <tbody>
-                              <tr id="tr_basic_salary">
-                                  <th scope="row"></th>
+                            @foreach ($employee->salary as $key => $salaries)
+                            
+                              <tr id="tr_basic_salary{{$salaries->id}}">
+                                  <th scope="row">{{$key + 1}}</th>
+                                  <td>{{$salaries->salary_component}}</td>
                                   <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
+                                  <td>{{$basicSalary->currency->name}}</td>
+                                  <td>{{$salaries->basic_salary}}</td>
+                                  <td>{{$salaries->comments}}</td>
                                   <th>
-                                        <a onclick="showEditSalary();"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
-                                        <a onclick="EditSalary();" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
+                                        <a onclick="EditSalary({{$salaries->id}});"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
+                                        <a onclick="DeleteEditSalary({{$salaries->id}});" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
                                   </th>
-                                </tr>  
+                                </tr>     
+                                @endforeach                  
                             </tbody>
                           </table>
                     </div>
@@ -417,6 +420,31 @@
     </div>
 
     <!-- /# ShowBasic Salary-->
+
+    <div id="ModalDeleteBasicSalary" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form method="POST" action="#" id="frmDeleteBasicSalary">
+                        <meta name="csrf-token" content="{{ csrf_token() }}">
+                        <input type="hidden" value="" id="basic_salary_id"/>
+                        <div class="modal-header theme-bg">
+                            <h4 class="modal-title">Basic Salary  </h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Do u want to delete this <b></b>   ?</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                            <input type="submit" class="btn btn-danger" value="Yes">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     <div id="ShowBasicSalary" class="modal fade">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -475,7 +503,7 @@
                             </div>
                                 <div class="col-sm-12">
                                     <label>Comment</label>
-                                    <textarea class="form-control" name="comment" id="comment" cols="5" rows="5"></textarea>
+                                    <textarea class="form-control" name="comments" id="comments" cols="5" rows="5"></textarea>
                                 </div>
                         
                             </div>
@@ -504,6 +532,31 @@
 
 
     <!-- Add Attachment -->
+    <!-- Delete Basic Salary -->
+    <div id="Delete" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form method="POST" action="#" id="frmDeleteJobAttachment">
+                        <meta name="csrf-token" content="{{ csrf_token() }}">
+                        <input type="hidden" value="" id="attachment_id"/>
+                        <div class="modal-header theme-bg">
+                            <h4 class="modal-title">Job Attachment  </h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Do u want to delete this <b></b>   ?</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                            <input type="submit" class="btn btn-danger" value="Yes">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     <div id="AddJobAttachment" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">

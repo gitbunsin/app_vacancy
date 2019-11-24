@@ -48,26 +48,26 @@ function Editcategory(id)
   });
 }
 
-function Deletecategory(id)
+function DeleteEditSalary(id)
 {
-    $('#DeleteJobCategory').modal('show');
-    $('#category_id').val(id);
+    $('#ModalDeleteBasicSalary').modal('show');
+    $('#basic_salary_id').val(id);
 }
 
-$('#frmJobCategoryDelete').validate({
+$('#frmDeleteBasicSalary').validate({
     submitHandler: function (form) {
-        var id = $('#category_id').val();
+        var id = $('#basic_salary_id').val();
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
         jQuery.ajax({
-            url: "/admin/jobCategory" + '/' + id,
+            url: "/admin/basicSalary" + '/' + id,
             method: 'Delete',
             success: function (response) {
-                $('#DeleteJobCategory').modal('hide');
-                $('#tr_category' + response.id).remove();
+                $('#ModalDeleteBasicSalary').modal('hide');
+                $('#tr_basic_salary' + response.id).remove();
                 toastr.success('Success', 'item has been deleted !');
             }, error: function (err) {
                 console.log(err);
@@ -102,13 +102,15 @@ $("#frmShowBasicSalary").validate({
                 "currency_id" : $('#currency_id').val(),
                 "paygrade_id" : $('#paygrade_id').val(),
                 "pay_periods_id" : $('#pay_periods_id').val(),
+                "comments" :  $('#comments').val()
             },
             success: function(result)
             {
+                console.log(result);
                $('#ShowBasicSalary').modal('hide');
                toastr.success('Success' , 'item has been create !');
-               var basicSalary = '<tr id="tr_basic_salary' + result.id + '"> <th class="scope="row">' + result.id + '</><td>' + result.salary_component + '</td>';
-               category += '<th><a onclick="EditSalary(' + result.id + ');"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Status"><i class="icon-edit"></i></a>  <a onclick="DeleteSalary(' + result.id + ');" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Category"><i class="ti-trash"></i></a></th></tr>';
+               var basicSalary = '<tr id="tr_basic_salary' + result.id + '"> <th class="scope="row">' + result.id + '</><td>' + result.salary_component + '</td><td>' + result.payPeriod.name + '</td><td>' + result.currency.name + '</td><td>' + result.basic_salary + '</td><td>' + result.comments + '</td>';
+               basicSalary += '<th><a onclick="EditSalary(' + result.id + ');"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Status"><i class="icon-edit"></i></a>  <a onclick="DeleteSalary(' + result.id + ');" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Category"><i class="ti-trash"></i></a></th></tr>';
                $('#tbl_basic_salary').append(basicSalary);
 
             },error : function(err){

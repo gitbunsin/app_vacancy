@@ -17,4 +17,16 @@ class employeeBasicSalary extends Model
     {
         return $this->belongsTo(employee::class);
     }
+    public function payGrade()
+    {
+        return $this->belongsTo(payGrade::class);
+    }
+    public function currency()
+    {
+        return $this->belongsTo(currency::class);
+    }
+    public function payPeriod()
+    {
+        return $this->belongsTo(payPeriod::class);
+    }
 }
