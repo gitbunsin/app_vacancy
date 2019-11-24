@@ -34,8 +34,6 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-
-
         return view('backend/pages/employee/create');
     }
 
@@ -193,8 +191,8 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        $employee = Employee::with(['emergencyContact','attachment'])->where('id',$id)->first();
-
+        $employee = Employee::with(['salary','emergencyContact','attachment'])->where('id',$id)->first();
+        //dd($employee);
         //dd($employee->attachment);
         return view('backend/pages/employee/edit',compact('employee'));
     }

@@ -14,6 +14,10 @@ class employee extends Model
     {
         return $this->belongsTo(Admin::class,'admin_id','id');
     }
+    public function salary()
+    {
+        return $this->hasMany(employeeBasicSalary::class);
+    }
     public function emergencyContact()
     {
         return $this->hasMany(EmployeeEmergencyContacts::class);

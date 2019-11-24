@@ -39,8 +39,9 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
     Route::post('employee/update/contact/{id}','EmployeeController@updateContactEmployeeDetails');
     Route::match(['post', 'put'], 'employee/update/user/{id}', 'EmployeeController@updateEmployeeLogin');
 
+    /* -- Basic Salary -- */
     
-
+    Route::resource('basicSalary','EmployeeBasicSalaryController');
     Route::get('app','AppController@index');
     Route::get('login','AppController@login');
     Route::resource('company','CompanyController');
