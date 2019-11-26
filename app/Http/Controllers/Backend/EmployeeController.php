@@ -194,7 +194,7 @@ class EmployeeController extends Controller
     {
         $employee = Employee::with(['salary','emergencyContact','attachment'])->where('id',$id)->first();
         $basicSalary = EmployeeBasicSalary::with(['payPeriod','currency'])->where('employee_id',$employee->id)->first();
-        dd($basicSalary);
+        // dd($basicSalary);
         return view('backend/pages/employee/edit',compact('employee','basicSalary'));
     }
 

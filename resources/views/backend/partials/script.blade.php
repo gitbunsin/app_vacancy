@@ -8,7 +8,8 @@
 <script src="{{asset('back/js/ckeditor.js')}}"></script>
 <script src="{{asset('back/js/select2.min.js')}}"></script>
 <script src="{{asset('back/js/loader.js')}}"></script>
-
+<script src="{{asset('back/js/jquery.bootstrap-duallistbox.js')}}"></script>
+<script src="{{asset('back/js/jquery.bootstrap-duallistbox.min.js')}}"></script>
 <!-- Custom Theme JavaScript -->
 <script src="{{asset('back/js/custom.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>  

@@ -165,11 +165,35 @@
                                                   </table>
                                         </div>
                                         <div class="bhoechie-tab-content">
-                                            <center>
-                                              <h1 class="glyphicon glyphicon-credit-card" style="font-size:12em;color:#55518a"></h1>
-                                              <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
-                                              <h3 style="margin-top: 0;color:#55518a">Credit Card</h3>
-                                            </center>
+                                          <div class="card-header">
+                                            <div class="pull-right">
+                                                <a class="btn btn-primary" onclick="LoadWorkShift()" data-toggle="tooltip" data-placement="top" title="WorkShift"><i class="ti-plus"></i></a>
+                                            </div>
+                                            <h3><span class="ti-home"></span> Employee WorkShift</h3>
+                                        </div>
+                                            <table class="table" id="tbl_status">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col">#No</th>
+                                                        <th>Shift Name</th>
+                                                        <th>From</th>
+                                                        <th>To</th>
+                                                        <th>Action</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                      <tr id="tr_status">
+                                                          <th scope="row"></th>
+                                                          <td></td>
+                                                          <td></td>
+                                                          <td></td>
+                                                          <th>
+                                                              <a onclick="EditStatus();"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
+                                                              <a onclick="DeleteStatus();" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
+                                                          </th>
+                                                        </tr>  
+                                                    </tbody>
+                                                  </table>
                                         </div>
                                     </div>
                                 </div>
@@ -180,7 +204,53 @@
         <!-- /row -->
     </div>
     </div>
-    <!-- /#page-wrapper -->
+    <!-- /#Load WorkShift -->
+    <div id="ModalWorkShift" class="modal fade">
+      <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+              <form id="frmEditCategory">
+                  <meta name="csrf-token" content="{{ csrf_token() }}">
+                  <input type="hidden" name="" val="" id="work_shift_id">
+                  <div class="modal-header theme-bg">						
+                      <h4 class="modal-title"> Work Shift</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  </div>
+                  <div class="modal-body">
+                      <div class="card-body">
+                          <div class="row">
+                            <div class="col-lg-12">
+                                    <label> Shift Name </label>
+                                    <input  name="workshift_name" id="workshift_name" type="text" class="form-control">
+                            </div>
+                              <div class="col-lg-5">
+                                  <label> Work Hour From :  </label>
+                                  <input  name="workshift_name" id="workshift_name" type="number" class="form-control">
+                              </div>
+                              <div class="col-lg-5">
+                                  <label> To </label>
+                                  <input  name="workshift_name" id="workshift_name" type="number" class="form-control">
+                              </div>
+                              <div class="col-lg-2">
+                                  <label> Duration  </label>
+                                  <input disabled  name="workshift_name" id="workshift_name" type="text" class="form-control">
+                              </div>
+                            <div class="col-lg-12">
+                              <select multiple="multiple" size="10" name="duallistbox_demo2" class="demo2">
+                                <option value="option1">Option 1</option>
+                                <option value="option2">Option 2</option>
+                              </select>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                          <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                          <input type="submit" class="btn btn-primary" value="Save">
+                  </div>
+              </form>
+          </div>
+      </div>
+    </div>
 <!-- /#JobCategory -->
 
 <div id="ModalEditJobCategory" class="modal fade">
@@ -590,4 +660,5 @@
     <script src="{{asset('js/backend/paygrade.js')}}"></script>
     <script src="{{asset('js/backend/status.js')}}"></script>
     <script src="{{asset('js/backend/category.js')}}"></script>
+    <script src="{{asset('js/backend/workshift.js')}}"></script>
 @endsection
