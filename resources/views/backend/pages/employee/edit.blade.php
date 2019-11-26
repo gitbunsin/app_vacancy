@@ -84,6 +84,9 @@
                         <a href="#" class="list-group-item text-center">
                             <h4 class="fa fa-send-o fa-4x"></h4><br/> Report To
                         </a>
+                        <a href="#" class="list-group-item text-center">
+                            <h4 class="fa fa-send-o fa-4x"></h4><br/> Qualifications
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 bhoechie-tab">
@@ -407,11 +410,121 @@
                             </tbody>
                           </table>
                     </div>
-
                     <div class="bhoechie-tab-content">
-                        <h1 style="font-size:12em;color:#55518a"><i class="fa fa-user mrg-r-5"></i></h1>
-                        <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
-                        <h3 style="margin-top: 0;color:#55518a">Report Card</h3>
+                            <div class="card-header">
+                                    <a href="#" onclick="ShowModalReporto()" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> Add Supervisors</a>
+                                    <br>
+                                    <h4><i class="fa fa-group"></i> Assigned Supervisors</h4>
+                                </div>
+                                <table class="table" id="tbl_assigned_supervisors">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">#No</th>
+                                        <th>Salary Component</th>
+                                        <th>Pay Frequency</th>
+                                        <th>Currency</th>
+                                        <th>Amount</th>
+                                        <th>Comments</th>
+                                        <th>Action</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr id="tr_basic_salary">
+                                                <th scope="row"></th>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <th>
+                                                      <a onclick=""  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
+                                                      <a onclick="" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
+                                                </th>
+                                              </tr>     
+                       
+                                          </tbody>
+                                  </table>
+                                 <hr/>
+                                  <div class="card-header">
+                                    <a href="#" onclick="ShowModalReporto()" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> Add Subordinates</a>
+                                    <br>
+                                    <h4><i class="fa fa-group"></i> Assigned Subordinates</h4>
+                                </div>
+                                <table class="table" id="tbl_assigned_supervisors">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">#No</th>
+                                        <th>Salary Component</th>
+                                        <th>Pay Frequency</th>
+                                        <th>Currency</th>
+                                        <th>Amount</th>
+                                        <th>Comments</th>
+                                        <th>Action</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr id="tr_basic_salary">
+                                          <th scope="row"></th>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                          <th>
+                                                <a onclick=""  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
+                                                <a onclick="" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
+                                          </th>
+                                        </tr>     
+                
+                                    </tbody>
+                                  </table>
+                    </div>
+                    <div class="bhoechie-tab-content">
+                        <div class="demo">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="tab" role="tabpanel">
+                                        <!-- Nav tabs -->
+                                        <ul class="nav nav-tabs" role="tablist">
+                                            <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">Work Experience</a></li>
+                                            <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">Education</a></li>
+                                            <li role="presentation"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">Skills</a></li>
+                                            <li role="presentation"><a href="#Section4" aria-controls="messages" role="tab" data-toggle="tab">Languages</a></li>
+                                            <li role="presentation"><a href="#License" aria-controls="messages" role="tab" data-toggle="tab">License</a></li>
+                                            <li role="presentation"><a href="#attachments" aria-controls="messages" role="tab" data-toggle="tab">Attachments</a></li>
+                                        </ul>
+                                        <!-- Tab panes -->
+                                        <div class="tab-content tabs">
+                                            <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+                                                <h3>Work Experience</h3>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec urna aliquam, ornare eros vel, malesuada lorem. Nullam faucibus lorem at eros consectetur lobortis. Maecenas nec nibh congue, placerat sem id, rutrum velit. Phasellus porta enim at facilisis condimentum. Maecenas pharetra dolor vel elit tempor pellentesque sed sed eros. Aenean vitae mauris tincidunt, imperdiet orci semper, rhoncus ligula. Vivamus scelerisque.</p>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="Section2">
+                                                <h3>Education</h3>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec urna aliquam, ornare eros vel, malesuada lorem. Nullam faucibus lorem at eros consectetur lobortis. Maecenas nec nibh congue, placerat sem id, rutrum velit. Phasellus porta enim at facilisis condimentum. Maecenas pharetra dolor vel elit tempor pellentesque sed sed eros. Aenean vitae mauris tincidunt, imperdiet orci semper, rhoncus ligula. Vivamus scelerisque.</p>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="Section3">
+                                                <h3>Skills</h3>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec urna aliquam, ornare eros vel, malesuada lorem. Nullam faucibus lorem at eros consectetur lobortis. Maecenas nec nibh congue, placerat sem id, rutrum velit. Phasellus porta enim at facilisis condimentum. Maecenas pharetra dolor vel elit tempor pellentesque sed sed eros. Aenean vitae mauris tincidunt, imperdiet orci semper, rhoncus ligula. Vivamus scelerisque.</p>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="Section4">
+                                                <h3>Languages</h3>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec urna aliquam, ornare eros vel, malesuada lorem. Nullam faucibus lorem at eros consectetur lobortis. Maecenas nec nibh congue, placerat sem id, rutrum velit. Phasellus porta enim at facilisis condimentum. Maecenas pharetra dolor vel elit tempor pellentesque sed sed eros. Aenean vitae mauris tincidunt, imperdiet orci semper, rhoncus ligula. Vivamus scelerisque.</p>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="License">
+                                                    <h3>License</h3>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec urna aliquam, ornare eros vel, malesuada lorem. Nullam faucibus lorem at eros consectetur lobortis. Maecenas nec nibh congue, placerat sem id, rutrum velit. Phasellus porta enim at facilisis condimentum. Maecenas pharetra dolor vel elit tempor pellentesque sed sed eros. Aenean vitae mauris tincidunt, imperdiet orci semper, rhoncus ligula. Vivamus scelerisque.</p>
+                                                </div>
+                                                <div role="tabpanel" class="tab-pane fade" id="attachments">
+                                                        <h3>Attachments</h3>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec urna aliquam, ornare eros vel, malesuada lorem. Nullam faucibus lorem at eros consectetur lobortis. Maecenas nec nibh congue, placerat sem id, rutrum velit. Phasellus porta enim at facilisis condimentum. Maecenas pharetra dolor vel elit tempor pellentesque sed sed eros. Aenean vitae mauris tincidunt, imperdiet orci semper, rhoncus ligula. Vivamus scelerisque.</p>
+                                                    </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <br/>
                     </div>
                 </div>
             </div>
