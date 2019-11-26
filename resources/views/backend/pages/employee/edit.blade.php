@@ -1,64 +1,5 @@
 @extends('backend.layouts.master')
 @section('content')
-    <style>
-        .error {
-
-            color: red;
-        }
-        /*  bhoechie tab */
-        div.bhoechie-tab-menu{
-            padding-right: 0;
-            padding-left: 0;
-            padding-bottom: 0;
-        }
-        div.bhoechie-tab-menu div.list-group{
-            margin-bottom: 0;
-        }
-        div.bhoechie-tab-menu div.list-group>a{
-            margin-bottom: 0;
-        }
-        div.bhoechie-tab-menu div.list-group>a .glyphicon,
-        div.bhoechie-tab-menu div.list-group>a .fa {
-            color: #586d82;
-        }
-        div.bhoechie-tab-menu div.list-group>a:first-child{
-            border-top-right-radius: 0;
-            -moz-border-top-right-radius: 0;
-        }
-        div.bhoechie-tab-menu div.list-group>a:last-child{
-            border-bottom-right-radius: 0;
-            -moz-border-bottom-right-radius: 0;
-        }
-        div.bhoechie-tab-menu div.list-group>a.active,
-        div.bhoechie-tab-menu div.list-group>a.active .glyphicon,
-        div.bhoechie-tab-menu div.list-group>a.active .fa{
-            background-color: #586d82;
-            background-image: #586d82;
-            color: #ffffff;
-        }
-        div.bhoechie-tab-menu div.list-group>a.active:after{
-            content: '';
-            position: absolute;
-            left: 100%;
-            top: 50%;
-            margin-top: -13px;
-            border-left: 0;
-            border-bottom: 13px solid transparent;
-            border-top: 13px solid transparent;
-            border-left: 10px solid #586d82;
-        }
-
-        div.bhoechie-tab-content{
-            background-color: #ffffff;
-            /* border: 1px solid #eeeeee; */
-            padding-left: 20px;
-            padding-top: 10px;
-        }
-
-        div.bhoechie-tab div.bhoechie-tab-content:not(.active){
-            display: none;
-        }
-    </style>
     <input type="hidden" value="{{$employee->id}}" id="employee_id">
     <div class="container-fluid">
 
@@ -67,25 +8,25 @@
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
                     <div class="list-group">
                         <a href="#" class="list-group-item active text-center">
-                            <h4 class="fa fa-dashboard fa-4x"></h4><br/>Personal Details
+                            Personal Details
                         </a>
                         <a href="#" class="list-group-item text-center">
-                            <h4 class="fa fa-phone-square fa-4x"></h4><br/> Contact Details
+                             Contact Details
                         </a>
                         <a href="#" class="list-group-item text-center">
-                            <h4 class="fa fa-user fa-4x"></h4><br/> Emergency Contact
+                             Emergency Contact
                         </a>
                         <a href="#" class="list-group-item text-center">
-                            <h4 class="fa fa-heart-o fa-4x"></h4><br/>Job
+                             Job
                         </a>
                         <a href="#" class="list-group-item text-center">
-                            <h4 class="fa fa-dollar fa-4x"></h4><br/> Salary
+                             Salary
                         </a>
                         <a href="#" class="list-group-item text-center">
-                            <h4 class="fa fa-send-o fa-4x"></h4><br/> Report To
+                            Report To
                         </a>
                         <a href="#" class="list-group-item text-center">
-                            <h4 class="fa fa-send-o fa-4x"></h4><br/> Qualifications
+                            Qualifications
                         </a>
                     </div>
                 </div>
@@ -496,8 +437,39 @@
                                         <!-- Tab panes -->
                                         <div class="tab-content tabs">
                                             <div role="tabpanel" class="tab-pane fade in active" id="Section1">
-                                                <h3>Work Experience</h3>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec urna aliquam, ornare eros vel, malesuada lorem. Nullam faucibus lorem at eros consectetur lobortis. Maecenas nec nibh congue, placerat sem id, rutrum velit. Phasellus porta enim at facilisis condimentum. Maecenas pharetra dolor vel elit tempor pellentesque sed sed eros. Aenean vitae mauris tincidunt, imperdiet orci semper, rhoncus ligula. Vivamus scelerisque.</p>
+                                                <div class="card-header">
+                                                    <a href="#" onclick="ShowModalExpericen()" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> <i class="fa fa-plus"></i></a>
+                                                    <br>
+                                                    <h4><i class="fa fa-group"></i> Work Experience</h4>
+                                                </div>
+                                                <table class="table" id="tbl_work_experience">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col">#No</th>
+                                                        <th>Company </th>
+                                                        <th>Job title</th>
+                                                        <th>From </th>
+                                                        <th>To</th>
+                                                        <th>Comments</th>
+                                                        <th>Action</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                      <tr id="tr_work_experience">
+                                                          <th scope="row"></th>
+                                                          <td></td>
+                                                          <td></td>
+                                                          <td></td>
+                                                          <td></td>
+                                                          <td></td>
+                                                          <th>
+                                                                <a onclick="EditExperience();"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
+                                                                <a onclick="DeleteExperience();" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
+                                                          </th>
+                                                        </tr>     
+                                
+                                                    </tbody>
+                                                  </table>
                                             </div>
                                             <div role="tabpanel" class="tab-pane fade" id="Section2">
                                                 <h3>Education</h3>
@@ -531,7 +503,58 @@
         </div>
     </div>
     </div>
+   <!-- /# Work Experience -->
 
+   <div id="ShowModalWorkExperience" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form id="frmShowWorkExperience">
+                <input type="hidden" id="work_experience_id" value="" />
+                <div class="modal-header theme-bg">
+                    <h4 class="modal-title">Work Experience</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                            <div class="col-sm-6">
+                                <label>Company Name</label>
+                                <input value="" name="company_name" id="company_name" type="text" class="form-control">                                       
+                            </div>
+                        <div class="col-sm-6">
+                           <label>Job Title</label>
+                            <select class="form-control" required id="job_title_id" name="job_title_id">
+                                <option value="">  -- Pleae Select job title -- </option>
+                                @php
+                                    $j = jobTitle::all();
+                                @endphp
+                                @foreach ($j  as $js )
+                                <option value="{{$js ->id}}"> {{$js ->name}}</option>                                     
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                            <label>From Date</label>
+                            <input value="" name="from_date" id="from_date" type="date" class="form-control">
+                        </div>
+                        <div class="col-sm-6">
+                            <label>To Date</label>
+                            <input value="" name="to_date" id="to_date" type="date" class="form-control">
+                        </div>
+                        <div class="col-sm-12">
+                            <label>Comment</label>
+                            <textarea class="form-control" name="comments" id="comments" cols="5" rows="5"></textarea>
+                        </div>
+                
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <input type="submit" class="btn btn-success" value="Save">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
     <!-- /# ShowBasic Salary-->
 
     <div id="ModalDeleteBasicSalary" class="modal fade">
@@ -846,5 +869,6 @@
 @section('scripts')
    <script src="/js/backend/employee.js"></script>
    <script src="/js/backend/basic_salary.js"></script>
+   <script src="/js/backend/experience.js"></script>
 @endsection
 

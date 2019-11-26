@@ -38,7 +38,7 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
     Route::delete('employee/delete/emergency/contact/{id}','EmployeeController@deleteEmergencyContact');
     Route::post('employee/update/contact/{id}','EmployeeController@updateContactEmployeeDetails');
     Route::match(['post', 'put'], 'employee/update/user/{id}', 'EmployeeController@updateEmployeeLogin');
-
+    Route::resource('workexperience','WorkExperienceController');
     /* -- Basic Salary -- */
     
     Route::resource('basicSalary','EmployeeBasicSalaryController');
