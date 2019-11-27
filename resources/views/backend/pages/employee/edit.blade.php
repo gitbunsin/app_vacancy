@@ -1,5 +1,8 @@
 @extends('backend.layouts.master')
 @section('content')
+@php
+      use App\Model\payPeriod;
+@endphp
     <input type="hidden" value="{{$employee->id}}" id="employee_id">
     <div class="container-fluid">
 
@@ -338,7 +341,13 @@
                               <tr id="tr_basic_salary{{$salaries->id}}">
                                   <th scope="row">{{$key + 1}}</th>
                                   <td>{{$salaries->salary_component}}</td>
-                                  <td></td>
+                                 
+                                  @php
+                                    $p = payPeriod::where('id',$salaries->payperiod_id)->first();
+                                     @endphp
+                                           <td>
+                                                 {{$p ->name}}
+                                          </td>
                                   <td>{{$basicSalary->currency->name}}</td>
                                   <td>{{$salaries->basic_salary}}</td>
                                   <td>{{$salaries->comments}}</td>
@@ -404,19 +413,18 @@
                                       </tr>
                                     </thead>
                                     <tbody>
-                                      <tr id="tr_basic_salary">
-                                          <th scope="row"></th>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <td></td>
-                                          <th>
-                                                <a onclick=""  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
-                                                <a onclick="" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
-                                          </th>
-                                        </tr>     
-                
+                                            <tr id="tr_basic_salary">
+                                                <th scope="row"></th>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <th>
+                                                      <a onclick="EditSalary();"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
+                                                      <a onclick="DeleteSalary();" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
+                                                </th>
+                                              </tr>     
                                     </tbody>
                                   </table>
                     </div>
@@ -455,19 +463,27 @@
                                                       </tr>
                                                     </thead>
                                                     <tbody>
-                                                      <tr id="tr_work_experience">
-                                                          <th scope="row"></th>
-                                                          <td></td>
-                                                          <td></td>
-                                                          <td></td>
-                                                          <td></td>
-                                                          <td></td>
+                                                        @foreach ($employee->workexperience as $key => $item)
+                
+                                                      <tr id="tr_work_experience{{$item->id}}">
+                                                          <th scope="row">{{$key + 1}}</th>
+                                                          <td>{{$item->company_name}}</td>
+                                                          @php
+                                                                  $j = jobTitle::where('id',$item->job_title_id)->first();
+                                                          @endphp
+                                                          <td>
+                                                                {{$j ->name}}
+                                                         </td>
+                                                          <td>{{$item->from}}</td>
+                                                          <td>{{$item->to}}</td>
+                                                          <td>{{$item->comments}}</td>
                                                           <th>
-                                                                <a onclick="EditExperience();"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
-                                                                <a onclick="DeleteExperience();" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
+                                                                <a onclick="EditExperience({{$item->id}});"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
+                                                                <a onclick="DeleteExperience({{$item->id}});" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
                                                           </th>
                                                         </tr>     
-                                
+                                           
+                                                        @endforeach
                                                     </tbody>
                                                   </table>
                                             </div>
@@ -504,6 +520,85 @@
     </div>
     </div>
    <!-- /# Work Experience -->
+
+   <div id="EditModalWorkExperience" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form id="frmEditWorkExperience">
+                    <input type="hidden" id="work_experience_id_edit" value="" />
+                    <div class="modal-header theme-bg">
+                        <h4 class="modal-title">Work Experience</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                                <div class="col-sm-6">
+                                    <label>Company Name</label>
+                                    <input value="" name="company_name_edit" id="company_name_edit" type="text" class="form-control">                                       
+                                </div>
+                            <div class="col-sm-6">
+                               <label>Job Title</label>
+                                <select class="form-control" required id="job_title_id_edit" name="job_title_id_edit">
+                                    <option value="">  -- Pleae Select job title -- </option>
+                                    @php
+                                        $j = jobTitle::all();
+                                    @endphp
+                                    @foreach ($j  as $js )
+                                    <option value="{{$js ->id}}"> {{$js ->name}}</option>                                     
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label>From Date</label>
+                                <input value="" name="from_date_edit" id="from_date_edit" type="date" class="form-control">
+                            </div>
+                            <div class="col-sm-6">
+                                <label>To Date</label>
+                                <input value="" name="to_date_edit" id="to_date_edit" type="date" class="form-control">
+                            </div>
+                            <div class="col-sm-12">
+                                <label>Comment</label>
+                                <textarea class="form-control" name="comments_edit" id="comments_edit" cols="5" rows="5"></textarea>
+                            </div>
+                    
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-success" value="Save">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    
+
+
+   <div id="ModalDeleteExperience" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST" action="#" id="frmDeleteExperience">
+                    <meta name="csrf-token" content="{{ csrf_token() }}">
+                    <input type="hidden" value="" id="work_experience_id"/>
+                    <div class="modal-header theme-bg">
+                        <h4 class="modal-title"> Work Experience </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Do u want to delete this <b></b>   ?</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                        <input type="submit" class="btn btn-danger" value="Yes">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
    <div id="ShowModalWorkExperience" class="modal fade">
     <div class="modal-dialog modal-lg">
@@ -555,7 +650,83 @@
         </div>
     </div>
 </div>
+
+
+
+
     <!-- /# ShowBasic Salary-->
+    <div id="ShowEditBasicSalary" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <form id="frmEditBasicSalary">
+                        <input type="hidden" id="basic_salary_id_edit" value="" />
+                        <div class="modal-header theme-bg">
+                            <h4 class="modal-title">Basic Salary </h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                    <div class="col-sm-6">
+                                            <label>Salary Component</label>
+                                        <input value="" name="salary_component_edit" id="salary_component_edit" type="text" class="form-control">                                       
+                                        </div>
+                               
+                                <div class="col-sm-6">
+                                   <label>Currency</label>
+                                    <select class="form-control" required id="currency_id_edit" name="currency_id_edit">
+                                        <option value="">  -- Pleae Select Currency -- </option>
+                                        @php
+                                            use App\Model\currency ;$currency = currency::all();
+                                        @endphp
+                                        @foreach ($currency as $currencies)
+                                        <option value="{{$currencies->id}}"> {{$currencies->name}}</option>                                     
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>Amount</label>
+                                    <input value="" name="amount_edit" id="amount_edit" type="number" class="form-control">
+                                </div>
+                                <div class="col-sm-6">
+                                        <label>Pay Grade</label>
+                                            <select class="form-control" required id="paygrade_id_edit" name="paygrade_id_edit">
+                                                <option value="">  -- Pleae Select paygrade -- </option>
+                                                @php
+                                                    use App\Model\paygrade ;$paygrade = paygrade::all();
+                                                @endphp
+                                                @foreach ($paygrade as $paygrades)
+                                                <option value="{{$paygrades->id}}"> {{$paygrades->name}}</option>                                     
+                                                @endforeach
+                                            </select>
+                                    </div>
+                                    <div class="col-sm-12">
+                                            <label>Pay Periods </label>
+                                                <select class="form-control" required id="pay_periods_id_edit" name="pay_periods_id_edit">
+                                                    <option value="">  -- Pleae Select Pay Periods -- </option>
+                                                    @php
+                                                       $payPeriod = payPeriod::all();
+                                                    @endphp
+                                                    @foreach ($payPeriod as $payPeriods)
+                                                    <option value="{{$payPeriods->id}}"> {{$payPeriods->name}}</option>                                     
+                                                    @endforeach
+                                                </select>
+                            </div>
+                                <div class="col-sm-12">
+                                    <label>Comment</label>
+                                    <textarea class="form-control" name="comments_salary_edit" id="comments_salary_edit" cols="5" rows="5"></textarea>
+                                </div>
+                        
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <input type="submit" class="btn btn-success" value="Save">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    
 
     <div id="ModalDeleteBasicSalary" class="modal fade">
             <div class="modal-dialog">
@@ -602,7 +773,7 @@
                                     <select class="form-control" required id="currency_id" name="currency_id">
                                         <option value="">  -- Pleae Select Currency -- </option>
                                         @php
-                                            use App\Model\currency ;$currency = currency::all();
+                                            $currency = currency::all();
                                         @endphp
                                         @foreach ($currency as $currencies)
                                         <option value="{{$currencies->id}}"> {{$currencies->name}}</option>                                     
@@ -618,7 +789,7 @@
                                             <select class="form-control" required id="paygrade_id" name="paygrade_id">
                                                 <option value="">  -- Pleae Select paygrade -- </option>
                                                 @php
-                                                    use App\Model\paygrade ;$paygrade = paygrade::all();
+                                                    $paygrade = paygrade::all();
                                                 @endphp
                                                 @foreach ($paygrade as $paygrades)
                                                 <option value="{{$paygrades->id}}"> {{$paygrades->name}}</option>                                     
@@ -630,7 +801,7 @@
                                                 <select class="form-control" required id="pay_periods_id" name="pay_periods_id">
                                                     <option value="">  -- Pleae Select Pay Periods -- </option>
                                                     @php
-                                                        use App\Model\payPeriod ;$payPeriod = payPeriod::all();
+                                                        $payPeriod = payPeriod::all();
                                                     @endphp
                                                     @foreach ($payPeriod as $payPeriods)
                                                     <option value="{{$payPeriods->id}}"> {{$payPeriods->name}}</option>                                     
@@ -639,7 +810,7 @@
                             </div>
                                 <div class="col-sm-12">
                                     <label>Comment</label>
-                                    <textarea class="form-control" name="comments" id="comments" cols="5" rows="5"></textarea>
+                                    <textarea class="form-control" name="comments_salary" id="comments_salary" cols="5" rows="5"></textarea>
                                 </div>
                         
                             </div>

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Model\employeeWorkExperience;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
+use App\Model\jobTitle;
 
 class WorkExperienceController extends Controller
 {
@@ -46,6 +47,7 @@ class WorkExperienceController extends Controller
         $w->to = $request->to_date;
         $w->comments = $request->comments;
         $w->save();
+        $w['jobTtitle'] = jobTitle::where('id',$w->job_title_id)->first();
         return response::json($w);
     }
 
@@ -69,6 +71,7 @@ class WorkExperienceController extends Controller
     public function edit($id)
     {
         $w = employeeWorkExperience::find($id);
+        $w['all_job_title'] = jobTitle::all();
         return response::json($w);
     }
 
@@ -89,6 +92,7 @@ class WorkExperienceController extends Controller
         $w->to = $request->to_date;
         $w->comments = $request->comments;
         $w->save();
+        $w['jobTtitle'] = jobTitle::where('id',$w->job_title_id)->first();
         return response::json($w);
     }
 

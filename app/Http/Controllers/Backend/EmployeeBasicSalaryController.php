@@ -42,7 +42,7 @@ class EmployeeBasicSalaryController extends Controller
         $basicSalary = new employeeBasicSalary();
         $basicSalary->admin_id = auth()->guard('admin')->user()->id;
         $basicSalary->employee_id = 3;
-        $basicSalary->pay_grade_id = $request->pay_grade_id;
+        $basicSalary->pay_grade_id = $request->paygrade_id;
         $basicSalary->salary_component = $request->salary_component;
         $basicSalary->basic_salary = $request->amount;
         $basicSalary->comments = $request->comments;
@@ -91,11 +91,11 @@ class EmployeeBasicSalaryController extends Controller
         $basicSalary =  employeeBasicSalary::find($id);
         $basicSalary->admin_id = auth()->guard('admin')->user()->id;
         $basicSalary->employee_id = 1;
-        $basicSalary->pay_grade_id = $request->pay_grade_id;
+        $basicSalary->pay_grade_id = $request->paygrade_id;
         $basicSalary->salary_component = $request->salary_component;
         $basicSalary->basic_salary = $request->amount;
         $basicSalary->payperiod_id = $request->pay_periods_id;
-        $basicSalary->comments = $request->comment;
+        $basicSalary->comments = $request->comments;
         $basicSalary->currency_id = $request->currency_id;
         $basicSalary->save();
         return response()->json($basicSalary);

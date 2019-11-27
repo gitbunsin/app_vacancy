@@ -30,4 +30,8 @@ class employee extends Model
 
         return $this->hasMany(Interview::class);
     }
+    public function workexperience()
+    {
+        return $this->hasMany(employeeWorkExperience::class);
+    }
 }
