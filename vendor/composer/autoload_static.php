@@ -464,6 +464,7 @@ class ComposerStaticInit8d8674694d2e01ac5f8f266acbc6ddab
         'App\\Model\\employee' => __DIR__ . '/../..' . '/app/Model/employee.php',
         'App\\Model\\employeeBasicSalary' => __DIR__ . '/../..' . '/app/Model/employeeBasicSalary.php',
         'App\\Model\\employeeEducation' => __DIR__ . '/../..' . '/app/Model/employeeEducation.php',
+        'App\\Model\\employeeLanguage' => __DIR__ . '/../..' . '/app/Model/employeeLanguage.php',
         'App\\Model\\employeeSkill' => __DIR__ . '/../..' . '/app/Model/employeeSkill.php',
         'App\\Model\\employeeWorkExperience' => __DIR__ . '/../..' . '/app/Model/employeeWorkExperience.php',
         'App\\Model\\job' => __DIR__ . '/../..' . '/app/Model/job.php',

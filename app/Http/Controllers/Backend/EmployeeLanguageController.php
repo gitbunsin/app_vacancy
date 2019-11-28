@@ -1,13 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\employeeLanguage;
 use App\Model\language;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
-class LanguageController extends Controller
+class EmployeeLanguageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,11 +36,16 @@ class LanguageController extends Controller
      */
     public function store(Request $request)
     {
-        $language = new language();
-        $language->name = $request->name;
-        $language->admin_id = auth()->guard('admin')->user()->id;
-        $language->save();
-        return response::json($language);
+       $l = new employeeLanguage();
+       $l->employee_id = $request->employee_id;
+       $l->language_id = $request->language_id;
+       $l->fluency = $request->fluency_id;
+       $l->competency = $request->competency_id;
+       $l->competency = $request->competency_id;
+       $l->comments = $request->comments;
+       $l->save();
+       $l['language'] = language::where('id',$l->language_id)->first();
+       return response::json($l);
     }
 
     /**
@@ -63,8 +67,9 @@ class LanguageController extends Controller
      */
     public function edit($id)
     {
-        $language = language::find($id);
-        return response::json($language);
+        $l = employeeLanguage::find($id);
+        $l['all_language'] = language::all();
+        return response::json($l);   
     }
 
     /**
@@ -76,11 +81,16 @@ class LanguageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $language = language::find($id);
-        $language->name = $request->name;
-        $language->admin_id = auth()->guard('admin')->user()->id;
-        $language->save();
-        return response::json($language);
+       $l = employeeLanguage::find($id);
+       $l->employee_id = $request->employee_id;
+       $l->language_id = $request->language_id;
+       $l->fluency = $request->fluency_id;
+       $l->competency = $request->competency_id;
+       $l->competency = $request->competency_id;
+       $l->comments = $request->comments;
+       $l->save();
+       $l['language'] = language::where('id',$l->language_id)->first();
+       return response::json($l);
     }
 
     /**
@@ -91,8 +101,8 @@ class LanguageController extends Controller
      */
     public function destroy($id)
     {
-        $language = language::find($id);
-        $language->delete();
-        return response::json($language);
+        $l = employeeLanguage::find($id);
+        $l->delete();
+        return response::json($l);
     }
 }

@@ -9,6 +9,7 @@ use App\Model\role;
 use App\userEmployee;
 use App\Model\payPeriod;
 use App\Model\EmployeeBasicSalary;
+use App\Model\employeeLanguage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -194,7 +195,7 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        $employee = Employee::with(['employeeSkill','employeeEducation','workexperience','salary','emergencyContact','attachment'])->where('id',$id)->first();
+        $employee = Employee::with(['employeeLanguage','employeeSkill','employeeEducation','workexperience','salary','emergencyContact','attachment'])->where('id',$id)->first();
         $basicSalary = EmployeeBasicSalary::with(['payPeriod','currency'])->where('employee_id',$employee->id)->first();
         // dd($employee);
         // $basicPayPeriod = payPeriod::where('id',$basicSalary->payperiod_id)->first();

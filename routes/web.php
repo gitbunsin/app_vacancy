@@ -41,6 +41,7 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
     Route::resource('workexperience','WorkExperienceController');
     Route::resource('employeeEduction','EmployeeEductionController');
     Route::resource('employeeSkill','EmployeeSkillController');
+    Route::resource('employeeLanguage','EmployeeLanguageController');
     /* -- Basic Salary -- */
     
     Route::resource('basicSalary','EmployeeBasicSalaryController');

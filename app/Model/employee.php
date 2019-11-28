@@ -42,4 +42,10 @@ class employee extends Model
     {
         return $this->hasMany(employeeSkill::class);
     }
+    public function employeeLanguage()
+    {
+        return $this->hasMany(employeeLanguage::class);
+    }
+    
+
 }

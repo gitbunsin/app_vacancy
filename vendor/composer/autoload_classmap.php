@@ -69,6 +69,7 @@ return array(
     'App\\Model\\employee' => $baseDir . '/app/Model/employee.php',
     'App\\Model\\employeeBasicSalary' => $baseDir . '/app/Model/employeeBasicSalary.php',
     'App\\Model\\employeeEducation' => $baseDir . '/app/Model/employeeEducation.php',
+    'App\\Model\\employeeLanguage' => $baseDir . '/app/Model/employeeLanguage.php',
     'App\\Model\\employeeSkill' => $baseDir . '/app/Model/employeeSkill.php',
     'App\\Model\\employeeWorkExperience' => $baseDir . '/app/Model/employeeWorkExperience.php',
     'App\\Model\\job' => $baseDir . '/app/Model/job.php',
