@@ -488,8 +488,38 @@
                                                   </table>
                                             </div>
                                             <div role="tabpanel" class="tab-pane fade" id="Section2">
-                                                <h3>Education</h3>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec urna aliquam, ornare eros vel, malesuada lorem. Nullam faucibus lorem at eros consectetur lobortis. Maecenas nec nibh congue, placerat sem id, rutrum velit. Phasellus porta enim at facilisis condimentum. Maecenas pharetra dolor vel elit tempor pellentesque sed sed eros. Aenean vitae mauris tincidunt, imperdiet orci semper, rhoncus ligula. Vivamus scelerisque.</p>
+                                                <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+                                                    <div class="card-header">
+                                                        <a href="#" onclick="ShowEmployeeEducation()" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> <i class="fa fa-plus"></i></a>
+                                                        <br>
+                                                        <h4><i class="fa fa-group"></i> Employee Education</h4>
+                                                    </div>
+                                                    <table class="table" id="tbl_employee_education">
+                                                        <thead>
+                                                          <tr>
+                                                            <th scope="col">#No</th>
+                                                            <th>Level </th>
+                                                            <th>Year </th>
+                                                            <th>Score </th>
+                                                            <th>Action</th>
+                                                          </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach ($employee->workexperience as $key => $item)
+                                                          <tr id="tr_employee_education{{$item->id}}">
+                                                              <th scope="row">{{$key + 1}}</th>
+                                                              <td>{{$item->company_name}}</td>
+                                                              <td>{{$item->from}}</td>
+                                                              <td>{{$item->to}}</td>
+                                                              <th>
+                                                                    <a onclick="EditEmployeeEducation({{$item->id}});"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
+                                                                    <a onclick="DeleteEmployeeEducation({{$item->id}});" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
+                                                              </th>
+                                                            </tr>     
+                                                            @endforeach
+                                                        </tbody>
+                                                      </table>
+                                                </div>
                                             </div>
                                             <div role="tabpanel" class="tab-pane fade" id="Section3">
                                                 <h3>Skills</h3>
@@ -519,6 +549,62 @@
         </div>
     </div>
     </div>
+
+   <!-- /# Employee Education -->
+   <div id="ShowModalEmployeeEducation" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form id="frmAddEmployeeEducation">
+                <input type="hidden" id="work_experience_id" value="" />
+                <div class="modal-header theme-bg">
+                    <h4 class="modal-title">Employee Education</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                           <label>Level </label>
+                            <select class="form-control" required id="institute_id" name="institute_id">
+                                <option value="">  -- Pleae Select level -- </option>
+                                @php
+                                  use App\Model\educations ; $ed = educations::all();
+                                @endphp
+                                @foreach ($ed as $eds )
+                                <option value="{{$eds->id}}"> {{$eds->name}}</option>                                     
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Major/Specialization</label>
+                            <input value="" name="major" id="major" type="text" class="form-control">
+                        </div>
+                        <div class="col-sm-6">
+                            <label>GPA/Score</label>
+                            <input value="" name="score" id="score" type="text" class="form-control">
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Year</label>
+                            <input value="" name="year" id="year" type="text" class="form-control">
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Start Date</label>
+                            <input value="" name="start_date" id="start_date" type="date" class="form-control">
+                        </div>
+                        <div class="col-sm-6">
+                            <label>End Date</label>
+                            <input value="" name="end_date" id="end_date" type="date" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <input type="submit" class="btn btn-success" value="Save">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
    <!-- /# Work Experience -->
 
    <div id="EditModalWorkExperience" class="modal fade">
@@ -650,9 +736,6 @@
         </div>
     </div>
 </div>
-
-
-
 
     <!-- /# ShowBasic Salary-->
     <div id="ShowEditBasicSalary" class="modal fade">
@@ -823,21 +906,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- Add Attachment -->
     <!-- Delete Basic Salary -->
     <div id="Delete" class="modal fade">
@@ -1041,5 +1109,6 @@
    <script src="/js/backend/employee.js"></script>
    <script src="/js/backend/basic_salary.js"></script>
    <script src="/js/backend/experience.js"></script>
+   <script src="/js/backend/employee_education.js"></script>
 @endsection
 
