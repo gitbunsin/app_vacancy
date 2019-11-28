@@ -1,30 +1,37 @@
 
-$("#frmEditCategory").validate({
+$("#ShowModalEditEmployeeEducation").validate({
     rules: {
-        category_name_edit: {
+        institute_edit: {
           required: true,
        },
     }, submitHandler: function (form) {
  
-       var id  = $('#category_edit_id').val();
+       var id  = $('#emloyee_education_id_edit').val();
        $.ajaxSetup({
            headers: {
                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
            }
        });
        jQuery.ajax({
-           url: "/admin/jobCategory" + '/' + id,
+           url: "/admin/employeeEduction" + '/' + id,
            method: 'PUT',
            data: {
-              "name" : $('#category_name_edit').val(),
-           },
+            "institute" : $('#institute_edit').val(),
+            "education_id" : $('#education_id_edit').val(),
+            "employee_id" : $('#employee_id').val(),
+            "score" : $('#score_edit').val(),
+            "major" : $('#major_edit').val(),
+            "year" : $('#year_edit').val(),
+            "start_date" : $('#start_date_edit').val(),
+            "end_date" : $('#end_date_edit').val(),
+             },
            success: function (result) {
              //console.log(result);
-             $('#ModalEditJobCategory').modal('hide');
+             $('#ShowModalEditEmployeeEducation').modal('hide');
              toastr.success('Success' , 'item has been updated !');
-             var category = '<tr id="tr_category' + result.id + '"> <th class="scope="row">' + result.id + '</><td>' + result.name + '</td>';
-             category += '<th><a onclick="Editcategory(' + result.id + ');"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Status"><i class="icon-edit"></i></a>  <a onclick="Deletecategory(' + result.id + ');" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Category"><i class="ti-trash"></i></a></th></tr>';
-             $("#tr_category" + result.id).replaceWith(category);
+             var education = '<tr id="tr_employee_education' + result.id + '"> <th class="scope="row">' + result.id + '</><td>' + result.level.name + '</td><td>' + result.year + '</td><td>' + result.score + '</td>';
+             education += '<th><a onclick="EditEmployeeEducation(' + result.id + ');"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Status"><i class="icon-edit"></i></a>  <a onclick="DeleteEmployeeEducation(' + result.id + ');" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Category"><i class="ti-trash"></i></a></th></tr>';
+             $("#tr_employee_education" + result.id).replaceWith(education);
            },error : function(err){
                 console.log(err);
            }
@@ -32,16 +39,36 @@ $("#frmEditCategory").validate({
     }
  });
 
-function Editcategory(id)
+function EditEmployeeEducation(id)
 {
-   $('#category_edit_id').val(id);
+   $('#emloyee_education_id_edit').val(id);
    $.ajax({
       type: "GET",
-      url: "/admin/jobCategory" + "/" + id + "/edit",
+      url: "/admin/employeeEduction" + "/" + id + "/edit",
       success: function(result)
       {
-         $('#ModalEditJobCategory').modal('show');
-         $('#category_name_edit').val(result.name);
+        // console.log(result);
+
+         $('#ShowModalEditEmployeeEducation').modal('show');
+         $('#institute_edit').val(result.institute);
+         $('#major_edit').val(result.major);
+         $('#score_edit').val(result.score);
+         $('#year_edit').val(result.year);
+         $('#start_date_edit').val(result.start_date);
+         $('#end_date_edit').val(result.end_date);
+
+         var jx = $('#education_id_edit');
+         jx.empty();
+         $.each(result.all_level, function (key , value) {
+               var isSelected = '';
+               if(result.education_id == value.id)
+               {
+                  isSelected = 'selected';
+               }
+               jx.append('<option value="'+value.id+'" '+isSelected+' >'+value.name+'</option>');
+        });
+
+
       },error : function(err){
 
             console.log(err);
@@ -49,26 +76,26 @@ function Editcategory(id)
   });
 }
 
-function Deletecategory(id)
+function DeleteEmployeeEducation(id)
 {
-    $('#DeleteJobCategory').modal('show');
-    $('#category_id').val(id);
+    $('#ModalDeleteEmployeeEducation').modal('show');
+    $('#emloyee_education_id').val(id);
 }
 
-$('#frmJobCategoryDelete').validate({
+$('#frmEmployeeEducation').validate({
     submitHandler: function (form) {
-        var id = $('#category_id').val();
+        var id = $('#emloyee_education_id').val();
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
         jQuery.ajax({
-            url: "/admin/jobCategory" + '/' + id,
+            url: "/admin/employeeEduction" + '/' + id,
             method: 'Delete',
             success: function (response) {
-                $('#DeleteJobCategory').modal('hide');
-                $('#tr_category' + response.id).remove();
+                $('#ModalDeleteEmployeeEducation').modal('hide');
+                $('#tr_employee_education' + response.id).remove();
                 toastr.success('Success', 'item has been deleted !');
             }, error: function (err) {
                 console.log(err);
@@ -79,7 +106,7 @@ $('#frmJobCategoryDelete').validate({
 
 $("#frmAddEmployeeEducation").validate({
     rules: {
-        institute_id: {
+        education_id: {
           required: true,
        }
     }, submitHandler: function (form) {
@@ -92,9 +119,12 @@ $("#frmAddEmployeeEducation").validate({
             url: "/admin/employeeEduction",
             method: 'POST',
             data: {
-                "name" : $('#institute_id').val(),
+                "institute" : $('#institute').val(),
+                "education_id" : $('#education_id').val(),
+                "employee_id" : $('#employee_id').val(),
                 "score" : $('#score').val(),
-                "Year" : $('#Year').val(),
+                "major" : $('#major').val(),
+                "year" : $('#year').val(),
                 "start_date" : $('#start_date').val(),
                 "end_date" : $('#end_date').val(),
             },
@@ -102,7 +132,7 @@ $("#frmAddEmployeeEducation").validate({
             {
                $('#ShowModalEmployeeEducation').modal('hide');
                toastr.success('Success' , 'item has been create !');
-               var education = '<tr id="tr_employee_education' + result.id + '"> <th class="scope="row">' + result.id + '</><td>' + result.name + '</td><td>' + result.Year + '</td><td>' + result.score + '</td>';
+               var education = '<tr id="tr_employee_education' + result.id + '"> <th class="scope="row">' + result.id + '</><td>' + result.level.name + '</td><td>' + result.year + '</td><td>' + result.score + '</td>';
                education += '<th><a onclick="EditEmployeeEducation(' + result.id + ');"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Status"><i class="icon-edit"></i></a>  <a onclick="DeleteEmployeeEducation(' + result.id + ');" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Category"><i class="ti-trash"></i></a></th></tr>';
                $('#tbl_employee_education').append(education);
 

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\EmployeeEducation;
-
+use App\Model\educations;
 class EmployeeEductionController extends Controller
 {
     /**
@@ -38,13 +38,15 @@ class EmployeeEductionController extends Controller
     {
         $e = new employeeEducation();
         $e->employee_id = $request->employee_id;
-        $e->education_id = $request->institute_id;
+        $e->education_id = $request->education_id;
+        $e->institute = $request->institute;
         $e->major= $request->major;
         $e->score = $request->score;
         $e->year = $request->year;
         $e->start_date = $request->start_date;
         $e->end_date = $request->end_date;
         $e->save();
+        $e['level']= educations::where('id',$e->education_id)->first();
         return response()->json($e);
 
     }
@@ -69,6 +71,7 @@ class EmployeeEductionController extends Controller
     public function edit($id)
     {
         $e =  employeeEducation::find($id);
+        $e['all_level']= educations::all();
         return response()->json($e);
     }
 
@@ -83,14 +86,15 @@ class EmployeeEductionController extends Controller
     {
         $e =  employeeEducation::find($id);
         $e->employee_id = $request->employee_id;
-        $e->education_id = $request->level_id;
-        $e->institute= $request->institute_id;
-        $e->major = $request->major;
-        $e->year = $request->year;
+        $e->education_id = $request->education_id;
+        $e->institute = $request->institute;
+        $e->major= $request->major;
         $e->score = $request->score;
+        $e->year = $request->year;
         $e->start_date = $request->start_date;
         $e->end_date = $request->end_date;
         $e->save();
+        $e['level']= educations::where('id',$e->education_id)->first();
         return response()->json($e);
 
     }

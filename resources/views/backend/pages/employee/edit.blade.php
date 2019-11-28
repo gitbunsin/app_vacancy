@@ -2,6 +2,7 @@
 @section('content')
 @php
       use App\Model\payPeriod;
+      use App\Model\educations ;
 @endphp
     <input type="hidden" value="{{$employee->id}}" id="employee_id">
     <div class="container-fluid">
@@ -505,12 +506,15 @@
                                                           </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @foreach ($employee->workexperience as $key => $item)
+                                                            @foreach ($employee->employeeEducation as $key => $item)
                                                           <tr id="tr_employee_education{{$item->id}}">
                                                               <th scope="row">{{$key + 1}}</th>
-                                                              <td>{{$item->company_name}}</td>
-                                                              <td>{{$item->from}}</td>
-                                                              <td>{{$item->to}}</td>
+                                                              @php
+                                                              $edx = educations::where('id',$item->education_id)->first();
+                                                              @endphp
+                                                              <td>{{$edx->name}}</td>
+                                                              <td>{{$item->year}}</td>
+                                                              <td>{{$item->score}}</td>
                                                               <th>
                                                                     <a onclick="EditEmployeeEducation({{$item->id}});"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
                                                                     <a onclick="DeleteEmployeeEducation({{$item->id}});" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
@@ -551,23 +555,109 @@
     </div>
 
    <!-- /# Employee Education -->
+
+   <div id="ShowModalEditEmployeeEducation" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form id="frmEditEmployeeEducation">
+                        <input type="hidden" value="" id="emloyee_education_id_edit"/>
+                    <div class="modal-header theme-bg">
+                        <h4 class="modal-title">Employee Education</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label>Institute</label>
+                                <input value="" name="institute_edit" id="institute_edit" type="text" class="form-control">
+                            </div>
+                            <div class="col-sm-6">
+                               <label>Level </label>
+                                <select class="form-control" required id="education_id_edit" name="education_id_edit">
+                                    <option value="">  -- Pleae Select level -- </option>
+                                    @php
+                                      $ed = educations::all();
+                                    @endphp
+                                    @foreach ($ed as $eds )
+                                    <option value="{{$eds->id}}"> {{$eds->name}}</option>                                     
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Major/Specialization</label>
+                                <input value="" name="major_edit" id="major_edit" type="text" class="form-control">
+                            </div>
+                            <div class="col-sm-6">
+                                <label>GPA/Score</label>
+                                <input value="" name="score_edit" id="score_edit" type="text" class="form-control">
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Year</label>
+                                <input value="" name="year_edit" id="year_edit" type="text" class="form-control">
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Start Date</label>
+                                <input value="" name="start_date_edit" id="start_date_edit" type="date" class="form-control">
+                            </div>
+                            <div class="col-sm-6">
+                                <label>End Date</label>
+                                <input value="" name="end_date_edit" id="end_date_edit" type="date" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-success" value="Save">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+   <div id="ModalDeleteEmployeeEducation" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST" action="#" id="frmEmployeeEducation">
+                    <meta name="csrf-token" content="{{ csrf_token() }}">
+                    <input type="hidden" value="" id="emloyee_education_id"/>
+                    <div class="modal-header theme-bg">
+                        <h4 class="modal-title"> Employee Education </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Do u want to delete this <b></b>   ?</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                        <input type="submit" class="btn btn-danger" value="Yes">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
    <div id="ShowModalEmployeeEducation" class="modal fade">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <form id="frmAddEmployeeEducation">
-                <input type="hidden" id="work_experience_id" value="" />
                 <div class="modal-header theme-bg">
                     <h4 class="modal-title">Employee Education</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
+                        <div class="col-sm-12">
+                            <label>Institute</label>
+                            <input value="" name="institute" id="institute" type="text" class="form-control">
+                        </div>
                         <div class="col-sm-6">
                            <label>Level </label>
-                            <select class="form-control" required id="institute_id" name="institute_id">
+                            <select class="form-control" required id="education_id" name="education_id">
                                 <option value="">  -- Pleae Select level -- </option>
                                 @php
-                                  use App\Model\educations ; $ed = educations::all();
+                                  $ed = educations::all();
                                 @endphp
                                 @foreach ($ed as $eds )
                                 <option value="{{$eds->id}}"> {{$eds->name}}</option>                                     
