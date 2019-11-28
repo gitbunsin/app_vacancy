@@ -46,6 +46,10 @@ class employee extends Model
     {
         return $this->hasMany(employeeLanguage::class);
     }
+    public function employeeLicense()
+    {
+        return $this->hasMany(employeeLicense::class);
+    }
     
 
 }

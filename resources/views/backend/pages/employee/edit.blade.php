@@ -5,7 +5,7 @@
       use App\Model\educations ;
       use App\Model\skill;
       use App\Model\language; 
-
+      use App\Model\license; 
 @endphp
     <input type="hidden" value="{{$employee->id}}" id="employee_id">
     <div class="container-fluid">
@@ -605,8 +605,41 @@
                                                         </div>
                                             </div>
                                             <div role="tabpanel" class="tab-pane fade" id="License">
-                                                    <h3>License</h3>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec urna aliquam, ornare eros vel, malesuada lorem. Nullam faucibus lorem at eros consectetur lobortis. Maecenas nec nibh congue, placerat sem id, rutrum velit. Phasellus porta enim at facilisis condimentum. Maecenas pharetra dolor vel elit tempor pellentesque sed sed eros. Aenean vitae mauris tincidunt, imperdiet orci semper, rhoncus ligula. Vivamus scelerisque.</p>
+                                                    <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+                                                            <div class="card-header">
+                                                                <a href="#" onclick="ShowEmployeeLicense()" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> <i class="fa fa-plus"></i></a>
+                                                                <br>
+                                                                <h4><i class="fa fa-group"></i> Employee License</h4>
+                                                            </div>
+                                                            <table class="table" id="tbl_employee_license">
+                                                                <thead>
+                                                                  <tr>
+                                                                    <th scope="col">#No</th>
+                                                                    <th>Type of License </th>
+                                                                    <th>Date of issue </th>
+                                                                    <th>Due date </th>
+                                                                    <th>Action</th>
+                                                                  </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach ($employee->employeeLicense as $key => $item)
+                                                                  <tr id="tr_employee_license{{$item->id}}">
+                                                                      <th scope="row">{{$key + 1}}</th>
+                                                                      @php
+                                                                            $edxx = license::where('id',$item->licenses_id)->first();
+                                                                      @endphp
+                                                                       <td>{{$edxx ->name}}</td>
+                                                                      <td>{{$item->issued_date}}</td>
+                                                                      <td>{{$item->expiry_date}}</td>
+                                                                      <th>
+                                                                            <a onclick="EditEmployeeLicense({{$item->id}});"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
+                                                                            <a onclick="DeleteEmployeeLicense({{$item->id}});" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
+                                                                      </th>
+                                                                    </tr>     
+                                                                    @endforeach
+                                                                </tbody>
+                                                              </table>
+                                                        </div>
                                                 </div>
                                                 <div role="tabpanel" class="tab-pane fade" id="attachments">
                                                         <h3>Attachments</h3>
@@ -624,9 +657,127 @@
         </div>
     </div>
     </div>
+  <!-- /# Employee License -->
+  <div id="ShowModalEditEmployeeLicense" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form id="frmEditEmployeeLicense">
+                        <input type="hidden" value="" id="employee_license_id_edit"/>
+                    <div class="modal-header theme-bg">
+                        <h4 class="modal-title">Employee License</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                               <label>License </label>
+                               <select class="form-control" required id="licenses_id_edit" name="licenses_id_edit">
+                                    <option value="">  -- Pleae Select License -- </option>
+                                    @php
+                                      $ed = license::all();
+                                    @endphp
+                                    @foreach ($ed as $eds )
+                                    <option value="{{$eds->id}}"> {{$eds->name}}</option>                                     
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                    <label>License No</label>
+                                    <input value="" name="license_no_edit" id="license_no_edit" type="number" class="form-control">
+                            </div>
+                            <div class="col-sm-6">
+                                    <label>Issued Date</label>
+                                    <input value="" name="issued_date_edit" id="issued_date_edit" type="date" class="form-control">
+                            </div>
+                            <div class="col-sm-6">
+                                    <label>Expiry date</label>
+                                    <input value="" name="expiry_date_edit" id="expiry_date_edit" type="date" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-success" value="Save">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 
+
+  <div id="ModalDeleteEmployeeLicense" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST" action="#" id="frmEmployeeLicense">
+                    <meta name="csrf-token" content="{{ csrf_token() }}">
+                    <input type="hidden" value="" id="employee_license_id"/>
+                    <div class="modal-header theme-bg">
+                        <h4 class="modal-title"> Employee License  </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Do u want to delete this <b></b>   ?</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                        <input type="submit" class="btn btn-danger" value="Yes">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+  <div id="ShowModalAddEmployeeLicense" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form id="frmAddEmployeeLicense">
+                    <div class="modal-header theme-bg">
+                        <h4 class="modal-title">Employee License</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                               <label>License </label>
+                               <select class="form-control" required id="licenses_id" name="licenses_id">
+                                    <option value="">  -- Pleae Select License -- </option>
+                                    @php
+                                      $ed = license::all();
+                                    @endphp
+                                    @foreach ($ed as $eds )
+                                    <option value="{{$eds->id}}"> {{$eds->name}}</option>                                     
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                    <label>License No</label>
+                                    <input value="" name="license_no" id="license_no" type="number" class="form-control">
+                            </div>
+                            <div class="col-sm-6">
+                                    <label>Issued Date</label>
+                                    <input value="" name="issued_date" id="issued_date" type="date" class="form-control">
+                            </div>
+                            <div class="col-sm-6">
+                                    <label>Expiry date</label>
+                                    <input value="" name="expiry_date" id="expiry_date" type="date" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-success" value="Save">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
  <!-- /# Employee Lauangue -->
+ 
+
+
  <div id="ShowModalEditEmployeeLanauge" class="modal fade">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -1535,5 +1686,6 @@
    <script src="/js/backend/employee_education.js"></script>
    <script src="/js/backend/employee_skill.js"></script>
    <script src="/js/backend/employee_lauguage.js"></script>
+   <script src="/js/backend/employee_license.js"></script>
 @endsection
 

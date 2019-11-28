@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 use App\Model\jobTitle;
+use App\Model\employeeLicense;
 
 class EmployeeController extends Controller
 {
@@ -195,7 +196,7 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        $employee = Employee::with(['employeeLanguage','employeeSkill','employeeEducation','workexperience','salary','emergencyContact','attachment'])->where('id',$id)->first();
+        $employee = Employee::with(['employeeLicense','employeeLanguage','employeeSkill','employeeEducation','workexperience','salary','emergencyContact','attachment'])->where('id',$id)->first();
         $basicSalary = EmployeeBasicSalary::with(['payPeriod','currency'])->where('employee_id',$employee->id)->first();
         // dd($employee);
         // $basicPayPeriod = payPeriod::where('id',$basicSalary->payperiod_id)->first();

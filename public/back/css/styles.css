@@ -987,7 +987,7 @@ nav.navbar.navbar-default.navbar-static-top{
 .sidebar-nav.navbar-collapse .nav > li > a {
     background:transparent;
     text-shadow: none;
-    color:#586d82;
+    color:beige;
 	font-weight: 500;
 	border-bottom: 1px dashed #283848;
 	text-transform: capitalize !important;
