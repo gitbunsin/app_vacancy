@@ -38,4 +38,8 @@ class employee extends Model
     {
         return $this->hasMany(employeeEducation::class);
     }
+    public function employeeSkill()
+    {
+        return $this->hasMany(employeeSkill::class);
+    }
 }

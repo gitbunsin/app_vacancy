@@ -3,6 +3,7 @@
 @php
       use App\Model\payPeriod;
       use App\Model\educations ;
+      use App\Model\skill;
 @endphp
     <input type="hidden" value="{{$employee->id}}" id="employee_id">
     <div class="container-fluid">
@@ -526,8 +527,41 @@
                                                 </div>
                                             </div>
                                             <div role="tabpanel" class="tab-pane fade" id="Section3">
-                                                <h3>Skills</h3>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec urna aliquam, ornare eros vel, malesuada lorem. Nullam faucibus lorem at eros consectetur lobortis. Maecenas nec nibh congue, placerat sem id, rutrum velit. Phasellus porta enim at facilisis condimentum. Maecenas pharetra dolor vel elit tempor pellentesque sed sed eros. Aenean vitae mauris tincidunt, imperdiet orci semper, rhoncus ligula. Vivamus scelerisque.</p>
+                                                    <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+                                                            <div class="card-header">
+                                                                <a href="#" onclick="ShowEmployeeSkill()" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> <i class="fa fa-plus"></i></a>
+                                                                <br>
+                                                                <h4><i class="fa fa-group"></i> Employee Skill</h4>
+                                                            </div>
+                                                            <table class="table" id="tbl_employee_skill">
+                                                                <thead>
+                                                                  <tr>
+                                                                    <th scope="col">#No</th>
+                                                                    <th>Skill </th>
+                                                                    <th>Year </th>
+                                                                    <th>Comment </th>
+                                                                    <th>Action</th>
+                                                                  </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach ($employee->employeeSkill as $key => $item)
+                                                                  <tr id="tr_employee_skill{{$item->id}}">
+                                                                      <th scope="row">{{$key + 1}}</th>
+                                                                      @php
+                                                                      $edx = skill::where('id',$item->skill_id)->first();
+                                                                      @endphp
+                                                                      <td>{{$edx->name}}</td>
+                                                                      <td>{{$item->year}}</td>
+                                                                      <td>{{$item->comments}}</td>
+                                                                      <th>
+                                                                            <a onclick="EditEmployeeSkill({{$item->id}});"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
+                                                                            <a onclick="DeleteEmployeeSkill({{$item->id}});" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
+                                                                      </th>
+                                                                    </tr>     
+                                                                    @endforeach
+                                                                </tbody>
+                                                              </table>
+                                                        </div>
                                             </div>
                                             <div role="tabpanel" class="tab-pane fade" id="Section4">
                                                 <h3>Languages</h3>
@@ -553,6 +587,118 @@
         </div>
     </div>
     </div>
+
+   <!-- /# Employee Skill -->
+
+
+   <div id="ShowModalEditEmployeeSkill" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form id="frmEditEmployeeSkill">
+                    <input type="hidden" value="" id="skill_id_edits" />
+                    <div class="modal-header theme-bg">
+                        <h4 class="modal-title">Employee Skill</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                               <label>Skill </label>
+                                <select class="form-control" required id="skill_id_edit" name="skill_id_edit">
+                                    <option value="">  -- Pleae Select skill -- </option>
+                                    @php
+                                      $ed = skill::all();
+                                    @endphp
+                                    @foreach ($ed as $eds )
+                                    <option value="{{$eds->id}}"> {{$eds->name}}</option>                                     
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Year</label>
+                                <input value="" name="year_edit" id="year_edit" type="text" class="form-control">
+                            </div>
+                            <div class="col-sm-12">
+                                    <label>Comment</label>
+                                    <textarea class="form-control" name="comments_skill_edit" id="comments_skill_edit" cols="5" rows="5"></textarea>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-success" value="Save">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+
+   <div id="ModalDeleteEmployeeSkill" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST" action="#" id="frmEmployeeSkill">
+                    <meta name="csrf-token" content="{{ csrf_token() }}">
+                    <input type="hidden" value="" id="emloyee_skill_id"/>
+                    <div class="modal-header theme-bg">
+                        <h4 class="modal-title"> Employee Skill </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Do u want to delete this <b></b>   ?</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                        <input type="submit" class="btn btn-danger" value="Yes">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+   <div id="ShowModalAddEmployeeSkill" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form id="frmAddEmployeeSkill">
+                    <div class="modal-header theme-bg">
+                        <h4 class="modal-title">Employee Skill</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                               <label>Skill </label>
+                                <select class="form-control" required id="skill_id" name="skill_id">
+                                    <option value="">  -- Pleae Select skill -- </option>
+                                    @php
+                                      $ed = skill::all();
+                                    @endphp
+                                    @foreach ($ed as $eds )
+                                    <option value="{{$eds->id}}"> {{$eds->name}}</option>                                     
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Year</label>
+                                <input value="" name="year" id="year" type="text" class="form-control">
+                            </div>
+                            <div class="col-sm-12">
+                                    <label>Comment</label>
+                                    <textarea class="form-control" name="comments_skill" id="comments_skill" cols="5" rows="5"></textarea>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-success" value="Save">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
 
    <!-- /# Employee Education -->
 
@@ -1200,5 +1346,6 @@
    <script src="/js/backend/basic_salary.js"></script>
    <script src="/js/backend/experience.js"></script>
    <script src="/js/backend/employee_education.js"></script>
+   <script src="/js/backend/employee_skill.js"></script>
 @endsection
 

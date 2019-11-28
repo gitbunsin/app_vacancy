@@ -40,6 +40,7 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
     Route::match(['post', 'put'], 'employee/update/user/{id}', 'EmployeeController@updateEmployeeLogin');
     Route::resource('workexperience','WorkExperienceController');
     Route::resource('employeeEduction','EmployeeEductionController');
+    Route::resource('employeeSkill','EmployeeSkillController');
     /* -- Basic Salary -- */
     
     Route::resource('basicSalary','EmployeeBasicSalaryController');
