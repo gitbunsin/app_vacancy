@@ -14,7 +14,6 @@ class location extends Model
     {
         return $this->belongsTo(province::class,'province_code','id');
     }
-
     public function city()
     {
         return $this->belongsTo(city::class,'city_code','id');

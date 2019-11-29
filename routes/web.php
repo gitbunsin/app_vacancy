@@ -54,6 +54,7 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
     Route::resource('jobTitle','jobTitleController');
     Route::resource('jobCategory','jobCategoryController');
     Route::resource('method','ReportingMethodController');
+    Route::resource('location','LocationController');
     Route::resource('reason','TerminationReasonController');
     Route::resource('skill','SkillController');
     Route::resource('education','EducationController');

@@ -8,6 +8,9 @@
             <li>
                     <a href="javascript:void(0)"><i class="ti ti-user"></i>Admin <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
+                        <li class="{{ (request()->segment(2) == 'locations') ? 'active' : '' }}">
+                            <a href="{{url('admin/location')}}"> Organization</a>
+                         </li>
                         <li class="{{ (request()->segment(2) == 'job') ? 'active' : '' }}">
                             <a href="{{url('admin/vacancy')}}"> Job</a>
                         </li>
