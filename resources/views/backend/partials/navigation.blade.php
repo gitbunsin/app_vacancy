@@ -1,7 +1,6 @@
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
-
             <li class="{{ (request()->segment(2) == 'app') ? 'active' : '' }}">
                  <a href="{{'/admin/app'}}"><i class="fa fa-bullseye"></i>Dashboard</a>
             </li>
@@ -43,17 +42,6 @@
                     <li>
                         <a href="{{url('admin/method')}}">Configuration</a>
                     </li>
-                </ul>
-            </li>
-            <li>
-                <a href="javascript:void(0)"><i class="ti ti-user"></i>Company <span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li class="">
-                        <a href="{{url('admin/company')}}">Manage Company</a>
-                    </li>
-                    {{-- <li>
-                        <a href="{{url('admin/company/create')}}">Crate Company</a>
-                    </li> --}}
                 </ul>
             </li>
             <li><a href="settings.html"><i class="ti ti-settings"></i>Settings</a></li>

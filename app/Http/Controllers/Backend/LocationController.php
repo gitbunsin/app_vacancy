@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\location;
+use App\Model\company;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 class LocationController extends Controller
@@ -16,8 +17,9 @@ class LocationController extends Controller
      */
     public function index()
     {
+        $company = company::with(['city','country'])->orderBy('id' , 'DESC')->paginate(10);
         $location = location::with(['province','city','country'])->get();
-        return view('backend/pages/location/index',compact('location'));
+        return view('backend/pages/location/index',compact('location','company'));
     }
 
     /**
