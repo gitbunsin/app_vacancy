@@ -6,6 +6,8 @@
       use App\Model\skill;
       use App\Model\language; 
       use App\Model\license; 
+      use App\Model\currency;
+      use App\Model\membership;
 @endphp
     <input type="hidden" value="{{$employee->id}}" id="employee_id">
     <div class="container-fluid">
@@ -34,6 +36,9 @@
                         </a>
                         <a href="#" class="list-group-item text-center">
                             Qualifications
+                        </a>
+                        <a href="#" class="list-group-item text-center">
+                            Membership
                         </a>
                     </div>
                 </div>
@@ -645,6 +650,7 @@
                                                         <h3>Attachments</h3>
                                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec urna aliquam, ornare eros vel, malesuada lorem. Nullam faucibus lorem at eros consectetur lobortis. Maecenas nec nibh congue, placerat sem id, rutrum velit. Phasellus porta enim at facilisis condimentum. Maecenas pharetra dolor vel elit tempor pellentesque sed sed eros. Aenean vitae mauris tincidunt, imperdiet orci semper, rhoncus ligula. Vivamus scelerisque.</p>
                                                     </div>
+                                
                                         </div>
                                     </div>
                                 </div>
@@ -652,11 +658,227 @@
                     </div>
                     <br/>
                     </div>
+                    <div class="bhoechie-tab-content">
+                            <div class="card-header">
+                                    <a href="#" onclick="ShowModalMembership()" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> <i class="fa fa-plus"></i></a>
+                                    <br>
+                                    <h4><i class="fa fa-group"></i>Assigned Memberships</h4>
+                                </div>
+                                <table class="table" id="tbl_assigned_membership">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">#No</th>
+                                        <th>Membership</th>
+                                        <th>Paid By</th>
+                                        <th>Amount</th>
+                                        <th>Currency</th>
+                                        <th>Commence Date</th>
+                                        <th>Renewal Date</th>
+                                        <th>Action</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($employee->employeeMembership as $key => $item)
+                                            <tr id="tr_membership{{$item->id}}">
+                                                <th scope="row">{{$key + 1}}</th>
+                                                @php
+                                                     $edxx = membership::where('id',$item->membership_id)->first();
+                                               @endphp
+                                                <td>{{$edxx->name}}</td>
+                                                <td>{{$item->paid_by}}</td>
+                                              
+                                                <td>{{$item->amount}}</td>
+                                                @php
+                                                   $edxxx = currency::where('id',$item->currency_id)->first();
+                                                   @endphp
+                                               <td>{{$edxxx->name }}</td>
+                                                <td>{{$item->commence_date}}</td>   
+                                                <td>{{$item->renewal_date}}</td>
+                                                <th>
+                                                      <a onclick="EditMembership({{$item->id}});"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
+                                                      <a onclick="DeleteMembership({{$item->id}})" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
+                                                </th>
+                                              </tr>     
+                                              @endforeach
+                                          </tbody>
+                                  </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     </div>
+
+  <!-- /# Employee Memembership -->
+  <div id="ModalEditEmployeeMembership" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form id="frmEditEmployeeMembership">
+                        <input type="hidden" value="" id="employee_membership_id_edit"/>
+                    <div class="modal-header theme-bg">
+                        <h4 class="modal-title">Employee Membership</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                               <label> Membership </label>
+                               <select class="form-control" required id="membership_id_edit" name="membership_id_edit">
+                                    <option value="">  -- Pleae Select Membership -- </option>
+                                    @php
+                                      $ed = membership::all();
+                                    @endphp
+                                    @foreach ($ed as $eds )
+                                    <option value="{{$eds->id}}"> {{$eds->name}}</option>                                     
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                    <label>Subscription Paid By</label>
+                                    <select class="form-control" required id="membership_paid_by_edit" name="membership_paid_by_edit">
+                                            <option value="">  -- Pleae Select Subscription Paid By -- </option>
+                                            @php
+                                                $paid = array('company','individaul');
+                                            @endphp
+                                            @foreach ($paid as $paids )
+                                            <option value="{{$paids}}"> {{$paids}}</option>                                     
+                                            @endforeach
+                                        </select>
+                            </div>
+                            <div class="col-sm-6">
+                                    <label>Subscription Amount</label>
+                                    <input value="" name="subscription_amount_edit" id="subscription_amount_edit" type="number" class="form-control">
+                            </div>
+                            <div class="col-sm-6">
+                                    <label>Currency</label>
+                                    <select class="form-control" required id="currency_member_id_edit" name="currency_member_id_edit">
+                                            <option value="">  -- Pleae Select Currency -- </option>
+                                            @php
+                                             $ed = currency::all();
+                                            @endphp
+                                            @foreach ($ed as $eds )
+                                            <option value="{{$eds->id}}"> {{$eds->name}}</option>                                     
+                                            @endforeach
+                                        </select>
+                            </div>
+                            <div class="col-sm-6">
+                                    <label>Subscription Commence Date</label>
+                                    <input value="" name="commence_date_edit" id="commence_date_edit" type="date" class="form-control">
+                            </div>
+                            <div class="col-sm-6">
+                                    <label>Subscription Renewal Date</label>
+                                    <input value="" name="renewal_date_edit" id="renewal_date_edit" type="date" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-success" value="Save">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+  
+  <div id="ModalDeleteMembership" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST" action="#" id="frmEmployeeMembership">
+                    <meta name="csrf-token" content="{{ csrf_token() }}">
+                    <input type="hidden" value="" id="employee_membership_id"/>
+                    <div class="modal-header theme-bg">
+                        <h4 class="modal-title"> Employee Membership  </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Do u want to delete this <b></b>   ?</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                        <input type="submit" class="btn btn-danger" value="Yes">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+  <div id="ShowModalEditEmployeeMembership" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form id="frmAddEmployeeMembership">
+                        <input type="hidden" value="" id="employee_membership_id"/>
+                    <div class="modal-header theme-bg">
+                        <h4 class="modal-title">Employee Membership</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                               <label> Membership </label>
+                               <select class="form-control" required id="membership_id" name="membership_id">
+                                    <option value="">  -- Pleae Select Membership -- </option>
+                                    @php
+                                      $ed = membership::all();
+                                    @endphp
+                                    @foreach ($ed as $eds )
+                                    <option value="{{$eds->id}}"> {{$eds->name}}</option>                                     
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                    <label>Subscription Paid By</label>
+                                    <select class="form-control" required id="membership_paid_by" name="membership_paid_by">
+                                            <option value="">  -- Pleae Select Subscription Paid By -- </option>
+                                            @php
+                                                $paid = array('company','individaul');
+                                            @endphp
+                                            @foreach ($paid as $paids )
+                                            <option value="{{$paids}}"> {{$paids}}</option>                                     
+                                            @endforeach
+                                        </select>
+                            </div>
+                            <div class="col-sm-6">
+                                    <label>Subscription Amount</label>
+                                    <input value="" name="subscription_amount" id="subscription_amount" type="number" class="form-control">
+                            </div>
+                            <div class="col-sm-6">
+                                    <label>Currency</label>
+                                    <select class="form-control" required id="currency_member_id" name="currency_member_id">
+                                            <option value="">  -- Pleae Select Currency -- </option>
+                                            @php
+                                             $ed = currency::all();
+                                            @endphp
+                                            @foreach ($ed as $eds )
+                                            <option value="{{$eds->id}}"> {{$eds->name}}</option>                                     
+                                            @endforeach
+                                        </select>
+                            </div>
+                            <div class="col-sm-6">
+                                    <label>Subscription Commence Date</label>
+                                    <input value="" name="commence_date" id="commence_date" type="date" class="form-control">
+                            </div>
+                            <div class="col-sm-6">
+                                    <label>Subscription Renewal Date</label>
+                                    <input value="" name="renewal_date" id="renewal_date" type="date" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-success" value="Save">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
   <!-- /# Employee License -->
   <div id="ShowModalEditEmployeeLicense" class="modal fade">
         <div class="modal-dialog modal-lg">
@@ -775,8 +997,6 @@
         </div>
     </div>
  <!-- /# Employee Lauangue -->
- 
-
 
  <div id="ShowModalEditEmployeeLanauge" class="modal fade">
         <div class="modal-dialog modal-lg">
@@ -1333,7 +1553,7 @@
                                     <select class="form-control" required id="currency_id_edit" name="currency_id_edit">
                                         <option value="">  -- Pleae Select Currency -- </option>
                                         @php
-                                            use App\Model\currency ;$currency = currency::all();
+                                            $currency = currency::all();
                                         @endphp
                                         @foreach ($currency as $currencies)
                                         <option value="{{$currencies->id}}"> {{$currencies->name}}</option>                                     
@@ -1687,5 +1907,6 @@
    <script src="/js/backend/employee_skill.js"></script>
    <script src="/js/backend/employee_lauguage.js"></script>
    <script src="/js/backend/employee_license.js"></script>
+   <script src="/js/backend/employee_membership.js"></script>
 @endsection
 

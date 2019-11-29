@@ -50,6 +50,10 @@ class employee extends Model
     {
         return $this->hasMany(employeeLicense::class);
     }
+    public function employeeMembership()
+    {
+        return $this->hasMany(employeeMembership::class);
+    }
     
 
 }

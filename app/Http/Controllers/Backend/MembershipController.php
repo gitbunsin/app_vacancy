@@ -93,7 +93,6 @@ class MembershipController extends Controller
     {
         $membership =  membership::find($id);
         $membership->delete();
-        $membership->save();
         return response::json($membership);
     }
 }
