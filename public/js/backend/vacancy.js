@@ -1,3 +1,35 @@
+function DeleteVacancy(id){
+
+    $('#frmDeleteVacancy').modal('show');
+    $('#vacancy_id').val(id);
+
+}
+
+$('#frmDeleteVacancy').validate({
+    submitHandler: function (form) {
+        var id = $('#vacancy_id').val();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        jQuery.ajax({
+            url: "/admin/job" + '/' + id,
+            method: 'Delete',
+            success: function (response) {
+                $('#frmDeleteVacancy').modal('hide');
+                $('#tr_vacancy' + response.id).remove();
+                toastr.success('Success', 'item has been deleted !');
+            }, error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+});
+
+
+    
+    
     function AddVacancy(){
         $('#ModalAddVacacny').modal('show');
     }

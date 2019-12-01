@@ -228,7 +228,7 @@ class JobController extends Controller
     {
         $job = vacancy::find($id);
         $job->delete();
-        return redirect('admin/job');
+        return response::json($job);
         //
     }
 }
