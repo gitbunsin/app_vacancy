@@ -6,14 +6,14 @@
         <div class="breadcrumb-info text-center">
 
             <div class="page-title">
-                <h1>Graphics Designer @ Google inc</h1>
+                <h1>{{$vacancy->vacancy_name}}</h1>
             </div>
             <ul class="tr-list job-meta list-inline">
-                <li><i class="fa fa-map-signs" aria-hidden="true"></i>San Francisco, CA, US</li>
-                <li><i class="fa fa-map-marker" aria-hidden="true"></i>Full Time</li>
+                <li><i class="fa fa-map-signs" aria-hidden="true"></i>{{$vacancy->location->name}}</li>
+                <li><i class="fa fa-map-marker" aria-hidden="true"></i>{{$vacancy->jobType->name}}</li>
                 <li><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</li>
                 <li><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</li>
-                <li><i class="fa fa-hourglass-start" aria-hidden="true"></i>Application Deadline : Jun 27, 2017</li>
+                <li><i class="fa fa-hourglass-start" aria-hidden="true"></i>Application Deadline : {{$vacancy->closingDate}}</li>
             </ul>	
             <div class="buttons">
                 <a href="#" class="btn btn-primary"><i class="fa fa-briefcase" aria-hidden="true"></i>Apply For This Job</a>
@@ -40,12 +40,11 @@
         <div class="row">
             <div class="col-md-8 col-lg-9">
                 <div class="job-summary section">
-                    <span class="tr-title">Job Summary</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p> <br>
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni।</p>
-                    <span>Key Responsibilities:</span>
+                    <span class="tr-title">Job Description</span>
+                             {!! $vacancy->job_description !!}
+                    <span>Job Requirements : </span>
                     <p>Execute all visual design stages of website design from concept to final hand-off to development Create print advertisements, social media advertisements, client collateral & digital resizes according to Client demands With direction of the Creative team, input into new design ideas for client branding Update & keep all agency collateral materials, including keeping records of Client's logos, fonts, images, etc. </p>
-                    <span>Minimum Requirements</span>
+                    <span>How to apply</span>
                     <ul class="tr-list">
                         <li>Bachelor's Degree</li>
                         <li>2-5 years of relevant experience ( or equivalent educational experience)</li>
@@ -74,7 +73,7 @@
                         <div class="widget cmpany-info">
                             <h3 class="widget_title">Cmpany Info</h3>
                             <span>Google Inc</span>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore </p>
+                            <p>Lorem ipsum dolor sit amet,  eiusmod tempor incididunt ut labore </p>
                             <ul class="tr-list">
                                 <li><span>Address:</span> London, UK</li>
                                 <li><span>Compnay SIze:</span>  2k Employee</li>
@@ -176,12 +175,12 @@
                                 <span><a href="#">Loop</a></span>
                             </span>
                             <ul class="tr-list job-meta">
-                                <li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>San Francisco, CA, US</li>
+                                <li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>{{$vacancy->location->name}}</li>
                                 <li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>Mid Level</li>
                                 <li><span><i class="fa fa-money" aria-hidden="true"></i></span>$5,000 - $6,000</li>
                             </ul>
                             <div class="time">
-                                <a href="#"><span class="part-time">Part Time</span></a>
+                                <a href="#"><span class="part-time">{{$vacancy->jobType->name}}</span></a>
                                 <span class="pull-right">Posted 1 day ago</span>
                             </div>			
                         </div>

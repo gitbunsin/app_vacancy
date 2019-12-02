@@ -1,3 +1,68 @@
+
+$('#frmEditModalVacancy').validate({
+    rules: {
+        job_category_vacancy_id_edit: {
+            required: true,
+        },
+        hiring_manager_id: {
+            required: true,
+        },
+        job_type_id_edit : {
+            required: true,
+        },
+        vacancy_name_edit : {
+            required: true,
+        },
+        skill_id_edit : {
+            required: true,
+        },
+        location_id_edit : {
+            required: true,
+        },
+        job_description_edit : {
+            required: true,
+        },
+        closingDate_edit : {
+            required: true,
+        },
+    },
+    submitHandler: function (form) {
+        var id = $('#vacancy_id_edit').val();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        jQuery.ajax({
+            url: "/admin/job/" + id,
+            method: 'PUT',
+            data: {
+                "job_category_vacancy_id": $('#job_category_vacancy_id_edit').val(),
+                "hiring_manager_id": $('#hiring_manager_id_edit').val(),
+                "job_type_id": $('#job_type_id_edit').val(),
+                "skill_id": $('#skill_id_edit').val(),
+                "location_id": $('#location_id_edit').val(),
+                "job_description": $('#job_description_eidt').val(),
+                "vacancy_name": $('#vacancy_name_edit').val(),
+                "closingDate": $('#closingDate_edit').val(),
+            },
+            success: function (result) {
+                // console.log(result);
+                $('#ModalEditVacacny').modal('hide');
+                toastr.success('Success', 'item has been updated !');
+                var vacancy = '<tr id="tr_vacancy' + result.id + '"> <th class="scope="row">' + result.id + '</><td>' + result.vacancy_name + '</td><td>' + result.closingDate + '</td><td style="color:cadetblue;">' + result.status + '</td>';
+                vacancy += '<th><a onclick="EditVacancy(' + result.id + ');"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Vacancy"><i class="icon-edit"></i></a>  <a onclick="DeleteVacancy(' + result.id + ');" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Vacancy"><i class="ti-trash"></i></a></th></tr>';
+                $("#tr_vacancy" + result.id).replaceWith(vacancy);
+
+
+            }, error: function (err) {
+                console.log(err);
+            }
+});
+}
+});
+
+
 function EditVacancy(id){
     
     $('#vacancy_id_edit').val(id);
@@ -6,15 +71,14 @@ function EditVacancy(id){
             url: "/admin/job/" + id + "/edit",
             success: function(result)
             {
-                console.log(result);
+                // console.log(result);
                 $('#ModalEditVacacny').modal('show');
                 $('#vacancy_name_edit').val(result.vacancy_name);
                 $('#closingDate_edit').val(result.closingDate);
                 $("#job_description_eidt").summernote("code", result.job_description);
-                // $('#job_description_eidt').val(result.job_description);
-                // $('#job_category_vacancy_edit').val(data.category.name);
-                // $('#description_edit').val(result.description);
+               
 
+                
 
                  // skill
                  var s = $('#skill_id_edit');

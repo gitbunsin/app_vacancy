@@ -91,26 +91,28 @@
             <div role="tabpanel" class=" active show tab-pane fade two-column" id="two-column">
                 <div class="row">
                     @foreach($job as $jobs)
-                    <div class="col-sm-6">
-                        <div class="job-item">
-                            <div class="job-info">
-                                <div class="clearfix">
-                                    <div class="company-logo">
-                                        <img src="https://demo.themeregion.com/seeker/images/job/1.png" alt="images" class="img-fluid">
+                        <div class="col-sm-6">
+                            <div class="job-item">
+                                <div class="job-info">
+                                    <div class="clearfix">
+                                        <div class="company-logo">
+                                            <img src="https://demo.themeregion.com/seeker/images/job/1.png" alt="images" class="img-fluid">
+                                        </div>
+                                        <span class="tr-title">
+                                            <a href="{{'vacancy/detail/'.$jobs->id}}">{{$jobs->vacancy_name}}</a><span><a href="#">Loop</a></span>
+                                        </span>
+                                        <span><a href="#" class="btn btn-primary">
+                                          {{$jobs->jobType->name}}                                 
+                                        </a></span>
                                     </div>
-                                    <span class="tr-title">
-                                        <a href="{{'vacancy/details'}}">{{$jobs->vacancy_name}}</a><span><a href="#">Loop</a></span>
-                                    </span>
-                                    <span><a href="#" class="btn btn-primary">Part Time</a></span>
+                                    <ul class="tr-list job-meta">
+                                        <li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>San Francisco, CA, US</li>
+                                        <li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>Mid Level</li>
+                                        <li><span><i class="fa fa-money" aria-hidden="true"></i></span>$5,000 - $6,000</li>
+                                    </ul>
                                 </div>
-                                <ul class="tr-list job-meta">
-                                    <li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>San Francisco, CA, US</li>
-                                    <li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>Mid Level</li>
-                                    <li><span><i class="fa fa-money" aria-hidden="true"></i></span>$5,000 - $6,000</li>
-                                </ul>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 </div><!-- /.row -->										
             </div><!-- /.tab-pane -->

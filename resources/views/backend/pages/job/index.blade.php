@@ -201,7 +201,8 @@
 <div id="ModalEditVacacny" class="modal fade">
     <div class="modal-dialog modal-lg">
     <div class="modal-content">
-        <form method="POST" id="frmAddModalVacancy">
+        <form method="POST" id="frmEditModalVacancy">
+            <input type="hidden" id="vacancy_id_edit">
             <div class="modal-header theme-bg">
                 <h4 class="modal-title">Posting Vacancy</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

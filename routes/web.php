@@ -82,8 +82,8 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
 
 Route::get('job','Backend\JobController@job');
 Route::get('job-apply/{job_id}','Backend\JobController@jobApply');
-// Route::get('job-apply-details/{id}','Backend\JobController@jobDetails');
-Route::get('vacancy/details','Backend\JobController@details');
+Route::get('vacancy/detail/{id}','Backend\JobController@vacancyDetails');
+// Route::get('vacancy/details','Backend\JobController@details');
 Route::get('job-download-company/{filename}','Backend\JobController@getDownloadCompany');
 Route::get('pricing','testController@pricing');
 Route::get('about','testController@about');
