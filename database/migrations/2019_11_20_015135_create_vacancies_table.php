@@ -40,9 +40,9 @@ class CreateVacanciesTable extends Migration
             $table->string('experience')->nullable();
             $table->string('qualification')->nullable();
             $table->string('career_level')->nullable();
-            $table->integer('status')->nullable();
+            $table->string('status')->nullable();
             $table->string('public_in_feed')->nullable();
-            $table->date('closingDate')->nullable();
+            $table->string('closingDate')->nullable();
             $table->timestamps();
         });
     }

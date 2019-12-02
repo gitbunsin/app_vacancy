@@ -5,16 +5,18 @@ namespace App\Http\Controllers\Backend;
 use App\Model\vacancy;
 use App\Model\jobAttachment;
 use App\Model\skill;
+use App\Model\jobType;
 use App\Model\userCv;
 use App\Model\UserJob;
+use App\Model\location;
 use App\User;
 use Carbon\Carbon;
+use App\Model\jobCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
-
 class JobController extends Controller
 {
     /**
@@ -93,40 +95,55 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
+        $v = new Vacancy();
+        $v->admin_id = auth()->guard('admin')->user()->id;
+        $v->company_id = $request->company_id;
+        $v->category_id = $request->job_category_vacancy_id;
+        $v->job_type_id = $request->job_type_id;
+        $v->status = "Active"; 
+        $v->location_id = $request->location_id;
+        $v->vacancy_name = $request->vacancy_name;
+        $v->job_description = $request->job_description;
+        $v->closingDate = $request->closingDate;
+        $v->save();
+        $idAreas_skill = skill::find($request->skill_id);
+        $v->skill()->sync($idAreas_skill);
+        return response::json($v);
        // dd($request->all());
-        $files = $request->file('filename');
+        // $files = $request->file('filename');
        // dd($files);
-        $data = request()->except(['skill','filename','salary']);
-        $job =  vacancy::create($data);
-        $job->admin_id = auth()->guard('admin')->user()->id;
-        $job->category()->associate($request->category_id);
-        $job->location()->associate($request->location_id);
-        $job->jobType()->associate($request->job_type_id);
-        $job->company()->associate($request->company_id);
-        $salary = $request->salary;
-        if($salary == "Negotiate"){
-            $job->offer_salary = "Negotiate";
-        }else{
-            $offer_salary = $request->offer_salary;
-           // dd($offer_salary);
-            $job->offer_salary = $offer_salary;
-        }
+        // $data = request()->except(['skill','filename','salary']);
+        // $job =  vacancy::create($data);
+        // $job->admin_id = auth()->guard('admin')->user()->id;
+        // $job->category()->associate($request->category_id);
+        // $job->location()->associate($request->location_id);
+        // $job->jobType()->associate($request->job_type_id);
+        // $job->company()->associate($request->company_id);
+        // $salary = $request->salary;
+        // if($salary == "Negotiate"){
+        //     $job->offer_salary = "Negotiate";
+        // }else{
+        //     $offer_salary = $request->offer_salary;
+        //    // dd($offer_salary);
+        //     $job->offer_salary = $offer_salary;
+        // }
        // dd($salary);
-        $job->save();
-        $areas = $request->input('skill');
-        $idAreas = skill::find($areas);
-        $job->skill()->sync($idAreas);
-        if ($files) {
-            $destinationPath = 'public/JobUpload/'; // upload path
-            $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
-            $files->move($destinationPath, $profileImage);
-            $insert['filename'] = "$profileImage";
-            $hasFile = new jobAttachment();
-            $hasFile->file_name =  $insert['filename'];
-            $hasFile->job_id = $job->id;
-            $hasFile->save();
-        }
-        return redirect('admin/job');
+        // $job->save();
+        // $areas = $request->input('skill');
+        // $idAreas = skill::find($areas);
+        // $job->skill()->sync($idAreas);
+        // if ($files) {
+        //     $destinationPath = 'public/JobUpload/'; // upload path
+        //     $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
+        //     $files->move($destinationPath, $profileImage);
+        //     $insert['filename'] = "$profileImage";
+        //     $hasFile = new jobAttachment();
+        //     $hasFile->file_name =  $insert['filename'];
+        //     $hasFile->job_id = $job->id;
+        //     $hasFile->save();
+        // }
+        // return redirect('admin/job');
+        return response::json('success');
     }
 
     /**
@@ -153,10 +170,18 @@ class JobController extends Controller
     public function edit($id)
     {
         $job = vacancy::find($id);
-        $all_skill = DB::table('job_skill')->where("job_id",$id)->get();
-        $job_attachment = DB::table('job_attachments')->where("job_id",$id)->first();
-        //dd( $job_attachment);
-        return view('backend.pages.job.edit',compact('job','all_skill','job_attachment'));
+        $job['category'] = jobCategory::all();
+        $job['jobType'] = jobType::all();
+        $job['location'] = location::all();
+        $job['vacancy_skill_id'] = DB::table('skill_vacancy')->where("vacancy_id",$id)->get();
+        $job['all_skill'] = skill::all();
+        return response::json($job);
+
+
+        // $all_skill = DB::table('job_skill')->where("job_id",$id)->get();
+        // $job_attachment = DB::table('job_attachments')->where("job_id",$id)->first();
+        // //dd( $job_attachment);
+        // return view('backend.pages.job.edit',compact('job','all_skill','job_attachment'));
     }
 
 

@@ -6,6 +6,7 @@
 {{--<link type="text/css" rel="stylesheet" id="jssDefault" href="{{asset('back/css/green-style.css')}}">--}}
 <link href="{{asset('back/css/bootstrap-duallistbox.css')}}" rel="stylesheet">
 <link href="{{asset('back/css/bootstrap-duallistbox.min.css')}}" rel="stylesheet">
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.4/summernote.css" rel="stylesheet">
 {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"> --}}
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
