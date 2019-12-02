@@ -20,6 +20,7 @@
                     <li class="{{ (request()->segment(1) == 'contact') ? 'active' : '' }}"> 
                         <a href="{{url('contact')}}">Contact Us</a>
                     </li>
+                    @if(Auth::check())
                     <li class="tr-dropdown"><a href="#">Candidate   </a>
                         <ul class="tr-dropdown-menu tr-list fadeInUp" role="menu">
                             <li><a href="{{url('user-profile')}}">Employee Profile</a></li>
@@ -29,6 +30,7 @@
                             <li><a href="pricing.html">Pricing</a></li>
                         </ul>
                     </li>
+                    @endif
                 </ul>
             </div>
             <div class="navbar-right">	
@@ -207,5 +209,5 @@
     </div>
   </div>
   @section('scripts')
-        <script src="{{asset('js/login/admin.js')}}"></script>
+       
   @endsection

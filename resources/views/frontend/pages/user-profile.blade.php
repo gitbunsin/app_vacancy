@@ -84,6 +84,32 @@
 						</div><!-- /.tab-pane -->
 
 						<div role="tabpanel" class="tab-pane section" id="resume">
+								{{-- <a href="#" class="btn btn-primary">Delete application</a>
+								<div role="tabpanel" class="tab-pane apply-job" id="archived"></div>
+										<div class="job-item">
+											<div class="job-info">
+												<div class="left-content">
+													
+													<div class="clearfix">
+														<span class="tr-title">
+															<a href="job-details.html">Design Associate</a><span><a href="#"></a></span>
+														</span>
+														
+													</div>
+													<ul class="tr-list job-meta">
+														<li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>San Francisco, CA, US</li>
+														<li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>Mid Level</li>
+														<li><span><i class="fa fa-money" aria-hidden="true"></i></span>$5,000 - $6,000</li>
+													</ul>										
+												</div>
+												<div class="right-content">
+													<a href="#" class="btn button-cancle">Delete application</a>
+													<span class="applied">Applied: 3 weeks ago</span>
+												</div>
+											</div>
+										</div>
+								</div>
+								<hr/> --}}
 							<ul class="tr-list resume-info">
 								<li class="career-objective media">
 									<div class="icon">
@@ -219,7 +245,8 @@
 								    	<i class="fa fa-user-secret" aria-hidden="true"></i>
 								    </div>
 								    <div class="media-body">
-								    	<span class="tr-title">Personal Deatils</span>
+										<span class="tr-title">Personal Deatils1</span>
+									
 										<ul class="tr-list">
 											<li><span class="left">Full Name</span><span class="middle">:</span> <span class="right">Jhon Doe</span></li>
 											<li><span class="left">Father's Name </span><span class="middle">:</span> <span class="right">Robert Doe</span></li>
@@ -250,6 +277,29 @@
 						</div><!-- /.tab-pane -->
 
 						<div role="tabpanel" class="tab-pane edit-resume section" id="edit-resume">
+								<h5>POST Your Resume Here's :  </h5>
+								<a href="#" onclick="UploadResume();" class="btn btn-primary pull-right">Upload Resume</a>
+								<div class="buttons">
+									<br/><br/>	<br/>
+									<table class="table" id="tbl_resume">
+											<thead class="thead-dark">
+											  <tr class="tr_resume">
+												<th scope="col">Name</th>
+												<th scope="col">Size</th>
+												<th scope="col">Type</th>
+											  </tr>
+											</thead>
+											<tbody>
+											  <tr>
+												<td>Mark</td>
+												<td>Otto</td>
+												<td>@mdo</td>
+											  </tr>
+											</tbody>
+										  </table>
+								</div>
+								<hr/>
+								<br/>
 							<ul class="tr-list resume-info">
 									<li class="personal-deatils code-edit-small">
 											<div class="icon">
@@ -972,4 +1022,36 @@
 	        </div><!-- /.row -->
 	    </div><!-- /.container -->
 	</div><!-- /.tr-profile -->	
-    @endsection
+
+	<!-- /.tr-login-apply-job not login -->
+<div id="UserUploadResume" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form id="frmUploadResume">
+                    <input type="hidden" id="user_resume_id" value="{{Auth::user()->id}}">
+					<input type="hidden" name="_token" value="{{ csrf_token()}}">
+                    <div  class="modal-header theme-bg" style="background-color:#008def" >
+                            <h4 class="modal-title" style="color:white;"> Upload Resume</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <input type="file" class="form-control" id="resume_id" name="resume_id" accept="application/pdf,application/msword,
+									application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <input  type="button" class="btn btn-danger" data-dismiss="modal" value="Close">
+                                <input type="submit" class="btn btn-primary" value="Save">
+                            </div>
+                    </form>
+            </div>
+        </div>
+	</div>
+	
+	@endsection
+	@section('scripts')
+		<script src="{{asset('js/backend/apply_job.js')}}"></script>
+	@endsection
+	
+	

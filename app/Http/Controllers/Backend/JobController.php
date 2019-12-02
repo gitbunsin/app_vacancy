@@ -51,30 +51,47 @@ class JobController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function jobApply($job_id){
-        if(Auth::user()){
-            $user_id = auth::user()->id;
-            $hasCv = userCv::where('user_id',$user_id)->first();
-            if($hasCv){
-                $userJob = new UserJob();
-                $userJob->user_id = $user_id;
-                $userJob->job_id = $job_id;
-                $userJob->applied_date = Carbon::now();
-                $userJob->status = "Application Initiated";
-                $userJob->save();
-                return  redirect('job-apply-details/')->with(['job_id'=>$job_id]);
-                //dd('User already has CV ');
-            }else{
-
-                //dd('has not CV plz upload ur cv');
-                return redirect('/user-profile');
-            }
-
-        }else{
-
-            return redirect('login');
+     public function CheckUserLogin()
+    {
+        if(Auth::user())
+        {
+            return response::json('success');
+        }else
+        {
+            return response::json('success');
         }
     }
+    // public function jobApply($job_id){
+    //     if(Auth::user()){
+            
+    //         return response::json('success');
+
+    //     }else{
+
+    //         return response::json('success');
+    //     }
+        //     $user_id = auth::user()->id;
+        //     $hasCv = userCv::where('user_id',$user_id)->first();
+        //     if($hasCv){
+        //         $userJob = new UserJob();
+        //         $userJob->user_id = $user_id;
+        //         $userJob->job_id = $job_id;
+        //         $userJob->applied_date = Carbon::now();
+        //         $userJob->status = "Application Initiated";
+        //         $userJob->save();
+        //         return  redirect('job-apply-details/')->with(['job_id'=>$job_id]);
+        //         //dd('User already has CV ');
+        //     }else{
+
+        //         //dd('has not CV plz upload ur cv');
+        //         return redirect('/user-profile');
+        //     }
+
+        // }else{
+
+        //     return redirect('login');
+        // }
+    // }
 
     /**
      * Show the form for creating a new resource.

@@ -20,7 +20,6 @@ Route::get('/', function () {
 /************************************************************************************
  *                                  Backend routes
  ************************************************************************************/
-
 Route::get('admin-login', 'Auth\AdminLoginController@showLoginForm');
 Route::post('admin-login', ['as'=>'admin-login','uses'=>'Auth\AdminLoginController@login']);
 Route::get('admin-logout', ['as'=>'admin-logout','uses'=>'Auth\AdminLoginController@logout']);
@@ -48,7 +47,7 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
     
     Route::resource('basicSalary','EmployeeBasicSalaryController');
     Route::get('app','AppController@index');
-    Route::get('login','AppController@login');
+    // Route::get('login','AppController@login');
     Route::resource('company','CompanyController');
     Route::resource('vacancy','vacancyController');
     Route::resource('jobTitle','jobTitleController');
@@ -70,6 +69,7 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
     Route::resource('user','UserController');
     Route::post('user-cv/{id}','UserController@userCV');
     Route::get('create-resume','CandidateController@createResume');
+    Route::post('user/resume/{id}','UserController@userCV');
 
 
 });
@@ -83,7 +83,7 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
 Route::get('job','Backend\JobController@job');
 Route::get('job-apply/{job_id}','Backend\JobController@jobApply');
 Route::get('vacancy/detail/{id}','Backend\JobController@vacancyDetails');
-// Route::get('vacancy/details','Backend\JobController@details');
+Route::get('checkUserLogin','Backend\JobController@CheckUserLogin');
 Route::get('job-download-company/{filename}','Backend\JobController@getDownloadCompany');
 Route::get('pricing','testController@pricing');
 Route::get('about','testController@about');

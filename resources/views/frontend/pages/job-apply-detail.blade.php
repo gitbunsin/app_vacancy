@@ -16,25 +16,19 @@
                 <li><i class="fa fa-hourglass-start" aria-hidden="true"></i>Application Deadline : {{$vacancy->closingDate}}</li>
             </ul>	
             <div class="buttons">
-                <a href="#" class="btn btn-primary"><i class="fa fa-briefcase" aria-hidden="true"></i>Apply For This Job</a>
+
+                <!-- /.check login -->
+                @if(Auth::check())
+                    <a href="#" onclick="ApplyJob();" class="btn btn-primary"><i class="fa fa-briefcase" aria-hidden="true"></i>Apply For This Job</a>
+                 @else
+                 <a href="#" onclick="NotLogin();" class="btn btn-primary"><i class="fa fa-briefcase" aria-hidden="true"></i>Apply For This Job</a>
+                @endif
                 <a href="#" class="btn button-bookmark"><i class="fa fa-bookmark" aria-hidden="true"></i>Bookmark</a>
                 <span class="btn button-share"><i class="fa fa-share-alt" aria-hidden="true"></i>Share <span><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></span></span>
             </div>		
         </div>
     </div><!-- /.container -->
 </div><!-- /.tr-breadcrumb -->
-{{-- <br/>
-<div class="tr-cta">
-    <div class="cta-content section">
-        <div class="cta-info">
-            <div class="pull-left">
-                <h1>Add your resume and let your next job find you.</h1>
-            </div>
-            <a href="#" class="btn btn-primary pull-right">Add Your Resume</a>
-        </div>
-    </div><!-- /.cta-content -->
-</div><!-- /.tr-cta --> --}}
-
 <div class="job-details section-padding">
     <div class="container">
         <div class="row">
@@ -274,4 +268,35 @@
         </div><!-- /.tr-job-posted -->		
     </div><!-- /.container -->
 </div><!-- /.tr-details -->	
+
+<!-- /.tr-login-apply-job -->	
+<div id="UserLogin" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="frmVacancy">
+                    <input type="hidden" id="vacancy_id" value="">
+                    <meta name="csrf-token" content="{{ csrf_token() }}">
+                    <div  class="modal-header theme-bg" style="background-color:#008def" >
+                            <h4 class="modal-title" style="color:white;"> Vacancy</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label> Do u want to apply this job ? </label>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <input  type="button" class="btn btn-danger" data-dismiss="modal" value="No">
+                                <input type="submit" class="btn btn-primary" value="Yes">
+                            </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+
+
+
+@endsection
+@section('scripts')
+   <script src="{{asset('js/backend/apply_job.js')}}"></script>
 @endsection

@@ -9,7 +9,8 @@
             }
         },submitHandler: function(form) 
         {
-            // console.log('ok');
+            var url = 'login';
+            // console.log('login');
             $email = $('#email').val();
             $password = $('#password').val()
             $.ajaxSetup({
@@ -18,7 +19,7 @@
                 }
             });
             jQuery.ajax({
-                url: "login",
+                url: url,
                 method: 'POST',
                 data: {
                     "email" : $email,
