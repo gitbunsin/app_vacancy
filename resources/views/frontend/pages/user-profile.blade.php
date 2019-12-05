@@ -57,41 +57,51 @@
 								</div><!-- ./row -->							
 							</div><!-- /.tr-fun-fact -->
 							<div class="section display-information">
+									<form id="frmUpdateUserProfile">
 								<div class="title title-after">
 									<div class="icon"><img src="images/icons/2.png" alt="Icon" class="img-fluid"></div> 
 									<span>Your display Information</span>
 								</div>
 								<div class="change-photo">
 									<div class="user-image">
-										<img src="images/icons/fun-fact6.png" alt="Image" class="img-fluid">
+										@if($user->profile)
+											<img id="preview" src="{{url('uploads/UserCv/'.$user->profile)}}" width="350px" height="320px"/><br/>
+										@else
+											<img id="preview" src="images/noimage.jpg" width="350px" height="320px"/><br/>
+										@endif
+										<input type="file" id="image" style="display: none;"/>
 									</div>
 									<div class="upload-photo">
 										<label class="btn btn-primary" for="upload-photo">
-											<input type="file" id="upload-photo">
-											Change Photo
+												<a style="color:white;" id="upload-photo" href="javascript:changeProfile()">Change</a>
+				
 										</label>
+										<label class="btn btn-danger" for="upload-photo">
+												<a style="color: white" href="javascript:removeImage()">Remove</a>
+											</label>
 										<span class="max-size">Max 20 MB</span>
 									</div>
 								</div>
 								<ul class="tr-list account-details">
-									<form action="">
+									
+											<input type="hidden" value="{{Auth::user()->id}}" name="user_login_id" id="user_login_id">
 											<div class="row">
-												{{-- <div class="col-lg-12"> --}}
+								
 													<div class="col-lg-6">
 															<label>Name</label>
-															<input class="form-control" type="text" name="name" id="name"/>
+															<input value="{{$user->name}}" class="form-control" type="text" name="name" id="name"/>
 													</div>
 													<div class="col-lg-6">
 															<label>Email</label>
-															<input class="form-control" type="email" name="email" id="email"/>
+															<input value="{{$user->email}}" class="form-control" type="email" name="user_email" id="user_email"/>
 													</div>
 													<div class="col-lg-6">
 															<label>Phone Number</label>
-															<input class="form-control" type="number" name="phone" id="phone"/>
+															<input value="{{$user->phone}}" class="form-control" type="number" name="phone" id="phone"/>
 													</div>
 													<div class="col-lg-6">
 															<label>Zip Code</label>
-															<input class="form-control" type="text" name="zip_code" id="zip_code"/>
+															<input value="{{$user->zip}}" class="form-control" type="text" name="zip" id="zip"/>
 													</div>
 													<div class="col-lg-6">
 															<label>Birth Date</label>
@@ -113,16 +123,16 @@
 														</select>
 													</div>
 													<div class="col-lg-6">
-															<label><Address></Address></label>
-															<input class="form-control" type="text" name="address" id="address"/>
+															<label>Address</label>
+															<input value="{{$user->address}}" class="form-control" type="text" name="address" id="address"/>
 													</div>
 											</div>
 											<div class="buttons pull-right">
 													<a href="#" class="btn button-cancle">Cancle</a>
-													<a href="#" class="btn btn-primary">Update Your Resume</a>
-											</div>	
-									</form>
-								</ul>								
+													<button type="submit" class="btn btn-primary">Update Your Resume</button>
+											</div>
+								</ul>	
+							</form>							
 							</div><!-- /.display-information -->
 						</div><!-- /.tab-pane -->
 
@@ -1077,6 +1087,7 @@
 	@endsection
 	@section('scripts')
 		<script src="{{asset('js/backend/apply_job.js')}}"></script>
+		<script src="{{asset('js/backend/user_profile.js')}}"></script>
 	@endsection
 	
 	

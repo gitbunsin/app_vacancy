@@ -99,6 +99,42 @@ class JobController extends Controller
         return response()->json($user);
      
     }
+
+
+    public function ajaxImage(Request $request,$id)
+    {
+       
+        $user = User::find($id);
+        if($request->hasFile('file')) {
+            $filename = $request->file('file')->getClientOriginalName();
+            $dir = 'uploads/UserCv';
+            $request->file('file')->move($dir, $filename);
+            $user->profile = $filename;
+            $user->name = $request->name;
+            $user->email = $request->user_email;
+            $user->phone = $request->phone;
+            $user->zip = $request->zip;
+            $user->address = $request->address;
+            $user->save();
+
+        }else{
+
+            $user->profile =" ";
+            $user->name = $request->name;
+            $user->email = $request->user_email;
+            $user->phone = $request->phone;
+            $user->zip = $request->zip;
+            $user->address = $request->address;
+            $user->save();
+
+        }
+        return response::json('success');
+    }
+
+    public function deleteImage($filename)
+    {
+        File::delete('uploads/' . $filename);
+    }
     /**
      * Show the form for creating a new resource.
      *

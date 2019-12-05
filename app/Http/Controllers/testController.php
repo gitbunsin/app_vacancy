@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\job;
+use App\user;
 use App\Model\userCv;
 use Illuminate\Support\Facades\Auth;
 use App\Model\jobAttachment;
@@ -55,8 +56,9 @@ class testController extends Controller
     {
 
         $user_cv = userCv::where('user_id',Auth::user()->id)->first();
-        // dd($user_cv);
-        return view('frontend.pages.user-profile',compact('user_cv'));
+        $user = User::where('id',Auth::user()->id)->first();
+        // dd($user);
+        return view('frontend.pages.user-profile',compact('user_cv','user'));
     }
 
     /**

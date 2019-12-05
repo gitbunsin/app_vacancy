@@ -96,6 +96,8 @@ Route::get('contact','testController@contact');
 Route::get('create-resume','testController@createResume')->middleware('auth');;
 Route::get('app-mange-Candidate','testController@mangeCandidate');
 Route::get('user-profile','testController@profileDetails');
+Route::post('upload/user/profile/{id}','Backend\JobController@ajaxImage');
+Route::delete('ajax-remove-image/{filename}', 'ImageController@deleteImage');
 
 
 //Route::post('user-cv','testController@')->middleware('auth');
