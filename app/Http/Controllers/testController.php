@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Model\job;
+use App\Model\userCv;
+use Illuminate\Support\Facades\Auth;
 use App\Model\jobAttachment;
 use Illuminate\Http\Request;
 
@@ -52,7 +54,9 @@ class testController extends Controller
     public function profileDetails()
     {
 
-        return view('frontend.pages.user-profile');
+        $user_cv = userCv::where('user_id',Auth::user()->id)->first();
+        // dd($user_cv);
+        return view('frontend.pages.user-profile',compact('user_cv'));
     }
 
     /**

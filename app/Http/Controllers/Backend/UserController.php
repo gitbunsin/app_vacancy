@@ -23,6 +23,7 @@ class UserController extends Controller
     }
     public function userCV(Request $request ,$id)
     {
+       // dd('hello');
         // $extension = $request->file('file');
 
         // return response::json($extension);

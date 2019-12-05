@@ -74,42 +74,60 @@
 									</div>
 								</div>
 								<ul class="tr-list account-details">
-									<li>Display Name<span>Jhon Doe</span></li>
-									<li>Address<span>San Francisco, CA, US</span></li>
-									<li>Phone Number<span>+0123456789</span></li>
-									<li>Email<span>bunsin.toeng@gmail.com</span></li>
-									<li>Industry Expertise<span>UI & UX Designer</span></li>
+									<form action="">
+											<div class="row">
+												{{-- <div class="col-lg-12"> --}}
+													<div class="col-lg-6">
+															<label>Name</label>
+															<input class="form-control" type="text" name="name" id="name"/>
+													</div>
+													<div class="col-lg-6">
+															<label>Email</label>
+															<input class="form-control" type="email" name="email" id="email"/>
+													</div>
+													<div class="col-lg-6">
+															<label>Phone Number</label>
+															<input class="form-control" type="number" name="phone" id="phone"/>
+													</div>
+													<div class="col-lg-6">
+															<label>Zip Code</label>
+															<input class="form-control" type="text" name="zip_code" id="zip_code"/>
+													</div>
+													<div class="col-lg-6">
+															<label>Birth Date</label>
+															<input class="form-control" type="date" name="date" id="date"/>
+													</div>
+													<div class="col-lg-6">
+															<label>Nationality</label>
+															<input class="form-control" type="text" name="nationality" id="nationality"/>
+													</div>
+													<div class="col-lg-6">
+														<label>Sex</label>
+														@php
+															$sex = array('Male','Female');
+														@endphp
+														<select name="sex" id="sex" class="form-control">
+															@foreach( $sex as $sexs)
+																<option value="{{$sexs}}">{{$sexs}}</option>
+															@endforeach
+														</select>
+													</div>
+													<div class="col-lg-6">
+															<label><Address></Address></label>
+															<input class="form-control" type="text" name="address" id="address"/>
+													</div>
+											</div>
+											<div class="buttons pull-right">
+													<a href="#" class="btn button-cancle">Cancle</a>
+													<a href="#" class="btn btn-primary">Update Your Resume</a>
+											</div>	
+									</form>
 								</ul>								
 							</div><!-- /.display-information -->
 						</div><!-- /.tab-pane -->
 
 						<div role="tabpanel" class="tab-pane section" id="resume">
-								{{-- <a href="#" class="btn btn-primary">Delete application</a>
-								<div role="tabpanel" class="tab-pane apply-job" id="archived"></div>
-										<div class="job-item">
-											<div class="job-info">
-												<div class="left-content">
-													
-													<div class="clearfix">
-														<span class="tr-title">
-															<a href="job-details.html">Design Associate</a><span><a href="#"></a></span>
-														</span>
-														
-													</div>
-													<ul class="tr-list job-meta">
-														<li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>San Francisco, CA, US</li>
-														<li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>Mid Level</li>
-														<li><span><i class="fa fa-money" aria-hidden="true"></i></span>$5,000 - $6,000</li>
-													</ul>										
-												</div>
-												<div class="right-content">
-													<a href="#" class="btn button-cancle">Delete application</a>
-													<span class="applied">Applied: 3 weeks ago</span>
-												</div>
-											</div>
-										</div>
-								</div>
-								<hr/> --}}
+								
 							<ul class="tr-list resume-info">
 								<li class="career-objective media">
 									<div class="icon">
@@ -287,73 +305,28 @@
 												<th scope="col">Name</th>
 												<th scope="col">Size</th>
 												<th scope="col">Type</th>
+												<th>Action</th>
 											  </tr>
 											</thead>
 											<tbody>
-											  <tr>
-												<td>Mark</td>
-												<td>Otto</td>
-												<td>@mdo</td>
-											  </tr>
+											@if($user_cv)
+												<tr id="tr_userCv{{$user_cv->id}}">
+													<td>{{$user_cv->file_name}}</td>
+													<td>{{$user_cv->file_size}}</td>
+													<td>{{$user_cv->attachment_type}}</td>
+													<th>
+														<a onclick="EditUserCv({{$user_cv->id}});" class="btn btn-primary">Edit</a>
+														<a onclick="DeleteUserCv({{$user_cv->id}});"  class="btn btn-danger">Delete</a>
+													</th>
+												</tr>
+											@else
+											@endif
 											</tbody>
-										  </table>
+										  </table>	  
 								</div>
 								<hr/>
 								<br/>
 							<ul class="tr-list resume-info">
-									<li class="personal-deatils code-edit-small">
-											<div class="icon">
-												<i class="fa fa-user-secret" aria-hidden="true"></i>
-											</div>
-											<div class="media-body">
-												<span class="tr-title">Personal Deatils</span>
-												<div class="row">
-													<div class="col-sm-12">
-															<input type="text" class="form-control" value="username"/>
-													</div>
-												</div>
-												<br/>
-												<div class="row">
-														<div class="col-sm-12">
-																<input type="text" class="form-control" value="father name"/>
-														</div>
-													</div>
-													<br/>
-												<div class="row">
-												
-													<div class="col-sm-12">
-															<input type="text" class="form-control" value="Date of Birth"/>
-													</div>
-												</div>	
-												<br/>
-												<div class="row">
-												
-													<div class="col-sm-12">
-															<input type="text" class="form-control" value="Birth Place"/>
-													</div>
-												</div>
-												<br/>
-												<div class="row">
-													<div class="col-sm-12">
-															<input type="text" class="form-control" value="Nationality"/>
-													</div>
-												</div>
-												<br/>
-												<div class="row">
-												
-													<div class="col-sm-12">
-															<input type="text" class="form-control" value="Sex"/>
-													</div>
-												</div>
-												<br/>	
-												<div class="row">
-												
-														<div class="col-sm-12">
-																<input type="text" class="form-control" value="Address"/>
-														</div>
-													</div>		
-											</div>
-										</li><!-- /.personal-deatils -->
 								<li class="career-objective">
 									<div class="icon">
 								        <i class="fa fa-black-tie" aria-hidden="true"></i>
@@ -559,7 +532,7 @@
 										</div>								
 										<div class="job-info">
 											<div class="company-logo">
-												<img src="images/job/2.png" alt="images" class="img-fluid">
+												<img src="images/job/1.png" alt="images" class="img-fluid">
 											</div>
 											<span class="tr-title">
 												<a href="#">Design Associate</a>
@@ -602,7 +575,7 @@
 										</div>								
 										<div class="job-info">
 											<div class="company-logo">
-												<img src="images/job/3.png" alt="images" class="img-fluid">
+												<img src="images/job/1.png" alt="images" class="img-fluid">
 											</div>
 											<span class="tr-title">
 												<a href="#">Graphic Designer</a>
@@ -645,7 +618,7 @@
 										</div>								
 										<div class="job-info">
 											<div class="company-logo">
-												<img src="images/job/4.png" alt="images" class="img-fluid">
+												<img src="images/job/1.png" alt="images" class="img-fluid">
 											</div>
 											<span class="tr-title">
 												<a href="#">Design Consultant</a>
@@ -688,7 +661,7 @@
 										</div>								
 										<div class="job-info">
 											<div class="company-logo">
-												<img src="images/job/5.png" alt="images" class="img-fluid">
+												<img src="images/job/1.png" alt="images" class="img-fluid">
 											</div>
 											<span class="tr-title">
 												<a href="#">Project Manager</a>
@@ -731,7 +704,7 @@
 										</div>								
 										<div class="job-info">
 											<div class="company-logo">
-												<img src="images/job/6.png" alt="images" class="img-fluid">
+												<img src="images/job/1.png" alt="images" class="img-fluid">
 											</div>
 											<span class="tr-title">
 												<a href="#">Design Associate</a>
@@ -774,7 +747,7 @@
 										</div>								
 										<div class="job-info">
 											<div class="company-logo">
-												<img src="images/job/7.png" alt="images" class="img-fluid">
+												<img src="images/job/1.png" alt="images" class="img-fluid">
 											</div>
 											<span class="tr-title">
 												<a href="#">Graphic Designer</a>
@@ -817,7 +790,7 @@
 										</div>								
 										<div class="job-info">
 											<div class="company-logo">
-												<img src="images/job/8.png" alt="images" class="img-fluid">
+												<img src="images/job/1.png" alt="images" class="img-fluid">
 											</div>
 											<span class="tr-title">
 												<a href="#">Design Consultant</a>
@@ -868,7 +841,7 @@
 									<div class="left-content">
 										<div class="clearfix">
 											<div class="company-logo">
-												<img src="images/job/2.png" alt="images" class="img-fluid">
+												<img src="images/job/1.png" alt="images" class="img-fluid">
 											</div>
 											<span class="tr-title">
 												<a href="job-details.html">Design Associate</a><span><a href="#">Loop</a></span>
@@ -892,7 +865,7 @@
 									<div class="left-content">
 										<div class="clearfix">
 											<div class="company-logo">
-												<img src="images/job/3.png" alt="images" class="img-fluid">
+												<img src="images/job/1.png" alt="images" class="img-fluid">
 											</div>
 											<span class="tr-title">
 												<a href="job-details.html">Design Associate</a><span><a href="#">Loop</a></span>
@@ -916,7 +889,7 @@
 									<div class="left-content">
 										<div class="clearfix">
 											<div class="company-logo">
-												<img src="images/job/4.png" alt="images" class="img-fluid">
+												<img src="images/job/1.png" alt="images" class="img-fluid">
 											</div>
 											<span class="tr-title">
 												<a href="job-details.html">Design Associate</a><span><a href="#">Loop</a></span>
@@ -940,7 +913,7 @@
 									<div class="left-content">
 										<div class="clearfix">
 											<div class="company-logo">
-												<img src="images/job/5.png" alt="images" class="img-fluid">
+												<img src="images/job/1.png" alt="images" class="img-fluid">
 											</div>
 											<span class="tr-title">
 												<a href="job-details.html">Design Associate</a><span><a href="#">Loop</a></span>
@@ -964,7 +937,7 @@
 									<div class="left-content">
 										<div class="clearfix">
 											<div class="company-logo">
-												<img src="images/job/6.png" alt="images" class="img-fluid">
+												<img src="images/job/1.png" alt="images" class="img-fluid">
 											</div>
 											<span class="tr-title">
 												<a href="job-details.html">Design Associate</a><span><a href="#">Loop</a></span>
@@ -988,7 +961,7 @@
 									<div class="left-content">
 										<div class="clearfix">
 											<div class="company-logo">
-												<img src="images/job/7.png" alt="images" class="img-fluid">
+												<img src="images/job/1.png" alt="images" class="img-fluid">
 											</div>
 											<span class="tr-title">
 												<a href="job-details.html">Design Associate</a><span><a href="#">Loop</a></span>
@@ -1027,7 +1000,7 @@
 <div id="UserUploadResume" class="modal fade">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <form id="frmUploadResume">
+                <form id="frmUploadResume" enctype="multipart/form-data" action="#" method="POST">
                     <input type="hidden" id="user_resume_id" value="{{Auth::user()->id}}">
 					<input type="hidden" name="_token" value="{{ csrf_token()}}">
                     <div  class="modal-header theme-bg" style="background-color:#008def" >
@@ -1036,7 +1009,7 @@
                             </div>
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <input type="file" class="form-control" id="resume_id" name="resume_id" accept="application/pdf,application/msword,
+                                    <input type="file" class="form-control" id="file_name" name="file_name" accept="application/pdf,application/msword,
 									application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
                                 </div>
                             </div>
@@ -1048,6 +1021,58 @@
             </div>
         </div>
 	</div>
+
+
+
+
+	{{-- ///Delete --}}
+	<div id="ModalDeleteUserCv" class="modal fade">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<form id="frmDeleteResume" enctype="multipart/form-data" action="#" method="POST">
+						<input type="hidden" id="user_resume_id" value="">
+						<input type="hidden" name="_token" value="{{ csrf_token()}}">
+						<div  class="modal-header theme-bg" style="background-color:#008def" >
+								<h4 class="modal-title" style="color:white;"> Upload Resume</h4>
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								</div>
+								<div class="modal-body">
+									<span>Do you want to Delete this Resume ? </span>
+								</div>
+								<div class="modal-footer">
+									<input  type="button" class="btn btn-danger" data-dismiss="modal" value="No">
+									<input type="submit" class="btn btn-primary" value="Yes">
+								</div>
+						</form>
+				</div>
+			</div>
+		</div>
+
+		{{-- //Edit  --}}
+		<div id="ModalEditUserCv" class="modal fade">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<form id="frmEditResume" enctype="multipart/form-data" action="#">
+							<input type="hidden" id="user_resume_id_edit" value="">
+							<input type="hidden" name="_token" value="{{ csrf_token()}}">
+							<div  class="modal-header theme-bg" style="background-color:#008def" >
+									<h4 class="modal-title" style="color:white;"> Upload Resume</h4>
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									</div>
+									<div class="modal-body">
+									<div class="form-group">
+											<input type="file" class="form-control" id="file_name_edit" name="file_name_edit"/>
+										</div>
+										<input disabled class="form-control" type="text" name="resume_edit" value="" id="resume_edit">
+									</div>
+									<div class="modal-footer">
+										<input  type="button" class="btn btn-danger" data-dismiss="modal" value="No">
+										<input type="submit" class="btn btn-primary" value="Yes">
+									</div>
+							</form>
+					</div>
+				</div>
+			</div>
 	
 	@endsection
 	@section('scripts')

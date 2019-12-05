@@ -18,6 +18,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Input;
 class JobController extends Controller
 {
     /**
@@ -46,6 +47,58 @@ class JobController extends Controller
         return view('frontend.pages.job-apply-detail',compact('vacancy','file'));
     }
 
+     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function userAttachement(Request $request , $id)
+    {
+
+        $filename = $request->file('file')->getClientOriginalName();
+        $user = new userCv();
+        $user->user_id = $id;
+        $user->file_name = $filename ;
+        $user->attachment_type = $request->file('file')->getMimeType();
+        $user->file_size =  $request->file('file')->getSize();
+        $user->file_type = $request->file('file')->getType();
+        $user->file_content = $request->file('file')->getPathname();
+        $dir = 'uploads/UserCv';
+        $request->file('file')->move($dir, $filename);
+        $user->save();
+        return response()->json($user);
+
+    }
+
+    public function userAttachementDelete($id)
+    {
+        $user = userCv::find($id);
+        $user->delete();
+        return response()->json($user);
+    }
+
+    public function userAttachementEdit($id)
+    {
+        $user = userCv::find($id);
+        return response()->json($user);
+    }
+
+    public function userAttachementUpdate(Request $request , $id){
+        
+        $filename = $request->file('file_name')->getClientOriginalName();
+        $user = userCv::find($id);
+        $user->user_id = Auth::user()->id;
+        $user->file_name = $filename ;
+        $user->attachment_type = $request->file('file_name')->getMimeType();
+        $user->file_size =  $request->file('file_name')->getSize();
+        $user->file_type = $request->file('file_name')->getType();
+        $user->file_content = $request->file('file_name')->getPathname();
+        $dir = 'uploads/UserCv';
+        $request->file('file_name')->move($dir, $filename);
+        $user->save();
+        return response()->json($user);
+     
+    }
     /**
      * Show the form for creating a new resource.
      *

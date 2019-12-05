@@ -271,7 +271,7 @@
 
 <!-- /.tr-login-apply-job -->	
 <div id="UserLogin" class="modal fade">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <form id="frmVacancy">
                     <input type="hidden" id="vacancy_id" value="">
