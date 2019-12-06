@@ -8,7 +8,6 @@ $baseDir = dirname($vendorDir);
 return array(
     'AdminsTableDataSeeder' => $baseDir . '/database/seeds/AdminsTableDataSeeder.php',
     'App\\Admin' => $baseDir . '/app/Model/Admin.php',
-    'App\\Backend\\LanguageController' => $baseDir . '/app/Backend/LanguageController.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Auth\\AdminLoginController' => $baseDir . '/app/Http/Controllers/Auth/AdminLoginController.php',
@@ -64,6 +63,8 @@ return array(
     'App\\Model\\PayGrade' => $baseDir . '/app/Model/PayGrade.php',
     'App\\Model\\ReportingMethod' => $baseDir . '/app/Model/ReportingMethod.php',
     'App\\Model\\UserJob' => $baseDir . '/app/Model/UserJob.php',
+    'App\\Model\\candidate' => $baseDir . '/app/Model/candidate.php',
+    'App\\Model\\candidateAttachment' => $baseDir . '/app/Model/candidateAttachment.php',
     'App\\Model\\city' => $baseDir . '/app/Model/city.php',
     'App\\Model\\company' => $baseDir . '/app/Model/company.php',
     'App\\Model\\country' => $baseDir . '/app/Model/country.php',

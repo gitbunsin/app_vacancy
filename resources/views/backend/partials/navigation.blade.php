@@ -25,7 +25,7 @@
                         <a href="{{url('admin/job')}}">vacancies</a>
                     </li>
                     <li class="{{ (request()->segment(2) == 'candidate') ? 'active' : '' }}">
-                        <a href="#">candidates</a>
+                        <a href="{{url('admin/candidate')}}">candidates</a>
                     </li>
                 </ul>
             </li>

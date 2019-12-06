@@ -403,7 +403,6 @@ class ComposerStaticInit8d8674694d2e01ac5f8f266acbc6ddab
     public static $classMap = array (
         'AdminsTableDataSeeder' => __DIR__ . '/../..' . '/database/seeds/AdminsTableDataSeeder.php',
         'App\\Admin' => __DIR__ . '/../..' . '/app/Model/Admin.php',
-        'App\\Backend\\LanguageController' => __DIR__ . '/../..' . '/app/Backend/LanguageController.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\AdminLoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AdminLoginController.php',
@@ -459,6 +458,8 @@ class ComposerStaticInit8d8674694d2e01ac5f8f266acbc6ddab
         'App\\Model\\PayGrade' => __DIR__ . '/../..' . '/app/Model/PayGrade.php',
         'App\\Model\\ReportingMethod' => __DIR__ . '/../..' . '/app/Model/ReportingMethod.php',
         'App\\Model\\UserJob' => __DIR__ . '/../..' . '/app/Model/UserJob.php',
+        'App\\Model\\candidate' => __DIR__ . '/../..' . '/app/Model/candidate.php',
+        'App\\Model\\candidateAttachment' => __DIR__ . '/../..' . '/app/Model/candidateAttachment.php',
         'App\\Model\\city' => __DIR__ . '/../..' . '/app/Model/city.php',
         'App\\Model\\company' => __DIR__ . '/../..' . '/app/Model/company.php',
         'App\\Model\\country' => __DIR__ . '/../..' . '/app/Model/country.php',

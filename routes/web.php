@@ -49,6 +49,9 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
     Route::get('app','AppController@index');
     // Route::get('login','AppController@login');
     Route::resource('company','CompanyController');
+    Route::resource('candidate','CandidateController');
+    Route::post('candidate/update/{id}','CandidateController@updateCandidate');
+    Route::get('candidate_vacancy/edit/{canidate_id}/{vacancy_id}','CandidateController@EditCandidateVacancy');
     Route::resource('vacancy','vacancyController');
     Route::resource('jobTitle','jobTitleController');
     Route::resource('jobCategory','jobCategoryController');

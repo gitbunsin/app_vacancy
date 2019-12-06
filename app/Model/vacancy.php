@@ -9,7 +9,11 @@ class vacancy extends Model
     protected $table = 'vacancies';
     protected $guarded = ['id'];
 
-//    public $timestamps = false;
+    //public $timestamps = false;
+    public function candidate(){
+
+        return $this->belongsToMany(candidate::class)->withPivot('applied_date','status');
+    }
     public function user(){
 
         return $this->belongsToMany(User::class);
