@@ -100,6 +100,10 @@ class ComposerStaticInit8d8674694d2e01ac5f8f266acbc6ddab
             'League\\Flysystem\\' => 17,
             'Laravel\\Tinker\\' => 15,
         ),
+        'K' => 
+        array (
+            'Kalnoy\\Nestedset\\' => 17,
+        ),
         'J' => 
         array (
             'JakubOnderka\\PhpConsoleHighlighter\\' => 35,
@@ -309,6 +313,10 @@ class ComposerStaticInit8d8674694d2e01ac5f8f266acbc6ddab
         array (
             0 => __DIR__ . '/..' . '/laravel/tinker/src',
         ),
+        'Kalnoy\\Nestedset\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kalnoy/nestedset/src',
+        ),
         'JakubOnderka\\PhpConsoleHighlighter\\' => 
         array (
             0 => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src',
@@ -431,6 +439,7 @@ class ComposerStaticInit8d8674694d2e01ac5f8f266acbc6ddab
         'App\\Http\\Controllers\\Backend\\MembershipController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/MembershipController.php',
         'App\\Http\\Controllers\\Backend\\ReportingMethodController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/ReportingMethodController.php',
         'App\\Http\\Controllers\\Backend\\SkillController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/SkillController.php',
+        'App\\Http\\Controllers\\Backend\\SubUnitController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/SubUnitController.php',
         'App\\Http\\Controllers\\Backend\\TerminationReasonController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/TerminationReasonController.php',
         'App\\Http\\Controllers\\Backend\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/UserController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
@@ -460,6 +469,7 @@ class ComposerStaticInit8d8674694d2e01ac5f8f266acbc6ddab
         'App\\Model\\UserJob' => __DIR__ . '/../..' . '/app/Model/UserJob.php',
         'App\\Model\\candidate' => __DIR__ . '/../..' . '/app/Model/candidate.php',
         'App\\Model\\candidateAttachment' => __DIR__ . '/../..' . '/app/Model/candidateAttachment.php',
+        'App\\Model\\candidate_vacancy' => __DIR__ . '/../..' . '/app/Model/candidate_vacancy.php',
         'App\\Model\\city' => __DIR__ . '/../..' . '/app/Model/city.php',
         'App\\Model\\company' => __DIR__ . '/../..' . '/app/Model/company.php',
         'App\\Model\\country' => __DIR__ . '/../..' . '/app/Model/country.php',
@@ -485,6 +495,7 @@ class ComposerStaticInit8d8674694d2e01ac5f8f266acbc6ddab
         'App\\Model\\province' => __DIR__ . '/../..' . '/app/Model/province.php',
         'App\\Model\\skill' => __DIR__ . '/../..' . '/app/Model/skill.php',
         'App\\Model\\skillvacancy' => __DIR__ . '/../..' . '/app/Model/skillvacancy.php',
+        'App\\Model\\subUnit' => __DIR__ . '/../..' . '/app/Model/subUnit.php',
         'App\\Model\\terminationResons' => __DIR__ . '/../..' . '/app/Model/terminationResons.php',
         'App\\Model\\userCv' => __DIR__ . '/../..' . '/app/Model/userCv.php',
         'App\\Model\\vacancy' => __DIR__ . '/../..' . '/app/Model/vacancy.php',
@@ -2011,6 +2022,14 @@ class ComposerStaticInit8d8674694d2e01ac5f8f266acbc6ddab
         'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/Highlighter.php',
         'JobTypesTableDataSeeder' => __DIR__ . '/../..' . '/database/seeds/JobTypesTableDataSeeder.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
+        'Kalnoy\\Nestedset\\AncestorsRelation' => __DIR__ . '/..' . '/kalnoy/nestedset/src/AncestorsRelation.php',
+        'Kalnoy\\Nestedset\\BaseRelation' => __DIR__ . '/..' . '/kalnoy/nestedset/src/BaseRelation.php',
+        'Kalnoy\\Nestedset\\Collection' => __DIR__ . '/..' . '/kalnoy/nestedset/src/Collection.php',
+        'Kalnoy\\Nestedset\\DescendantsRelation' => __DIR__ . '/..' . '/kalnoy/nestedset/src/DescendantsRelation.php',
+        'Kalnoy\\Nestedset\\NestedSet' => __DIR__ . '/..' . '/kalnoy/nestedset/src/NestedSet.php',
+        'Kalnoy\\Nestedset\\NestedSetServiceProvider' => __DIR__ . '/..' . '/kalnoy/nestedset/src/NestedSetServiceProvider.php',
+        'Kalnoy\\Nestedset\\NodeTrait' => __DIR__ . '/..' . '/kalnoy/nestedset/src/NodeTrait.php',
+        'Kalnoy\\Nestedset\\QueryBuilder' => __DIR__ . '/..' . '/kalnoy/nestedset/src/QueryBuilder.php',
         'Laravel\\Tinker\\ClassAliasAutoloader' => __DIR__ . '/..' . '/laravel/tinker/src/ClassAliasAutoloader.php',
         'Laravel\\Tinker\\Console\\TinkerCommand' => __DIR__ . '/..' . '/laravel/tinker/src/Console/TinkerCommand.php',
         'Laravel\\Tinker\\TinkerCaster' => __DIR__ . '/..' . '/laravel/tinker/src/TinkerCaster.php',
@@ -3327,6 +3346,7 @@ class ComposerStaticInit8d8674694d2e01ac5f8f266acbc6ddab
         'SebastianBergmann\\Timer\\Timer' => __DIR__ . '/..' . '/phpunit/php-timer/src/Timer.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
         'SkillsTableDataSeeder' => __DIR__ . '/../..' . '/database/seeds/SkillsTableDataSeeder.php',
+        'SubUnitTableSeeder' => __DIR__ . '/../..' . '/database/seeds/SubUnitTableSeeder.php',
         'Symfony\\Component\\Console\\Application' => __DIR__ . '/..' . '/symfony/console/Application.php',
         'Symfony\\Component\\Console\\CommandLoader\\CommandLoaderInterface' => __DIR__ . '/..' . '/symfony/console/CommandLoader/CommandLoaderInterface.php',
         'Symfony\\Component\\Console\\CommandLoader\\ContainerCommandLoader' => __DIR__ . '/..' . '/symfony/console/CommandLoader/ContainerCommandLoader.php',

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\location;
 use App\Model\company;
+use App\Model\subUnit;
+use NodeTrait;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 class LocationController extends Controller
@@ -19,7 +21,9 @@ class LocationController extends Controller
     {
         $company = company::with(['city','country'])->orderBy('id' , 'DESC')->paginate(10);
         $location = location::with(['province','city','country'])->get();
-        return view('backend/pages/location/index',compact('location','company'));
+        $subUnits = subUnit::get()->toTree();
+        // dd($subUnit);
+        return view('backend/pages/location/index',compact('location','company','subUnits'));
     }
 
     /**

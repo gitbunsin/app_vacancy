@@ -110,6 +110,102 @@
                                                             </div>
                                                             <h3><span class="ti-home"></span> Organization Structure</h3>
                                                         </div>
+                                                        <br/>
+                                                        <div class="demo">
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <div class="tab" role="tabpanel">
+                                                                        <!-- Nav tabs -->
+                                                                        <ul class="nav nav-tabs" role="tablist">
+                                                                            <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">Company Structure</a></li>
+                                                                            <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">Company Craph</a></li>
+                                                                    
+                                                                        </ul>
+                                                                        <!-- Tab panes -->
+                                                                        <div class="tab-content tabs">
+                                                                            <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+                                                                                <div class="card-header">
+                                                                                    <a href="#" onclick="ShowModalExpericen()" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> <i class="fa fa-plus"></i></a>
+                                                                                    <br>
+                                                                                    <h4><i class="fa fa-group"></i> Company Structure</h4>
+                                                                                </div>
+                                                                                <table class="table" id="tbl_work_experience">
+                                                                                    <thead>
+                                                                                      <tr>
+                                                                                        <th scope="col">#No</th>
+                                                                                        <th>Company </th>
+                                                                                        <th>Job title</th>
+                                                                                        <th>From </th>
+                                                                                        <th>To</th>
+                                                                                        <th>Comments</th>
+                                                                                        <th>Action</th>
+                                                                                      </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        {{-- @foreach ($employee->workexperience as $key => $item)
+                                                
+                                                                                      <tr id="tr_work_experience{{$item->id}}">
+                                                                                          <th scope="row">{{$key + 1}}</th>
+                                                                                          <td>{{$item->company_name}}</td>
+                                                                                          @php
+                                                                                                  $j = jobTitle::where('id',$item->job_title_id)->first();
+                                                                                          @endphp
+                                                                                          <td>
+                                                                                                {{$j->name}}
+                                                                                         </td>
+                                                                                          <td>{{$item->from}}</td>
+                                                                                          <td>{{$item->to}}</td>
+                                                                                          <td>{{$item->comments}}</td>
+                                                                                          <th>
+                                                                                                <a onclick="EditExperience({{$item->id}});"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
+                                                                                                <a onclick="DeleteExperience({{$item->id}});" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
+                                                                                          </th>
+                                                                                        </tr>     
+                                                                           
+                                                                                        @endforeach --}}
+                                                                                    </tbody>
+                                                                                  </table>
+                                                                            </div>
+                                                                            <div role="tabpanel" class="tab-pane fade" id="Section2">
+                                                                                <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+                                                                                    <div class="card-header">
+                                                                                        <br>
+                                                                                        <h4><i class="fa fa-group"></i> Company Craph</h4>
+                                                                                    </div>
+                                                                                
+  {{-- <div class="container"> --}}
+                                                            {{-- <div class="card">
+                                                                <div class="row">
+                                                                    <div class="card-body">
+                                                                        @foreach($subUnits as $subUnit)
+                                                                        <div class="col-md-12">
+                                                                            <h3>{{ $subUnit->name }}</h3>
+                                                                            <hr />
+                                                                            <div class="row">
+                                                                                @foreach($subUnit->children as $cats)
+                                                                                <div class="col-md-4">
+                                                                                    <h4>{{ $cats->name }}</h4>
+                                                                                    <hr />
+                                                                                    @foreach($cats->children as $cat)
+                                                                                    <h5>{{$cat->name}}</h5>
+                                                                                    @endforeach
+                                                                                </div>
+                                                                                @endforeach
+                                                                            </div>
+                                                                        </div>
+                                                                        @endforeach
+                                                                    </div>
+                                                                </div>
+                                                            </div> --}}
+                                                        {{-- </div> --}}
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                       
                                             </div>
                                     </div>
                             </div>
