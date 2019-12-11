@@ -1,5 +1,8 @@
 @extends('backend.layouts.master')
 @section('content')
+@php
+    use App\Model\employee;
+@endphp
 <div class="container-fluid">
         <!-- /row -->
         <div class="row">
@@ -171,27 +174,31 @@
                                             </div>
                                             <h3><span class="ti-home"></span> Employee WorkShift</h3>
                                         </div>
-                                            <table class="table" id="tbl_status">
+                                            <table class="table" id="tbl_work_shift">
                                                     <thead>
                                                       <tr>
                                                         <th scope="col">#No</th>
                                                         <th>Shift Name</th>
                                                         <th>From</th>
                                                         <th>To</th>
+                                                        <th>Duration</th>
                                                         <th>Action</th>
                                                       </tr>
                                                     </thead>
                                                     <tbody>
-                                                      <tr id="tr_status">
-                                                          <th scope="row"></th>
-                                                          <td></td>
-                                                          <td></td>
-                                                          <td></td>
-                                                          <th>
-                                                              <a onclick="EditStatus();"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
-                                                              <a onclick="DeleteStatus();" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
-                                                          </th>
-                                                        </tr>  
+                                                      @foreach ($workShifts as $key => $workShift)
+                                                        <tr id="tr_work_shift{{$workShift->id}}">
+                                                            <th scope="row">{{$key + 1}}</th>
+                                                            <td>{{$workShift->name}}</td>
+                                                            <td>{{$workShift->start_time}}</td>
+                                                            <td>{{$workShift->end_time}}</td>
+                                                            <td>{{$workShift->hours_per_day}}</td>
+                                                            <th>
+                                                                <a onclick="EditWorkShift({{$workShift->id}});"  class="btn btn-primary"  title="Edit"><i class="icon-edit"></i></a>
+                                                                <a onclick="DeleteWorkShift({{$workShift->id}});" class="btn btn-danger" title="Delete"><i class="ti-trash"></i></a>
+                                                            </th>
+                                                          </tr>  
+                                                        @endforeach
                                                     </tbody>
                                                   </table>
                                         </div>
@@ -205,10 +212,89 @@
     </div>
     </div>
     <!-- /#Load WorkShift -->
+    <div id="ModalWorkShiftEdit" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form id="frmEditWorkShift">
+                    <meta name="csrf-token" content="{{ csrf_token() }}">
+                    <input type="hidden" name="" val="" id="work_shift_id_edit">
+                    <div class="modal-header theme-bg">						
+                        <h4 class="modal-title"> Work Shift</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card-body">
+                            <div class="row">
+                              <div class="col-lg-12">
+                                      <label> Shift Name </label>
+                                      <input  name="name_edit" id="name_edit" type="text" class="form-control">
+                              </div>
+                                <div class="col-lg-5">
+                                    <label> Work Hour From :  </label>
+                                    <input    name="start_time_edit" id="start_time_edit" type="time" class="form-control Time_edit_1">
+                                </div>
+                                <div class="col-lg-5">
+                                    <label> To </label>
+                                    <input   name="end_time_edit" id="end_time_edit" type="time" class="form-control Time_edit_2">
+                                </div>
+                                <div class="col-lg-2">
+                                    <label> Duration  </label>
+                                    <input  disabled value="0" name="duration_edit" id="duration_edit" type="text" class="form-control Hours_edit">
+                                </div>
+                              <div class="col-lg-12">
+                                <select multiple="multiple" data-json="false" size="10" id="duallistbox_demo2_edit" name="duallistbox_demo2[]" class="demo2">
+                                  @php
+                                        $employees = employee::all();
+                                  @endphp
+                                  @foreach ($employees as $employee)
+                                     <option value="{{$employee->id}}">{{$employee->last_name .' '.$employee->first_name}}</option>  
+                                  @endforeach
+                                
+                                </select>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <input type="submit" class="btn btn-primary" value="Save">
+                    </div>
+                </form>
+            </div>
+        </div>
+      </div>
+  
+
+
+
+    <div id="ModalDeleteWorkShift" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="frmDeleteWorkShift">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <input type="hidden" name="" val="" id="work_shift_id">
+                    <div class="modal-header theme-bg">						
+                        <h4 class="modal-title"> WorkShift </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <h5> Do you want to delete WorkShift ? </h5>
+                    </div>
+                    <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                            <input type="submit" class="btn btn-primary" value="Yes">
+                    </div>
+                </form>
+            </div>
+        </div>
+      </div>
+
+
     <div id="ModalWorkShift" class="modal fade">
       <div class="modal-dialog modal-lg">
           <div class="modal-content">
-              <form id="frmEditCategory">
+              <form id="frmAddWorkShift">
                   <meta name="csrf-token" content="{{ csrf_token() }}">
                   <input type="hidden" name="" val="" id="work_shift_id">
                   <div class="modal-header theme-bg">						
@@ -220,24 +306,29 @@
                           <div class="row">
                             <div class="col-lg-12">
                                     <label> Shift Name </label>
-                                    <input  name="workshift_name" id="workshift_name" type="text" class="form-control">
+                                    <input  name="name" id="name" type="text" class="form-control">
                             </div>
                               <div class="col-lg-5">
                                   <label> Work Hour From :  </label>
-                                  <input  name="workshift_name" id="workshift_name" type="number" class="form-control">
+                                  <input value="08:00"  name="start_time" id="start_time" type="time" class="form-control Time1">
                               </div>
                               <div class="col-lg-5">
                                   <label> To </label>
-                                  <input  name="workshift_name" id="workshift_name" type="number" class="form-control">
+                                  <input   name="end_time" id="end_time" type="time" class="form-control Time2">
                               </div>
                               <div class="col-lg-2">
                                   <label> Duration  </label>
-                                  <input disabled  name="workshift_name" id="workshift_name" type="text" class="form-control">
+                                  <input  disabled value="0" name="duration" id="duration" type="text" class="form-control Hours">
                               </div>
                             <div class="col-lg-12">
-                              <select multiple="multiple" size="10" name="duallistbox_demo2" class="demo2">
-                                <option value="option1">Option 1</option>
-                                <option value="option2">Option 2</option>
+                              <select multiple="multiple" size="10" id="duallistbox_demo2" name="duallistbox_demo2[]" class="demo2">
+                                @php
+                                      $employees = employee::all();
+                                @endphp
+                                @foreach ($employees as $employee)
+                                   <option value="{{$employee->id}}">{{$employee->last_name .' '.$employee->first_name}}</option>  
+                                @endforeach
+                              
                               </select>
                             </div>
                           </div>
@@ -251,6 +342,7 @@
           </div>
       </div>
     </div>
+
 <!-- /#JobCategory -->
 
 <div id="ModalEditJobCategory" class="modal fade">
@@ -656,9 +748,10 @@
 </div>
 @endsection
 @section('scripts')
+    <script src="{{asset('js/backend/workshift.js')}}"></script>
     <script src="{{asset('js/backend/vacancy.js')}}"></script>
     <script src="{{asset('js/backend/paygrade.js')}}"></script>
     <script src="{{asset('js/backend/status.js')}}"></script>
     <script src="{{asset('js/backend/category.js')}}"></script>
-    <script src="{{asset('js/backend/workshift.js')}}"></script>
+   
 @endsection

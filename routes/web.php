@@ -50,6 +50,7 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
     // Route::get('login','AppController@login');
     Route::resource('company','CompanyController');
     Route::resource('subUnit','SubUnitController');
+    Route::resource('WorkShift','WorkShiftController');
     Route::resource('candidate','CandidateController');
     Route::post('candidate/update/{id}','CandidateController@updateCandidate');
     Route::get('candidate_vacancy/edit/{canidate_id}/{vacancy_id}','CandidateController@EditCandidateVacancy');

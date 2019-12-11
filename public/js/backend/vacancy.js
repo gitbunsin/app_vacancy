@@ -1,4 +1,5 @@
 
+
 $('#frmEditModalVacancy').validate({
     rules: {
         job_category_vacancy_id_edit: {

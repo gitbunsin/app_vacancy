@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\backend;
-
+namespace App\Http\Controllers\Backend;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Model\jobTitle;
-use App\Model\payGrade;
-use App\Model\EmploymentStatus;
-use App\Model\JobCategory;
 use App\Model\workShift;
-class VacancyController extends Controller
+use App\Model\employee;
+use App\Model\employee_work_shift;
+use App\Http\Controllers\Controller;
+
+class WorkShiftController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,13 +18,7 @@ class VacancyController extends Controller
      */
     public function index()
     {
-        $jobTitle = JobTitle::all();
-        $payGrade = PayGrade::with('currency')->get();
-        $status = EmploymentStatus::all();
-        $category = JobCategory::all();
-        $workShifts = WorkShift::with('employee')->get();
-        // dd($workShifts);
-        return view('backend/pages/admin/vacancy/index',compact('workShifts','jobTitle','payGrade','status','category'));
+        //
     }
 
     /**
@@ -46,6 +40,16 @@ class VacancyController extends Controller
     public function store(Request $request)
     {
         //
+        $workShift = new WorkShift();
+        $workShift->name = $request->name;
+        $workShift->start_time = $request->start_time;
+        $workShift->end_time = $request->end_time;
+        $workShift->hours_per_day  = $request->duration;
+        $workShift->save();
+        $e_id  = $request->employee;
+        $employee = employee::find($e_id);
+        $workShift->employee()->attach($employee);
+        return response::json($workShift);
     }
 
     /**
@@ -67,7 +71,10 @@ class VacancyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $workShift = WorkShift::find($id);
+        $workShift['all_employee'] = employee::all();
+        $workShift['employee_work_shift'] = employee_work_shift::where('work_shift_id',$id)->get();
+        return response::json($workShift);
     }
 
     /**
@@ -90,6 +97,8 @@ class VacancyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $workShift = WorkShift::find($id);
+        $workShift->delete();
+        return response::json($workShift);
     }
 }
