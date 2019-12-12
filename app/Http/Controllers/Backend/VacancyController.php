@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\jobTitle;
 use App\Model\payGrade;
+use DB; 
 use App\Model\EmploymentStatus;
+use App\Model\Employee_work_shift;
 use App\Model\JobCategory;
 use App\Model\workShift;
 class VacancyController extends Controller
@@ -23,7 +25,7 @@ class VacancyController extends Controller
         $status = EmploymentStatus::all();
         $category = JobCategory::all();
         $workShifts = WorkShift::with('employee')->get();
-        // dd($workShifts);
+    
         return view('backend/pages/admin/vacancy/index',compact('workShifts','jobTitle','payGrade','status','category'));
     }
 

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use App\Model\workShift;
 use App\Model\employee;
+use DB;
 use App\Model\employee_work_shift;
 use App\Http\Controllers\Controller;
 
@@ -73,7 +74,8 @@ class WorkShiftController extends Controller
     {
         $workShift = WorkShift::find($id);
         $workShift['all_employee'] = employee::all();
-        $workShift['employee_work_shift'] = employee_work_shift::where('work_shift_id',$id)->get();
+        $workShift['employee_work_shift'] = employee_work_shift::where('work_shift_id',$id)->get(); 
+      
         return response::json($workShift);
     }
 
@@ -86,7 +88,16 @@ class WorkShiftController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $workShift = WorkShift::find($id);
+        $workShift->name = $request->name;
+        $workShift->start_time = $request->start_time;
+        $workShift->end_time = $request->end_time;
+        $workShift->hours_per_day  = $request->duration;
+        $workShift->save();
+        $e_id  = $request->employee;
+        $employee = employee::find($e_id);
+        $workShift->employee()->sync($employee);
+        return response::json($workShift);
     }
 
     /**

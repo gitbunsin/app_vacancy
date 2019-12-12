@@ -297,7 +297,7 @@ function EditJobTitle(id){
             url: "/admin/jobTitle" + "/" + id + "/edit",
             success: function(data)
             {
-                //console.log(data);
+                // console.log(data);
                 $('#jobTitleEdit').modal('show');
                 $('#name_edit').val(data.name);
                 $('#description_edit').val(data.description);

@@ -1,4 +1,12 @@
+var demo1 = $('select[name="duallistbox_demo2_edit[]"]').bootstrapDualListbox({
+    nonSelectedListLabel: 'Available Reviewers',
+    selectedListLabel: 'Assigned Reviewer',
+    preserveSelectionOnMove: 'moved',
+    moveOnSelect: true,
+    helperSelectNamePostfix: '_helper',
+    nonSelectedFilter: ''
 
+});
 
 
 function EditWorkShift(id)
@@ -9,62 +17,35 @@ function EditWorkShift(id)
       url: "/admin/WorkShift" + "/" + id + "/edit",
       success: function(result)
       {
+
+        // console.log(result);
+            // WorkShitf
+         var w = $('#duallistbox_demo2_edit');
         //  console.log(result.employee_work_shift);
          $('#ModalWorkShiftEdit').modal('show');
+         $('.demo1').bootstrapDualListbox('refresh', true);
 
-         $('#name_edit').val(result.name);
+         $('#name_work_shift_edit').val(result.name);
          $('#start_time_edit').val(result.start_time);
          $('#end_time_edit').val(result.end_time);
          $('#duration_edit').val(result.hours_per_day);
 
-           // WorkShitf
-           var w = $('#duallistbox_demo2_edit');
-           w.empty();
-           $.each(result.all_employee, function (key , value) {
-             $.each(result.employee_work_shift, function (x , xx) {
-                // console.log(xx);
-               var isSelected = '';
-              //  console.log(value);
-               if(value.id == xx.employee_id)
-               {
-                   isSelected = 'selected';
-               }
-               w.append('<option value="'+value.id+'" '+isSelected+' >'+value.first_name + ' ' + value.last_name +'</option>');
-               w.bootstrapDualListbox('refresh', true);
-           });
-          });
          
-        //  var options = '';
-        // //  options.empty();
-        //  for (var i = 0; i <result.all_employee.length; i++) {
-        //   //  console.log(result.all_employee[i]['id']);
-        //   var a = 1;
-        //   for (var j = 0; j < result.employee_work_shift.length; j++) {
+        //  w.bootstrapDualListbox('destroy');
 
-        //     //  console.log(result.employee_work_shift[j]['employee_id']);
-        //       // Appending "selected" attribute to the values which are already selected
-        //       if (result.employee_work_shift[j]['employee_id'] == result.all_employee[i]['id']) {
-
-        //           isSelected = 'selected';
-        //             console.log(result.all_employee[i]['last_name'] + ' ' + result.all_employee[i]['first_name']);
-        //          options += '<option value="' + result.all_employee[i]['id'] + '" '+isSelected+'>' + result.all_employee[i]['first_name'] + '</option>';
-        //          a = 0;
-        //       }
-        //       //options += '<option value="' + result.all_employee[i]['id'] + '" '+isSelected+' >' + result.all_employee[i]['first_name'] + '</option>';
-        //       if (a == 1) {
-        //         options += '<options value="' + result.all_employee[i]['id'] + '">' + result.all_employee[i]['first_name'] + '</options>';
-        //     }
-        //   }
-        //   $("select#duallistbox_demo2_edit").empty().append(options);
-        //   $("select#duallistbox_demo2_edit").trigger('bootstrapduallistbox.refresh', true);
-          // Loading Country of operating dual-box field
-          // $("#country-of-operation-edit").DualListBox();
-          // $("select#bootstrap-duallistbox-selected-list_duallistbox_demo2[]").empty().append(optons);
-          // $("select#bootstrap-duallistbox-selected-list_duallistbox_demo2[]").trigger('bootstrapduallistbox.refresh', true);
-
-          // Loading Country of operating dual-box field
-          // $("#demo3").DualListBox();
-      // }
+        for(var i = 0; i<result.all_employee.length; i++){
+            // console.log(result.all_employee[i]['id']);
+            for (var j = 0; j < result.employee_work_shift.length; j++) {
+                    if(result.all_employee[i]['id'] == result.employee_work_shift[j]['employee_id'])
+                    {
+                        // console.log(result.all_employee[i]['first_name']);
+                        isSelected = 'selected';
+                        w.append('<option value="'+result.all_employee[i]['id']+'" '+isSelected+' >'+result.all_employee[i]['first_name'] + ' ' + result.all_employee[i]['last_name']+'</option>');
+                        w.bootstrapDualListbox('refresh', true);
+                       
+                    }
+            }
+        }
 
       },error : function(err){
 
@@ -72,6 +53,53 @@ function EditWorkShift(id)
       }
   });
 }
+
+        // Edit Employee WorkShift
+        $("#frmEditWorkShift").validate({
+            rules: {
+                name_work_shift_edit: {
+                  required: true,
+               },
+            }, submitHandler: function (form) {
+         
+               var id  = $('#work_shift_id_edit').val();
+               $.ajaxSetup({
+                   headers: {
+                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                   }
+               });
+               jQuery.ajax({
+                   url: "/admin/WorkShift" + '/' + id,
+                   method: 'PUT',
+                   data: {
+                    "name" : $('#name_work_shift_edit').val(),
+                    "employee" : $('#duallistbox_demo2_edit').val(),
+                    "start_time" : $('#start_time_edit').val(),
+                    "end_time" : $('#end_time_edit').val(),
+                    "duration" : $('#duration_edit').val()
+                },
+                   success: function (result) {
+                     //console.log(result);
+                     $('#ModalWorkShiftEdit').modal('hide');
+                     toastr.success('Success' , 'item has been updated !');
+                     var workShift = '<tr id="tr_work_shift' + result.id + '"> <th class="scope="row">' + result.id + '</th><td>' + result.name + '</td><td>' + result.start_time + '</td><td>' + result.end_time + '</td><td>' + result.hours_per_day + '</td>';
+                     workShift += '<th><a onclick="EditWorkShift(' + result.id + ');" class="btn btn-primary"  title="WorkShift"><i class="icon-edit"></i></a>  <a onclick="DeleteWorkShift(' + result.id + ');"  class="btn btn-danger" title="WorkShift"><i class="ti-trash"></i></a></th></tr>';
+                    //  $('#tbl_work_shift').append(workShift);
+                     $("#tr_work_shift" + result.id).replaceWith(workShift);
+                   },error : function(err){
+                        console.log(err);
+                   }
+                  });
+            }
+         });
+
+
+
+
+
+
+
+
 
 
 
@@ -149,6 +177,7 @@ $('#frmDeleteWorkShift').validate({
 function LoadWorkShift(){
     $('#ModalWorkShift').modal('show');
     $('#frmDeleteWorkShift').trigger('reset');
+    $('.demo2').bootstrapDualListbox('refresh', true);
 }
 
 
@@ -165,6 +194,22 @@ function LoadWorkShift(){
     $(".Time1,.Time2").change(calculate);
     calculate();
 });
+
+
+//edit 
+var timeControl_edit = document.getElementById('end_time_edit');
+timeControl_edit.value = '17:00';
+
+$(function () { 
+  function calculate() {
+      var hours = parseInt($(".Time_edit_2").val().split(':')[0], 10) - parseInt($(".Time_edit_1").val().split(':')[0], 10);
+      $(".Hours_edit").val(hours);
+  }
+  $(".Time_edit_1,.Time_edit_2").change(calculate);
+  calculate();
+});
+
+
 
 
 var demo2 = $('.demo2').bootstrapDualListbox({

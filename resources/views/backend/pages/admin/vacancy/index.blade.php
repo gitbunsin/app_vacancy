@@ -2,6 +2,7 @@
 @section('content')
 @php
     use App\Model\employee;
+    use App\Model\employee_work_shift;
 @endphp
 <div class="container-fluid">
         <!-- /row -->
@@ -227,7 +228,7 @@
                             <div class="row">
                               <div class="col-lg-12">
                                       <label> Shift Name </label>
-                                      <input  name="name_edit" id="name_edit" type="text" class="form-control">
+                                      <input  name="name_work_shift_edit" id="name_work_shift_edit" type="text" class="form-control">
                               </div>
                                 <div class="col-lg-5">
                                     <label> Work Hour From :  </label>
@@ -242,11 +243,14 @@
                                     <input  disabled value="0" name="duration_edit" id="duration_edit" type="text" class="form-control Hours_edit">
                                 </div>
                               <div class="col-lg-12">
-                                <select multiple="multiple" data-json="false" size="10" id="duallistbox_demo2_edit" name="duallistbox_demo2[]" class="demo2">
+                                <select multiple="multiple" data-json="false" size="10" id="duallistbox_demo2_edit" name="duallistbox_demo2_edit[]" class="demo2_edit">
                                   @php
-                                        $employees = employee::all();
+                                     $employeesx = DB::table("employees")->select('*')
+                                          ->whereNOTIn('id',function($query){
+                                            $query->select('employee_id')->from('employee_work_shift');
+                                          })->get();
                                   @endphp
-                                  @foreach ($employees as $employee)
+                                  @foreach ($employeesx as $employee)
                                      <option value="{{$employee->id}}">{{$employee->last_name .' '.$employee->first_name}}</option>  
                                   @endforeach
                                 
@@ -323,7 +327,16 @@
                             <div class="col-lg-12">
                               <select multiple="multiple" size="10" id="duallistbox_demo2" name="duallistbox_demo2[]" class="demo2">
                                 @php
-                                      $employees = employee::all();
+                                   $employees = DB::table("employees")->select('*')
+                                          ->whereNOTIn('id',function($query){
+                                            $query->select('employee_id')->from('employee_work_shift');
+                                          })
+                                          ->get();
+                                  //$employees = employee::all();
+                                  // dd($employees);
+                                  // $employees = employee::where('id', $productId)
+                                  //   ->join('category', 'product.category', '=', 'category.id')
+                                  //   ->select('product.id','category.name')->first();
                                 @endphp
                                 @foreach ($employees as $employee)
                                    <option value="{{$employee->id}}">{{$employee->last_name .' '.$employee->first_name}}</option>  
