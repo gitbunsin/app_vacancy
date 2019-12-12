@@ -77,14 +77,12 @@
                                     <div role="tabpanel" class="tab-pane active" id="seeker">
                                         <div class="account-content">
                                             <form action="#" id="frmSeekerRegister" class="tr-form">
-                                                <div class="form-group">
-                                                    <input required name="seeker_name" id="seeker_name" type="text" class="form-control" placeholder="Full Name">
-                                                </div>
+                
                                                 <div class="form-group">
                                                     <input required  name="seeker_username" id="seeker_username" type="text" class="form-control" placeholder="Username">
                                                 </div>
                                                 <div class="form-group">
-                                                    <input required type="email" name="seeker_email" id="seeker_email" class="form-control" placeholder="your Email">
+                                                    <input onblur="checkmain(this.value)" required type="email" name="seeker_email" id="seeker_email" class="form-control" placeholder="your Email">
                                                 </div>
                                                 <div class="form-group">
                                                     <input required type="password" name="seeker_password" id="seeker_password" class="form-control" placeholder="Password">

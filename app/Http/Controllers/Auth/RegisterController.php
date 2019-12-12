@@ -3,11 +3,16 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMailable;
 class RegisterController extends Controller
 {
     /*
@@ -70,10 +75,38 @@ class RegisterController extends Controller
         ]);
     }
 
-
+    //check mail 
+    public function Checkemail(Request $request)
+    {
+        $email = $request->email;
+        $emailcheck = DB::table('users')->where('email',$email)->count();
+        if($emailcheck > 0)
+        {
+            return response::json('error');   
+        }else {
+            return response::json('success');   
+        }
+       
+    }
     //Register 
-    public function register(){
-
-        return respone
+    public function register(Request $request)
+    {
+        $email = $request->seeker_email;
+        $emailcheck = DB::table('users')->where('email',$email)->count();
+        if($emailcheck > 0)
+        {
+            return response::json('error');   
+        }else 
+        {
+            $user = new User();
+            $user->name = $request->seeker_username;
+            $user->email = $request->seeker_email;
+            $user->email_verified = 0;
+            $user->password = Hash::make($request->seeker_password);
+            $user->save();
+            $name = 'Bunsin';
+            Mail::to('bunsingit@gmail.com')->send(new SendMailable($name));
+            return response::json('success  '); 
+        }
     }
 }

@@ -26,6 +26,7 @@ Route::get('admin-logout', ['as'=>'admin-logout','uses'=>'Auth\AdminLoginControl
 Route::get('admin-register', ['as'=>'admin-register','uses'=>'Auth\AdminRegisterController@showLoginForm']);
 Route::post('admin-register', ['as'=>'admin-register','uses'=>'Auth\AdminRegisterController@register']);
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Route::post('/register/checkemail','\App\Http\Controllers\Auth\RegisterController@Checkemail');
 Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admin'], function ($request) {
 
 
@@ -101,11 +102,6 @@ Route::get('contact','testController@contact');
 Route::get('create-resume','testController@createResume')->middleware('auth');;
 Route::get('app-mange-Candidate','testController@mangeCandidate');
 Route::get('user-profile','testController@profileDetails');
-// Route::post('upload/user/profile/{id}','Backend\JobController@ajaxImage');
-// Route::delete('ajax-remove-image/{filename}', 'ImageController@deleteImage');
-
-
-//Route::post('user-cv','testController@')->middleware('auth');
 
 Auth::routes();
 

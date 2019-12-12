@@ -1,8 +1,6 @@
 $("#frmSeekerRegister").validate({
     rules: {
-        seeker_name: {
-          required: true,
-       },
+
        seeker_username:{
            required : true
        },
@@ -17,28 +15,58 @@ $("#frmSeekerRegister").validate({
        }
     }, submitHandler: function (form) {
  
-       var id  = $('#category_edit_id').val();
+    //    var id  = $('#category_edit_id').val();
        $.ajaxSetup({
            headers: {
                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
            }
        });
        jQuery.ajax({
-           url: "/admin/jobCategory" + '/' + id,
-           method: 'PUT',
+           url: "register",
+           method: 'POST',
            data: {
-              "name" : $('#category_name_edit').val(),
+                "seeker_username" : $('#seeker_username').val(),
+                "seeker_email" : $('#seeker_email').val(),
+                "seeker_password" : $('#seeker_password').val()
            },
            success: function (result) {
-             //console.log(result);
-             $('#ModalEditJobCategory').modal('hide');
-             toastr.success('Success' , 'item has been updated !');
-             var category = '<tr id="tr_category' + result.id + '"> <th class="scope="row">' + result.id + '</><td>' + result.name + '</td>';
-             category += '<th><a onclick="Editcategory(' + result.id + ');"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Status"><i class="icon-edit"></i></a>  <a onclick="Deletecategory(' + result.id + ');" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Category"><i class="ti-trash"></i></a></th></tr>';
-             $("#tr_category" + result.id).replaceWith(category);
+             if(result == 'error')
+             {
+                toastr.error('Success' , 'Please use other email !');
+                
+             }else{
+                $('#Register').modal('hide');
+                toastr.success('Success' , 'user has been created !');
+             }
+        
            },error : function(err){
+
                 console.log(err);
            }
           });
     }
  });
+
+
+ //check mail 
+ function checkmain(email)
+{
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        url: '/register/checkemail',
+        type: 'POST',
+        data: { 'email': email },
+        success : function(result){
+            // console.log(result);
+            if(result == 'error'){
+                toastr.warning('Success' , 'Email Already In Use !');
+            }
+        },error : function(err){
+            console.log(err);
+        }
+    });
+}
