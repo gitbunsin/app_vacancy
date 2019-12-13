@@ -1,3 +1,4 @@
+<input id="registrar-btn" type="button"> <span id="in-progress"> 0 </span>
 <header class="tr-header">
     <nav class="navbar navbar-expand-lg">
         <div class="container">

@@ -29,7 +29,8 @@ class CreateUsersTable extends Migration
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('country')->nullable();
-            $table->string('email_verified')->nullable();
+            $table->string('email_token')->nullable();
+            $table->string('verified')->commnet('1 user is active & 0 is not active')->nullable();
             $table->string('password');
             $table->string('profile')->nullable();
             $table->rememberToken();

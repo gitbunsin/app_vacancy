@@ -101,12 +101,21 @@ class RegisterController extends Controller
             $user = new User();
             $user->name = $request->seeker_username;
             $user->email = $request->seeker_email;
-            $user->email_verified = 0;
+            $user->verified = 0;
+            $user->email_token = str_random(40);
             $user->password = Hash::make($request->seeker_password);
             $user->save();
-            $name = 'Bunsin';
-            Mail::to('bunsingit@gmail.com')->send(new SendMailable($name));
-            return response::json('success  '); 
+            $user_mail = User::where('id',$user->id)->first();
+            // $name = 'Bunsin';
+            Mail::to($user_mail->email)->send(new SendMailable($user_mail));
+            return response::json('success'); 
         }
+    }
+    public function verifyUserMail($id , $token)
+    {
+        $user = User::find($id);
+        $user->verified = 1;
+        $user->save();
+        return view('frontend/pages/job');
     }
 }

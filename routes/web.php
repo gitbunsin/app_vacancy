@@ -27,6 +27,7 @@ Route::get('admin-register', ['as'=>'admin-register','uses'=>'Auth\AdminRegister
 Route::post('admin-register', ['as'=>'admin-register','uses'=>'Auth\AdminRegisterController@register']);
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::post('/register/checkemail','\App\Http\Controllers\Auth\RegisterController@Checkemail');
+Route::get('/Register/activate/email/{id}/{token}','\App\Http\Controllers\Auth\RegisterController@verifyUserMail');
 Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admin'], function ($request) {
 
 

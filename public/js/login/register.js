@@ -29,6 +29,9 @@ $("#frmSeekerRegister").validate({
                 "seeker_email" : $('#seeker_email').val(),
                 "seeker_password" : $('#seeker_password').val()
            },
+           beforeSend:function(){
+            $("#in-pogress").html("Processing daata");
+           },
            success: function (result) {
              if(result == 'error')
              {
