@@ -2,17 +2,20 @@
 $("#frmVacancyApply").validate({
 
      submitHandler: function (form) {
-      var id  = $('#apply_job_id').val();
+      var vacancy_id  = $('#vacancy_id').val();
+      var candidate_id = $('#candidate_id').val();
       $.ajaxSetup({
           headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           }
       });
       jQuery.ajax({
-          url: "/user/applyJob/" + id,
+          url: "/user/applyJob/" + vacancy_id +'/' + candidate_id,
           method: 'POST',
-          data: {
-             "name" : $('#category_name_edit').val(),
+          data: {},
+          beforeSend:function()
+          {
+             $.LoadingOverlay("show");
           },
           success: function (result) {
             console.log(result);
@@ -25,11 +28,17 @@ $("#frmVacancyApply").validate({
                {               
                   window.location = URL;
                }, delay);
-            }else{
-            $.LoadingOverlay("hide");
-            
+            }else
+            {  
+               var delay = 3000; 
+               setTimeout(function()
+               {               
+                   toastr.success('this Vacancy has been applied !'); 
+                   $.LoadingOverlay("hide");
+                   $('#UserLogin').modal('hide');
+               }, delay);
+              
             }
-
           },error : function(err){
                console.log(err);
           }
@@ -39,16 +48,18 @@ $("#frmVacancyApply").validate({
 
 
 
-function ApplyJob(id)
+function ApplyJob(vacancy_id)
 {
-   $('#apply_job_id').val(id);
+   $('#vacancy_id').val(vacancy_id);
+   var candidate_id = $('#candidate_id').val();
    $.ajax({
       type: "GET",
-      url: "/checkUserLogin/" + id ,
-      
+      url: "/checkUserLogin/" + vacancy_id +'/'+ candidate_id ,
+     
       success: function(result)
       {
          // console.log(result);
+         // $.LoadingOverlay("hide");
          $('#UserLogin').modal('show');
         //  $('#category_name_edit').val(result.name);
       },error : function(err){

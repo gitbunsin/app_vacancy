@@ -19,7 +19,7 @@
 
                 <!-- /.check login -->
                 @if(Auth::check())
-                    <a href="#" onclick="ApplyJob({{auth::user()->id}});" class="btn btn-primary"><i class="fa fa-briefcase" aria-hidden="true"></i>Apply For This Job</a>
+                    <a href="#" onclick="ApplyJob({{$vacancy->id}});" class="btn btn-primary"><i class="fa fa-briefcase" aria-hidden="true"></i>Apply For This Job</a>
                  @else
                  <a href="#" onclick="NotLogin();" class="btn btn-primary"><i class="fa fa-briefcase" aria-hidden="true"></i>Apply For This Job</a>
                 @endif
@@ -274,7 +274,8 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <form id="frmVacancyApply">
-                    <input type="hidden" id="apply_job_id" value="">
+                    <input type="hidden" id="vacancy_id" value="">
+                    <input type="hidden" id="candidate_id" value="{{auth::user()->id}}">
                     <meta name="csrf-token" content="{{ csrf_token() }}">
                     <div  class="modal-header theme-bg" style="background-color:#008def" >
                             <h4 class="modal-title" style="color:white;"> Vacancy</h4>

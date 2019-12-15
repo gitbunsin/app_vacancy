@@ -10,8 +10,11 @@ use App\Model\userCv;
 use App\Model\UserJob;
 use App\Model\location;
 use App\User;
+use App\Model\candidate;
+use App\Model\candidate_vacancy;
 use App\Model\Admin;
 use Carbon\Carbon;
+use App\Model\candidateAttachment;
 use App\Model\jobCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -43,8 +46,6 @@ class JobController extends Controller
     public function vacancyDetails($id)
     {
         $vacancy = vacancy::with(['location','category','jobType','company','skill'])->where('id',$id)->first();
-        // dd($vacancy);
-        // $file = jobAttachment::with(['job'])->where('job_id',$id)->first();
         return view('frontend.pages.job-apply-detail',compact('vacancy','file'));
     }
 
@@ -141,11 +142,11 @@ class JobController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function CheckUserLogin($id)
+     public function CheckUserLogin($vacancy_id, $candidate_id)
     {
         if(Auth::user())
         {
-            $user = User::with('attachment')->where('id',$id)->first();
+            $user = User::with('attachment')->where('id',$candidate_id)->first();
             return response::json($user);
         }else
         {
@@ -153,12 +154,41 @@ class JobController extends Controller
         }
     }
     //ApplyJob
-    public function UserApplyJob($user_id)
+    public function UserApplyJob(Request $request ,$vacancy_id , $candidate_id)
     {
-        $UserCvCheck = DB::table('user_cvs')->where('user_id',$user_id)->count();
+        $UserCvCheck = DB::table('user_cvs')->where('user_id',$candidate_id)->count();
         if($UserCvCheck > 0)
         {
-             return response::json('success');  
+           
+            $user_candidate = User::with('attachment')->where('id',$candidate_id)->first();
+            $candidate = new candidate();
+            $candidate->admin_id = 9;
+            $candidate->company_id = 1;
+            $candidate->user_id = 1;
+            $candidate->name = $user_candidate->name;
+            $candidate->email =  $user_candidate->email;
+            $candidate->first_name = $user_candidate->first_name;
+            $candidate->last_name = $user_candidate->last_name;
+            $candidate->middle_name = $user_candidate->middle_name;
+            $candidate->phone = $user_candidate->phone;
+            $candidate->save();
+            $candidate->vacancy()->attach($vacancy_id,array('status'=>'Application Initiated','applied_date'=>Carbon::now()));
+            //candidate attachment
+            $attachment = new candidateAttachment();
+            $attachment->candidate_id = $candidate->id;
+            $attachment->file_name =  $user_candidate->attachment[0]->file_name ;
+            $attachment->attachment_type = $user_candidate->attachment[0]->file_type ;
+            $attachment->file_size =  $user_candidate->attachment[0]->file_size;
+            $attachment->file_type = $user_candidate->attachment[0]->file_type;
+            $attachment->file_content = $user_candidate->attachment[0]->file_content;
+            // $dir = 'uploads/UserCv';
+            // $request->file('file')->move($dir, $user_candidate->attachment->file_name);
+            $attachment->save();
+            $candidate['vacancy']= vacancy::where('id',$vacancy_id)->first();
+            $candidate['candidate_vacancy'] = candidate_vacancy::where('vacancy_id',$vacancy_id)
+                                                              ->where('candidate_id',$candidate_id)->first();
+             return response::json($candidate);  
+            // return response::json(); 
         }else 
         {
             return response::json('error'); 
