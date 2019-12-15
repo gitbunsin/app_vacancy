@@ -135,6 +135,7 @@ function Edit(x)
 
 
 
+//Addd Candidate
 $("#frmAddCandidate").validate({
     rules: {
         first_name: {
@@ -188,7 +189,7 @@ $("#frmAddCandidate").validate({
                  processData: false,
                 success: function(result)
                 {
-                //    console.log(result);
+                   console.log(result);
                    $('#ModalAddCandidate').modal('hide');
                    toastr.success('Success' , 'item has been create !');
                    var canddate = '<tr id="tr_candidate' + result.id + '"> <th class="scope="row">' + result.id + '</th><td>' + result.first_name + ' ' + result.last_name + '</td><td>' + result.vacancy.vacancy_name + '</td><td>' + result.candidate_vacancy.applied_date + '</td><td>' + result.candidate_vacancy.status + '</td>';

@@ -96,7 +96,8 @@ Route::delete('user/attachment/delete/{id}','Backend\JobController@userAttacheme
 Route::get('user/attachment/edit/{id}','Backend\JobController@userAttachementEdit');
 Route::post('user/attachment/update/{id}','Backend\JobController@userAttachementUpdate');
 // Route::get('vacancy/detail/{id}','Backend\JobController@vacancyDetails');
-Route::get('checkUserLogin','Backend\JobController@CheckUserLogin');
+Route::get('checkUserLogin/{id}','Backend\JobController@CheckUserLogin');
+Route::post('user/applyJob/{id}','Backend\JobController@UserApplyJob');
 Route::get('job-download-company/{filename}','Backend\JobController@getDownloadCompany');
 Route::get('pricing','testController@pricing');
 Route::get('about','testController@about');

@@ -55,7 +55,7 @@ class CandidateController extends Controller
         $filename = $request->file('file')->getClientOriginalName();
         $candidate = new candidate();
         $candidate->admin_id = auth()->guard('admin')->user()->id;
-        $candidate->company()->associate($request->company);
+        $candidate->company_id = $request->company;
         $candidate->user_id = 1;
         $candidate->name = $request->first_name .' '. $request->last_name;
         $candidate->email = $request->email;

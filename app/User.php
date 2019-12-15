@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Model\UserCv;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -39,8 +40,12 @@ class User extends Authenticatable
     ];
     
 
-    public function job(){
-
+    public function job()
+    {
         return $this->belongsToMany(job::class);
+    }
+    public function attachment()
+    {
+        return $this->hasMany(userCv::class);
     }
 }

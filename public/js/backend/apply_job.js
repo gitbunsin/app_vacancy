@@ -1,3 +1,66 @@
+//function  Apply JOb
+$("#frmVacancyApply").validate({
+
+     submitHandler: function (form) {
+      var id  = $('#apply_job_id').val();
+      $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+      jQuery.ajax({
+          url: "/user/applyJob/" + id,
+          method: 'POST',
+          data: {
+             "name" : $('#category_name_edit').val(),
+          },
+          success: function (result) {
+            console.log(result);
+            if(result == "error")
+            {
+               toastr.error('Please update Your Resume Before You Apply !'); 
+               var delay = 3000; 
+               URL = "http://localhost:8000/user-profile";
+               setTimeout(function()
+               {               
+                  window.location = URL;
+               }, delay);
+            }else{
+            $.LoadingOverlay("hide");
+            
+            }
+
+          },error : function(err){
+               console.log(err);
+          }
+         });
+   }
+});
+
+
+
+function ApplyJob(id)
+{
+   $('#apply_job_id').val(id);
+   $.ajax({
+      type: "GET",
+      url: "/checkUserLogin/" + id ,
+      
+      success: function(result)
+      {
+         // console.log(result);
+         $('#UserLogin').modal('show');
+        //  $('#category_name_edit').val(result.name);
+      },error : function(err){
+
+            console.log(err);
+      }
+  });
+}
+
+
+
+
 $(document).ready(function () {
    $('#frmEditResume').validate({
       rules : {
@@ -153,22 +216,6 @@ $(document).ready(function () {
 });
 
 
-function ApplyJob()
-{
-   $.ajax({
-      type: "GET",
-      url: "/checkUserLogin" ,
-      success: function(result)
-      {
-         console.log(result);
-         $('#UserLogin').modal('show');
-        //  $('#category_name_edit').val(result.name);
-      },error : function(err){
-
-            console.log(err);
-      }
-  });
-}
 
 
 function NotLogin()

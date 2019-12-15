@@ -150,10 +150,10 @@
                                         <form action="#" id="frmUserLogin" class="tr-form">
                                                 <meta name="csrf-token" content="{{ csrf_token() }}">
                                             <div class="form-group">
-                                                <input type="email" id="email" name="email" class="form-control" placeholder="your Email employers">
+                                                <input type="email" id="email" name="email" class="form-control" placeholder="email">
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" id="password" name="password" class="form-control" placeholder="Password">
+                                                <input type="password" id="password" name="password" class="form-control" placeholder="password">
                                             </div>
                                             <div class="user-option">
                                                     <div class="checkbox">
@@ -176,7 +176,7 @@
                                         <form action="#" class="tr-form" id="frmLoginEmployer">
                                             <meta name="csrf-token" content="{{ csrf_token() }}">
                                             <div class="form-group">
-                                                <input required id="admin_email_login" name="admin_email_login" type="email" class="form-control" placeholder="admin email">
+                                                <input required id="admin_email_login" name="admin_email_login" type="email" class="form-control" placeholder="email">
                                             </div>
                                             <div class="form-group">
                                                 <input required id="admin_password_login" name="admin_password_login" type="password" class="form-control" placeholder="password">

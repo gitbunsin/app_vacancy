@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Input;
+
 class JobController extends Controller
 {
     /**
@@ -140,16 +141,31 @@ class JobController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function CheckUserLogin()
+     public function CheckUserLogin($id)
     {
         if(Auth::user())
         {
-            return response::json('success');
+            $user = User::with('attachment')->where('id',$id)->first();
+            return response::json($user);
         }else
         {
             return response::json('success');
         }
     }
+    //ApplyJob
+    public function UserApplyJob($user_id)
+    {
+        $UserCvCheck = DB::table('user_cvs')->where('user_id',$user_id)->count();
+        if($UserCvCheck > 0)
+        {
+             return response::json('success');  
+        }else 
+        {
+            return response::json('error'); 
+        }
+    }
+
+
     // public function jobApply($job_id){
     //     if(Auth::user()){
             
