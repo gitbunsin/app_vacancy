@@ -41,9 +41,8 @@ class Toaster
             'width' => config('sweetalert.width'),
             'heightAuto' => config('sweetalert.height_auto'),
             'padding' => config('sweetalert.padding'),
-            'animation' => config('sweetalert.animation'),
             'showConfirmButton' => config('sweetalert.show_confirm_button'),
-            'showCloseButton' => config('sweetalert.show_close_button'),
+            'showCloseButton' => config('sweetalert.show_close_button')
         ];
     }
 
@@ -59,9 +58,11 @@ class Toaster
         unset($this->config['width']);
         unset($this->config['padding']);
         unset($this->config['showCloseButton']);
-        
+        unset($this->config['timer']);
+
         $this->config['position'] = config('sweetalert.middleware.toast_position');
         $this->config['showCloseButton'] = config('sweetalert.middleware.toast_close_button');
+        $this->config['timer'] = config('sweetalert.middleware.alert_auto_close');
 
         $this->flash();
 
@@ -73,18 +74,18 @@ class Toaster
      *
      * @param  string $title
      * @param  string $text
-     * @param  array  $type
+     * @param  array  $icon
      *
      * @return void
      */
-    public function alert($title = '', $text = '', $type = null)
+    public function alert($title = '', $text = '', $icon = null)
     {
         $this->config['title'] = $title;
 
         $this->config['text'] = $text;
 
-        if (!is_null($type)) {
-            $this->config['type'] = $type;
+        if (!is_null($icon)) {
+            $this->config['icon'] = $icon;
         }
 
         $this->flash();
@@ -209,18 +210,18 @@ class Toaster
      *
      * @param string $title
      * @param string $code
-     * @param string $type
+     * @param string $icon
      *
      * @return RealRashid\SweetAlert\Toaster::alert();
      */
-    public function html($title = '', $code = '', $type = '')
+    public function html($title = '', $code = '', $icon = '')
     {
         $this->config['title'] = $title;
 
         $this->config['html'] = $code;
 
-        if (!is_null($type)) {
-            $this->config['type'] = $type;
+        if (!is_null($icon)) {
+            $this->config['icon'] = $icon;
         }
 
         $this->flash();
@@ -233,17 +234,17 @@ class Toaster
      * Display a toast alert message with any typed.
      *
      * @param string $title
-     * @param string $type
+     * @param string $icon
      * @param string $position
      *
      * @return RealRashid\SweetAlert\Toaster::alert();
      */
-    public function toast($title = '', $type = '')
+    public function toast($title = '', $icon = '')
     {
         $this->config['toast'] = true;
         $this->config['title'] = $title;
         $this->config['showCloseButton'] = true;
-        $this->config['type'] = $type;
+        $this->config['icon'] = $icon;
         $this->config['position'] = config('sweetalert.toast_position');
         $this->config['showConfirmButton'] = false;
         $this->flash();
@@ -303,7 +304,7 @@ class Toaster
     {
         $this->config['imageUrl'] = $imageUrl;
         $this->config['showCloseButton'] = true;
-        unset($this->config['type']);
+        unset($this->config['icon']);
         $this->flash();
 
         return $this;
@@ -429,14 +430,20 @@ class Toaster
 
     /*
      **
-     * Set to true if you want to focus the
-     * "Cancel"-button by default.
-     * @param bool $animation
+     * Custom animation with [Animate.css](https://daneden.github.io/animate.css/)
+     * CSS classes for animations when showing a popup (fade in):
+     * CSS classes for animations when hiding a popup (fade out):
+     * @param array $showAnimation
+     * @param array $hideAnimation
      * @return RealRashid\SweetAlert\Toaster::alert();
      */
-    public function animation($animation = true)
+    public function animation($showAnimation, $hideAnimation)
     {
-        $this->config['animation'] = $animation;
+        if(!config('sweetalert.animation.enable')){
+            config(['sweetalert.animation.enable' => true]);
+        }
+        $this->config['showClass'] = ['popup' => "animated {$showAnimation}"];
+        $this->config['hideClass'] = ['popup' => "animated {$hideAnimation}"];
         $this->flash();
 
         return $this;
@@ -555,6 +562,36 @@ class Toaster
     public function hideCloseButton()
     {
         $this->config['showCloseButton'] = false;
+        $this->flash();
+
+        return $this;
+    }
+
+    /*
+     **
+     * Apply default styling to buttons.
+     * If you want to use your own classes (e.g. Bootstrap classes)
+     * set this parameter to false.
+     *
+     * @return the $this;
+     */
+    public function buttonsStyling($buttonsStyling)
+    {
+        $this->config['buttonsStyling'] = $buttonsStyling;
+        $this->flash();
+
+        return $this;
+    }
+
+    /*
+     **
+     * Use any HTML inside icons (e.g. Font Awesome)
+     *
+     * @return the $this;
+     */
+    public function iconHtml($iconHtml)
+    {
+        $this->config['iconHtml'] = $iconHtml;
         $this->flash();
 
         return $this;

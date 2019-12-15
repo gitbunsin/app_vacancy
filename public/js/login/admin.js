@@ -56,8 +56,8 @@
             }
         },submitHandler: function(form) 
         {
-            $email = $('#admin_email').val();
-            $password = $('#admin_password').val()
+            $email = $('#admin_email_login').val();
+            $password = $('#admin_password_login').val()
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -71,7 +71,7 @@
                     "password" : $password
                 },
                 success: function(result){
-                    //console.log(result);
+                    // console.log(result);
                     if(result == "success"){
                         toastr.success('Admin' , 'logined succcess !');
                         // redirectWithFlashMessage('/admin/app');
@@ -79,8 +79,7 @@
                     }else{
                         toastr.error('These credentials do not match our records.!');
                     }
-
-                    console.log(result);
+                    // console.log(result);
                 },error : function(err){
 
                     console.log(err);

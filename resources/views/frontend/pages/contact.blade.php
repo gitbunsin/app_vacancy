@@ -1,3 +1,4 @@
+
 @extends('frontend.layouts.template')
 @section('content')
 <div class="tr-breadcrumb bg-image section-before">

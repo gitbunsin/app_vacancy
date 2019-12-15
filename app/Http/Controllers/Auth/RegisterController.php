@@ -116,6 +116,6 @@ class RegisterController extends Controller
         $user = User::find($id);
         $user->verified = 1;
         $user->save();
-        return view('frontend/pages/job');
+        return view('frontend/pages/contact',compact('id','token'))->with('success', 'Login Successfully!');
     }
 }

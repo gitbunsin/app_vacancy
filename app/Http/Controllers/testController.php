@@ -19,7 +19,7 @@ class testController extends Controller
     public function index()
     {
         //
-        return view('frontend.pages.job');
+        return view('frontend/pages/job');
     }
     public function pricing()
     {
@@ -42,7 +42,7 @@ class testController extends Controller
     }
     public function contact(){
 
-        return view('frontend.pages.contact');
+        return view('frontend/pages/contact');
     }
     public function createResume(){
 

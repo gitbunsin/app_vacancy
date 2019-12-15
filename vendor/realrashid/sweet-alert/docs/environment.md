@@ -3,43 +3,41 @@
 ```php
 /*
 |--------------------------------------------------------------------------
-| SweetAlert2 Local .JS File
-|--------------------------------------------------------------------------
-| By default SweetAlert2 use its local sweetalert.all.js
-| file.
-*/
-SWEET_ALERT_LOCAL=true
-
-/*
-|--------------------------------------------------------------------------
 | CDN LINK
 |--------------------------------------------------------------------------
 | By default SweetAlert2 use its local sweetalert.all.js
 | file.
 | However, you can use its cdn if you want.
+|
 */
-SWEET_ALERT_CDN=''
+
+'cdn' => env('SWEET_ALERT_CDN'),
 
 /*
 |--------------------------------------------------------------------------
 | AutoClose Timer
 |--------------------------------------------------------------------------
+|
 | This is for the all Modal windows.
 | For specific modal just use the autoClose() helper method.
+|
 */
-SWEET_ALERT_TIMER=5000
+
+'timer' => env('SWEET_ALERT_TIMER', 5000),
 
 /*
 |--------------------------------------------------------------------------
 | Width
 |--------------------------------------------------------------------------
+|
 | Modal window width, including paddings (box-sizing: border-box).
 | Can be in px or %.
 | The default width is 32rem.
 | This is for the all Modal windows.
 | for particular modal just use the width() helper method.
 */
-SWEET_ALERT_WIDTH=32rem
+
+'width' => env('SWEET_ALERT_WIDTH', '32rem'),
 
 /*
 |--------------------------------------------------------------------------
@@ -48,29 +46,40 @@ SWEET_ALERT_WIDTH=32rem
 | By default, SweetAlert2 sets html's and body's CSS height to auto !important.
 | If this behavior isn't compatible with your project's layout,
 | set heightAuto to false.
+|
 */
-SWEET_ALERT_HEIGHT_AUTO=true
+
+'height_auto' => env('SWEET_ALERT_HEIGHT_AUTO', true),
 
 /*
 |--------------------------------------------------------------------------
 | Padding
 |--------------------------------------------------------------------------
+|
 | Modal window padding.
 | Can be in px or %.
 | The default padding is 1.25rem.
 | This is for the all Modal windows.
 | for particular modal just use the padding() helper method.
 */
-SWEET_ALERT_PADDING=1.25rem
+
+'padding' => env('SWEET_ALERT_PADDING', '1.25rem'),
 
 /*
 |--------------------------------------------------------------------------
 | Animation
 |--------------------------------------------------------------------------
-| If set to false, modal CSS animation will be disabled.
+| Custom animation with [Animate.css](https://daneden.github.io/animate.css/)
+| If set to false, modal CSS animation will be use default ones.
 | For specific modal just use the animation() helper method.
+|
 */
-SWEET_ALERT_ANIMATION=true
+
+'animation' => [
+    'enable' => env('SWEET_ALERT_ANIMATION_ENABLE', false),
+],
+
+'animatecss' => env('SWEET_ALERT_ANIMATECSS', 'https://cdn.jsdelivr.net/npm/animate.css'),
 
 /*
 |--------------------------------------------------------------------------
@@ -80,8 +89,10 @@ SWEET_ALERT_ANIMATION=true
 | It can be useful when you're using custom HTML description.
 | This is for the all Modal windows.
 | For specific modal just use the showConfirmButton() helper method.
+|
 */
-SWEET_ALERT_CONFIRM_BUTTON=true
+
+'show_confirm_button' => env('SWEET_ALERT_CONFIRM_BUTTON', true),
 
 /*
 |--------------------------------------------------------------------------
@@ -91,8 +102,10 @@ SWEET_ALERT_CONFIRM_BUTTON=true
 | which the user can click on to dismiss the modal.
 | This is for the all Modal windows.
 | For specific modal just use the showCloseButton() helper method.
+|
 */
-SWEET_ALERT_CLOSE_BUTTON=false
+
+'show_close_button' => env('SWEET_ALERT_CLOSE_BUTTON', false),
 
 /*
 |--------------------------------------------------------------------------
@@ -102,7 +115,26 @@ SWEET_ALERT_CLOSE_BUTTON=false
 | 'top-start', 'top-end', 'center', 'center-start',
 | 'center-end', 'bottom', 'bottom-start', or 'bottom-end'.
 | For specific modal just use the position() helper method.
+|
 */
-SWEET_ALERT_TOAST_POSITION=top-end
+
+'toast_position' => env('SWEET_ALERT_TOAST_POSITION', 'top-end'),
+
+/*
+|--------------------------------------------------------------------------
+| Middleware
+|--------------------------------------------------------------------------
+| Modal window or toast, config for the Middleware
+|
+*/
+
+'middleware' => [
+
+    'toast_position' => env('SWEET_ALERT_MIDDLEWARE_TOAST_POSITION', 'top-end'),
+
+    'toast_close_button' => env('SWEET_ALERT_MIDDLEWARE_TOAST_CLOSE_BUTTON', true),
+
+    'alert_auto_close' => env('SWEET_ALERT_MIDDLEWARE_ALERT_AUTO_CLOSE', 5000),
+],
 
 ```

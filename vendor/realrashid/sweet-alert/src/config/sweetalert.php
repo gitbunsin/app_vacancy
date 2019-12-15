@@ -1,18 +1,6 @@
 <?php
 
 return [
-    /*
-    |--------------------------------------------------------------------------
-    | SweetAlert2 Local .JS File
-    |--------------------------------------------------------------------------
-    | By default SweetAlert2 use its local sweetalert.all.js
-    | file.
-    |
-    |
-    */
-
-    'local' => env('SWEET_ALERT_LOCAL', true),
-
 
     /*
     |--------------------------------------------------------------------------
@@ -82,12 +70,17 @@ return [
     |--------------------------------------------------------------------------
     | Animation
     |--------------------------------------------------------------------------
-    | If set to false, modal CSS animation will be disabled.
+    | Custom animation with [Animate.css](https://daneden.github.io/animate.css/)
+    | If set to false, modal CSS animation will be use default ones.
     | For specific modal just use the animation() helper method.
     |
     */
 
-    'animation' => env('SWEET_ALERT_ANIMATION', true),
+    'animation' => [
+        'enable' => env('SWEET_ALERT_ANIMATION_ENABLE', false),
+    ],
+
+    'animatecss' => env('SWEET_ALERT_ANIMATECSS', 'https://cdn.jsdelivr.net/npm/animate.css'),
 
     /*
     |--------------------------------------------------------------------------
@@ -141,6 +134,8 @@ return [
         'toast_position' => env('SWEET_ALERT_MIDDLEWARE_TOAST_POSITION', 'top-end'),
 
         'toast_close_button' => env('SWEET_ALERT_MIDDLEWARE_TOAST_CLOSE_BUTTON', true),
+
+        'alert_auto_close' => env('SWEET_ALERT_MIDDLEWARE_ALERT_AUTO_CLOSE', 5000),
     ],
 
 ];

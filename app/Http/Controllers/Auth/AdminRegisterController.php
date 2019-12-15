@@ -6,6 +6,12 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use DB;
+use App\Mail\SendMailable;
 
 class AdminRegisterController extends Controller
 {
@@ -59,19 +65,54 @@ class AdminRegisterController extends Controller
         ]);
     }
 
+    public function register(Request $request)
+    {
+        $email = $request->admin_email;
+        $emailcheck = DB::table('admins')->where('email',$email)->count();
+        if($emailcheck > 0)
+        {
+            return response::json('error');   
+        }else 
+        {
+            $user = new Admin();
+            $user->name = $request->admin_username;
+            $user->email = $request->admin_email;
+            $user->verified = 0;
+            $user->email_token = str_random(40);
+            $user->password = Hash::make($request->admin_password);
+            $user->save();
+            $admin_mail= Admin::where('id',$user->id)->first();
+            // $name = 'Bunsin';
+            Mail::to($admin_mail->email)->send(new SendMailable($admin_mail));
+            return response::json('success'); 
+        }
+    }
+
+    public function checkAdminMail(Request $request)
+    {
+        $email = $request->email;
+        $emailcheck = DB::table('admins')->where('email',$email)->count();
+        if($emailcheck > 0)
+        {
+            return response::json('error');   
+        }else {
+            return response::json('success');   
+        }
+       
+    }
     /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
-    {
-//        dd('Register Admin');
-        return Admin::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
-    }
+//     protected function create(array $data)
+//     {
+// //        dd('Register Admin');
+//         return Admin::create([
+//             'name' => $data['name'],
+//             'email' => $data['email'],
+//             'password' => Hash::make($data['password']),
+//         ]);
+//     }
 }

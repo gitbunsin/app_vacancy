@@ -1,4 +1,5 @@
-<input id="registrar-btn" type="button"> <span id="in-progress"> 0 </span>
+{{-- <input id="registrar-btn" type="button"> <span id="in-progress"> 0 </span> --}}
+
 <header class="tr-header">
     <nav class="navbar navbar-expand-lg">
         <div class="container">
@@ -51,7 +52,7 @@
                 <ul class="sign-in tr-list">
                         <li><i class="fa fa-user"></i></li>
                         <li><a href="#" data-toggle="modal" data-target="#login">Sign In </a></li>
-                        <li><a href="#" data-toggle="modal" data-target="#Register">Register</a></li>
+                        <li><a href="#" onclick="LoadRegister();">Register</a></li>
                     </ul><!-- /.sign-in -->	
               @endif    					
             </div><!-- /.nav-right -->
@@ -63,7 +64,8 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div style="background-color:#008def" class="modal-header">
-          <h5 style="color:white;" class="modal-title" id="exampleModalLabel">Register</h5>
+          {{-- <h5 style="color:white;" class="modal-title" id="exampleModalLabel">Register</h5> --}}
+            <h5 style="color:white;" class="modal-title" >Register</h5>
         </div>
         <div class="modal-body">
                         <div class="text-center">
@@ -100,27 +102,21 @@
                                     </div>
                                     <div role="tabpanel" class="tab-pane" id="employers">
                                         <div class="account-content">
-                                            <form action="#" class="tr-form">
+                                            <form action="#" id="frmEmployerLogin" class="tr-form">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" placeholder="Your Full Name">
+                                                    <input required type="text" class="form-control" name="admin_user_name" id="admin_user_name" placeholder="Username">
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" placeholder="Username">
+                                                    <input onblur="checkAdminMail(this.value)" required type="email" class="form-control" name="admin_email" id="admin_email" placeholder="Email">
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="email" class="form-control" placeholder="your Email">
+                                                    <input required type="password" class="form-control" name="admin_password" id="admin_password" placeholder="Password">
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="password" class="form-control" placeholder="Password">
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="password" class="form-control" placeholder="Confirm Password">
+                                                    <input required type="password" class="form-control" name="admin_confirm_password" id="admin_confirm_password" placeholder="Confirm Password">
                                                 </div>												
                                                 <button type="submit" class="btn btn-primary">Sign Up</button>
                                             </form>	
-                                            <div class="new-user text-center">
-                                                <span>Already Registered? <a href="signin.html">Sign in</a> </span>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>				
@@ -180,10 +176,10 @@
                                         <form action="#" class="tr-form" id="frmLoginEmployer">
                                             <meta name="csrf-token" content="{{ csrf_token() }}">
                                             <div class="form-group">
-                                                <input id="admin_email" name="admin_email" type="email" class="form-control" placeholder="admin email">
+                                                <input required id="admin_email_login" name="admin_email_login" type="email" class="form-control" placeholder="admin email">
                                             </div>
                                             <div class="form-group">
-                                                <input id="admin_password" name="admin_password" type="password" class="form-control" placeholder="password">
+                                                <input required id="admin_password_login" name="admin_password_login" type="password" class="form-control" placeholder="password">
                                             </div>
                                             <div class="user-option">
                                                     <div class="checkbox">

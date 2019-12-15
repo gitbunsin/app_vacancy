@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e75ae00be3ee84e90f1d62f6453f7d1c",
+    "content-hash": "78c6d78b7b2169e949233365b1781916",
     "packages": [
         {
             "name": "brian2694/laravel-toastr",
@@ -1601,16 +1601,16 @@
         },
         {
             "name": "realrashid/sweet-alert",
-            "version": "v2.0.3",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/realrashid/sweet-alert.git",
-                "reference": "b5058ef292cbdd84d00eec5f099c18771816d869"
+                "reference": "3d62695110a4b396cd585faf61e12a1cb717d1e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/realrashid/sweet-alert/zipball/b5058ef292cbdd84d00eec5f099c18771816d869",
-                "reference": "b5058ef292cbdd84d00eec5f099c18771816d869",
+                "url": "https://api.github.com/repos/realrashid/sweet-alert/zipball/3d62695110a4b396cd585faf61e12a1cb717d1e6",
+                "reference": "3d62695110a4b396cd585faf61e12a1cb717d1e6",
                 "shasum": ""
             },
             "require": {
@@ -1663,7 +1663,7 @@
                 "sweet-alert2",
                 "toast"
             ],
-            "time": "2019-10-13T11:45:06+00:00"
+            "time": "2019-11-27T13:05:54+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
