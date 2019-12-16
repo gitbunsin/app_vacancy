@@ -11,7 +11,6 @@ use App\Model\UserJob;
 use App\Model\location;
 use App\User;
 use App\Model\candidate;
-use App\Model\candidate_vacancy;
 use App\Model\Admin;
 use Carbon\Carbon;
 use App\Model\candidateAttachment;
@@ -45,7 +44,10 @@ class JobController extends Controller
 
     public function vacancyDetails($id)
     {
+        // dd($id);
         $vacancy = vacancy::with(['location','category','jobType','company','skill'])->where('id',$id)->first();
+        // dd($vacancy);
+        // $file = jobAttachment::with(['job'])->where('job_id',$id)->first();
         return view('frontend.pages.job-apply-detail',compact('vacancy','file'));
     }
 
@@ -142,7 +144,7 @@ class JobController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function CheckUserLogin($vacancy_id, $candidate_id)
+     public function CheckUserLogin()
     {
         if(Auth::user())
         {

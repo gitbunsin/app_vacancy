@@ -1,6 +1,17 @@
 @extends('frontend.layouts.template')
 @section('content')
-
+@php
+    use App\Model\candidate_vacancy;
+@endphp
+<style>
+    .not-active {
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+    color: yellow;
+    font-weight: bold;
+}
+</style>
 <div class="tr-breadcrumb bg-image section-before">
     <div class="container">
         <div class="breadcrumb-info text-center">
@@ -16,15 +27,22 @@
                 <li><i class="fa fa-hourglass-start" aria-hidden="true"></i>Application Deadline : {{$vacancy->closingDate}}</li>
             </ul>	
             <div class="buttons">
-
+                 @if(Auth::check())
+                    @php
+                        $candidate_vacancy = candidate_vacancy::where('vacancy_id',$vacancy->id)->where('candidate_id',auth::user()->id)->count();                           
+                    @endphp
+                 @endif         
                 <!-- /.check login -->
-                @if(Auth::check())
-                    <a href="#" onclick="ApplyJob({{$vacancy->id}});" class="btn btn-primary"><i class="fa fa-briefcase" aria-hidden="true"></i>Apply For This Job</a>
+                @if(Auth::check() && $candidate_vacancy > 0)
+                    <a href="#" data-candidate_id={{auth::user()->id}} onclick="ApplyJob({{$vacancy->id}});" class="btn btn-primary not-active"><i class="fa fa-briefcase" aria-hidden="true"></i>Applied For This Job</a>
+                 @elseif(Auth::check())
+                     <a href="#" onclick="NotLogin();" class="btn btn-primary"><i class="fa fa-briefcase" aria-hidden="true"></i>Apply For This Job</a>  
                  @else
-                 <a href="#" onclick="NotLogin();" class="btn btn-primary"><i class="fa fa-briefcase" aria-hidden="true"></i>Apply For This Job</a>
-                @endif
-                <a href="#" class="btn button-bookmark"><i class="fa fa-bookmark" aria-hidden="true"></i>Bookmark</a>
-                <span class="btn button-share"><i class="fa fa-share-alt" aria-hidden="true"></i>Share <span><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></span></span>
+                     <a href="#" onclick="NotLogin();" class="btn btn-primary"><i class="fa fa-briefcase" aria-hidden="true"></i>Apply For This Job</a>  
+                 @endif
+                 <a href="#" class="btn button-bookmark"><i class="fa fa-bookmark" aria-hidden="true"></i>Bookmark</a>
+               
+                 <span class="btn button-share"><i class="fa fa-share-alt" aria-hidden="true"></i>Share <span><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></span></span>
             </div>		
         </div>
     </div><!-- /.container -->
@@ -275,7 +293,9 @@
             <div class="modal-content">
                 <form id="frmVacancyApply">
                     <input type="hidden" id="vacancy_id" value="">
-                    <input type="hidden" id="candidate_id" value="{{auth::user()->id}}">
+                    @if (Auth::check())
+                     <input type="hidden" id="candidate_id" value="{{auth::user()->id}}">
+                    @endif  
                     <meta name="csrf-token" content="{{ csrf_token() }}">
                     <div  class="modal-header theme-bg" style="background-color:#008def" >
                             <h4 class="modal-title" style="color:white;"> Vacancy</h4>
