@@ -70,9 +70,64 @@ function ApplyJob(vacancy_id)
       }
   });
 }
+//User Upate
+$('#user_name').prop('disabled', true);
+$('#user_email').prop('disabled',true);
+$('#user_phone').prop('disabled',true);
+$('#user_zip').prop('disabled',true);
+$('#user_zip').prop('disabled',true);
+$('#user_zip').prop('disabled',true);
+$('#user_date').prop('disabled',true);
+$('#user_nationality').prop('disabled',true);
+$('#user_sex').prop('disabled',true);
+$('#user_address').prop('disabled',true);
 
 
+function EnableProfile()
+{
+   $('#user_name').prop('disabled', false);
+   $('#user_email').prop('disabled',false);
+   $('#user_phone').prop('disabled',false);
+   $('#user_zip').prop('disabled',false);
+   $('#user_zip').prop('disabled',false);
+   $('#user_zip').prop('disabled',false);
+   $('#user_date').prop('disabled',false);
+   $('#user_nationality').prop('disabled',false);
+   $('#user_sex').prop('disabled',false);
+   $('#user_address').prop('disabled',false);
 
+}
+$('#btn_profile').val('0');
+$('#btn_profile').click(function(){
+     $('#btn_profile').val('1');
+     var id = $('#user_login_id').val();
+     var isUpdate =   $('#btn_profile').val();
+     if(isUpdate == "1"){
+      $.ajaxSetup({
+         headers: {
+             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+         }
+     });
+     jQuery.ajax({
+         url: "/admin/user/" + id,
+         method: 'PUT',
+         data: {},
+        //  beforeSend:function()
+        //  {
+        //     $.LoadingOverlay("show");
+        //  },
+         success: function (result) 
+         {
+            console.log(result);
+
+         },error: function(err)
+         {
+            console.log(err);
+         }
+        });
+     }
+     EnableProfile();
+});
 
 $(document).ready(function () {
    $('#frmEditResume').validate({
@@ -97,7 +152,7 @@ $(document).ready(function () {
                headers: {
                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                }
-           });
+            });
    
              $.ajax({
                  url: "user/attachment/update/" + id, // point to server-side PHP script

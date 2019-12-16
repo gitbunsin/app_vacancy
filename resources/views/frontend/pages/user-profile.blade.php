@@ -83,54 +83,53 @@
 									</div>
 								</div>
 								<ul class="tr-list account-details">
-									
-											<input type="hidden" value="{{Auth::user()->id}}" name="user_login_id" id="user_login_id">
-											<div class="row">
-								
-													<div class="col-lg-6">
-															<label>Name</label>
-															<input value="{{$user->name}}" class="form-control" type="text" name="name" id="name"/>
-													</div>
-													<div class="col-lg-6">
-															<label>Email</label>
-															<input value="{{$user->email}}" class="form-control" type="email" name="user_email" id="user_email"/>
-													</div>
-													<div class="col-lg-6">
-															<label>Phone Number</label>
-															<input value="{{$user->phone}}" class="form-control" type="number" name="phone" id="phone"/>
-													</div>
-													<div class="col-lg-6">
-															<label>Zip Code</label>
-															<input value="{{$user->zip}}" class="form-control" type="text" name="zip" id="zip"/>
-													</div>
-													<div class="col-lg-6">
-															<label>Birth Date</label>
-															<input class="form-control" type="date" name="date" id="date"/>
-													</div>
-													<div class="col-lg-6">
-															<label>Nationality</label>
-															<input class="form-control" type="text" name="nationality" id="nationality"/>
-													</div>
-													<div class="col-lg-6">
-														<label>Sex</label>
-														@php
-															$sex = array('Male','Female');
-														@endphp
-														<select name="sex" id="sex" class="form-control">
-															@foreach( $sex as $sexs)
-																<option value="{{$sexs}}">{{$sexs}}</option>
-															@endforeach
-														</select>
-													</div>
-													<div class="col-lg-6">
-															<label>Address</label>
-															<input value="{{$user->address}}" class="form-control" type="text" name="address" id="address"/>
-													</div>
-											</div>
-											<div class="buttons pull-right">
-													<a href="#" class="btn button-cancle">Cancle</a>
-													<button type="submit" class="btn btn-primary">Update Your Resume</button>
-											</div>
+							<input type="hidden" value="{{Auth::user()->id}}" name="user_login_id" id="user_login_id">
+							<div class="row">
+				
+									<div class="col-lg-6">
+											<label>Name</label>
+											<input value="{{$user->name}}" class="form-control" type="text" name="user_name" id="user_name"/>
+									</div>
+									<div class="col-lg-6">
+											<label>Email</label>
+											<input value="{{$user->email}}" class="form-control" type="email" name="user_email" id="user_email"/>
+									</div>
+									<div class="col-lg-6">
+											<label>Phone Number</label>
+											<input value="{{$user->phone}}" class="form-control" type="number" name="user_phone" id="user_phone"/>
+									</div>
+									<div class="col-lg-6">
+											<label>Zip Code</label>
+											<input value="{{$user->zip}}" class="form-control" type="text" name="user_zip" id="user_zip"/>
+									</div>
+									<div class="col-lg-6">
+											<label>Birth Date</label>
+											<input class="form-control" type="date" name="user_date" id="user_date"/>
+									</div>
+									<div class="col-lg-6">
+											<label>Nationality</label>
+											<input class="form-control" type="text" name="user_nationality" id="user_nationality"/>
+									</div>
+									<div class="col-lg-6">
+										<label>Sex</label>
+										@php
+											$sex = array('Male','Female');
+										@endphp
+										<select name="user_sex" id="user_sex" class="form-control">
+											@foreach( $sex as $sexs)
+												<option value="{{$sexs}}">{{$sexs}}</option>
+											@endforeach
+										</select>
+									</div>
+									<div class="col-lg-6">
+											<label>Address</label>
+											<input value="{{$user->address}}" class="form-control" type="text" name="user_address" id="user_address"/>
+									</div>
+							</div>
+							<div class="buttons pull-right">
+									<a href="#" class="btn button-cancle">Cancle</a>
+									<button type="button" id="btn_profile"  class="btn btn-primary btn_profile" value="">Update Your Profile</button>
+							</div>
 								</ul>	
 							</form>							
 							</div><!-- /.display-information -->

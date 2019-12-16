@@ -131,9 +131,8 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
 
-        $data = request()->except(['_token','_method']);
-        User::where('id', '=', $id)->update($data);
-        return redirect('/user-profile');
+        
+        return response::json('success');
     }
 
     /**
