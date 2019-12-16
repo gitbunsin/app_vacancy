@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Input;
+use App\Model\candidate_vacancy;
 
 class JobController extends Controller
 {
@@ -51,6 +52,16 @@ class JobController extends Controller
         return view('frontend.pages.job-apply-detail',compact('vacancy','file'));
     }
 
+    //public function profileDetails
+
+    public function profileDetails($id)
+    {
+        $user_cv = userCv::where('user_id',$id)->first();
+        $user = User::where('id',$id)->first();
+        // dd($user_cv);
+        return view('frontend.pages.user-profile',compact('user_cv','user'));
+
+    }
      /**
      * Show the form for creating a new resource.
      *
@@ -144,12 +155,21 @@ class JobController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function CheckUserLoginApplyJob()
+    {
+        if(Auth::user())
+        {
+            return response::json('success');
+        }else
+        {
+            return response::json('error');
+        }
+    }
      public function CheckUserLogin()
     {
         if(Auth::user())
         {
-            $user = User::with('attachment')->where('id',$candidate_id)->first();
-            return response::json($user);
+            return response::json('error');
         }else
         {
             return response::json('success');
@@ -166,7 +186,7 @@ class JobController extends Controller
             $candidate = new candidate();
             $candidate->admin_id = 9;
             $candidate->company_id = 1;
-            $candidate->user_id = 1;
+            $candidate->user_id = $candidate_id;
             $candidate->name = $user_candidate->name;
             $candidate->email =  $user_candidate->email;
             $candidate->first_name = $user_candidate->first_name;
@@ -174,7 +194,13 @@ class JobController extends Controller
             $candidate->middle_name = $user_candidate->middle_name;
             $candidate->phone = $user_candidate->phone;
             $candidate->save();
-            $candidate->vacancy()->attach($vacancy_id,array('status'=>'Application Initiated','applied_date'=>Carbon::now()));
+            $candidate_vacancy = new candidate_vacancy();
+            $candidate_vacancy->candidate_id = $candidate_id;
+            $candidate_vacancy->vacancy_id = $vacancy_id;
+            $candidate_vacancy->status = 'Application Initiated';
+            $candidate_vacancy->applied_date = Carbon::now();
+            $candidate_vacancy->save();
+            // $candidate->vacancy()->attach($vacancy_id,array('status'=>'Application Initiated','applied_date'=>Carbon::now()));
             //candidate attachment
             $attachment = new candidateAttachment();
             $attachment->candidate_id = $candidate->id;
@@ -198,37 +224,6 @@ class JobController extends Controller
     }
 
 
-    // public function jobApply($job_id){
-    //     if(Auth::user()){
-            
-    //         return response::json('success');
-
-    //     }else{
-
-    //         return response::json('success');
-    //     }
-        //     $user_id = auth::user()->id;
-        //     $hasCv = userCv::where('user_id',$user_id)->first();
-        //     if($hasCv){
-        //         $userJob = new UserJob();
-        //         $userJob->user_id = $user_id;
-        //         $userJob->job_id = $job_id;
-        //         $userJob->applied_date = Carbon::now();
-        //         $userJob->status = "Application Initiated";
-        //         $userJob->save();
-        //         return  redirect('job-apply-details/')->with(['job_id'=>$job_id]);
-        //         //dd('User already has CV ');
-        //     }else{
-
-        //         //dd('has not CV plz upload ur cv');
-        //         return redirect('/user-profile');
-        //     }
-
-        // }else{
-
-        //     return redirect('login');
-        // }
-    // }
 
     /**
      * Show the form for creating a new resource.

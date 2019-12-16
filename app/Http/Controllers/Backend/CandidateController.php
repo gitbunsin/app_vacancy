@@ -24,7 +24,7 @@ class CandidateController extends Controller
     {
         //
         $candidate = candidate::with('vacancy')->get();
-        // dd($candidate);
+        dd($candidate);
         return view('Backend/pages/candidate/index',compact('candidate'));
 
     }

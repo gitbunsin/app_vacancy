@@ -34,9 +34,9 @@
                  @endif         
                 <!-- /.check login -->
                 @if(Auth::check() && $candidate_vacancy > 0)
-                    <a href="#" data-candidate_id={{auth::user()->id}} onclick="ApplyJob({{$vacancy->id}});" class="btn btn-primary not-active"><i class="fa fa-briefcase" aria-hidden="true"></i>Applied For This Job</a>
+                    <a href="#" class="btn btn-primary not-active"><i class="fa fa-briefcase" aria-hidden="true"></i>Applied For This Job</a>
                  @elseif(Auth::check())
-                     <a href="#" onclick="NotLogin();" class="btn btn-primary"><i class="fa fa-briefcase" aria-hidden="true"></i>Apply For This Job</a>  
+                 <a href="#" data-candidate_id={{auth::user()->id}} onclick="ApplyJob({{$vacancy->id}});" class="btn btn-primary "><i class="fa fa-briefcase" aria-hidden="true"></i>Apply For This Job</a>
                  @else
                      <a href="#" onclick="NotLogin();" class="btn btn-primary"><i class="fa fa-briefcase" aria-hidden="true"></i>Apply For This Job</a>  
                  @endif

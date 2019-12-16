@@ -35,7 +35,7 @@
 									<div class="col-sm-4">
 										<div class="fun-fact">
 											<div class="fun-fact-icon">
-												<img src="images/icons/fun-fact5.png" alt="images" class="img-fluid">
+												<img src="{{asset('images/icons/fun-fact5.png')}}" alt="images" class="img-fluid">
 											</div>
 											<div class="media-body">
 												<h1 class="counter">32</h1>
@@ -46,7 +46,7 @@
 									<div class="col-sm-4">
 										<div class="fun-fact">
 											<div class="fun-fact-icon">
-												<img src="images/icons/fun-fact6.png" alt="images" class="img-fluid">
+												<img src="{{asset('images/icons/fun-fact6.png')}}" alt="images" class="img-fluid">
 											</div>
 											<div class="media-body">
 												<h1 class="counter">27</h1>
@@ -59,7 +59,7 @@
 							<div class="section display-information">
 									<form id="frmUpdateUserProfile">
 								<div class="title title-after">
-									<div class="icon"><img src="images/icons/2.png" alt="Icon" class="img-fluid"></div> 
+									<div class="icon"><img src="{{asset('images/icons/2.png')}}" alt="Icon" class="img-fluid"></div> 
 									<span>Your display Information</span>
 								</div>
 								<div class="change-photo">
@@ -67,7 +67,7 @@
 										@if($user->profile)
 											<img id="preview" src="{{url('uploads/UserCv/'.$user->profile)}}" width="350px" height="320px"/><br/>
 										@else
-											<img id="preview" src="images/noimage.jpg" width="350px" height="320px"/><br/>
+											<img id="preview" src="{{asset('images/noimage.jpg')}}" width="350px" height="320px"/><br/>
 										@endif
 										<input type="file" id="image" style="display: none;"/>
 									</div>
@@ -318,7 +318,8 @@
 												<th>Action</th>
 											  </tr>
 											</thead>
-											<tbody>
+											<tbody> 
+										
 											@if($user_cv)
 												<tr id="tr_userCv{{$user_cv->id}}">
 													<td>{{$user_cv->file_name}}</td>
@@ -330,6 +331,7 @@
 													</th>
 												</tr>
 											@else
+
 											@endif
 											</tbody>
 										  </table>	  
@@ -1011,7 +1013,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <form id="frmUploadResume" enctype="multipart/form-data" action="#" method="POST">
-                    <input type="hidden" id="user_resume_id" value="{{Auth::user()->id}}">
+                    <input type="hidden" id="user_resume_id" value="{{auth::user()->id}}">
 					<input type="hidden" name="_token" value="{{ csrf_token()}}">
                     <div  class="modal-header theme-bg" style="background-color:#008def" >
                             <h4 class="modal-title" style="color:white;"> Upload Resume</h4>

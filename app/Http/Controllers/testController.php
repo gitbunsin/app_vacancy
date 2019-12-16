@@ -40,7 +40,8 @@ class testController extends Controller
 
         return view('frontend.pages.about');
     }
-    public function contact(){
+    public function contact()
+    {
 
         return view('frontend/pages/contact');
     }
@@ -55,8 +56,8 @@ class testController extends Controller
     public function profileDetails()
     {
 
-        $user_cv = userCv::where('user_id',Auth::user()->id)->first();
-        $user = User::where('id',Auth::user()->id)->first();
+        $user_cv = userCv::where('user_id',auth::user()->id)->first();
+        $user = User::where('id',auth::user()->id)->first();
         // dd($user);
         return view('frontend.pages.user-profile',compact('user_cv','user'));
     }

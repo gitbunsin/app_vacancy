@@ -90,13 +90,15 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
 
 Route::get('job','Backend\JobController@job');
 Route::get('job-apply/{job_id}','Backend\JobController@jobApply');
+Route::get('/user/profile/{id}','Backend\JobController@profileDetails');
 Route::get('vacancy/detail/{id}','Backend\JobController@vacancyDetails');
 Route::post('user/attachment/{id}','Backend\JobController@userAttachement');
 Route::delete('user/attachment/delete/{id}','Backend\JobController@userAttachementDelete');
 Route::get('user/attachment/edit/{id}','Backend\JobController@userAttachementEdit');
 Route::post('user/attachment/update/{id}','Backend\JobController@userAttachementUpdate');
 // Route::get('vacancy/detail/{id}','Backend\JobController@vacancyDetails');
-Route::get('checkUserLogin','Backend\JobController@CheckUserLogin');
+Route::get('checkUserLogin/{vacancy_id}/{candidate_id}','Backend\JobController@CheckUserLogin');
+Route::get('check/user/login','Backend\JobController@CheckUserLoginApplyJob');
 Route::post('user/applyJob/{vacancy_id}/{candidate_id}','Backend\JobController@UserApplyJob');
 Route::get('job-download-company/{filename}','Backend\JobController@getDownloadCompany');
 Route::get('pricing','testController@pricing');

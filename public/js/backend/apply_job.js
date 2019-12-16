@@ -13,29 +13,31 @@ $("#frmVacancyApply").validate({
           url: "/user/applyJob/" + vacancy_id +'/' + candidate_id,
           method: 'POST',
           data: {},
-          beforeSend:function()
-          {
-             $.LoadingOverlay("show");
-          },
+         //  beforeSend:function()
+         //  {
+         //     $.LoadingOverlay("show");
+         //  },
           success: function (result) {
             console.log(result);
             if(result == "error")
             {
                toastr.error('Please update Your Resume Before You Apply !'); 
                var delay = 3000; 
-               URL = "http://localhost:8000/user-profile";
+               URL = "http://127.0.0.1:8000/user/profile/" + candidate_id;
                setTimeout(function()
                {               
                   window.location = URL;
                }, delay);
             }else
             {  
+               toastr.success('this Vacancy has been applied !'); 
                var delay = 3000; 
                setTimeout(function()
                {               
-                   toastr.success('this Vacancy has been applied !'); 
+                  
                    $.LoadingOverlay("hide");
                    $('#UserLogin').modal('hide');
+                   location.reload();
                }, delay);
               
             }
@@ -131,7 +133,7 @@ function EditUserCv(id)
    $('#user_resume_id_edit').val(id);
    $.ajax({
       type: "GET",
-      url: "user/attachment/edit" + "/" + id ,
+      url: "/user/attachment/edit" + "/" + id ,
       success: function(result)
       {
          // console.log(result);
@@ -161,7 +163,7 @@ $('#frmDeleteResume').validate({
             }
         });
         jQuery.ajax({
-            url: "user/attachment/delete" + '/' + id,
+            url: "/user/attachment/delete" + '/' + id,
             method: 'Delete',
             success: function (response) {
                 $('#ModalDeleteUserCv').modal('hide');
@@ -189,7 +191,7 @@ $(document).ready(function () {
          var id = $('#user_resume_id').val();
          var extension = $('#file_name').val().split('.').pop().toLowerCase();
          if ($.inArray(extension, ['pdf', 'doc', 'xlsx']) == -1) {
-            toastr.warning('The user is not logined in the system !');
+            toastr.warning('Please Select Valid File !');
             //  $('#errormessage').html('Please Select Valid File... ');
          } else {
      
@@ -204,7 +206,7 @@ $(document).ready(function () {
            });
    
              $.ajax({
-                 url: "user/attachment/" + id, // point to server-side PHP script
+                 url: "/user/attachment/" + id, // point to server-side PHP script
                  data: form_data,
                  type: 'POST',
                  dataType:"json",
@@ -226,14 +228,11 @@ $(document).ready(function () {
    });
 });
 
-
-
-
 function NotLogin()
 {
    $.ajax({
       type: "GET",
-      url: "/checkUserLogin" ,
+      url: "/check/user/login" ,
       success: function(result)
       {
          console.log(result);
