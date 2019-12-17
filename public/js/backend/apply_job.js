@@ -81,6 +81,8 @@ $('#user_date').prop('disabled',true);
 $('#user_nationality').prop('disabled',true);
 $('#user_sex').prop('disabled',true);
 $('#user_address').prop('disabled',true);
+$('#user_first_name').prop('disabled',true);
+$('#user_last_name').prop('disabled',true);
 
 
 function EnableProfile()
@@ -95,39 +97,75 @@ function EnableProfile()
    $('#user_nationality').prop('disabled',false);
    $('#user_sex').prop('disabled',false);
    $('#user_address').prop('disabled',false);
+   $('#user_first_name').prop('disabled',false);
+   $('#user_last_name').prop('disabled',false);
 
 }
 $('#btn_profile').val('0');
-$('#btn_profile').click(function(){
+$('#btn_profile').click(function()
+{
      $('#btn_profile').val('1');
-     var id = $('#user_login_id').val();
      var isUpdate =   $('#btn_profile').val();
-     if(isUpdate == "1"){
-      $.ajaxSetup({
-         headers: {
-             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-         }
-     });
-     jQuery.ajax({
-         url: "/admin/user/" + id,
-         method: 'PUT',
-         data: {},
-        //  beforeSend:function()
-        //  {
-        //     $.LoadingOverlay("show");
-        //  },
-         success: function (result) 
-         {
-            console.log(result);
-
-         },error: function(err)
-         {
-            console.log(err);
-         }
-        });
-     }
      EnableProfile();
 });
+
+
+   // $('#btn_profile').click(function(){
+   //    var isUpdate =   $('#btn_profile').val();
+   //    if(isUpdate == "1"){
+   //       console.log("isUpdate");
+   //    }
+   // });
+
+
+
+//User Update
+// var isUpdate =   $('#btn_profile').val();
+// if(isUpdate == "1"){
+//       $("#frmUpdateUserProfile").validate({
+//          rules : {
+//             user_name : {
+//                required : true,
+//             },user_first_name : {
+//                required : true
+//             },user_last_name : {
+//                required : true
+//             }
+//          },
+//          submitHandler: function (form)
+//           {
+//              console.log("ok");
+            //    var vacancy_id  = $('#vacancy_id').val();
+            //    var candidate_id = $('#candidate_id').val();
+            //    $.ajaxSetup({
+            //       headers: {
+            //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            //       }
+            //    });
+            //    jQuery.ajax({
+            //       url: "/user/applyJob/" + vacancy_id +'/' + candidate_id,
+            //       method: 'POST',
+            //       data: {},
+            //       //  beforeSend:function()
+            //       //  {
+            //       //     $.LoadingOverlay("show");
+            //       //  },
+            //       success: function (result) {
+            //          console.log(result);
+            //       },error : function(err){
+            //             console.log(err);
+            //       }
+            //       });
+//         }
+//       });
+// }else{
+
+
+// }
+
+
+
+
 
 $(document).ready(function () {
    $('#frmEditResume').validate({

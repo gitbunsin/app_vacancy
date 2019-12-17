@@ -58,6 +58,7 @@
 							</div><!-- /.tr-fun-fact -->
 							<div class="section display-information">
 									<form id="frmUpdateUserProfile">
+											<input type="hidden" name="_token" value="{{ csrf_token()}}">
 								<div class="title title-after">
 									<div class="icon"><img src="{{asset('images/icons/2.png')}}" alt="Icon" class="img-fluid"></div> 
 									<span>Your display Information</span>
@@ -93,6 +94,14 @@
 									<div class="col-lg-6">
 											<label>Email</label>
 											<input value="{{$user->email}}" class="form-control" type="email" name="user_email" id="user_email"/>
+									</div>
+									<div class="col-lg-6">
+										<label>First Name</label>
+										<input value="{{$user->first_name}}" class="form-control" type="text" name="user_first_name" id="user_first_name"/>
+									</div>
+									<div class="col-lg-6">
+										<label>Last Name</label>
+										<input value="{{$user->last_name}}" class="form-control" type="text" name="user_last_name" id="user_last_name"/>
 									</div>
 									<div class="col-lg-6">
 											<label>Phone Number</label>

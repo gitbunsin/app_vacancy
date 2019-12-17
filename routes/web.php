@@ -75,6 +75,7 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
     Route::get('profile','JobController@profile');
     Route::resource('app-candidate','CandidateController');
     Route::resource('user','UserController');
+    Route::post('user/update/{id}','UserController@updateUserProfile');
     Route::post('user-cv/{id}','UserController@userCV');
     Route::get('create-resume','CandidateController@createResume');
     Route::post('user/resume/{id}','UserController@userCV');

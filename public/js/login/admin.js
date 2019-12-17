@@ -26,7 +26,7 @@
                     "password" : $password
                 },
                 success: function(result){
-                    //console.log(result);
+                    // console.log(result);
                     if(result == "success"){
                         toastr.success('User' , 'logined succcess !');
                         // redirectWithFlashMessage('/admin/app');
@@ -34,8 +34,7 @@
                     }else{
                         toastr.error('These credentials do not match our records.!');
                     }
-
-                    console.log(result);
+                    // console.log(result);
                 },error : function(err){
 
                     console.log(err);

@@ -21,6 +21,10 @@ class UserController extends Controller
        // dd($user);
         return view('Backend/pages/candidate/index',compact('user'));
     }
+    public function updateUserProfile($id){
+
+        return response::json('success');
+    }
     public function userCV(Request $request ,$id)
     {
        // dd('hello');
