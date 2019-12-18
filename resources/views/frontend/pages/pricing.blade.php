@@ -1,177 +1,84 @@
 @extends('frontend.layouts.template')
 @section('content')
-    <section class="wp-process home-three">
-        <div class="container">
-            <div class="row">
-                <div class="main-heading">
-                    <p>How We Work</p>
-                    <h2>Our Work <span>Process</span></h2>
-                </div>
-            </div>
-            <!--/row-->
+<div class="tr-breadcrumb bg-image section-before">
+		<div class="container">
+			<div class="breadcrumb-info text-center">
+				<div class="page-title">
+					<h1> Our Packages</h1>
+				</div>		
+				<ol class="breadcrumb">
+					<li><a href="index.html">Home</a></li>
+					<li class="active">Packages</li>
+				</ol>			
+			</div>
+		</div><!-- /.container -->
+	</div><!-- /.tr-breadcrumb -->
 
-            <div class="col-md-4 col-sm-6">
-                <div class="work-process">
-                    <div class="work-process-icon">
-                        <span class="fa fa-5x fa fa-search "></span>
-                    </div>
-                    <div class="work-process-caption">
-                        <h4>Search Job</h4>
-                        <p>Aliquam vestibulum cursus felis. In iaculis iaculis sapien ac condimentum. Vestibulum congue posuere lacus</p>
-                    </div>
-                </div>
-
-                <div class="work-process">
-                    <div class="work-process-icon">
-                        <span class="fa fa-phone"></span>
-                    </div>
-                    <div class="work-process-caption">
-                        <h4>Find Job</h4>
-                        <p>Aliquam vestibulum cursus felis. In iaculis iaculis sapien ac condimentum. Vestibulum congue posuere lacus</p>
-                    </div>
-                </div>
-
-                <div class="work-process">
-                    <div class="work-process-icon">
-                        <span class="fa fa-group"></span>
-                    </div>
-                    <div class="work-process-caption">
-                        <h4>Hire Employee</h4>
-                        <p>Aliquam vestibulum cursus felis. In iaculis iaculis sapien ac condimentum. Vestibulum congue posuere lacus</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 hidden-sm">
-                <img src="{{asset('img/service/wp-iphone.png')}}" class="img-responsive" alt="" />
-            </div>
-
-            <div class="col-md-4 col-sm-6">
-                <div class="work-process">
-                    <div class="work-process-icon">
-                        <span class="fa fa-dot-circle-o"></span>
-                    </div>
-                    <div class="work-process-caption">
-                        <h4>Start Work</h4>
-                        <p>Aliquam vestibulum cursus felis. In iaculis iaculis sapien ac condimentum. Vestibulum congue posuere lacus</p>
-                    </div>
-                </div>
-
-                <div class="work-process">
-                    <div class="work-process-icon">
-                        <span class="fa fa-dollar"></span>
-                    </div>
-                    <div class="work-process-caption">
-                        <h4>Pay Money</h4>
-                        <p>Aliquam vestibulum cursus felis. In iaculis iaculis sapien ac condimentum. Vestibulum congue posuere lacus</p>
-                    </div>
-                </div>
-
-                <div class="work-process">
-                    <div class="work-process-icon">
-                        <span class="fa fa-smile-o"></span>
-                    </div>
-                    <div class="work-process-caption">
-                        <h4>Happy</h4>
-                        <p>Aliquam vestibulum cursus felis. In iaculis iaculis sapien ac condimentum. Vestibulum congue posuere lacus</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-    <div class="clearfix"></div>
-    <section class="pricing">
-        <div class="container">
-            <div class="row">
-                <div class="main-heading">
-                    <p>How We Work</p>
-                    <h2>Our Work <span>Process</span></h2>
-                </div>
-            </div>
-            <!--/row-->
-            <div class="col-md-4 col-sm-4">
-                <div class="pr-table">
-                    <div class="pr-header">
-                        <div class="pr-plan">
-                            <h4>Free</h4>
-                        </div>
-                        <div class="pr-price">
-                            <h3><sup>$</sup>29<sub>/Mon</sub></h3>
-                        </div>
-                    </div>
-                    <div class="pr-features">
-                        <ul>
-                            <li>1 GB Ram</li>
-                            <li>2 GB Memory</li>
-                            <li>1 Core Processor</li>
-                            <li>32 GB SSD Disk</li>
-                            <li>1 TB Transfer</li>
-                        </ul>
-                    </div>
-                    <div class="pr-buy-button">
-                        <a href="#" class="pr-btn" title="Price Button">Get Started</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-4">
-                <div class="pr-table">
-                    <div class="pr-header active">
-                        <div class="pr-plan">
-                            <h4>Basic </h4>
-                        </div>
-                        <div class="pr-price">
-                            <h3><sup>$</sup>40<sub>/Mon</sub></h3>
-                        </div>
-                    </div>
-                    <div class="pr-features">
-                        <ul>
-                            <li>1 GB Ram</li>
-                            <li>2 GB Memory</li>
-                            <li>1 Core Processor</li>
-                            <li>32 GB SSD Disk</li>
-                            <li>1 TB Transfer</li>
-                        </ul>
-                    </div>
-                    <div class="pr-buy-button">
-                        <a href="#" class="pr-btn active" title="Price Button">Get Started</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-4">
-                <div class="pr-table">
-                    <div class="pr-header">
-                        <div class="pr-plan">
-                            <h4>Premium</h4>
-                        </div>
-                        <div class="pr-price">
-                            <h3><sup>$</sup>120<sub>/Mon</sub></h3>
-                        </div>
-                    </div>
-                    <div class="pr-features">
-                        <ul>
-                            <li>1 GB Ram</li>
-                            <li>2 GB Memory</li>
-                            <li>1 Core Processor</li>
-                            <li>32 GB SSD Disk</li>
-                            <li>1 TB Transfer</li>
-                        </ul>
-                    </div>
-                    <div class="pr-buy-button">
-                        <a href="#" class="pr-btn" title="Price Button">Get Started</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <footer class="">
-        <div class="row copyright">
-            <div class="container">
-                <p>Copyright Love Jobs © 2019. All Rights Reserved </p>
-            </div>
-        </div>
-    </footer>
+	<div class="tr-pricing section-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-lg-4">
+					<div class="pricing">
+						<span>Free Package</span>
+						<h1><sup>$</sup>0<span>/Per Month</span></h1>
+						<div class="pricing-list">
+							<ul class="tr-list">
+                                <li><i class="fa fa-check" aria-hidden="true"></i>Package : Free Package </li>
+								<li><i class="fa fa-check" aria-hidden="true"></i>Can Post Vacancy : 15 days</li>
+								<li><i class="fa fa-check" aria-hidden="true"></i>Package Duration : 1/ Month</li>
+								<li><i class="fa fa-check" aria-hidden="true"></i>Sell Unlimited Products</li>
+								<li><i class="fa fa-check" aria-hidden="true"></i>Mobile-Optimized Website</li>
+								<li><i class="fa fa-times" aria-hidden="true"></i>Free Custom Domain</li>
+								<li><i class="fa fa-times" aria-hidden="true"></i>24/7 Customer Support</li>
+								<li><i class="fa fa-times" aria-hidden="true"></i>3% Sales Transaction Fee</li>
+							</ul>
+							<a href="#" class="btn btn-primary">Buy Now</a>
+						</div>
+					</div><!-- /.price -->
+				</div>
+				<div class="col-md-6 col-lg-4">
+					<div class="pricing">
+						<div class="most-popular">
+							<span>Popular</span>
+						</div>
+						<span>Silver Package</span>
+						<h1><sup>$</sup>19<span>/Per Month</span></h1>
+						<div class="pricing-list">
+							<ul class="tr-list">
+                                <li><i class="fa fa-check" aria-hidden="true"></i>Package : Silver Package </li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i>Can Post Vacancy : 3 </li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i>Package Duration : 3 / Month</li>
+								<li><i class="fa fa-check" aria-hidden="true"></i>Sell Unlimited Products</li>
+								<li><i class="fa fa-check" aria-hidden="true"></i>Mobile-Optimized Website</li>
+								<li><i class="fa fa-check" aria-hidden="true"></i>Free Custom Domain</li>
+								<li><i class="fa fa-check" aria-hidden="true"></i>24/7 Customer Support</li>
+								<li><i class="fa fa-times" aria-hidden="true"></i>3% Sales Transaction Fee</li>
+							</ul>
+							<a href="#" class="btn btn-primary">Buy Now</a>
+						</div>
+					</div><!-- /.price -->
+				</div>
+				<div class="col-md-6 col-lg-4">
+					<div class="pricing">
+						<span>Gold Package</span>
+						<h1><sup>$</sup>39<span>/Per Month</span></h1>
+						<div class="pricing-list">
+							<ul class="tr-list">
+                                <li><i class="fa fa-check" aria-hidden="true"></i>Package : Gold Package</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i>Can Post Vacancy : 5 </li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i>Package Duration : 5 / Month</li>
+								<li><i class="fa fa-check" aria-hidden="true"></i>Sell Unlimited Products</li>
+								<li><i class="fa fa-check" aria-hidden="true"></i>Mobile-Optimized Website</li>
+								<li><i class="fa fa-check" aria-hidden="true"></i>Free Custom Domain</li>
+								<li><i class="fa fa-check" aria-hidden="true"></i>24/7 Customer Support</li>
+								<li><i class="fa fa-check" aria-hidden="true"></i>3% Sales Transaction Fee</li>
+							</ul>
+							<a href="#" class="btn btn-primary">Buy Now</a>
+						</div>
+					</div><!-- /.price -->
+				</div>
+			</div><!-- /.row -->
+		</div><!-- /.container -->
+	</div><!-- /.tr-pricing -->
 
     @endsection

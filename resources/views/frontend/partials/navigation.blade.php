@@ -1,5 +1,10 @@
 {{-- <input id="registrar-btn" type="button"> <span id="in-progress"> 0 </span> --}}
-
+<style>
+    #package {
+        -webkit-appearance: none;
+    -webkit-border-radius: 30px;
+    }
+</style>
 <header class="tr-header">
     <nav class="navbar navbar-expand-lg">
         <div class="container">
@@ -22,6 +27,9 @@
                     <li class="{{ (request()->segment(1) == 'contact') ? 'active' : '' }}"> 
                         <a href="{{url('contact')}}">Contact Us</a>
                     </li>
+                    <li class="{{ (request()->segment(1) == 'pricing') ? 'active' : '' }}"> 
+                        <li><a href="{{url('pricing')}}">Pricing</a></li>
+                    </li>
                     @if(Auth::check())
                     <li class="tr-dropdown"><a href="#">Candidate   </a>
                         <ul class="tr-dropdown-menu tr-list fadeInUp" role="menu">
@@ -29,7 +37,6 @@
                             <li><a href="view-compnay.html">View Compnay</a></li>
                             <li><a href="view-resume.html">View Resume</a></li>
                             <li><a href="coming-soon.html">Coming Soon</a></li>
-                            <li><a href="pricing.html">Pricing</a></li>
                         </ul>
                     </li>
                     @endif
@@ -114,7 +121,16 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <input required type="password" class="form-control" name="admin_confirm_password" id="admin_confirm_password" placeholder="Confirm Password">
-                                                </div>												
+                                                </div>	
+                                                {{-- <div class="form-group">
+                                                    <select class="form-control" name="package" id="package">
+                                                        <option value="">Choose Package</option>
+                                                        <option value="saab">Free</option>
+                                                        <option value="mercedes">Siliver</option>
+                                                        <option value="audi">Gold</option>
+                                                    </select>	
+                                                </div>	
+                                                								 --}}
                                                 <button type="submit" class="btn btn-primary">Sign Up</button>
                                             </form>	
                                         </div>

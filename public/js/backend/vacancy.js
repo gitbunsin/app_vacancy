@@ -244,10 +244,10 @@ $('#frmDeleteVacancy').validate({
     
 
 
-$('.job_description').summernote({height: 300});
+$('.job_description').summernote({height: 200});
 
 
-// $('.job_description_edit').summernote({height: 300});
+$('.responsibilities').summernote({height: 200});
 
 
 

@@ -33,10 +33,10 @@
         <ul class="nav navbar-top-links navbar-left header-search-form hidden-xs">
             <li><a class="menu-brand" id="menu-toggle"><span class="ti-view-grid"></span></a></li>
             <li class="hidden-sm hidden-xs">
-                <div class="header-search-form input-group">
+                {{-- <div class="header-search-form input-group">
                     <span class="input-group-addon"><span class="ti-search"></span></span>
                     <input type="text" class="form-control" placeholder="Search & Enter">
-                </div>
+                </div> --}}
             </li>
         </ul>
         <ul class="nav navbar-top-links navbar-right">
@@ -263,13 +263,18 @@
         <div class="row page-titles">
             <div class="col-md-5 align-self-center">
 <!--                --><?php //dd() ?>
-                <h3 class="text-themecolor"> {{ request()->segment(2) }}</h3>
+                <h3 class="text-themecolor"> {{ ucfirst(trans(request()->segment(2))) }}</h3>
             </div>
             <div class="col-md-7 align-self-center">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item active">Dashboard</li>
-                </ol>
-            </div>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+                        <?php $segments = ''; ?>
+                            @foreach(Request::segments() as $segment)
+                                <?php $segments .= '/'.$segment; ?>   
+                                <li class="breadcrumb-item"><a href="{{ucfirst(trans($segments))}}">{{ucfirst(trans($segment))}}</a></li>
+                            @endforeach
+                    </ol>
+                </div>
         </div>
         @yield('content')
     </div>
