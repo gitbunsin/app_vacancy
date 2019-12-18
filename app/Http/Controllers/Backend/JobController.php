@@ -126,7 +126,9 @@ class JobController extends Controller
             $request->file('file')->move($dir, $filename);
             $user->profile = $filename;
             $user->name = $request->name;
-            $user->email = $request->user_email;
+            $user->email = $request->email;
+            $user->first_name = $request->first_name;
+            $user->last_name = $request->last_name;
             $user->phone = $request->phone;
             $user->zip = $request->zip;
             $user->address = $request->address;
@@ -134,10 +136,12 @@ class JobController extends Controller
 
         }else{
 
-            $user->profile =" ";
+            $user->profile ="NULL";
             $user->name = $request->name;
-            $user->email = $request->user_email;
+            $user->email = $request->email;
             $user->phone = $request->phone;
+            $user->first_name = $request->first_name;
+            $user->last_name = $request->last_name;
             $user->zip = $request->zip;
             $user->address = $request->address;
             $user->save();

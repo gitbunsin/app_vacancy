@@ -1,8 +1,48 @@
+$('#frmUserChangePassword').validate({
+    rules:{
+        new_password : {
+            minlength : 6,
+            required : true
+        },
+        confirm_password : {
+            required : true,
+            minlength : 6,
+            equalTo : "#new_password"
+        }
+    },submitHandler:function(form){
+
+        var id = $('#user_password').val();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        jQuery.ajax({
+            url: "/reset/user/password/" + id,
+            method: 'POST',
+            data : {
+                "password" : $('#new_password').val()
+            },
+            success: function (response) {
+                toastr.success('Success', 'Password has been reset !');
+                var delay = 3000; 
+                setTimeout(function()
+                {               
+                    location.reload();
+                }, delay);
+                // console.log(response);
+            }, error: function (err) {
+                console.log(err);
+            }
+        });
+
+    }
+});
 $('#frmUpdateUserProfile').validate({
     rules:{
-        name : {
+        user_name : {
             required : true
-        },email : {
+        },user_email : {
             required : true
         }
     },
@@ -17,13 +57,15 @@ $('#frmUpdateUserProfile').validate({
         var file_data = $('#image').prop('files')[0];
         var form_data = new FormData();
         form_data.append('file', file_data);
-        form_data.append('name',$('#name').val());
-        form_data.append('phone',$('#phone').val());
-        form_data.append('user_email',$('#user_email').val());
-        form_data.append('zip',$('#zip').val());
-        form_data.append('address',$('#address').val());
+        form_data.append('name',$('#user_name').val());
+        form_data.append('phone',$('#user_phone').val());
+        form_data.append('first_name',$('#user_first_name').val());
+        form_data.append('last_name',$('#user_last_name').val());
+        form_data.append('email',$('#user_email').val());
+        form_data.append('zip',$('#user_zip').val());
+        form_data.append('address',$('#user_address').val());
         jQuery.ajax({
-            url: "upload/user/profile/" + id,
+            url: "/upload/user/profile/" + id,
             method: 'POST',
             data : form_data,
             type: 'POST',
@@ -32,10 +74,15 @@ $('#frmUpdateUserProfile').validate({
             cache: false, // To unable request pages to be cached
             processData: false,
             success: function (response) {
-                console.log(response);
-                // $('#ModalDeleteUserCv').modal('hide');
-                // $('#tr_userCv'+response.id).remove();
                 toastr.success('Success', 'item has been updated !');
+                var delay = 3000; 
+                setTimeout(function()
+                {               
+                    location.reload();
+                }, delay);
+               
+                // console.log(response);
+              
             }, error: function (err) {
                 console.log(err);
             }

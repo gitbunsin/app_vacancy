@@ -10,7 +10,7 @@
 							<li role="presentation"><a href="#resume" aria-controls="resume" role="tab" data-toggle="tab"><span><i class="fa fa-user-o" aria-hidden="true"></i></span> My Resume</a></li>
 							<li role="presentation"><a href="#edit-resume" aria-controls="edit-resume" role="tab" data-toggle="tab"><span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span> Edit Resume</a></li>
 							<li role="presentation"><a href="#bookmark" aria-controls="bookmark" role="tab" data-toggle="tab"><span><i class="fa fa-bookmark-o" aria-hidden="true"></i></span> Bookmark</a></li>
-							<li role="presentation"><a href="#archived" aria-controls="archived" role="tab" data-toggle="tab"><span><i class="fa fa-clone" aria-hidden="true"></i></span> Archived Apply Job</a></li>
+							<li role="presentation"><a href="#archived" aria-controls="archived" role="tab" data-toggle="tab"><span><i class="fa fa-clone" aria-hidden="true"></i></span>Change Password</a></li>
 							<li role="presentation"><a href="#close-account" aria-controls="close-account" role="tab" data-toggle="tab"><span><i class="fa fa-scissors" aria-hidden="true"></i></span> Close Account</a></li>
 						</ul>	
 						<a href="#" class="btn btn-primary"><i class="fa fa-cloud-download" aria-hidden="true"></i> <span>Download Resume as doc</span></a>		        			
@@ -57,7 +57,7 @@
 								</div><!-- ./row -->							
 							</div><!-- /.tr-fun-fact -->
 							<div class="section display-information">
-									<form id="frmUpdateUserProfile">
+								<form id="frmUpdateUserProfile">
 											<input type="hidden" name="_token" value="{{ csrf_token()}}">
 								<div class="title title-after">
 									<div class="icon"><img src="{{asset('images/icons/2.png')}}" alt="Icon" class="img-fluid"></div> 
@@ -70,7 +70,7 @@
 										@else
 											<img id="preview" src="{{asset('images/noimage.jpg')}}" width="350px" height="320px"/><br/>
 										@endif
-										<input type="file" id="image" style="display: none;"/>
+										<input type="file"id="image" style="display: none;"/>
 									</div>
 									<div class="upload-photo">
 										<label class="btn btn-primary" for="upload-photo">
@@ -136,8 +136,8 @@
 									</div>
 							</div>
 							<div class="buttons pull-right">
-									<a href="#" class="btn button-cancle">Cancle</a>
-									<button type="button" id="btn_profile"  class="btn btn-primary btn_profile" value="">Update Your Profile</button>
+									<button type="button" class="btn btn-primary" id="btn_save_profile" value="">Update Your Profile</button>
+									<button type="submit" id="save_profile"  class="btn btn-primary" value="">Save</button>
 							</div>
 								</ul>	
 							</form>							
@@ -831,176 +831,31 @@
 							</div><!-- /.row -->							
 						</div><!-- /.tab-pane -->
 
-						<div role="tabpanel" class="tab-pane apply-job" id="archived">
-							<div class="job-item">
-								<div class="job-info">
-									<div class="left-content">
-										<div class="clearfix">
-											<div class="company-logo">
-												<img src="images/job/1.png" alt="images" class="img-fluid">
-											</div>
-											<span class="tr-title">
-												<a href="job-details.html">Design Associate</a><span><a href="#">Loop</a></span>
-											</span>
-											<span><a href="#" class="btn btn-primary">Part Time</a></span>
+						<div role="tabpanel" class="tab-pane section close-account" id="archived">
+							<h1>Change Your Password Account</h1>
+							<span>Are you sure, you want to change your account?</span>
+							<form action="#" id="frmUserChangePassword">
+								<input type="hidden" id="user_password" value="{{auth::user()->id}}">
+								<input type="hidden" name="_token" value="{{ csrf_token()}}">
+								
+								<div class="col-lg-12">
+										<div class="form-group">
+												<input type="password" placeholder="new password" class="form-control" id="new_password" name="new_password"/>
 										</div>
-										<ul class="tr-list job-meta">
-											<li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>San Francisco, CA, US</li>
-											<li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>Mid Level</li>
-											<li><span><i class="fa fa-money" aria-hidden="true"></i></span>$5,000 - $6,000</li>
-										</ul>										
-									</div>
-									<div class="right-content">
-										<a href="#" class="btn button-cancle">Delete application</a>
-										<span class="applied">Applied: 3 weeks ago</span>
-									</div>
 								</div>
-							</div>
-							<div class="job-item remove-item">
-								<div class="job-info">
-									<div class="left-content">
-										<div class="clearfix">
-											<div class="company-logo">
-												<img src="images/job/1.png" alt="images" class="img-fluid">
-											</div>
-											<span class="tr-title">
-												<a href="job-details.html">Design Associate</a><span><a href="#">Loop</a></span>
-											</span>
-											<span><a href="#" class="btn btn-primary">Part Time</a></span>
+								<div class="col-lg-12">
+										<div class="form-group">
+												<input type="password" placeholder="confirm password" class="form-control" id="confirm_password" name="confirm_password"/>
 										</div>
-										<ul class="tr-list job-meta">
-											<li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>San Francisco, CA, US</li>
-											<li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>Mid Level</li>
-											<li><span><i class="fa fa-money" aria-hidden="true"></i></span>$5,000 - $6,000</li>
-										</ul>										
-									</div>
-									<div class="right-content">
-										<a href="#" class="btn button-cancle">Delete application</a>
-										<span class="applied">Applied: 3 weeks ago</span>
-									</div>
 								</div>
-							</div>
-							<div class="job-item remove-item">
-								<div class="job-info">
-									<div class="left-content">
-										<div class="clearfix">
-											<div class="company-logo">
-												<img src="images/job/1.png" alt="images" class="img-fluid">
-											</div>
-											<span class="tr-title">
-												<a href="job-details.html">Design Associate</a><span><a href="#">Loop</a></span>
-											</span>
-											<span><a href="#" class="btn btn-primary">Part Time</a></span>
-										</div>
-										<ul class="tr-list job-meta">
-											<li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>San Francisco, CA, US</li>
-											<li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>Mid Level</li>
-											<li><span><i class="fa fa-money" aria-hidden="true"></i></span>$5,000 - $6,000</li>
-										</ul>										
+								<div class="buttons">
+										<a href="#" class="btn btn-primary">Cancel</a>
+										<input type="submit" class="btn btn-primary" value="Yes">
 									</div>
-									<div class="right-content">
-										<a href="#" class="btn button-cancle">Delete application</a>
-										<span class="applied">Applied: 3 weeks ago</span>
-									</div>
-								</div>
-							</div>
-							<div class="job-item remove-item">
-								<div class="job-info">
-									<div class="left-content">
-										<div class="clearfix">
-											<div class="company-logo">
-												<img src="images/job/1.png" alt="images" class="img-fluid">
-											</div>
-											<span class="tr-title">
-												<a href="job-details.html">Design Associate</a><span><a href="#">Loop</a></span>
-											</span>
-											<span><a href="#" class="btn btn-primary">Part Time</a></span>
-										</div>
-										<ul class="tr-list job-meta">
-											<li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>San Francisco, CA, US</li>
-											<li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>Mid Level</li>
-											<li><span><i class="fa fa-money" aria-hidden="true"></i></span>$5,000 - $6,000</li>
-										</ul>										
-									</div>
-									<div class="right-content">
-										<a href="#" class="btn button-cancle">Delete application</a>
-										<span class="applied">Applied: 3 weeks ago</span>
-									</div>
-								</div>
-							</div>
-							<div class="job-item remove-item">
-								<div class="job-info">
-									<div class="left-content">
-										<div class="clearfix">
-											<div class="company-logo">
-												<img src="images/job/1.png" alt="images" class="img-fluid">
-											</div>
-											<span class="tr-title">
-												<a href="job-details.html">Design Associate</a><span><a href="#">Loop</a></span>
-											</span>
-											<span><a href="#" class="btn btn-primary">Part Time</a></span>
-										</div>
-										<ul class="tr-list job-meta">
-											<li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>San Francisco, CA, US</li>
-											<li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>Mid Level</li>
-											<li><span><i class="fa fa-money" aria-hidden="true"></i></span>$5,000 - $6,000</li>
-										</ul>										
-									</div>
-									<div class="right-content">
-										<a href="#" class="btn button-cancle">Delete application</a>
-										<span class="applied">Applied: 3 weeks ago</span>
-									</div>
-								</div>
-							</div>
-							<div class="job-item remove-item">
-								<div class="job-info">
-									<div class="left-content">
-										<div class="clearfix">
-											<div class="company-logo">
-												<img src="images/job/1.png" alt="images" class="img-fluid">
-											</div>
-											<span class="tr-title">
-												<a href="job-details.html">Design Associate</a><span><a href="#">Loop</a></span>
-											</span>
-											<span><a href="#" class="btn btn-primary">Part Time</a></span>
-										</div>
-										<ul class="tr-list job-meta">
-											<li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>San Francisco, CA, US</li>
-											<li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>Mid Level</li>
-											<li><span><i class="fa fa-money" aria-hidden="true"></i></span>$5,000 - $6,000</li>
-										</ul>										
-									</div>
-									<div class="right-content">
-										<a href="#" class="btn button-cancle">Delete application</a>
-										<span class="applied">Applied: 3 weeks ago</span>
-									</div>
-								</div>
-							</div>
-							<div class="job-item remove-item">
-								<div class="job-info">
-									<div class="left-content">
-										<div class="clearfix">
-											<div class="company-logo">
-												<img src="images/job/1.png" alt="images" class="img-fluid">
-											</div>
-											<span class="tr-title">
-												<a href="job-details.html">Design Associate</a><span><a href="#">Loop</a></span>
-											</span>
-											<span><a href="#" class="btn btn-primary">Part Time</a></span>
-										</div>
-										<ul class="tr-list job-meta">
-											<li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>San Francisco, CA, US</li>
-											<li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>Mid Level</li>
-											<li><span><i class="fa fa-money" aria-hidden="true"></i></span>$5,000 - $6,000</li>
-										</ul>										
-									</div>
-									<div class="right-content">
-										<a href="#" class="btn button-cancle">Delete application</a>
-										<span class="applied">Applied: 3 weeks ago</span>
-									</div>
-								</div>
-							</div>						
-						</div><!-- /.tab-pane -->
+							</form>
+							
+						</div>
+							
 
 						<div role="tabpanel" class="tab-pane section close-account" id="close-account">
 							<h1>Delete Your Account</h1>

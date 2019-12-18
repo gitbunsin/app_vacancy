@@ -1,3 +1,5 @@
+
+
 //function  Apply JOb
 $("#frmVacancyApply").validate({
 
@@ -83,6 +85,7 @@ $('#user_sex').prop('disabled',true);
 $('#user_address').prop('disabled',true);
 $('#user_first_name').prop('disabled',true);
 $('#user_last_name').prop('disabled',true);
+$('#save_profile').prop('disabled',true);
 
 
 function EnableProfile()
@@ -99,73 +102,13 @@ function EnableProfile()
    $('#user_address').prop('disabled',false);
    $('#user_first_name').prop('disabled',false);
    $('#user_last_name').prop('disabled',false);
+   $('#save_profile').prop('disabled',false);
 
 }
-$('#btn_profile').val('0');
-$('#btn_profile').click(function()
-{
-     $('#btn_profile').val('1');
-     var isUpdate =   $('#btn_profile').val();
-     EnableProfile();
+$('#btn_save_profile').click(function()
+{ 
+    EnableProfile();
 });
-
-
-   // $('#btn_profile').click(function(){
-   //    var isUpdate =   $('#btn_profile').val();
-   //    if(isUpdate == "1"){
-   //       console.log("isUpdate");
-   //    }
-   // });
-
-
-
-//User Update
-// var isUpdate =   $('#btn_profile').val();
-// if(isUpdate == "1"){
-//       $("#frmUpdateUserProfile").validate({
-//          rules : {
-//             user_name : {
-//                required : true,
-//             },user_first_name : {
-//                required : true
-//             },user_last_name : {
-//                required : true
-//             }
-//          },
-//          submitHandler: function (form)
-//           {
-//              console.log("ok");
-            //    var vacancy_id  = $('#vacancy_id').val();
-            //    var candidate_id = $('#candidate_id').val();
-            //    $.ajaxSetup({
-            //       headers: {
-            //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            //       }
-            //    });
-            //    jQuery.ajax({
-            //       url: "/user/applyJob/" + vacancy_id +'/' + candidate_id,
-            //       method: 'POST',
-            //       data: {},
-            //       //  beforeSend:function()
-            //       //  {
-            //       //     $.LoadingOverlay("show");
-            //       //  },
-            //       success: function (result) {
-            //          console.log(result);
-            //       },error : function(err){
-            //             console.log(err);
-            //       }
-            //       });
-//         }
-//       });
-// }else{
-
-
-// }
-
-
-
-
 
 $(document).ready(function () {
    $('#frmEditResume').validate({

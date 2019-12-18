@@ -75,7 +75,7 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
     Route::get('profile','JobController@profile');
     Route::resource('app-candidate','CandidateController');
     Route::resource('user','UserController');
-    Route::post('user/update/{id}','UserController@updateUserProfile');
+   
     Route::post('user-cv/{id}','UserController@userCV');
     Route::get('create-resume','CandidateController@createResume');
     Route::post('user/resume/{id}','UserController@userCV');
@@ -97,6 +97,8 @@ Route::post('user/attachment/{id}','Backend\JobController@userAttachement');
 Route::delete('user/attachment/delete/{id}','Backend\JobController@userAttachementDelete');
 Route::get('user/attachment/edit/{id}','Backend\JobController@userAttachementEdit');
 Route::post('user/attachment/update/{id}','Backend\JobController@userAttachementUpdate');
+Route::post('upload/user/profile/{id}','Backend\JobController@ajaxImage');
+Route::post('reset/user/password/{id}','Backend\UserController@resetUserPassword');
 // Route::get('vacancy/detail/{id}','Backend\JobController@vacancyDetails');
 Route::get('checkUserLogin/{vacancy_id}/{candidate_id}','Backend\JobController@CheckUserLogin');
 Route::get('check/user/login','Backend\JobController@CheckUserLoginApplyJob');
