@@ -15,7 +15,7 @@
 </head>
 
 <body>
-
+      
 <div id="wrapper" class="">
     <div class="fakeLoader"></div>
     <!-- Navigation -->
@@ -258,12 +258,11 @@
         @include('backend.partials.navigation')
     </nav>
     <!-- Sidebar Navigation -->
-
     <div id="page-wrapper">
         <div class="row page-titles">
             <div class="col-md-5 align-self-center">
 <!--                --><?php //dd() ?>
-                <h3 class="text-themecolor"> {{ ucfirst(trans(request()->segment(2))) }}</h3>
+                <h3 class="text-themecolor"> {{ucfirst(request()->segment(2)) }}</h3>
             </div>
             <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
@@ -271,12 +270,17 @@
                         <?php $segments = ''; ?>
                             @foreach(Request::segments() as $segment)
                                 <?php $segments .= '/'.$segment; ?>   
-                                <li class="breadcrumb-item"><a href="{{ucfirst(trans($segments))}}">{{ucfirst(trans($segment))}}</a></li>
+                                <li class="breadcrumb-item"><a href="{{ucfirst($segments)}}">{{ucfirst($segment)}}</a></li>
                             @endforeach
                     </ol>
                 </div>
         </div>
+        <div class="container">
+                @include('backend/pages/admin/flash_msg')
+        </div>
+       
         @yield('content')
+   
     </div>
     <!-- /#page-wrapper -->
     <div id="sidebar-wrapper">

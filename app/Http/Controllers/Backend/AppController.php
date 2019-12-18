@@ -5,12 +5,31 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
+use App\Model\pricing;
+use App\User;
+use App\Model\vacancy;
+
 class AppController extends Controller
 {
     public function __construct()
     {
         $this->middleware('guest');
     }
+    public function PricingSettings()
+    {
+        $title = trans('app.pricing_settings');
+        return view('backend/pages/admin/pricing/settings-pricing', compact('title'));
+    }
+
+    public function PricingSave(Request $request){
+        foreach ($request->package as $id => $input){
+            $package = pricing::firstOrCreate(['id' => $id]);
+            $package->update($input);
+        }
+
+        return back()->with('success', __('app.operation_success'));
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +38,19 @@ class AppController extends Controller
     public function index()
     {
         //dd($email);
-        return view('backend.pages.content');
+        $data = [
+            'usersCount' => User::count(),
+            // 'totalPayments' => Payment::success()->sum('amount'),
+            // 'activeJobs' => Job::active()->count(),
+            'totalJobs' => vacancy::count(),
+            // 'employerCount' => User::employer()->count(),
+            // 'agentCount' => User::agent()->count(),
+            // 'totalApplicants' => JobApplication::count(),
+
+        ];
+
+
+        return view('backend/pages/content',$data);
     }
     public function about(){
 

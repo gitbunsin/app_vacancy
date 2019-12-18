@@ -15,7 +15,7 @@
                         </div>
                         <div class="col-xs-8 no-pad">
                             <div class="widget-detail">
-                                <h3>5246</h3>
+                                <h3>{{$totalJobs}}</h3>
                                 <span>Jobs Posted</span>
                             </div>
                         </div>
@@ -38,7 +38,7 @@
                         </div>
                         <div class="col-xs-8 no-pad">
                             <div class="widget-detail">
-                                <h3>5872</h3>
+                                <h3>{{$usersCount}}</h3>
                                 <span>Active Members</span>
                             </div>
                         </div>

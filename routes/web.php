@@ -33,6 +33,7 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
 
 
 
+
     /* -- employee -- */
     Route::post('employee/add/emergency/contact','EmployeeController@addEmergencyContact');
     Route::get('employee/show/emergency/contact/{id}','EmployeeController@showEmergencyContact');
@@ -50,7 +51,8 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
     
     Route::resource('basicSalary','EmployeeBasicSalaryController');
     Route::get('app','AppController@index');
-    // Route::get('login','AppController@login');
+    Route::get('pricing', 'AppController@PricingSettings')->name('pricing_settings');
+    Route::post('pricing','AppController@PricingSave');
     Route::resource('company','CompanyController');
     Route::resource('subUnit','SubUnitController');
     Route::resource('WorkShift','WorkShiftController');

@@ -8,6 +8,7 @@ use App\Model\userCv;
 use Illuminate\Support\Facades\Auth;
 use App\Model\jobAttachment;
 use Illuminate\Http\Request;
+use App\Model\pricing;
 
 class testController extends Controller
 {
@@ -23,8 +24,8 @@ class testController extends Controller
     }
     public function pricing()
     {
-
-        return view('frontend.pages.pricing');
+        $packages = Pricing::all();
+        return view('frontend.pages.pricing',compact('packages'));
     }
     public function register()
     {
