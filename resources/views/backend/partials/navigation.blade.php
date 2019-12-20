@@ -19,7 +19,7 @@
                     </ul>
                 </li>
             <li>
-                <a href="javascript:void(0)"><i class="ti ti-user"></i> Recruitment <span class="fa arrow"></span></a>
+                <a href="javascript:void(0)"><i class="fa fa-user-circle-o"></i> Recruitment <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li class="{{ (request()->segment(2) == 'job') ? 'active' : '' }}">
                         <a href="{{url('admin/job')}}">vacancies</a>
@@ -31,7 +31,7 @@
             </li>
 
             <li>
-                <a href="javascript:void(0)"><i class="ti ti-ruler-pencil"></i>PIM<span class="fa arrow"></span> <b class="badge bg-success pull-right">3</b></a>
+                <a href="javascript:void(0)"><i class="fa fa-book fa-fw"></i>PIM<span class="fa arrow"></span> <b class="badge bg-success pull-right">3</b></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="{{url('admin/employee')}}">Employee List</a>
@@ -46,15 +46,16 @@
             </li>
 
             <li>
-                <a href="javascript:void(0)"><i class="ti ti-ruler-pencil"></i>Settings<span class="fa arrow"></span> <b class="badge bg-success pull-right">3</b></a>
+                <a href="javascript:void(0)"><i class="fa fa-cog"></i>Settings<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="{{url('admin/pricing')}}">Pricing</a>
                     </li>
                 </ul>
             </li>
-            {{-- <li><a href="settings.html"><i class="ti ti-settings"></i>Settings</a></li> --}}
-
+            <li class="{{ (request()->segment(2) == 'payment') ? 'active' : '' }}">
+                <a href="{{url('admin/payment')}}"><i class="fa fa-dollar"></i>Payments<span class="fa arrow"></span></a>
+            </li>
             <li class="{{ (request()->segment(2) == 'app-profile') ? 'active' : '' }}">
                 <a href="{{url('admin/app-profile')}}"><i class="ti ti-folder"></i>My Profile</a>
             </li>

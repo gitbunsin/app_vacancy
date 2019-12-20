@@ -61,8 +61,8 @@
                         </div>
                         <div class="col-xs-8 no-pad">
                             <div class="widget-detail">
-                                <h3>9586</h3>
-                                <span>Tasks Posted</span>
+                                <h3>{{$employerCount}}</h3>
+                                <span>Employee</span>
                             </div>
                         </div>
                         <div class="col-xs-12">

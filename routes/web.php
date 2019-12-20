@@ -49,8 +49,14 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
     Route::resource('employeeMembership','EmployeeMembershipController');
     /* -- Basic Salary -- */
     
+    
+
+
     Route::resource('basicSalary','EmployeeBasicSalaryController');
     Route::get('app','AppController@index');
+    Route::get('invoice/{id}','paymentController@invoice');
+    Route::get('confim/payment/{id}','paymentController@confirmPayment');
+    Route::resource('payment','paymentController');
     Route::get('pricing', 'AppController@PricingSettings')->name('pricing_settings');
     Route::post('pricing','AppController@PricingSave');
     Route::resource('company','CompanyController');

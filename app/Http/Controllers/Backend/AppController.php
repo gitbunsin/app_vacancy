@@ -43,7 +43,7 @@ class AppController extends Controller
             // 'totalPayments' => Payment::success()->sum('amount'),
             // 'activeJobs' => Job::active()->count(),
             'totalJobs' => vacancy::count(),
-            // 'employerCount' => User::employer()->count(),
+            'employerCount' => User::count(),
             // 'agentCount' => User::agent()->count(),
             // 'totalApplicants' => JobApplication::count(),
 
