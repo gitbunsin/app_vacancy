@@ -89,6 +89,7 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
     Route::post('user/resume/{id}','UserController@userCV');
 
 
+
 });
 
 
@@ -115,9 +116,11 @@ Route::get('job-download-company/{filename}','Backend\JobController@getDownloadC
 Route::get('pricing','testController@pricing');
 Route::get('about','testController@about');
 Route::get('contact','testController@contact');
+Route::post('contact-us', 'testController@contactUsPost');
 Route::get('create-resume','testController@createResume')->middleware('auth');;
 Route::get('app-mange-Candidate','testController@mangeCandidate');
 Route::get('user-profile','testController@profileDetails');
+
 
 Auth::routes();
 

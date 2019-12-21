@@ -742,7 +742,7 @@
           <div class="row">
               <div>
                   <label>Name</label>
-                  <input name="name" id="name" type="text" class="form-control">
+                  <input name="name" id="name_job_title" type="text" class="form-control">
               </div>
               <div>
                 <label>Description</label>

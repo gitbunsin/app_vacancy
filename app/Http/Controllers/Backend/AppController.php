@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Input;
 use App\Model\pricing;
 use App\User;
 use App\Model\vacancy;
+use Illuminate\Support\Facades\Response;
+
 
 class AppController extends Controller
 {
@@ -26,9 +28,9 @@ class AppController extends Controller
             $package = pricing::firstOrCreate(['id' => $id]);
             $package->update($input);
         }
-
         return back()->with('success', __('app.operation_success'));
     }
+   
 
     /**
      * Display a listing of the resource.

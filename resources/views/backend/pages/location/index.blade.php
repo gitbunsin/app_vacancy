@@ -88,7 +88,7 @@
                                                                                     <th scope="row">{{$key+1}}</th>
                                                                                     <td>{{$locations->name}}</td>
                                                                                     <td>{{$locations->city->name}}</td>
-                                                                                    <td>{{$locations->country->name}}</td>
+                                                                                    <td></td>
                                                                                     <td>{{$locations->phone}}</td>
                                                                                     <td></td>
                                                                                     <th>

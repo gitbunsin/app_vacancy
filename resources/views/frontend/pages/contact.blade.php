@@ -26,20 +26,27 @@
 						<div class="section">
 							<span class="tr-title">Contact Info</span>
 							<p>There are many variations of passages of lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words</p>
-							<form action="#" class="tr-form">
+							<form action="#" class="tr-form" id="frmContactUs">
+								@if (Auth::check())
+									<input type="hidden" id="user_id" value="{{auth()->user()->id}}">
+								@else
+									<input type="hidden" id="user_id" value="">
+								@endif
+								
+								<meta name="csrf-token" content="{{ csrf_token() }}">
 								<div class="row">
 									<div class="col-sm-6">
-										<input type="text" class="form-control" required="required" placeholder="Full Name">
+										<input type="text" id="name" name="name" class="form-control" required="required" placeholder="Full Name">
 									</div>
 									<div class="col-sm-6">
-										<input type="email" class="form-control" required="required" placeholder="Email Address">
+										<input type="email" id="contact_email" name="contact_email" class="form-control" required="required" placeholder="Email Address">
 									</div>
 								</div>
 								<div class="form-group">
-									<input type="text" class="form-control" required="required" placeholder="Subject">						
+									<input type="text" id="subject" class="form-control" required="required" placeholder="Subject">						
 								</div> 
 								<div class="form-group">
-									<textarea name="message" class="form-control" required="required" rows="5" placeholder="Message"></textarea>	
+									<textarea name="message" id="message" class="form-control" required="required" rows="5" placeholder="Message"></textarea>	
 								</div> 
 								<div class="form-group">
 									<button type="submit" class="btn btn-primary pull-right">Submit</button>
@@ -52,9 +59,9 @@
 							<span class="tr-title">Contact Info</span>
 							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
 							<ul class="tr-list info-list">
-								<li class="media"><i class="fa fa-map-signs" aria-hidden="true"></i> <span class="media-body"><span>44 Shirley Ave.</span> West Chicago, IL 60185</span></li>
-								<li class="media"><i class="fa fa-phone" aria-hidden="true"></i> <span class="media-body"><span>+885 962711117</span> +885 70717512</span></li>
-								<li class="media"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span class="media-body"><span><a href="#"><span class="__cf_email__" data-cfemail="533a3d353c13363e323a3f7d303c3e">bunsin.toeng@gmail.com</span></a></span> <a href="#"><span class="__cf_email__" data-cfemail="285b5d5858475a5c684d45494144064b4745">[bunsin.info@gmail.com]</span></a></span></li>
+								<li class="media"><i class="fa fa-map-signs" aria-hidden="true"></i> <span class="media-body"><span>Vtrust TowerCzech Repulic Blvd (169), Phnom Penh
+								<li class="media"><i class="fa fa-phone" aria-hidden="true"></i> <span class="media-body"><span>+885 962711117</li>
+								<li class="media"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span class="media-body"><span><a href="#">bunsin.toeng@gmail.com</li>
 							</ul>
 							<span class="tr-title">Social Network</span>
 							<div class="social">
@@ -71,4 +78,7 @@
 			</div>			
 		</div><!-- /.container -->
 	</div><!-- /.page-content -->
+@endsection
+@section('scripts')
+	<script src="/js/backend/contact.js"></script>
 @endsection

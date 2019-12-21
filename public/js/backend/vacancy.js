@@ -350,7 +350,7 @@ $("#frmJobTitle").validate({
             url: "/admin/jobTitle",
             method: 'POST',
             data: {
-                "name": $('#name').val(),
+                "name": $('#name_job_title').val(),
                 "description": $('#description').val()
             },
             success: function (result) {

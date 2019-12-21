@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Model\jobAttachment;
 use Illuminate\Http\Request;
 use App\Model\pricing;
-
+use App\Model\contact;
+use Illuminate\Support\Facades\Response;
 class testController extends Controller
 {
     /**
@@ -26,6 +27,23 @@ class testController extends Controller
     {
         $packages = Pricing::all();
         return view('frontend.pages.pricing',compact('packages'));
+    }
+
+    public function contactUsPost(Request $request)
+    {
+         $user_id = $request->user_id;
+        if ($user_id) {
+            $contact = new contact();
+            $contact->user_id = $user_id;
+            $contact->subject = $request->subject;
+            $contact->message = $request->message;
+            $contact->email   =  $request->email;
+            $contact->full_name = $request->name;
+            $contact->save();
+            return response::json('success');
+        }else{
+            return response::json('error');
+        }
     }
     public function register()
     {

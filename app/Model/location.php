@@ -18,7 +18,6 @@ class location extends Model
     {
         return $this->belongsTo(city::class,'city_code','id');
     }
-
     public function country()
     {
         return $this->belongsTo(country::class,'country_code','id');
