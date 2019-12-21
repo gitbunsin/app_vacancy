@@ -39,6 +39,7 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         //
     }
 
@@ -63,7 +64,9 @@ class PaymentController extends Controller
     }
     public function invoice($id)
     {
-        return view('backend/pages/admin/payment/invoice');
+        $package = pricing::find($id);
+        // dd($packages);
+        return view('backend/pages/admin/payment/invoice',compact('package'));
     }
 
     /**

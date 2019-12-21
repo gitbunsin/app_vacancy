@@ -24,11 +24,11 @@
                     <li class="{{ (request()->segment(1) == 'about') ? 'active' : '' }}">  
                         <a href="{{url('about')}}">About Us</a>
                     </li>
+                    <li class="{{ (request()->segment(1) == 'pricing') ? 'active' : '' }}"> 
+                        <a href="{{url('pricing')}}">pricing</a>
+                    </li>
                     <li class="{{ (request()->segment(1) == 'contact') ? 'active' : '' }}"> 
                         <a href="{{url('contact')}}">Contact Us</a>
-                    </li>
-                    <li class="{{ (request()->segment(1) == 'pricing') ? 'active' : '' }}"> 
-                        <li><a href="{{url('pricing')}}">Pricing</a></li>
                     </li>
                     @if(Auth::check())
                     <li class="tr-dropdown"><a href="#">Candidate   </a>

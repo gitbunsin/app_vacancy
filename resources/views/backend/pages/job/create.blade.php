@@ -128,7 +128,7 @@ use App\Model\location;
                                     </div>
                                 </div>
                                 <div class="pull-right">
-                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Back">
+                                        <a href="{{ URL::previous() }}" class="btn btn-default">Back</a>
                                         <input type="submit" class="btn btn-primary" value="Save">
                                     </div>
                         </div>

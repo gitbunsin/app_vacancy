@@ -20,7 +20,8 @@
             <div class="card">
                 <div class="card-header">
                     <div class="pull-right">
-                            <a onclick="AddCandidate();" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> Add </a>
+                            {{-- <a onclick="AddCandidate();" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> Add </a> --}}
+                            <a onclick="AddCandidate();" class="btn btn-primary"  title="Payment"><i class="ti-plus"></i> Add Candidate</a>
                     </div>
                     <input type="text" class="form-control wide-width" placeholder="Search & type" />
                 </div>
@@ -45,6 +46,7 @@
                                     <td>{{$vacancies->pivot->applied_date}}</td>
                                     <td>{{$vacancies->pivot->status}}</td>
                                     <th>
+                                        {{-- <a href="{{url('admin/candidate/'.$candidates->id.'/edit')}}" class="btn btn-primary" ><i class="icon-edit"></i></a> --}}
                                         <a onclick="Edit(this);" data-candidate_id="{{$candidates->id}}" data-vacancy_id={{$vacancies->id}}  class="btn btn-primary" ><i class="icon-edit"></i></a>
                                         <a onclick="Delete({{$candidates->id}});" class="btn btn-danger"><i class="ti-trash"></i></a>
                                     </th>                            
@@ -86,7 +88,7 @@
                                         </div>
                                         <div class="col-sm-4">
                                             <label>Middle Name .</label>
-                                            <input required name="middle_name_edit" id="middle_name_edit" type="text" class="form-control">
+                                            <input  name="middle_name_edit" id="middle_name_edit" type="text" class="form-control">
                                         </div>
                                         <div class="col-sm-4">
                                             <label>Last Name</label>
@@ -123,12 +125,23 @@
                                         </div>
                                         <div class="col-sm-4 m-clear">
                                             <label>Date of Application</label>
-                                            <input required id="date_application_edit" name="date_application_edit" type="date" class="form-control">
+                                            <input name="date_application_edit" id="date_application_edit" type="text" data-toggle="datepicker" class="form-control">
                                         </div>
                                         <div class="col-sm-4 m-clear">
                                             <label> Resume </label>
                                             <input name="file_name_edit" id="file_name_edit" type="file" class="form-control">
                                         </div>
+                                        <div class="col-sm-12">
+                                                <label>Candidate Status</label>
+                                                <?php $statuses = array('Application Initiated','Shortlist') ?>
+                                                <select name="candidate_status" id="candidate_status" class="form-control" required>
+                                                    <option value=""> -- please select status -- </option>
+                                                    @foreach($statuses as $status)
+                                                        <option value="{{$status}}"> {{$status}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
                                         <div class="col-sm-12 m-clear">
                                                 <label> Old Resume </label>
                                                 <input required name="resume_edit" id="resume_edit" type="text" disabled class="form-control">

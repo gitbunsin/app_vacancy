@@ -13,7 +13,9 @@
                     <h4>View Invoice</h4>
                 </div>
                 
-                <div class="card-body">                    
+                <div class="card-body">    
+                    <form method="post" action="{{url('admin/payment')}}">  
+                        {{ csrf_field() }}          
                     <div class="row mrg-0">
                         <div class="col-md-6">
                             <div id="logo"><img src="assets/img/logo.png" class="img-responsive" alt=""></div>
@@ -34,33 +36,35 @@
                         <div class="col-md-12">
                             <h2>INVOICE</h2>
                         </div>
-                        
+                        @php
+                             $user = auth()->guard('admin')->user();
+                        @endphp
                         <div class="col-md-12">
                             <div class="row">
                               <div class="col-lg-7 col-md-7 col-sm-7">
                               
                                 <h4>Supplier: </h4>
-                                <h5>Glovia Ltd</h5>
+                                <h5>{{$user->name}}</h5>
                                 <p>
-                                    <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1b72757d745b7c77746d727a35787476">[email&#160;protected]</a><br />
+                                    <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1b72757d745b7c77746d727a35787476">{{$user->email}}</a><br />
                                     
-                                    +91-587-936-5876<br />
+                                    0962711117<br />
                                     
-                                    780/77 , Lane Here, Chandigarh,
-                                    <br /> India
+                                    780/77 , Lane Here, Cambodia,
+                                    <br /> 
                                 </p>
                                 
                               </div>
                               <div class="col-lg-5 col-md-5 col-sm-5">
                                 <h4>Client Contact :</h4>
-                                <h5>Saurav Singh</h5>
+                                <h5>Bunsin Toeng</h5>
                                 <p>
-                                    <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5526342027342338343c396d62153238343c397b363a38">[email&#160;protected]</a><br />
+                                    <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5526342027342338343c396d62153238343c397b363a38">bunsin.toeng@gmail.com</a><br />
                                     
-                                    +91-587-936-5876<br />
+                                    +885 962711117<br />
                                     
-                                    780/77 , Gurudwara Chauk, Allahabad,
-                                    <br /> India
+                                    780/77 , Gurudwara Chauk, Cambodia,
+                                    <br /> 
                                 </p>
                               </div>
                             </div>
@@ -86,34 +90,29 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                         {{-- @foreach ($packages as $key =>  $package)  --}}
                                             <tr>
                                                 <td>1</td>
-                                                <td>Front End Design</td>
+                                                <td>{{$package->package_name}}</td>
                                                 <td>1 Month</td>
-                                                <td>5000 USD</td>
-                                                <td>5000 USD</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Software Development</td>
-                                                <td>2Month</td>
-                                                <td>5000 USD</td>
-                                                <td>10000 USD</td>
+                                                <td>{{ number_format($package->price, 2) }}</td>
+                                                <td>{{ number_format($package->price, 2) }} USD</td>
                                             </tr>
                                         </tbody>
+                                        {{-- @endforeach --}}
                                     </table>
                                 </div>
                                 <hr>
                                 <div>
-                                    <h5>Total : 700 USD </h5>
+                                    <h5>Total : {{ number_format($package->price, 2) }} USD </h5>
                                 </div>
                                 <hr>
                                 <div>
-                                    <h5>Taxes : 220 USD ( 20 % on Total Bill ) </h5>
+                                    <h5>Taxes : {{ number_format($package->price, 2) }} USD </h5>
                                 </div>
                                 <hr>
                                 <div>
-                                    <h4>Bill Amount : 920 USD </h4>
+                                    <h4>Bill Amount : {{ number_format($package->price, 2) }} USD </h4>
                                 </div>
                             </div>
                         </div>
@@ -122,6 +121,7 @@
                         <a href="{{ URL::previous() }}" class="btn btn-danger">Back</a>
                         <input type="submit" class="btn btn-primary" value="Agree">
                     </div>
+                </form>    
                 </div>
             
             </div>

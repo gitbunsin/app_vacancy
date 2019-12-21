@@ -8,7 +8,7 @@
     pointer-events: none;
     cursor: default;
     text-decoration: none;
-    color: yellow;
+    color: #ffc107;
     font-weight: bold;
 }
 </style>
@@ -34,7 +34,7 @@
                  @endif         
                 <!-- /.check login -->
                 @if(Auth::check() && $candidate_vacancy > 0)
-                    <a href="#" class="btn btn-primary not-active"><i class="fa fa-briefcase" aria-hidden="true"></i>Applied For This Job</a>
+                    <a href="#"  data-toggle="tooltip" title="Applied For This Job!" class="btn btn-primary not-active"><i class="fa fa-briefcase" aria-hidden="true"></i>Applied For This Job</a>
                  @elseif(Auth::check())
                  <a href="#" data-candidate_id={{auth::user()->id}} onclick="ApplyJob({{$vacancy->id}});" class="btn btn-primary "><i class="fa fa-briefcase" aria-hidden="true"></i>Apply For This Job</a>
                  @else
@@ -50,7 +50,7 @@
 <div class="job-details section-padding">
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-lg-9">
+            <div class="col-md-8 col-lg-8">
                 <div class="job-summary section">
                     <span class="tr-title">Job Description</span>
                              {!! $vacancy->job_description !!}
@@ -69,7 +69,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-4 col-lg-3">
+            <div class="col-md-4 col-lg-4">
                 <div class="tr-sidebar">
                     <div class="widget-area">
                         <div class="widget short-info">
@@ -84,14 +84,14 @@
                         </div><!-- /.widger -->
                         <div class="widget cmpany-info">
                             <h3 class="widget_title">Cmpany Info</h3>
-                            <span>Google Inc</span>
-                            <p>Lorem ipsum dolor sit amet,  eiusmod tempor incididunt ut labore </p>
+                            <span><b>{{$vacancy->company->company_name}}</b></span>
+                        
                             <ul class="tr-list">
                                 <li><span>Address:</span> London, UK</li>
                                 <li><span>Compnay SIze:</span>  2k Employee</li>
                                 <li><span>Industry:</span> <a href="#">Technology</a></li>
                                 <li><span>Phone:</span> +1234 567 8910</li>
-                                <li><span>Email:</span> <a href="#"><span class="__cf_email__" data-cfemail="4c25222a230c283e233c2e2334622f2321">[email&#160;protected]</span></a></li>
+                                <li><span>Email:</span> <a href="#"><span class="__cf_email__" data-cfemail="4c25222a230c283e233c2e2334622f2321">{{$vacancy->company->email}}</span></a></li>
                                 <li><span>Website:</span> <a href="#">www.dropbox.com</a></li>
                                 <li><span></span></li>
                             </ul>

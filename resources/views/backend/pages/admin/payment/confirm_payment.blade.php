@@ -23,25 +23,25 @@
                        <h5><i class="fa fa-bank mrg-r-5"></i> Cofirm Billing Payment</h5>
                     </div>
                     <div class="card-body"> 
-                            <form method="get" action="{{url('admin/invoice/'. $user->id)}}">
+                            <form method="get" action="{{url('admin/invoice/'. 1)}}">
                                 <div class="row">
   
                                     <div class="col-sm-6">
                                         <label>Bank Swift Code</label>
-                                        <input name="facebook_link" type="text" class="form-control">
+                                        <input name="swift_code" id="swift_code" type="text" required placeholder="" class="form-control">
 
                                         <label>Account Number *</label>
-                                        <input name="google_link" type="text" class="form-control">
+                                        <input name="account_number" id="account_number" required type="number" class="form-control">
 
                                         <label>Branch Name *</label>
-                                        <input name="twitter_link" type="text" class="form-control">
+                                        <input name="branch_name" id="branch_name" required type="text" class="form-control">
 
                                         <label>Branch Address *</label>
-                                        <input name="linkedIn_link" type="text" class="form-control">
+                                        <input name="branch_address" id="branch_address" required type="text" class="form-control">
                                         <label>Account Name *</label>
-                                        <input name="pinterest_link" type="text" class="form-control">
+                                        <input name="account_name" required  id="account_name" type="text" class="form-control">
                                         <label>IBAN</label>
-                                        <input name="instagram_link" type="text" class="form-control">
+                                        <input name="iban" id="iban" required type="text" class="form-control">
                                     </div>
         
                                     <div class="col-sm-6">
@@ -50,27 +50,27 @@
                             <table class="table">
                                 <tr>
                                     <th>@lang('app.bank_swift_code')</th>
-                                    <td>@lang('app.bank_swift_code')</td>
+                                    <td>ACLBKHPP</td>
                                 </tr>
                                 <tr>
                                     <th>@lang('app.account_number')</th>
-                                    <td>@lang('app.account_number')</td>
+                                    <td>4286 0900 1133 2861</td>
                                 </tr>
                                 <tr>
                                     <th>@lang('app.branch_name')</th>
-                                    <td>@lang('app.branch_name')</td>
+                                    <td>Phnom Penh</td>
                                 </tr>
                                 <tr>
                                     <th>@lang('app.branch_address')</th>
-                                    <td>@lang('app.branch_address')</td>
+                                    <td>#148 Preah Sihanouk Blvd,  </td>
                                 </tr>
                                 <tr>
                                     <th>@lang('app.account_name')</th>
-                                    <td>@lang('app.account_name')</td>
+                                    <td>Bunsin Toeng</td>
                                 </tr>
                                 <tr>
                                     <th>@lang('app.iban')</th>
-                                    <td>@lang('app.iban')</td>
+                                    <td>AL35202111090000000001234567</td>
                                 </tr>
                             </table>
                                     </div>

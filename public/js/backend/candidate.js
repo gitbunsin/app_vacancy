@@ -4,8 +4,6 @@ $("#frmEditCandidate").validate({
           required: true,
        },last_name_edit : {
            required : true
-       },middle_name_edit : {
-           required : true
        },email_edit : {
            required : true
        },company_edit : {
@@ -37,7 +35,8 @@ $("#frmEditCandidate").validate({
             form_data.append('company',$('#company_edit').val());
             form_data.append('vacancy_id',$('#vacancy_edit').val());
             form_data.append('phone',$('#phone_edit').val());
-
+            form_data.append('status',$('#candidate_status').val());
+            form_data.append('date',$('#date_application_edit').val());
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -73,11 +72,6 @@ $("#frmEditCandidate").validate({
 
 
 
-
-
-
-
-
 function Edit(x)
 {
 
@@ -90,7 +84,7 @@ function Edit(x)
       url: "/admin/candidate_vacancy/edit/" + canddate_id +"/" + vacancy_id , 
       success: function(result)
       {
-        //  console.log(result);
+         console.log(result);
          $('#ModalEditCandidate').modal('show');
          $('#first_name_edit').val(result.first_name);
          $('#last_name_edit').val(result.last_name);
@@ -113,6 +107,22 @@ function Edit(x)
                }
                company.append('<option value="'+value.id+'" '+isSelected+' >'+value.company_name+'</option>');
         });
+
+
+         //Candidate Status 
+         var status = $('#candidate_status');
+         status.empty();
+         var all_status = ['Application Initiated','Shortlist'];
+         $.each(all_status, function (key , value) {
+            //  console.log(value);
+               var isSelected = '';
+               if(result.candidate_vacancy.status == value)
+               {
+                  isSelected = 'selected';
+               }
+               status.append('<option value="'+value + '" '+isSelected+' >'+value+'</option>');
+        });
+
 
         //Vacancy 
         var vacancy = $('#vacancy_edit');

@@ -160,7 +160,8 @@
                 </select>
             </div>
             {{-- <a onclick="AddVacancy();" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> Add </a> --}}
-            <a href="{{url('admin/job/create')}}" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> Add </a>
+            {{-- <a href="{{url('admin/job/create')}}" class=" pull-right btn btn-cancel manage-btn" title="Add Attachment"> <i class="ti-plus"></i> Add </a> --}}
+            <a href="{{url('admin/job/create')}}" class="btn btn-primary pull-right"  title="Payment"><i class="ti-plus"></i> Add Candidate</a> &nbsp;&nbsp;&nbsp;
             <input type="text" class="form-control wide-width" placeholder="Search & type" />
         </div>
         <div class="card-body">

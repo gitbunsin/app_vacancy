@@ -8,6 +8,7 @@ use App\Model\company;
 use App\Model\candidate_vacancy;
 use App\Model\candidateAttachment;
 use Illuminate\Http\Request;
+use DB; 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use App\Http\Controllers\Controller;
@@ -104,11 +105,10 @@ class CandidateController extends Controller
      */
     public function edit($id)
     {
+        // return view('Backend/pages/candidate/edit');
         $candidate =  candidate::find($id);
         $candidate['all_company'] = company::all();
         $candidate['all_vacancy'] = vacancy::all();
-
-
         return response::json($candidate);
     }
 
@@ -133,6 +133,7 @@ class CandidateController extends Controller
      */
     public function updateCandidate(Request $request , $id)
     {
+        
         $filename = $request->file('file')->getClientOriginalName();
         $candidate = candidate::find($id);
         $candidate->admin_id = auth()->guard('admin')->user()->id;
@@ -146,9 +147,10 @@ class CandidateController extends Controller
         $candidate->phone = $request->phone;
         $candidate->save();
         $candidate_id = $candidate->id;
-        $candidate_vacancy = candidate::find($candidate->id);
-        $candidate_vacancy->vacancy()->sync($request->vacancy_id,array('status'=>'Application Initiated','applied_date'=>Carbon::now()));
-        //candidate attachment
+
+        //candidate_vacancy 
+        $candidate_vacancy = DB::table('candidate_vacancy')->where('candidate_id', $candidate_id )->where('vacancy_id',$request->vacancy_id)->update(['status'=>$request->status,'applied_date'=>$request->date]);
+       
         $attachment = candidateAttachment::where('candidate_id',$candidate_id)->first();
         $attachment->candidate_id = $candidate_id;
         $attachment->file_name = $filename ;
