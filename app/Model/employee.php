@@ -3,7 +3,6 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-
 class employee extends Model
 {
     protected $table = 'employees';
@@ -18,6 +17,7 @@ class employee extends Model
     {
         return $this->belongsToMany(WorkShift::class);
     }
+
     public function salary()
     {
         return $this->hasMany(employeeBasicSalary::class);
@@ -32,7 +32,7 @@ class employee extends Model
     }
     public function interview(){
 
-        return $this->hasMany(Interview::class);
+        return $this->belongsToMany(interview::class);
     }
     public function workexperience()
     {

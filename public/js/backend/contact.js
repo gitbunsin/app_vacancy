@@ -28,13 +28,8 @@ $("#frmContactUs").validate({
              }else{
                
                 toastr.success('Success' , 'item has been updated !');
-                location.reload();
+                $('#frmContactUs').trigger('reset');
              }
-            //  $('#ModalEditJobCategory').modal('hide');
-             
-            //  var category = '<tr id="tr_category' + result.id + '"> <th class="scope="row">' + result.id + '</><td>' + result.name + '</td>';
-            //  category += '<th><a onclick="Editcategory(' + result.id + ');"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Status"><i class="icon-edit"></i></a>  <a onclick="Deletecategory(' + result.id + ');" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Category"><i class="ti-trash"></i></a></th></tr>';
-            //  $("#tr_category" + result.id).replaceWith(category);
            },error : function(err){
                 console.log(err);
            }

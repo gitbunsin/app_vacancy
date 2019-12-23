@@ -133,14 +133,26 @@
                                         </div>
                                         <div class="col-sm-12">
                                                 <label>Candidate Status</label>
-                                                <?php $statuses = array('Application Initiated','Shortlist') ?>
+                                                @php $statuses = array("Application Initiated"," Shortlisted","Interview");@endphp
                                                 <select name="candidate_status" id="candidate_status" class="form-control" required>
                                                     <option value=""> -- please select status -- </option>
                                                     @foreach($statuses as $status)
                                                         <option value="{{$status}}"> {{$status}}</option>
                                                     @endforeach
                                                 </select>
+                                        </div>
+                                        <div class="col-sm-4" id="div_name">
+                                                <label>Interview Name</label>
+                                                <input  name="interview_name" id="interview_name" type="text" class="form-control">
                                             </div>
+                                        <div class="col-sm-4" id="div_date">
+                                            <label>Date.</label>
+                                            <input type="date" name="interview_date" id="interview_date" data-toggle="datepicker" class="form-control" id="date">
+                                        </div>
+                                        <div class="col-sm-4" id="div_time">
+                                            <label>Time</label>
+                                            <input type="time" name="interview_time"  class="form-control" id="interview_time">
+                                        </div>
 
                                         <div class="col-sm-12 m-clear">
                                                 <label> Old Resume </label>
@@ -253,6 +265,16 @@
                                         <input required name="file_name" id="file_name" type="file" class="form-control">
                                     </div>
                                     <div class="col-md-12">
+                                            <label>Status</label>
+                                            <select class="form-control"  name="CandidateStatus" id="CandidateStatus">
+                                                    <option value="" required > -- plz select status -- </option>
+                                                    @php $status = array("Application Initiated"," Shortlisted","Interview");@endphp
+                                                    @foreach($status as $statuses)
+                                                         <option value="{{$statuses}}"> {{$statuses}}</option>
+                                                    @endforeach
+                                                </select>
+                                    </div>
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Comment</label>
                                             <textarea name="address" type="text" rows="5" class="form-control"></textarea>
@@ -336,7 +358,7 @@
                         <label>Status  </label>
                         <select class="form-control"  name="CandidateStatus" id="CandidateStatus">
                             <option value="" required > -- plz select status -- </option>
-                            @php $status = array("Application Initiated"," Shortlisted","Interview","Job Offer");@endphp
+                            @php $status = array("Application Initiated"," Shortlisted","Interview");@endphp
                             @foreach($status as $statuses)
                                  <option value="{{$statuses}}"> {{$statuses}}</option>
                             @endforeach

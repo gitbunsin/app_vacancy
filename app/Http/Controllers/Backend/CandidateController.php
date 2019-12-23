@@ -8,6 +8,7 @@ use App\Model\company;
 use App\Model\candidate_vacancy;
 use App\Model\candidateAttachment;
 use Illuminate\Http\Request;
+use App\Model\interview;
 use DB; 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
@@ -120,7 +121,8 @@ class CandidateController extends Controller
         $candidate['candidate_vacancy'] = candidate_vacancy::where('vacancy_id',$vacancy_id)
         ->where('candidate_id',$candidate_id)->first();
         $candidate['resume'] = candidateAttachment::where('candidate_id',$candidate_id)->first();
-
+        $candidate['interview'] = interview::where('vacancy_id',$vacancy_id)
+        ->where('candidate_id',$candidate_id)->first();
         return response::json($candidate);
     }
 
@@ -150,7 +152,34 @@ class CandidateController extends Controller
 
         //candidate_vacancy 
         $candidate_vacancy = DB::table('candidate_vacancy')->where('candidate_id', $candidate_id )->where('vacancy_id',$request->vacancy_id)->update(['status'=>$request->status,'applied_date'=>$request->date]);
+        // check Status equal interview 
+        // $candidate_vacancy = DB::table('interview')->where('candidate_id', $candidate_id )->where('vacancy_id',$request->vacancy_id)->first();
        
+
+        if($request->status == "Interview"){
+            $interview = DB::table('interviews')->where('candidate_id', $candidate_id )->where('vacancy_id',$request->vacancy_id)->first();
+            if($interview){
+                $interview = interview::find($interview->id);
+                $interview->candidate_id = $candidate_id ;
+                $interview->vacancy_id = $request->vacancy_id;
+                $interview->interview_name = $request->interview_name;
+                $interview->interview_date = $request->interview_date;
+                $interview->interview_time = $request->interview_time;
+                $interview->status = $request->status;
+                $interview->save();
+            }else{
+                $interview = new interview();
+                $interview->candidate_id = $candidate_id ;
+                $interview->vacancy_id = $request->vacancy_id;
+                $interview->interview_name = $request->interview_name;
+                $interview->interview_date = $request->interview_date;
+                $interview->interview_time = $request->interview_time;
+                $interview->status = $request->status;
+                $interview->save();
+            }
+        }
+      
+
         $attachment = candidateAttachment::where('candidate_id',$candidate_id)->first();
         $attachment->candidate_id = $candidate_id;
         $attachment->file_name = $filename ;
@@ -164,6 +193,17 @@ class CandidateController extends Controller
         $candidate['vacancy']= vacancy::where('id',$request->vacancy_id)->first();
         $candidate['candidate_vacancy'] = candidate_vacancy::where('vacancy_id',$request->vacancy_id)
                                                           ->where('candidate_id',$candidate_id)->first();
+
+
+        // $ObjInterview  = new interview();
+        // $objInterview->candidate_id =  1;
+        // $objInterview->vacancy_id = 18;
+        // $objInterview->save();   
+       
+
+           
+         
+                                
         return response::json($candidate);
     }
     // public function update(Request $request, $id)

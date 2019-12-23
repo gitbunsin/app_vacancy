@@ -37,6 +37,9 @@ $("#frmEditCandidate").validate({
             form_data.append('phone',$('#phone_edit').val());
             form_data.append('status',$('#candidate_status').val());
             form_data.append('date',$('#date_application_edit').val());
+            form_data.append('interview_date',$('#interview_date').val());
+            form_data.append('interview_time',$('#interview_time').val());
+            form_data.append('interview_name',$('#interview_name').val());
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -70,7 +73,23 @@ $("#frmEditCandidate").validate({
 });
 
 
+//check Status == Interview
+$('#div_name').hide();
+$('#div_date').hide();
+$('#div_time').hide();
 
+    $('#candidate_status').on('change', function() {
+        $status =  $('#candidate_status').val();
+        if($status == "Interview"){
+            $('#div_name').show();
+            $('#div_date').show();
+            $('#div_time').show();
+        }else{
+            $('#div_name').hide();
+            $('#div_date').hide();
+            $('#div_time').hide();
+        }
+    });
 
 function Edit(x)
 {
@@ -94,6 +113,7 @@ function Edit(x)
          $('#date_application_edit').val(result.candidate_vacancy.applied_date);
          $('#resume_edit').val(result.resume.file_name);
          $('#file_name_edit').val('');
+     
         //  $('#date_application_edit').val(result.email);
 
          //Company
@@ -112,13 +132,22 @@ function Edit(x)
          //Candidate Status 
          var status = $('#candidate_status');
          status.empty();
-         var all_status = ['Application Initiated','Shortlist'];
+         var all_status = ['Application Initiated','Shortlist','Interview'];
          $.each(all_status, function (key , value) {
             //  console.log(value);
                var isSelected = '';
                if(result.candidate_vacancy.status == value)
                {
                   isSelected = 'selected';
+               }
+               if(result.candidate_vacancy.status == "Interview")
+               {
+                    $('#interview_name').val(result.interview.interview_name);
+                    $('#interview_time').val(result.interview.interview_time);
+                    $('#interview_date').val(result.interview.interview_date);
+                    $('#div_name').show();
+                    $('#div_date').show();
+                    $('#div_time').show();
                }
                status.append('<option value="'+value + '" '+isSelected+' >'+value+'</option>');
         });
