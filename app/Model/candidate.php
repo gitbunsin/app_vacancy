@@ -15,7 +15,10 @@ class candidate extends Model
     {
         return $this->belongsToMany(vacancy::class)->withPivot('applied_date','status');
     }
-
+    public function interview()
+    {
+        return $this->hasMany(interview::class);
+    }
     public function company()
     {
         return $this->belongsTo(company::class);

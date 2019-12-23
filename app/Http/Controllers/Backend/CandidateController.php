@@ -106,11 +106,15 @@ class CandidateController extends Controller
      */
     public function edit($id)
     {
+        $candidate = candidate::with(['vacancy','interview'])->where('id',$id)->first();
+       
+        // $interviewer = employee_interview::where('interview_id',$candidate->interview)
         // return view('Backend/pages/candidate/edit');
-        $candidate =  candidate::find($id);
-        $candidate['all_company'] = company::all();
-        $candidate['all_vacancy'] = vacancy::all();
-        return response::json($candidate);
+        // $candidate =  candidate::find($id);
+        // $candidate['all_company'] = company::all();
+        // $candidate['all_vacancy'] = vacancy::all();
+        // return response::json($candidate);
+        return view('Backend/pages/candidate/edit',compact('candidate'));
     }
 
     public function EditCandidateVacancy($candidate_id , $vacancy_id){
@@ -136,7 +140,7 @@ class CandidateController extends Controller
     public function updateCandidate(Request $request , $id)
     {
         
-        $filename = $request->file('file')->getClientOriginalName();
+        // $filename = $request->file('file')->getClientOriginalName();
         $candidate = candidate::find($id);
         $candidate->admin_id = auth()->guard('admin')->user()->id;
         $candidate->company()->associate($request->company);
@@ -149,50 +153,50 @@ class CandidateController extends Controller
         $candidate->phone = $request->phone;
         $candidate->save();
         $candidate_id = $candidate->id;
-
+                   
+        return response::json($request->first_name);
         //candidate_vacancy 
-        $candidate_vacancy = DB::table('candidate_vacancy')->where('candidate_id', $candidate_id )->where('vacancy_id',$request->vacancy_id)->update(['status'=>$request->status,'applied_date'=>$request->date]);
+        // $candidate_vacancy = DB::table('candidate_vacancy')->where('candidate_id', $candidate_id )->where('vacancy_id',$request->vacancy_id)->update(['status'=>$request->status,'applied_date'=>$request->date]);
         // check Status equal interview 
         // $candidate_vacancy = DB::table('interview')->where('candidate_id', $candidate_id )->where('vacancy_id',$request->vacancy_id)->first();
        
 
-        if($request->status == "Interview"){
-            $interview = DB::table('interviews')->where('candidate_id', $candidate_id )->where('vacancy_id',$request->vacancy_id)->first();
-            if($interview){
-                $interview = interview::find($interview->id);
-                $interview->candidate_id = $candidate_id ;
-                $interview->vacancy_id = $request->vacancy_id;
-                $interview->interview_name = $request->interview_name;
-                $interview->interview_date = $request->interview_date;
-                $interview->interview_time = $request->interview_time;
-                $interview->status = $request->status;
-                $interview->save();
-            }else{
-                $interview = new interview();
-                $interview->candidate_id = $candidate_id ;
-                $interview->vacancy_id = $request->vacancy_id;
-                $interview->interview_name = $request->interview_name;
-                $interview->interview_date = $request->interview_date;
-                $interview->interview_time = $request->interview_time;
-                $interview->status = $request->status;
-                $interview->save();
-            }
-        }
-      
+        // if($request->status == "Interview"){
+        //     $interview = DB::table('interviews')->where('candidate_id', $candidate_id )->where('vacancy_id',$request->vacancy_id)->first();
+        //     if($interview){
+        //         $interview = interview::find($interview->id);
+        //         $interview->candidate_id = $candidate_id ;
+        //         $interview->vacancy_id = $request->vacancy_id;
+        //         $interview->interview_name = $request->interview_name;
+        //         $interview->interview_date = $request->interview_date;
+        //         $interview->interview_time = $request->interview_time;
+        //         $interview->status = $request->status;
+        //         $interview->save();
+        //     }else{
+        //         $interview = new interview();
+        //         $interview->candidate_id = $candidate_id ;
+        //         $interview->vacancy_id = $request->vacancy_id;
+        //         $interview->interview_name = $request->interview_name;
+        //         $interview->interview_date = $request->interview_date;
+        //         $interview->interview_time = $request->interview_time;
+        //         $interview->status = $request->status;
+        //         $interview->save();
+        //     }
+        // }
 
-        $attachment = candidateAttachment::where('candidate_id',$candidate_id)->first();
-        $attachment->candidate_id = $candidate_id;
-        $attachment->file_name = $filename ;
-        $attachment->attachment_type = $request->file('file')->getMimeType();
-        $attachment->file_size =  $request->file('file')->getSize();
-        $attachment->file_type = $request->file('file')->getType();
-        $attachment->file_content = $request->file('file')->getPathname();
-        $dir = 'uploads/UserCv';
-        $request->file('file')->move($dir, $filename);
-        $attachment->save();
-        $candidate['vacancy']= vacancy::where('id',$request->vacancy_id)->first();
-        $candidate['candidate_vacancy'] = candidate_vacancy::where('vacancy_id',$request->vacancy_id)
-                                                          ->where('candidate_id',$candidate_id)->first();
+        // $attachment = candidateAttachment::where('candidate_id',$candidate_id)->first();
+        // $attachment->candidate_id = $candidate_id;
+        // $attachment->file_name = $filename ;
+        // $attachment->attachment_type = $request->file('file')->getMimeType();
+        // $attachment->file_size =  $request->file('file')->getSize();
+        // $attachment->file_type = $request->file('file')->getType();
+        // $attachment->file_content = $request->file('file')->getPathname();
+        // $dir = 'uploads/UserCv';
+        // $request->file('file')->move($dir, $filename);
+        // $attachment->save();
+        // $candidate['vacancy']= vacancy::where('id',$request->vacancy_id)->first();
+        // $candidate['candidate_vacancy'] = candidate_vacancy::where('vacancy_id',$request->vacancy_id)
+        //                                                   ->where('candidate_id',$candidate_id)->first();
 
 
         // $ObjInterview  = new interview();
@@ -203,8 +207,7 @@ class CandidateController extends Controller
 
            
          
-                                
-        return response::json($candidate);
+
     }
     // public function update(Request $request, $id)
     // {

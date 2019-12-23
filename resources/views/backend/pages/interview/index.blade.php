@@ -39,7 +39,7 @@
             <input type="text" class="form-control wide-width" placeholder="Search & type" />
         </div>
         <div class="card-body">
-                <table class="table" id='tbl_vacancy'>
+                <table class="table" id='tbl_interview'>
                         <thead>
                             <tr>
                                 <th scope="col">#No</th>
@@ -53,17 +53,21 @@
                             </tr>
                         </thead>
                         @foreach ($interviews as $key => $interview)
-                            <tr id="tr_vacancy{{$interview->interview_id}}">
+                            <tr id="tr_interview{{$interview->id}}">
                                 <th scope="row">{{$key + 1}}</th>
-                                <td>{{$interview->vacancy_name}}</td>
-                                <td>{{$interview->first_name .' '.$interview->last_name}}</td>
+                                <td>
+                                    {{$interview->vacancy->vacancy_name}}
+                                </td>
+                                <td>
+                                    {{$interview->candidate->first_name .' '.$interview->candidate->last_name}}
+                                </td>
                                 <td></td>
                                 <td>{{$interview->interview_date}}</td>
                                 <td>{{date('h:i A', strtotime($interview->interview_time))}}</td>
-                                <td style="color:cadetblue;">{{$interview->interview_status}}</td>
+                                <td style="color:cadetblue;">{{$interview->status}}</td>
                                 <th>
-                                    <a onclick="EditInterview({{$interview->interview_id}});" class="btn btn-primary"  title="Edit"><i class="icon-edit"></i></a>
-                                    <a onclick="DeleteInterview({{$interview->interview_id}});" class="btn btn-danger"  title="Delete"><i class="ti-trash"></i></a>
+                                    <a onclick="EditInterview({{$interview->id}});" class="btn btn-primary"  title="Edit"><i class="icon-edit"></i></a>
+                                    <a onclick="DeleteInterview({{$interview->id}});" class="btn btn-danger"  title="Delete"><i class="ti-trash"></i></a>
                                 </th>
                             </tr>
                         @endforeach      
@@ -78,9 +82,9 @@
 <div id="ModalAddInterview" class="modal fade">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <form id="frmAddCandidate">
+                <form id="frmUpdateInterview">
                     <meta name="csrf-token" content="{{ csrf_token() }}">
-                    <input type="hidden" name="id" id="candidate_id" value=""/>
+                    <input type="hidden" name="interview_id" id="interview_id" value=""/>
                     <div class="modal-header theme-bg">
                         <h4 class="modal-title">Interview </h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -102,7 +106,7 @@
                       
                                     <div class="col-md-12">
                                             <label>Interviewer</label>
-                                            <select class="form-control"  name="interviewer" id="interviewer">
+                                            <select class="form-control"  name="employee_id" id="employee_id">
                                                     <option value="" required > -- plz select interviewer -- </option>
                                                     @php $employees = employee::all();@endphp
                                                     @foreach($employees as $employee)
@@ -123,7 +127,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Note</label>
-                                            <textarea name="address" type="text" rows="5" class="form-control"></textarea>
+                                            <textarea name="note" id="note" type="text" rows="5" class="form-control"></textarea>
                                         </div>
                                     </div>
                             </div>

@@ -47,4 +47,8 @@ class vacancy extends Model
     {
         return $this->belongsTo(company::class,'company_id','id');
     }
+    public function interview()
+    {
+        return $this->hasMany(interview::class);
+    }
 }

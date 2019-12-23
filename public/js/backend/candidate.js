@@ -1,3 +1,5 @@
+
+
 $("#frmEditCandidate").validate({
     rules: {
         first_name_edit: {
@@ -10,57 +12,43 @@ $("#frmEditCandidate").validate({
            required : true
        },vacancy_edit : {
            required : true
-       },file_name_edit: {
-           required : true
        }
     }, submitHandler: function (form) {
         //Candidate ID
         var id = $('#candidate_id_edit').val();
-
-        var extension = $('#file_name_edit').val().split('.').pop().toLowerCase();
-        // console.log(extension);
-         if ($.inArray(extension, ['pdf', 'doc', 'xlsx']) == -1) {
-            toastr.error('Please Select Valid File... !');
-            //  $('#errormessage').html('Please Select Valid File... ');
-         } else {
-
-            var file_data = $('#file_name_edit').prop('files')[0];
-            var form_data = new FormData();
-            form_data.append('file', file_data);
-            form_data.append('name',$('#name').val());
-            form_data.append('first_name',$('#first_name_edit').val());
-            form_data.append('last_name',$('#last_name_edit').val());
-            form_data.append('middle_name',$('#middle_name_edit').val());
-            form_data.append('email',$('#email_edit').val());
-            form_data.append('company',$('#company_edit').val());
-            form_data.append('vacancy_id',$('#vacancy_edit').val());
-            form_data.append('phone',$('#phone_edit').val());
-            form_data.append('status',$('#candidate_status').val());
-            form_data.append('date',$('#date_application_edit').val());
-            form_data.append('interview_date',$('#interview_date').val());
-            form_data.append('interview_time',$('#interview_time').val());
-            form_data.append('interview_name',$('#interview_name').val());
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
             jQuery.ajax({
+                type: "POST",
                  url: "/admin/candidate/update/" + id,
-                 data: form_data,
-                 type: 'POST',
-                 dataType:"json",
-                 contentType: false, // The content type used when sending data to the server.
-                 cache: false, // To unable request pages to be cached
-                 processData: false,
+                 data: {
+                     'name' : $('#name').val(),
+                     'first_name' : $('#first_name_edit').val(),
+                     'last_name' : $('#last_name_edit').val(),
+                     'middle_name' : $('#middle_name_edit').val(),
+                     'email' : $('#email_edit').val(),
+                     'company' : $('#company_edit').val(),
+                     'vacancy_id': $('#vacancy_edit').val(),
+                     'phone' : $('#phone_edit').val(),
+                    //  'status' : $('#candidate_status').val(),
+                    //  'date' : $('#date_application_edit').val(),
+                    //  'interview_date' : $('#interview_date').val(),
+                    //  'interview_time' : $('#interview_time').val(),
+                    //  'interview_name' : $('#interview_name').val()
+                 },
                 success: function(result)
                 {
                    console.log(result);
-                   $('#ModalEditCandidate').modal('hide');
                    toastr.success('Success' , 'item has been updated !');
-                   var canddate = '<tr id="tr_candidate' + result.id + '"> <th class="scope="row">' + result.id + '</th><td>' + result.first_name + ' ' + result.last_name + '</td><td>' + result.vacancy.vacancy_name + '</td><td>' + result.candidate_vacancy.applied_date + '</td><td>' + result.candidate_vacancy.status + '</td>';
-                   canddate += '<th><a onclick="Edit(this);" data-candidate_id="'+ result.id +'" data-vacancy_id="' + result.vacancy.id +'"  class="btn btn-primary"><i class="icon-edit"></i></a>  <a onclick="Delete(' + result.id + ');"  class="btn btn-danger"><i class="ti-trash"></i></a></th></tr>';
-                   $('#tr_candidate'+ result.id).replaceWith(canddate);
+                //    location.reload();
+                //    $('#ModalEditCandidate').modal('hide');
+                //    toastr.success('Success' , 'item has been updated !');
+                //    var canddate = '<tr id="tr_candidate' + result.id + '"> <th class="scope="row">' + result.id + '</th><td>' + result.first_name + ' ' + result.last_name + '</td><td>' + result.vacancy.vacancy_name + '</td><td>' + result.candidate_vacancy.applied_date + '</td><td>' + result.candidate_vacancy.status + '</td>';
+                //    canddate += '<th><a onclick="Edit(this);" data-candidate_id="'+ result.id +'" data-vacancy_id="' + result.vacancy.id +'"  class="btn btn-primary"><i class="icon-edit"></i></a>  <a onclick="Delete(' + result.id + ');"  class="btn btn-danger"><i class="ti-trash"></i></a></th></tr>';
+                //    $('#tr_candidate'+ result.id).replaceWith(canddate);
     
                 },error : function(err){
     
@@ -69,8 +57,83 @@ $("#frmEditCandidate").validate({
             });
 
          }
-    }
 });
+
+
+
+// $("#frmEditCandidate").validate({
+//     rules: {
+//         first_name_edit: {
+//           required: true,
+//        },last_name_edit : {
+//            required : true
+//        },email_edit : {
+//            required : true
+//        },company_edit : {
+//            required : true
+//        },vacancy_edit : {
+//            required : true
+//        },file_name_edit: {
+//            required : true
+//        }
+//     }, submitHandler: function (form) {
+//         //Candidate ID
+//         var id = $('#candidate_id_edit').val();
+
+//         var extension = $('#file_name_edit').val().split('.').pop().toLowerCase();
+//         // console.log(extension);
+//          if ($.inArray(extension, ['pdf', 'doc', 'xlsx']) == -1) {
+//             toastr.error('Please Select Valid File... !');
+//             //  $('#errormessage').html('Please Select Valid File... ');
+//          } else {
+
+//             var file_data = $('#file_name_edit').prop('files')[0];
+//             var form_data = new FormData();
+//             form_data.append('file', file_data);
+//             form_data.append('name',$('#name').val());
+//             form_data.append('first_name',$('#first_name_edit').val());
+//             form_data.append('last_name',$('#last_name_edit').val());
+//             form_data.append('middle_name',$('#middle_name_edit').val());
+//             form_data.append('email',$('#email_edit').val());
+//             form_data.append('company',$('#company_edit').val());
+//             form_data.append('vacancy_id',$('#vacancy_edit').val());
+//             form_data.append('phone',$('#phone_edit').val());
+//             form_data.append('status',$('#candidate_status').val());
+//             form_data.append('date',$('#date_application_edit').val());
+//             form_data.append('interview_date',$('#interview_date').val());
+//             form_data.append('interview_time',$('#interview_time').val());
+//             form_data.append('interview_name',$('#interview_name').val());
+//             $.ajaxSetup({
+//                 headers: {
+//                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//                 }
+//             });
+//             jQuery.ajax({
+//                  url: "/admin/candidate/update/" + id,
+//                  data: form_data,
+//                  type: 'POST',
+//                  dataType:"json",
+//                  contentType: false, // The content type used when sending data to the server.
+//                  cache: false, // To unable request pages to be cached
+//                  processData: false,
+//                 success: function(result)
+//                 {
+//                    console.log(result);
+//                    $('#ModalEditCandidate').modal('hide');
+//                    toastr.success('Success' , 'item has been updated !');
+//                    var canddate = '<tr id="tr_candidate' + result.id + '"> <th class="scope="row">' + result.id + '</th><td>' + result.first_name + ' ' + result.last_name + '</td><td>' + result.vacancy.vacancy_name + '</td><td>' + result.candidate_vacancy.applied_date + '</td><td>' + result.candidate_vacancy.status + '</td>';
+//                    canddate += '<th><a onclick="Edit(this);" data-candidate_id="'+ result.id +'" data-vacancy_id="' + result.vacancy.id +'"  class="btn btn-primary"><i class="icon-edit"></i></a>  <a onclick="Delete(' + result.id + ');"  class="btn btn-danger"><i class="ti-trash"></i></a></th></tr>';
+//                    $('#tr_candidate'+ result.id).replaceWith(canddate);
+    
+//                 },error : function(err){
+    
+//                     console.log(err);
+//                 }
+//             });
+
+//          }
+//     }
+// });
 
 
 //check Status == Interview
