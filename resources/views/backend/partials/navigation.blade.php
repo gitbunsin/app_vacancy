@@ -27,9 +27,9 @@
                     <li class="{{ (request()->segment(2) == 'candidate') ? 'active' : '' }}">
                         <a href="{{url('admin/candidate')}}">candidates</a>
                     </li>
-                    <li class="{{ (request()->segment(2) == 'interview') ? 'active' : '' }}">
+                    {{-- <li class="{{ (request()->segment(2) == 'interview') ? 'active' : '' }}">
                             <a href="{{url('admin/interview')}}">Interview</a>
-                        </li>
+                        </li> --}}
                 </ul>
             </li>
 

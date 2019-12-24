@@ -19,6 +19,10 @@ class candidate extends Model
     {
         return $this->hasMany(interview::class);
     }
+    public function candidateAttachment()
+    {
+        return $this->hasMany(candidateAttachment::class);
+    }
     public function company()
     {
         return $this->belongsTo(company::class);

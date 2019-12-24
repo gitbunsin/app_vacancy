@@ -120,22 +120,29 @@
                                             <div role="tabpanel" class="tab-pane fades" id="description">
                                                 <form action="">
                                                     <div class="card-body">
-                                                           
                                                             <div class="row">
-                                                                    <div class="col-sm-4 m-clear">
-                                                                            <label> Resume </label>
-                                                                            <input name="file_name_edit" id="file_name_edit" type="file" class="form-control">
-                                                                        </div>
-                                                                        <div class="col-sm-12 m-clear">
-                                                                                <label> Old Resume </label>
-                                                                                <input required name="resume_edit" id="resume_edit" type="text" disabled class="form-control">
-                                                                            </div>
+                                                                    {{-- @foreach ($candidate as $candidates) --}}
+                                                                    @foreach ($candidate->candidateAttachment as $candidateAttachments)
+                                                                    <div id="candidate_attachment" class="ul_id{{$candidateAttachments->id}} list" >
+                                                                            <li class="manage-list-row clearfix">   
+                                                                                    <div class="job-info">
+                                                                                            <div class="job-details">
+                                                                                                <small class="job-company"><i class="ti-time"></i><b>Resume</b> : <a href="">{{$candidateAttachments->file_name}}</a> </small>
+                                                                                                <small class="job-company"><i class="ti-location-pin"></i><b>Attachment_type </b>: {{$candidateAttachments->attachment_type}}</small>         
+                                                                                                <small class="job-company"><i class="ti-file"></i><b>File Size </b>: {{$candidateAttachments->file_size}}</small>                                                                            
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="job-buttons">
+                                                                                            <a onclick="EditCandidateResume({{$candidate->id}});" class="btn btn-primary"><i class="icon-edit"></i></a>
+                                                                                        </div>
+                                                                                </li>
+                                                                    </div>
+                                                                    @endforeach
+                                                                    {{-- @endforeach --}}
+                                                    
                                                             </div>
                                                     </div>
-                                                    <div class="pull-right">
-                                                            <a href="{{ URL::previous() }}" class="btn btn-default">Back</a>
-                                                            <input type="submit" class="btn btn-primary" value="Save">
-                                                        </div>
+                                                   
                                                     </form>
                                             </div>
                                             <div role="tabpanel" class="tab-pane fades" id="note">
@@ -162,30 +169,17 @@
                                                         <div class="list">
                                                                 <li class="manage-list-row clearfix">
                                                                         <div class="job-info">
-                                                                            <div class="job-img">
-                                                                                <img src="assets/img/user-1.jpg" class="attachment-thumbnail" alt="Academy Pro Theme">
-                                                                            </div>
                                                                             <div class="job-details">
-                                                                                <h3 class="job-name"><a class="job_name_tag" href="#">Adam L. Mock</a></h3>
-                                                                                <small class="job-company"><i class="ti-home"></i>Web Designer</small>
-                                                                                <small class="job-sallery"><i class="ti-time"></i>3 Year Ex.</small>
-                                                                                <small class="job-sallery"><i class="ti-location-pin"></i>London</small>
-                                                                                <div class="shortlisted-can">shortlisted</div>
-                                                                                <div class="candi-skill">
-                                                                                    <span class="skill-tag">css</span>
-                                                                                    <span class="skill-tag">HTML</span>
-                                                                                    <span class="skill-tag">Photoshop</span>
-                                                                                </div>
+                                                                                <h3 class="job-name"><a class="job_name_tag" href="#"></a></h3>
+                                                                                <small class="job-company"><i class="ti-time"></i>3 Year Ex.</small>
+                                                                                <small class="job-company"><i class="ti-location-pin"></i>London</small>                                                                               
                                                                             </div>
                                                                         </div>
                                                                        
                                                                     </li>
                                                         </div>
                                                     </div>
-                                                    <div class="pull-right">
-                                                            <a href="{{ URL::previous() }}" class="btn btn-default">Back</a>
-                                                            <input type="submit" class="btn btn-primary" value="Save">
-                                                        </div>
+                                                  
                                                 </form>
                                             </div>
                                            
@@ -255,7 +249,39 @@
         </div>
         <!-- /row -->
     </div>
-    </div>
+    </div>  
+    <!-- /Candidate Resume -->
+    <div id="ModalCandidateEditResume" class="modal fade">
+            <div class="modal-dialog  modal-lg">
+                <div class="modal-content">
+                    <form id="frmCandidateResume">
+                        <input type="hidden" id="candidate_resume_id" value="">
+                        <meta name="csrf-token" content="{{ csrf_token() }}">
+                        <div class="modal-header theme-bg">
+                                <h4 class="modal-title">Candidate Resume</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                        <div class="row">
+                                        <div class="col-sm-12">
+                                                <label>Resume</label>
+                                                <input  name="resume_file" id="resume_file" type="file" class="form-control">
+                                            </div>
+                                            <div class="col-sm-12">
+                                                    <label>Old Resume</label>
+                                                    <input disabled  name="old_resume" id="old_resume" type="text" class="form-control">
+                                                </div>
+                                        </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                    <input type="submit" class="btn btn-danger" value="Save">
+                                </div>
+                        </form>
+                </div>
+            </div>
+     </div>
+
 
     <div id="ModalDeleteInterview" class="modal fade">
             <div class="modal-dialog">

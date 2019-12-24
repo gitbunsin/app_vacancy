@@ -10,4 +10,8 @@ class candidateAttachment extends Model
     protected  $guarded = '[id]';
 
     public $timestamps = false;
+    public function candidate(){
+
+        return $this->belongsTo(candidate::class);
+    }
 }

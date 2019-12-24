@@ -106,8 +106,8 @@ class CandidateController extends Controller
      */
     public function edit($id)
     {
-        $candidate = candidate::with(['vacancy','interview'])->where('id',$id)->first();
-       
+        $candidate = candidate::with(['vacancy','interview','candidateAttachment'])->where('id',$id)->first();
+        // dd($candidate->candidateAttachment);
         // $interviewer = employee_interview::where('interview_id',$candidate->interview)
         // return view('Backend/pages/candidate/edit');
         // $candidate =  candidate::find($id);
@@ -115,6 +115,30 @@ class CandidateController extends Controller
         // $candidate['all_vacancy'] = vacancy::all();
         // return response::json($candidate);
         return view('Backend/pages/candidate/edit',compact('candidate'));
+    }
+
+    public function editCandidateResume( $id)
+    {
+        # code...
+        $candidate_attachment = candidateAttachment::where('candidate_id',$id)->first();
+        return response::json( $candidate_attachment );
+    }
+
+    public function UpdateCandidateResume(Request $request ,$id)
+    {
+        $filename = $request->file('file')->getClientOriginalName();
+        $attachment = candidateAttachment::where('candidate_id',$id)->first();
+        $attachment->candidate_id = $id;
+        $attachment->file_name = $filename ;
+        $attachment->attachment_type = $request->file('file')->getMimeType();
+        $attachment->file_size =  $request->file('file')->getSize();
+        $attachment->file_type = $request->file('file')->getType();
+        $attachment->file_content = $request->file('file')->getPathname();
+        $dir = 'uploads/UserCv';
+        $request->file('file')->move($dir, $filename);
+        $attachment->save();
+     
+        return response::json($attachment);
     }
 
     public function EditCandidateVacancy($candidate_id , $vacancy_id){

@@ -1,3 +1,91 @@
+
+//function 
+$('#frmCandidateResume').validate({
+   rules : {
+    resume_file : {
+         required : true
+      }
+   },
+   submitHandler: function (form) {
+       var id = $('#candidate_resume_id').val();
+       var extension = $('#resume_file').val().split('.').pop().toLowerCase();
+               // console.log(extension);
+                if ($.inArray(extension, ['pdf', 'doc', 'xlsx']) == -1) {
+                   toastr.error('Please Select Valid File... !');
+                   //  $('#errormessage').html('Please Select Valid File... ');
+                } else {
+       
+                   var file_data = $('#resume_file').prop('files')[0];
+                   var form_data = new FormData();
+                   form_data.append('file', file_data);
+                   $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                 });
+                jQuery.ajax({
+                    url: "/admin/candidate/update-resume" + '/' + id,
+                    data: form_data,
+                    type: 'POST',
+                    dataType:"json",
+                    contentType: false, // The content type used when sending data to the server.
+                    cache: false, // To unable request pages to be cached
+                    processData: false,
+                    success: function (response) {
+                        console.log(response);
+                        $('#ModalCandidateEditResume').modal('hide');
+                        // $('#tr_interview' + response.id).remove();
+                     
+                        let ul =
+                        '<div id="candidate_attachment" class="ul_id '+ response.id+' list" >' + 
+                        '<li class="manage-list-row clearfix"> ' + 
+                               ' <div class="job-info"> ' +
+                                       ' <div class="job-details"> ' +
+                                           ' <small class="job-company"><i class="ti-time"></i><b>Resume</b> : <a href="">' + response.file_name + '</a> </small>'+
+                                           ' <small class="job-company"><i class="ti-location-pin"></i><b>Attachment_type </b>:' + response.attachment_type + '</small> ' +        
+                                           ' <small class="job-company"><i class="ti-file"></i><b>File Size </b>: ' + response.file_size + '</small> ' +                                                                
+                                        '</div>'+
+                                    '</div>';
+                                ul += 
+                                    '<div class="job-buttons">' + 
+                                       '<a onclick="EditCandidateResume(' + response.candidate_id + ');" class="btn btn-primary"><i class="icon-edit"></i></a> '+
+                                   '</div></li></div>';
+                        
+                            $('#candidate_attachment').replaceWith(ul);
+                            toastr.success('Success', 'item has been deleted !');
+
+                    }, error: function (err) {
+                        console.log(err);
+                    }
+                });
+            }
+   }
+});
+
+
+function EditCandidateResume(id)
+{
+    console.log(id);
+   $.ajax({
+      type: "GET",
+      url: "/admin/candidate/resume/" + id ,
+      success: function(result)
+      {
+         console.log(result);
+         $('#candidate_resume_id').val(id);
+         $('#old_resume').val(result.file_name);
+         $('#ModalCandidateEditResume').modal('show');
+      },error : function(err){
+        console.log(err);
+      }
+   });
+}
+
+
+
+
+
+
 function DeleteInterview(id){
 
    $('#interview_delete_id').val(id);

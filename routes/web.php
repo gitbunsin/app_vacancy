@@ -64,6 +64,8 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
     Route::resource('WorkShift','WorkShiftController');
     Route::resource('interview','InterviewController');
     Route::resource('candidate','CandidateController');
+    Route::get('candidate/resume/{id}','CandidateController@editCandidateResume');
+    Route::post('candidate/update-resume/{id}','CandidateController@UpdateCandidateResume');
     Route::post('candidate/update/{id}','CandidateController@updateCandidate');
     Route::get('candidate_vacancy/edit/{canidate_id}/{vacancy_id}','CandidateController@EditCandidateVacancy');
     Route::resource('vacancy','vacancyController');
