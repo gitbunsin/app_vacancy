@@ -9,6 +9,7 @@ use App\Model\candidate_vacancy;
 use App\Model\candidateAttachment;
 use Illuminate\Http\Request;
 use App\Model\interview;
+use App\Model\candidateHistory;
 use DB; 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
@@ -68,7 +69,7 @@ class CandidateController extends Controller
         $candidate->save();
         $candidate_id = $candidate->id;
         $candidate_vacancy = candidate::find($candidate->id);
-        $candidate_vacancy->vacancy()->attach($request->vacancy_id,array('status'=>'Application Initiated','applied_date'=>Carbon::now()));
+        $candidate_vacancy->vacancy()->attach($request->vacancy_id,array('status'=>$request->status,'applied_date'=>Carbon::now()));
         //candidate attachment
         $attachment = new candidateAttachment();
         $attachment->candidate_id = $candidate_id;
@@ -80,6 +81,16 @@ class CandidateController extends Controller
         $dir = 'uploads/UserCv';
         $request->file('file')->move($dir, $filename);
         $attachment->save();
+        //Candidate History
+        $candidate_history = new candidateHistory();
+        $candidate_history->admin_id = auth::guard('admin')->user()->id;
+        $candidate_history->employee_id = auth::guard('admin')->user()->id;
+        $candidate_history->candidate_id = $candidate_id;
+        $candidate_history->vacancy_id = $request->vacancy_id;
+        $candidate_history->performed_date = Carbon::now();
+        $candidate_history->status = $request->status;
+        $candidate_history->save();
+
         $candidate['vacancy']= vacancy::where('id',$request->vacancy_id)->first();
         $candidate['candidate_vacancy'] = candidate_vacancy::where('vacancy_id',$request->vacancy_id)
                                                           ->where('candidate_id',$candidate_id)->first();
@@ -106,8 +117,8 @@ class CandidateController extends Controller
      */
     public function edit($id)
     {
-        $candidate = candidate::with(['vacancy','interview','candidateAttachment'])->where('id',$id)->first();
-        // dd($candidate->candidateAttachment);
+        $candidate = candidate::with(['vacancy','interview','candidateAttachment','candidateHistory'])->where('id',$id)->first();
+        // dd($candidate);
         // $interviewer = employee_interview::where('interview_id',$candidate->interview)
         // return view('Backend/pages/candidate/edit');
         // $candidate =  candidate::find($id);
@@ -122,6 +133,13 @@ class CandidateController extends Controller
         # code...
         $candidate_attachment = candidateAttachment::where('candidate_id',$id)->first();
         return response::json( $candidate_attachment );
+    }
+    public function updateCandidateNote(Request $request , $id)
+    {
+        $candidate = candidate::where('id',$id)->first();
+        $candidate->note  = $request->note;
+        $candidate->save();
+        return response::json($candidate);
     }
 
     public function UpdateCandidateResume(Request $request ,$id)

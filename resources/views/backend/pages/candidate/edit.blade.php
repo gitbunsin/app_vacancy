@@ -15,12 +15,14 @@
     }
     </style>
 @php
+  
     use App\Model\employee;
     use App\Model\vacancy;
     use App\Model\company;
     use App\Model\JobCategory;
     use App\Model\interview;
     use App\Model\skill;
+    
 @endphp
 
         {{ csrf_field() }}
@@ -32,7 +34,7 @@
                 <!-- General Company Information  -->
                 <div class="card">
                     <div class="card-header">
-                        <h4>Candidate Info</h4>
+                        <h4><i class="ti-gift "></i> Candidate Info : <strong>{{$candidate->first_name . ' ' .$candidate->last_name}} </strong></h4>
                     </div>
 
                     <div class="card-body">
@@ -40,8 +42,9 @@
                                     <ul class="nav nav-tabs" role="tablist">
                                             <li role="presentation" class="active"><a href="#info" aria-controls="home" role="tab" data-toggle="tab"> Candidate Info</a></li>
                                             <li role="presentation"><a href="#description" aria-controls="description" role="tab" data-toggle="tab"> View Resume</a></li>
-                                            <li role="presentation"><a href="#note" aria-controls="messages" role="tab" data-toggle="tab">Add a Note</a></li>
+
                                             <li role="presentation"><a href="#interview" aria-controls="messages" role="tab" data-toggle="tab">Schulde an Interview</a></li>
+                                            <li role="presentation"><a href="#note" aria-controls="messages" role="tab" data-toggle="tab">Add a Note</a></li>
                                             <li role="presentation"><a href="#history" aria-controls="messages" role="tab" data-toggle="tab">Candidate History</a></li>
                                         </ul>
                                         <!-- Tab panes -->
@@ -146,13 +149,18 @@
                                                     </form>
                                             </div>
                                             <div role="tabpanel" class="tab-pane fades" id="note">
-                                                    <form action="">
+                                                    <form action="#" id="frmCandidateNote">
+                                                        <input type="hidden" id="candidate_note_id" value="{{$candidate->id}}">
+                                                        <meta name="csrf-token" content="{{ csrf_token() }}">
                                                     <div class="card-body">
                                                             <div class="row">
                                                                     <div class="col-md-12">
                                                                             <div class="form-group">
                                                                                 <label>Note</label>
-                                                                                <textarea name="comment_edit" id="comment_edit" type="text" rows="5" class="form-control"></textarea>
+                                                                                <textarea  name="candidate_note" id="candidate_note" type="text" rows="5" class="form-control">
+                                                                                    {{$candidate->note}}     
+                                                                                     
+                                                                                </textarea>
                                                                             </div>
                                                                         </div>
                                                             </div>
@@ -166,18 +174,22 @@
                                             <div role="tabpanel" class="tab-pane fades" id="history">
                                                     <form action="">
                                                     <div class="card-body">
-                                                        <div class="list">
-                                                                <li class="manage-list-row clearfix">
-                                                                        <div class="job-info">
-                                                                            <div class="job-details">
-                                                                                <h3 class="job-name"><a class="job_name_tag" href="#"></a></h3>
-                                                                                <small class="job-company"><i class="ti-time"></i>3 Year Ex.</small>
-                                                                                <small class="job-company"><i class="ti-location-pin"></i>London</small>                                                                               
+                                                        @foreach ($candidate->candidateHistory as $histories)
+                                                        @php
+                                                            $user_admin = DB::table('admins')->where('id',$histories->admin_id)->first();
+                                                        @endphp
+                                                            <div class="list">
+                                                                    <li class="manage-list-row clearfix">
+                                                                            <div class="job-info">
+                                                                                <div class="job-details">
+                                                                                    <h3 class="job-name"><a class="job_name_tag" href="#"></a></h3>
+                                                                                    <small class="job-company"><i class="ti-time"></i><b>Date : </b> {{$histories->performed_date}}</small>
+                                                                                    <small class="job-company"><i class="ti-location-pin"></i><b>Performance By :</b> {{$user_admin->name}} </small>                                                                               
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                       
-                                                                    </li>
-                                                        </div>
+                                                                        </li>
+                                                            </div>
+                                                        @endforeach
                                                     </div>
                                                   
                                                 </form>
@@ -224,7 +236,7 @@
                                                                         
                                                                             <td>{{$interviews->interview_date}}</td>
                                                                             <td>{{date('h:i A', strtotime($interviews->interview_time))}}</td>
-                                                                            <td style="color:cadetblue;">{{$interviews->status}}</td>
+                                                                            <td><b class="badge bg-success">{{$interviews->status}}</b></td>
                                                                             <th>
                                                                                 <a onclick="EditInterview({{$interviews->id}});" class="btn btn-primary"  title="Edit"><i class="icon-edit"></i></a>
                                                                                 <a onclick="DeleteInterview({{$interviews->id}});" class="btn btn-danger"  title="Delete"><i class="ti-trash"></i></a>

@@ -46,7 +46,6 @@
                                     <td>{{$vacancies->pivot->applied_date}}</td>
                                     <td>{{$vacancies->pivot->status}}</td>
                                     <th>
-                                        {{-- <a href="{{url('admin/candidate/'.$candidates->id.'/edit')}}" class="btn btn-primary" ><i class="icon-edit"></i></a> --}}
                                         <a onclick="Edit(this);" data-candidate_id="{{$candidates->id}}" data-vacancy_id={{$vacancies->id}}  class="btn btn-primary" ><i class="icon-edit"></i></a>
                                         <a onclick="Delete({{$candidates->id}});" class="btn btn-danger"><i class="ti-trash"></i></a>
                                     </th>                            
@@ -273,12 +272,6 @@
                                                          <option value="{{$statuses}}"> {{$statuses}}</option>
                                                     @endforeach
                                                 </select>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Comment</label>
-                                            <textarea name="address" type="text" rows="5" class="form-control"></textarea>
-                                        </div>
                                     </div>
                             </div>
                     </div>

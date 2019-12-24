@@ -481,6 +481,7 @@ class ComposerStaticInit8d8674694d2e01ac5f8f266acbc6ddab
         'App\\Model\\UserJob' => __DIR__ . '/../..' . '/app/Model/UserJob.php',
         'App\\Model\\candidate' => __DIR__ . '/../..' . '/app/Model/candidate.php',
         'App\\Model\\candidateAttachment' => __DIR__ . '/../..' . '/app/Model/candidateAttachment.php',
+        'App\\Model\\candidateHistory' => __DIR__ . '/../..' . '/app/Model/candidateHistory.php',
         'App\\Model\\candidate_vacancy' => __DIR__ . '/../..' . '/app/Model/candidate_vacancy.php',
         'App\\Model\\city' => __DIR__ . '/../..' . '/app/Model/city.php',
         'App\\Model\\company' => __DIR__ . '/../..' . '/app/Model/company.php',

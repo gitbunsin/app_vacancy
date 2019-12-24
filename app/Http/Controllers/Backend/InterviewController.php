@@ -53,10 +53,11 @@ class InterviewController extends Controller
         $interview->status = $request->interview_status;
         $interview->note = $request->note;
         $interview->save();
+ 
         $employee = employee::find($request->interviewer_id);
         $interview->employee()->attach($employee);
-        $interview['employee'] = employee_interview::where('employee_id',$request->employee_id)->first();
-        
+        $interview['employee'] = employee::select(DB::raw("CONCAT(employees.first_name,' ',employees.last_name) as interviewer"))->whereIn('id', $request->interviewer_id)->get();
+                
         $interview['vacancy'] = vacancy::find($interview->vacancy_id);
         $interview['candidate'] = candidate::find($interview->candidate_id);
         return response::json($interview);

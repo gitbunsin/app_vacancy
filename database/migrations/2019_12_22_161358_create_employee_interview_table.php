@@ -18,7 +18,7 @@ class CreateEmployeeInterviewTable extends Migration
             $table->integer('employee_id')->unsigned()->nullable();
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
             $table->integer('interview_id')->unsigned()->nullable();
-            $table->foreign('interview_id')->references('id')->on('interviewsw')->onDelete('cascade');
+            $table->foreign('interview_id')->references('id')->on('interviews')->onDelete('cascade');
         });
     }
 

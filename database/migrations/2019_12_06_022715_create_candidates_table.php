@@ -37,6 +37,7 @@ class CreateCandidatesTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->string('profile')->nullable();
+            $table->text('note')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

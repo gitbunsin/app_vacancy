@@ -71,6 +71,7 @@ return array(
     'App\\Model\\UserJob' => $baseDir . '/app/Model/UserJob.php',
     'App\\Model\\candidate' => $baseDir . '/app/Model/candidate.php',
     'App\\Model\\candidateAttachment' => $baseDir . '/app/Model/candidateAttachment.php',
+    'App\\Model\\candidateHistory' => $baseDir . '/app/Model/candidateHistory.php',
     'App\\Model\\candidate_vacancy' => $baseDir . '/app/Model/candidate_vacancy.php',
     'App\\Model\\city' => $baseDir . '/app/Model/city.php',
     'App\\Model\\company' => $baseDir . '/app/Model/company.php',

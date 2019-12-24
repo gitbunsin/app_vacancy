@@ -1,3 +1,32 @@
+//note
+$('#frmCandidateNote').validate({
+    rules : {
+        candidate_note : {
+          required : true
+       }
+    },
+    submitHandler: function (form) {
+        var id = $('#candidate_note_id').val();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        jQuery.ajax({
+            url: "/admin/canidate/note/" + id,
+            method: 'POST',
+            data: {
+                'note' : $('#candidate_note').val(),
+            },success : function(response){
+                toastr.success('Success', 'item has been deleted !');
+            },error : function(err){
+
+                console.log(err);
+            }
+        });  
+    }
+});
+
 
 //function 
 $('#frmCandidateResume').validate({
@@ -131,7 +160,7 @@ $("#frmAddInterview").validate({
    }
    }, submitHandler: function (form) {
       var id = $('#interviewer_id').val();
-      console.log(id);
+    //   console.log(id);
       $.ajaxSetup({
           headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -151,10 +180,15 @@ $("#frmAddInterview").validate({
              "note" : $('#note').val()
           },
           success: function (result) {
-            console.log(result);
+              console.log(result);
+              var myObj = [];         
+              $.each(result.employee, function (i, value) {
+                  myObj.push(value.interviewer);
+              });  
+            var interviewer = myObj.join(", ");
             $('#ModalAssignInterview').modal('hide');
             toastr.success('Success' , 'item has created !');
-            var interview = '<tr id="tr_interview' + result.id + '"><th class="scope="row">' + result.id + '</th><td>' +  + '</td><td>' + result.interview_date + '</td><td>' + result.interview_time + '</td><td>' + result.status + '</td>';
+            var interview = '<tr id="tr_interview' + result.id + '"><th class="scope="row">' + result.id + '</th><td>' + result.vacancy.vacancy_name + '</td><td>' + interviewer + '</td><td>' + result.interview_date + '</td><td>' + result.interview_time + '</td><td><b class="badge bg-success">' + result.status + '</b></td>';
             interview += '<th><a onclick="EditInterview(' + result.id + ');" class="btn btn-primary"  title"Interview"><i class="icon-edit"></i></a>  <a onclick="DeleteInterview(' + result.id + ');"  class="btn btn-danger" title="Interview"><i class="ti-trash"></i></a></th></tr>';
             $('#tbl_interview').append(interview);
           },error : function(err){

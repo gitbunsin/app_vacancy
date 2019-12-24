@@ -11,6 +11,10 @@ class candidate extends Model
 
     public $timestamps = false;
 
+    public function candidateHistory()
+    {
+        return $this->hasMany(candidateHistory::class);
+    }
     public function vacancy()
     {
         return $this->belongsToMany(vacancy::class)->withPivot('applied_date','status');
