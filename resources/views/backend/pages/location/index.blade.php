@@ -88,7 +88,7 @@
                                                                                     <th scope="row">{{$key+1}}</th>
                                                                                     <td>{{$locations->name}}</td>
                                                                                     <td>{{$locations->city->name}}</td>
-                                                                                    <td></td>
+                                                                                    <td>{{$locations->country->name}}</td>
                                                                                     <td>{{$locations->phone}}</td>
                                                                                     <td></td>
                                                                                     <th>
@@ -110,103 +110,31 @@
                                                             </div>
                                                             <h3><span class="ti-home"></span> Organization Structure</h3>
                                                         </div>
-                                                        <br/>
-                                                        <div class="demo">
-                                                            <div class="row">
-                                                                <div class="col-lg-12">
-                                                                    <div class="tab" role="tabpanel">
-                                                                        <!-- Nav tabs -->
+                                                      
+                                                        <div class="card-body">
+                                                                <div class="modal-body">
                                                                         <ul class="nav nav-tabs" role="tablist">
-                                                                            <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">Company Structure</a></li>
-                                                                            <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">Company Craph</a></li>
+                                                                                <li role="presentation" class="active"><a href="#info" aria-controls="home" role="tab" data-toggle="tab"> Structure</a></li>
+                                                                                <li role="presentation"><a href="#description" aria-controls="description" role="tab" data-toggle="tab"> Company Grap</a></li>
+                                                                            </ul>
+                                                                            <!-- Tab panes -->
+                                                                            <div class="tab-content tabs">
                                                                     
-                                                                        </ul>
-                                                                        <!-- Tab panes -->
-                                                                        <div class="tab-content tabs">
-                                                                            <div role="tabpanel" class="tab-pane fade in active" id="Section1">
-                                                                                <div class="card-header">
-                                                                                    <a href="#" onclick="ShowModalExpericen()" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> <i class="fa fa-plus"></i></a>
-                                                                                    <br>
-                                                                                    <h4><i class="fa fa-group"></i> Company Structure</h4>
+                                                                                <div role="tabpanel" class="tab-pane fade in active" id="info">
+                                                                                        <form action="" id="frmEditCandidate">
+                                                                                        <input type="hidden" value="" id="candidate_id_edit">
+                                                                                        <meta name="csrf-token" content="{{ csrf_token() }}">
+                                                                                        <div class="card-body">
+                                                                                                <div class="row">
+                                                                                                </div>
+                                                                                        </div>
+                                                                                        </form>
                                                                                 </div>
-                                                                                <table class="table" id="tbl_work_experience">
-                                                                                    <thead>
-                                                                                      <tr>
-                                                                                        <th scope="col">#No</th>
-                                                                                        <th>Company </th>
-                                                                                        <th>Job title</th>
-                                                                                        <th>From </th>
-                                                                                        <th>To</th>
-                                                                                        <th>Comments</th>
-                                                                                        <th>Action</th>
-                                                                                      </tr>
-                                                                                    </thead>
-                                                                                    <tbody>
-                                                                                        {{-- @foreach ($employee->workexperience as $key => $item)
-                                                
-                                                                                      <tr id="tr_work_experience{{$item->id}}">
-                                                                                          <th scope="row">{{$key + 1}}</th>
-                                                                                          <td>{{$item->company_name}}</td>
-                                                                                          @php
-                                                                                                  $j = jobTitle::where('id',$item->job_title_id)->first();
-                                                                                          @endphp
-                                                                                          <td>
-                                                                                                {{$j->name}}
-                                                                                         </td>
-                                                                                          <td>{{$item->from}}</td>
-                                                                                          <td>{{$item->to}}</td>
-                                                                                          <td>{{$item->comments}}</td>
-                                                                                          <th>
-                                                                                                <a onclick="EditExperience({{$item->id}});"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
-                                                                                                <a onclick="DeleteExperience({{$item->id}});" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
-                                                                                          </th>
-                                                                                        </tr>     
-                                                                           
-                                                                                        @endforeach --}}
-                                                                                    </tbody>
-                                                                                  </table>
                                                                             </div>
-                                                                            <div role="tabpanel" class="tab-pane fade" id="Section2">
-                                                                                <div role="tabpanel" class="tab-pane fade in active" id="Section1">
-                                                                                    <div class="card-header">
-                                                                                        <br>
-                                                                                        <h4><i class="fa fa-group"></i> Company Craph</h4>
-                                                                                    </div>
-                                                                                
-  {{-- <div class="container"> --}}
-                                                            {{-- <div class="card">
-                                                                <div class="row">
-                                                                    <div class="card-body">
-                                                                        @foreach($subUnits as $subUnit)
-                                                                        <div class="col-md-12">
-                                                                            <h3>{{ $subUnit->name }}</h3>
-                                                                            <hr />
-                                                                            <div class="row">
-                                                                                @foreach($subUnit->children as $cats)
-                                                                                <div class="col-md-4">
-                                                                                    <h4>{{ $cats->name }}</h4>
-                                                                                    <hr />
-                                                                                    @foreach($cats->children as $cat)
-                                                                                    <h5>{{$cat->name}}</h5>
-                                                                                    @endforeach
-                                                                                </div>
-                                                                                @endforeach
-                                                                            </div>
-                                                                        </div>
-                                                                        @endforeach
-                                                                    </div>
                                                                 </div>
-                                                            </div> --}}
-                                                        {{-- </div> --}}
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
                                                         </div>
-                                                       
                                             </div>
+                                                    
                                     </div>
                             </div>
                         </div>
@@ -246,6 +174,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <form id="frmCompanyEdit">
+                    <meta name="csrf-token" content="{{ csrf_token() }}">
                     <input type="hidden" name="" val="" id="id_edit">
                     <div class="modal-header theme-bg">						
                         <h4 class="modal-title">Update Company</h4>
@@ -487,14 +416,11 @@
                     </div>
                     <div class="modal-body">
                             <div class="row">
-                                <div class="col-lg-6">
-                                        <div class="form-group">
+                                <div class="col-lg-4">
                                                 <label>Name</label>
                                                 <input type="text" name="name_edit" id="name_edit" class="form-control"/>
-                                            </div>
                                 </div>
-                                <div class="col-lg-6">
-                                        <div class="form-group">
+                                <div class="col-lg-4">
                                                 <label>Country</label>
                                                 <select class="form-control" id="country_code_edit" name="country_code_edit">
                                                     @php $country1 = country::all(); @endphp
@@ -502,10 +428,8 @@
                                                         <option value="{{$countries1->id}}">{{$countries1->name}}</option>
                                                     @endforeach
                                                 </select>
-                                            </div>
                                 </div>
-                                <div class="col-lg-6">
-                                        <div class="form-group">
+                                <div class="col-lg-4">
                                                 <label>City</label>
                                                 <select class="form-control" id="city_code_edit" name="city_code_edit">
                                                     @php $city1 = city::all(); @endphp
@@ -513,10 +437,8 @@
                                                         <option value="{{$cities1->id}}">{{$cities1->name}}</option>
                                                     @endforeach
                                                 </select>
-                                            </div>
                                 </div>
-                                <div class="col-lg-6">
-                                        <div class="form-group">
+                                <div class="col-lg-4">
                                                 <label>Province</label>
                                                 <select class="form-control" id="province_code_edit" name="province_code_edit">
                                                     @php use App\Model\province;$province1 = province::all(); @endphp
@@ -524,37 +446,26 @@
                                                         <option value="{{$provinces1->id}}">{{$provinces1->name}}</option>
                                                     @endforeach
                                                 </select>
-                                            </div>
                                 </div>
-                                <div class="col-lg-6">
-                                        <div class="form-group">
+                                <div class="col-lg-4">
                                                 <label>Phone</label>
                                                 <input type="text" name="phone_edit" id="phone_edit" class="form-control"/>
-                                            </div>
                                 </div>
-                                <div class="col-lg-6">
-                                        <div class="form-group">
+                                <div class="col-lg-4">
                                                 <label>Fax</label>
                                                 <input type="text" name="fax_edit" id="fax_edit" class="form-control"/>
-                                            </div>
                                 </div>
                                 <div class="col-lg-12">
-                                        <div class="form-group">
                                                 <label>Zip Code</label>
                                                 <input type="text" name="zip_code_edit" id="zip_code_edit" class="form-control"/>
-                                            </div>
                                 </div>
                                 <div class="col-lg-12">
-                                        <div class="form-group">
                                                 <label>Address </label>
                                                 <textarea rows="3" id="address_edit" name="address_edit" class="form-control"></textarea>
-                                            </div>
                                 </div>
                                 <div class="col-lg-12">
-                                        <div class="form-group">
                                                 <label>Note </label>
                                                 <textarea rows="3" id="note_edit" name="note_edit" class="form-control"></textarea>
-                                            </div>
                                 </div>
                     </div>
                 </div>
@@ -582,14 +493,11 @@
                     <div class="modal-body">
                         <div class="row">
 
-                        <div class="col-lg-6">
-                                <div class="form-group">
+                        <div class="col-lg-4">
                                         <label>Name</label>
                                         <input type="text" name="name" id="name" class="form-control"/>
-                                    </div>
                         </div>
-                        <div class="col-lg-6">
-                                <div class="form-group">
+                        <div class="col-lg-4">
                                         <label>Country</label>
                                         <select class="form-control" id="country_code" name="country_code">
                                             @php $country = country::all(); @endphp
@@ -597,11 +505,10 @@
                                                  <option value="{{$countries->id}}">{{$countries->name}}</option>
                                             @endforeach
                                         </select>
-                                    </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
          
-                                <div class="form-group">
+                            
                                         <label>City</label>
                                         <select class="form-control" id="city_code" name="city_code">
                                             @php $city = city::all(); @endphp
@@ -609,10 +516,10 @@
                                                  <option value="{{$cities->id}}">{{$cities->name}}</option>
                                             @endforeach
                                         </select>
-                                    </div>
+                                   
                         </div>
-                        <div class="col-lg-6">
-                                <div class="form-group">
+                        <div class="col-lg-4">
+                                
                                         <label>Province</label>
                                         <select class="form-control" id="province_code" name="province_code">
                                             @php $province = province::all(); @endphp
@@ -620,38 +527,30 @@
                                                  <option value="{{$provinces->id}}">{{$provinces->name}}</option>
                                             @endforeach
                                         </select>
-                                    </div>
+                                 
                         </div>
-                        <div class="col-lg-6">
-                             
-                        <div class="form-group">
+                        <div class="col-lg-4">
                                 <label>Phone</label>
                                 <input type="number" name="phone" id="phone" class="form-control"/>
-                            </div>
                         </div>
-                        <div class="col-lg-6">
-                                <div class="form-group">
-                                        <label>Fax</label>
-                                        <input type="text" name="fax" id="fax" class="form-control"/>
-                                    </div>
+                        <div class="col-lg-4">
+                            <label>Fax</label>
+                            <input type="text" name="fax" id="fax" class="form-control"/>
                         </div>
                         <div class="col-lg-12">
-                                <div class="form-group">
-                                        <label>Zip Code</label>
-                                        <input type="text" name="zip_code" id="zip_code" class="form-control"/>
-                                    </div>
+                 
+                            <label>Zip Code</label>
+                            <input type="text" name="zip_code" id="zip_code" class="form-control"/>
                         </div>
                         <div class="col-lg-12">
-                                <div class="form-group">
-                                        <label>Address </label>
-                                        <textarea rows="3" id="address" name="address" class="form-control"></textarea>
-                                    </div>
+                                
+                            <label>Address </label>
+                            <textarea rows="3" id="address" name="address" class="form-control"></textarea>
+                                   
                         </div>
                         <div class="col-lg-12">
-                                <div class="form-group">
-                                        <label>Note </label>
-                                        <textarea rows="3" id="note" name="note" class="form-control"></textarea>
-                                    </div>
+                            <label>Note </label>
+                            <textarea rows="3" id="note" name="note" class="form-control"></textarea>
                         </div>
                         </div>              
                     </div>   

@@ -73,11 +73,15 @@ function Edit(id){
         },submitHandler: function(form) 
         {
             var id = $('#id_edit').val();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
             jQuery.ajax({
                     url: "/admin/company" + "/" + id,
                     method: 'PUT',
                     data: {
-                        "_token": "{{ csrf_token() }}",
                         "company_name": $('#company_name_edit').val(),
                         "phone" : $('#phone_edit').val(),
                         "zip_code" : $('#zip_code_edit').val(),

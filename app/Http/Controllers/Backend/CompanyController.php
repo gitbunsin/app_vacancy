@@ -102,8 +102,8 @@ class CompanyController extends Controller
         $company->email = $request->email;
         $company->zip_code = $request->zip_code;
         $company->state  = $request->state;
-        $company->city_id = $request->city_id;
-        $company->country_id = $request->country_id;
+        // $company->city_id = $request->city_id;
+        // $company->country_id = $request->country_id;
         $company->address = $request->address;
         $company->website_link = $request->website_link;
         $company->facebook_link = $request->facebook_link;

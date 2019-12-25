@@ -44,7 +44,7 @@
                                     <td><a style="color:teal;" href="{{url('admin/candidate/'.$candidates->id.'/edit')}}">{{$candidates->first_name .' '. $candidates->last_name}}</a></td>
                                     <td>{{$vacancies->vacancy_name}}</td>
                                     <td>{{$vacancies->pivot->applied_date}}</td>
-                                    <td>{{$vacancies->pivot->status}}</td>
+                                    <td><b class="badge bg-success">{{$vacancies->pivot->status}}</b></td>
                                     <th>
                                         <a onclick="Edit(this);" data-candidate_id="{{$candidates->id}}" data-vacancy_id={{$vacancies->id}}  class="btn btn-primary" ><i class="icon-edit"></i></a>
                                         <a onclick="Delete({{$candidates->id}});" class="btn btn-danger"><i class="ti-trash"></i></a>

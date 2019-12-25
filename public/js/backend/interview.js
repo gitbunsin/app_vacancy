@@ -160,6 +160,8 @@ $("#frmAddInterview").validate({
    }
    }, submitHandler: function (form) {
       var id = $('#interviewer_id').val();
+      var interview  = $('#interview_status').val();
+      console.log(interview);
     //   console.log(id);
       $.ajaxSetup({
           headers: {
@@ -180,12 +182,18 @@ $("#frmAddInterview").validate({
              "note" : $('#note').val()
           },
           success: function (result) {
-              console.log(result);
+            //   console.log(result);
               var myObj = [];         
               $.each(result.employee, function (i, value) {
                   myObj.push(value.interviewer);
               });  
             var interviewer = myObj.join(", ");
+
+
+           
+
+
+
             $('#ModalAssignInterview').modal('hide');
             toastr.success('Success' , 'item has created !');
             var interview = '<tr id="tr_interview' + result.id + '"><th class="scope="row">' + result.id + '</th><td>' + result.vacancy.vacancy_name + '</td><td>' + interviewer + '</td><td>' + result.interview_date + '</td><td>' + result.interview_time + '</td><td><b class="badge bg-success">' + result.status + '</b></td>';
@@ -210,15 +218,16 @@ function EditInterview(id)
       url: "/admin/interview" + "/" + id + "/edit",
       success: function(result)
       {
-      //   console.log(result);
+        // console.log(result);
         $('#interview_id_edit').val(id);
         $('#ModalUpdateInterview').modal('show');
         $('#interview_name_edit').val(result.interview_name);
         $('#interview_date_edit').val(result.interview_date);
         $('#interview_time_edit').val(result.interview_time);
         $('#note_edit').val(result.note);
-        var status = $('#interview_status_edit');
-        status.empty();
+
+        var interview_status = $('#interview_status_edit');
+        interview_status.empty();
         var all_status = ['interview','Pass','Fail','Offer','Reject'];
          $.each(all_status, function (key , value) {
             //  console.log(value);
@@ -227,8 +236,48 @@ function EditInterview(id)
                {
                   isSelected = 'selected';
                }
-               status.append('<option value="'+value + '" '+isSelected+' >'+value+'</option>');
+               interview_status.append('<option value="'+value + '" '+isSelected+' >'+value+'</option>');
         });
+
+
+        // console.log(result.employee);   
+        // var myObj = [];         
+        // $.each(result.employee, function (i, value) {
+        //     myObj.push(value.id);
+        // });  
+        // var interviewer = myObj.join(", ");
+        // console.log(myObj);
+        // var w = $('#interviewer_id_edit');
+      
+        // for(var i = 0; i<result.all_employee.length; i++){
+        //     // console.log(result.all_employee[i]['id']);
+        //     for (var j = 0; j < result.employee.length; j++) {
+                
+        //             if(result.all_employee[i]['id'] == result.employee[j]['id'])
+        //             {
+        //                 isSelected = 'selected';
+        //                  w.append('<option value="'+result.id+'" '+isSelected+' >'+result.all_employee[i]['last_name']+ ' ' + result.all_employee[i]['first_name']+'</option>');                       
+        //             }
+        //     }
+        // }
+
+        var s = $('#interviewer_id_edit');
+        // s.empty();
+        $.each(result.all_employee, function (key , value) {
+            var isSelected = '';
+            $.each(result.employee, function (k , v) {
+
+               if(v.id == value.id)
+            {
+                isSelected = 'selected';
+            }
+            s.append('<option value="'+value.id+'" '+isSelected+' >'+value.first_name+' ' + value.last_name + '</option>');
+
+            });
+            
+        });
+
+
       },error : function(err){
 
             console.log(err);
@@ -237,9 +286,15 @@ function EditInterview(id)
 
   $("#frmUpdateInterview").validate({
    rules: {
-       interview_name: {
+    interview_name_edit: {
          required: true,
       },
+      interviewer_id_edit : {
+          required : true
+      },
+      interviewer_date_edit : {
+          required : true
+      }
    }, submitHandler: function (form) {
       var id = $('#interview_id_edit').val();
       var date = $('#interview_date_edit').val();
@@ -259,15 +314,21 @@ function EditInterview(id)
              "interview_name" : $('#interview_name_edit').val(),
              "interview_status" : $('#interview_status_edit').val(),
              "employee_id" : $('#employee_id_edit').val(),
+             "interviewer_id" : $('#interviewer_id_edit').val(), 
              "note" : $('#note_edit').val()
           },
           success: function (result) {
-            console.log(result);
+            // console.log(result);
+            var myObj = [];         
+            $.each(result.employee, function (i, value) {
+                myObj.push(value.interviewer);
+            });  
+           var interviewer = myObj.join(", ");
             $('#ModalUpdateInterview').modal('hide');
             toastr.success('Success' , 'item has been updated !');
-            var license = '<tr id="tr_interview' + result.id + '"><th class="scope="row">' + result.id + '</th><td>' +  + '</td><td>' + result.interview_date + '</td><td>' + result.interview_time + '</td><td>' + result.status + '</td>';
-            license += '<th><a onclick="EditInterview(' + result.id + ');" class="btn btn-primary"  title"Interview"><i class="icon-edit"></i></a>  <a onclick="DeleteInterview(' + result.id + ');"  class="btn btn-danger" title="Interview"><i class="ti-trash"></i></a></th></tr>';
-            $("#tr_interview" + result.id).replaceWith(license);
+            var interview = '<tr id="tr_interview' + result.id + '"><th class="scope="row">' + result.id + '</th><td>' + result.vacancy.vacancy_name + '</td><td>' + interviewer + '</td><td>' + result.interview_date + '</td><td>' + result.interview_time + '</td><td><b class="badge bg-success">' + result.status + '</b></td>';
+            interview += '<th><a onclick="EditInterview(' + result.id + ');" class="btn btn-primary"  title"Interview"><i class="icon-edit"></i></a>  <a onclick="DeleteInterview(' + result.id + ');"  class="btn btn-danger" title="Interview"><i class="ti-trash"></i></a></th></tr>';
+            $("#tr_interview" + result.id).replaceWith(interview);
           },error : function(err){
                console.log(err);
           }

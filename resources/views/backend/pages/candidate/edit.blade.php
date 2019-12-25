@@ -34,7 +34,7 @@
                 <!-- General Company Information  -->
                 <div class="card">
                     <div class="card-header">
-                        <h4><i class="ti-gift "></i> Candidate Info : <strong>{{$candidate->first_name . ' ' .$candidate->last_name}} </strong></h4>
+                        <h4><i class="ti-gift "></i> Candidate Info : <strong>{{$candidate->last_name . ' ' . $candidate->first_name  }}</strong></h4>
                     </div>
 
                     <div class="card-body">
@@ -104,7 +104,7 @@
                                                                     </div>
                                                                     <div class="col-md-4">
                                                                             <label>Status</label>
-                                                                            <select class="form-control"  name="interview_status" id="interview_status">
+                                                                            <select class="form-control"  name="candidate_status" id="candidate_status">
                                                                                     <option value="" required > -- plz select status -- </option>
                                                                                     @php $status = array("Application Initiated","Shortlist","Interview","Pass","Fail","Reject","Offer");@endphp
                                                                                     @foreach($status as $statuses)
@@ -158,8 +158,7 @@
                                                                             <div class="form-group">
                                                                                 <label>Note</label>
                                                                                 <textarea  name="candidate_note" id="candidate_note" type="text" rows="5" class="form-control">
-                                                                                    {{$candidate->note}}     
-                                                                                     
+                                                                                    {{$candidate->note}}      
                                                                                 </textarea>
                                                                             </div>
                                                                         </div>
@@ -177,6 +176,7 @@
                                                         @foreach ($candidate->candidateHistory as $histories)
                                                         @php
                                                             $user_admin = DB::table('admins')->where('id',$histories->admin_id)->first();
+                                                            // $user_admin = DB::table('admins')->where('id',$histories->admin_id)->get();
                                                         @endphp
                                                             <div class="list">
                                                                     <li class="manage-list-row clearfix">
@@ -184,7 +184,8 @@
                                                                                 <div class="job-details">
                                                                                     <h3 class="job-name"><a class="job_name_tag" href="#"></a></h3>
                                                                                     <small class="job-company"><i class="ti-time"></i><b>Date : </b> {{$histories->performed_date}}</small>
-                                                                                    <small class="job-company"><i class="ti-location-pin"></i><b>Performance By :</b> {{$user_admin->name}} </small>                                                                               
+                                                                                    <small class="job-company"><i class="ti-location-pin"></i><b>Performance By :</b> {{$user_admin->name}} </small>            
+                                                                                                                                            
                                                                                 </div>
                                                                             </div>
                                                                         </li>
@@ -396,7 +397,7 @@
                                 <div class="row">
                                         <div class="col-sm-4">
                                             <label>Interview Name</label>
-                                            <input required name="interview_name_edit" id="interview_name_edit" type="text" class="form-control">
+                                            <input  name="interview_name_edit" id="interview_name_edit" type="text" class="form-control">
                                         </div>
                                         <div class="col-sm-4">
                                             <label>Date.</label>
@@ -409,9 +410,9 @@
                                         <div class="col-lg-12">
                                                 <label> Interviewer</label>
                                                 <?php $employee = employee::all(); ?>
-                                                <select class="multiple-skill form-control" id="interviewer_id_edit" name="interviewer[]" multiple="multiple">
+                                                <select class="multiple-skill form-control" id="interviewer_id_edit" name="interviewer_id_edit[]" multiple="multiple">
                                                     @foreach($employee as $employees)
-                                                        <option value="{{$employees->id}}">{{$employees->first_name . ' ' . $employees->last_name}}</option>
+                                                        <option value="{{$employees->id}}">{{$employees->last_name . ' ' . $employees->first_name}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -425,12 +426,6 @@
                                                              <option value="{{$statuses}}"> {{$statuses}}</option>
                                                         @endforeach
                                                     </select>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Note</label>
-                                                <textarea name="note_edit" id="note_edit" type="text" rows="5" class="form-control"></textarea>
-                                            </div>
                                         </div>
                                 </div>
                         </div>

@@ -106,15 +106,18 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="text-center pull-right">
-                                        <a href="{{ URL::previous() }}"><button class="btn btn-m btn-primary">Back</button></a>
-                                        <button type="submit" class="btn btn-m btn-success">Save</button>
-                                    </div>
+                                </div>
+                                <div class="pull-right">
+                                        <a href="{{ URL::previous() }}"><button class="btn btn-primary">Back</button></a>
+                                        <button type="submit" class="btn btn-success">Save</button>
                                 </div>
                             </div>
                         </form>
+                        <br/>
                         <div class="card-header">
-                            <a href="#" data-id="{{$employee->id}}" onclick="ShowEmployeeAttachment(this);" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment">  Add Attachment</a>
+                                <a onclick="ShowEmployeeAttachment(this);" data-id="{{$employee->id}}" onclick="AddCandidate();" class="btn btn-primary pull-right "  title="Payment"><i class="ti-plus"></i> Add Attachment</a>
+
+                            {{-- <a href="#" data-id="{{$employee->id}}" onclick="ShowEmployeeAttachment(this);" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment">  Add Attachment</a> --}}
                             <br>
                             <h4><i class="fa fa-file" ></i> Employee Attachment</h4>
                         </div>
@@ -174,7 +177,7 @@
                                         <input name="country_code" id="country_code" value="{{$employee->country_code}}" type="text" class="form-control">
                                     </div>
                                 </div>
-                                <div class="card-header"></div><br/>
+                                {{-- <div class="card-header"><br/> --}}
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <label>Home Telephone</label>
@@ -196,8 +199,11 @@
                                         <label>Other Email.</label>
                                         <input value="{{$employee->other_email}}" name="other_email" id="other_email"  type="text" class="form-control">
                                     </div>
-                                    <div class="col-sm-4"><button type="submit" class="btn btn-success">Save</button></div>
                                 </div>
+                            {{-- </div> --}}
+                            <div class="">
+                                    <button type="submit" class="btn btn-success">Save</button>
+                            </div>
                             </div>
                         </form>
                     </div>
@@ -1727,7 +1733,7 @@
         </div>
 
     <div id="AddJobAttachment" class="modal fade">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <form id="frmJobAttachment" >
                     <input type="hidden" id="employee_attachment_id" value="" />
@@ -1747,7 +1753,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Close">
                         <input type="submit" class="btn btn-success" value="Save">
                     </div>
                 </form>

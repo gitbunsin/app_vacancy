@@ -7,7 +7,7 @@ function EditLocation(xxx) {
     let no = $('#no').val();
     $.ajax(
         {
-            url: "{{url('admin/location')}}" + "/" + id + "/" + "edit",
+            url: "/admin/location/"  + id + "/edit",
             type: 'GET',
             data: {
 
@@ -95,7 +95,7 @@ $('#frmEditLocation').validate({ // initialize the plugin
 
         $.ajax(
             {
-                url: "{{url('admin/location')}}" + "/" + id  ,
+                url: "/admin/location/" + id  ,
                 type: 'PUT',
                 data: {
                     "_token": token,
@@ -159,7 +159,7 @@ $('#frmAddLocation').validate({ // initialize the plugin
         let token = $("meta[name='csrf-token']").attr("content");
         $.ajax(
             {
-                url: "{{url('admin/location')}}" ,
+                url: "/admin/location" ,
                 type: 'POST',
                 data: {
                     "_token": token,
@@ -216,7 +216,7 @@ $(document).ready(function () {
 
             $.ajax(
                 {
-                    url: "{{url('admin/location')}}" +"/"+ id,
+                    url: "/admin/location/" + id,
                     type: 'DELETE',
                     data: {
                         "id": id,

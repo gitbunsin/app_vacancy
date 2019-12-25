@@ -118,7 +118,7 @@ class CandidateController extends Controller
     public function edit($id)
     {
         $candidate = candidate::with(['vacancy','interview','candidateAttachment','candidateHistory'])->where('id',$id)->first();
-        // dd($candidate);
+        // dd($candidate->candidateHistory );
         // $interviewer = employee_interview::where('interview_id',$candidate->interview)
         // return view('Backend/pages/candidate/edit');
         // $candidate =  candidate::find($id);
@@ -195,7 +195,7 @@ class CandidateController extends Controller
         $candidate->phone = $request->phone;
         $candidate->save();
         $candidate_id = $candidate->id;
-                   
+        $candidate_vacancy = DB::table('candidate_vacancy')->where('candidate_id', $candidate_id )->where('vacancy_id',$request->vacancy_id)->update(['status'=>$request->status,'applied_date'=>$request->date]);  
         return response::json($request->first_name);
         //candidate_vacancy 
         // $candidate_vacancy = DB::table('candidate_vacancy')->where('candidate_id', $candidate_id )->where('vacancy_id',$request->vacancy_id)->update(['status'=>$request->status,'applied_date'=>$request->date]);
