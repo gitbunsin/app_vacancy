@@ -26,7 +26,8 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('address_2')->nullable();
             $table->string('organization')->nullable();
-            $table->string('city')->nullable();
+            $table->integer('city_id')->unsigned()->nullable();
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->string('state')->nullable();
             $table->string('country')->nullable();
             $table->string('email_token')->nullable();

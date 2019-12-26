@@ -27,9 +27,6 @@
                     <li class="{{ (request()->segment(2) == 'candidate') ? 'active' : '' }}">
                         <a href="{{url('admin/candidate')}}">candidates</a>
                     </li>
-                    {{-- <li class="{{ (request()->segment(2) == 'interview') ? 'active' : '' }}">
-                            <a href="{{url('admin/interview')}}">Interview</a>
-                        </li> --}}
                 </ul>
             </li>
 
@@ -59,8 +56,8 @@
             <li class="{{ (request()->segment(2) == 'payment') ? 'active' : '' }}">
                 <a href="{{url('admin/payment')}}"><i class="fa fa-dollar"></i>Payments<span class="fa arrow"></span></a>
             </li>
-            <li class="{{ (request()->segment(2) == 'app-profile') ? 'active' : '' }}">
-                <a href="{{url('admin/app-profile')}}"><i class="ti ti-folder"></i>My Profile</a>
+            <li class="{{ (request()->segment(2) == 'profile') ? 'active' : '' }}">
+                <a href="{{url('admin/profile')}}"><i class="ti ti-folder"></i>My Profile</a>
             </li>
             <li><a href="{{url('admin-logout')}}"><i class="ti ti-shift-right"></i>Log Out</a></li>
         </ul>

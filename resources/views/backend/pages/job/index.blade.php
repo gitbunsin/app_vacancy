@@ -78,21 +78,21 @@
             <h4 class="modal-title">Posting Vacancy</h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         </div>
-        <div class="modal-body">
-                <div class="demo">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="tab" role="tabpanel">
-                                    <!-- Nav tabs -->
-                                    <ul class="nav nav-tabs" role="tablist">
-                                        <li role="presentation" class="active"><a href="#info" aria-controls="home" role="tab" data-toggle="tab"> Gengeral Information</a></li>
-                                        <li role="presentation"><a href="#description" aria-controls="description" role="tab" data-toggle="tab"> Responsibilities / Requirement</a></li>
-                                        <li role="presentation"><a href="#apply" aria-controls="messages" role="tab" data-toggle="tab"> How to apply</a></li>
-                                    </ul>
-                                    <!-- Tab panes -->
-                                    <div class="tab-content tabs">
-                                        <div role="tabpanel" class="tab-pane fade in active" id="info">
-                                                <div class="card-body">
+        <div class="card-body">
+                <div class="modal-body">
+                        <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#info" aria-controls="home" role="tab" data-toggle="tab"> Vacancy Info</a></li>
+                                <li role="presentation"><a href="#description" aria-controls="description" role="tab" data-toggle="tab"> Requirement / Description</a></li>
+                                <li role="presentation"><a href="#apply" aria-controls="messages" role="tab" data-toggle="tab">How to apply</a></li>
+                            
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content tabs">
+                    
+                                <div role="tabpanel" class="tab-pane fade in active" id="info">
+                                        <form action="" id="frmEditCandidate">
+                                        <meta name="csrf-token" content="{{ csrf_token() }}">
+                                        <div class="card-body">
                                                         <div class="row">
                                                                 <div class="col-lg-6">
                                                                         <label> Job Category </label>
@@ -164,6 +164,7 @@
                                                     </div>
                                         </div>
                                         <div role="tabpanel" class="tab-pane fade in" id="description">
+                                            <br/>
                                             <div class="row">
                                                     <div class="col-lg-12">
                                                             <label>Job Description / Requirement</label>
@@ -172,6 +173,7 @@
                                             </div>
                                         </div>
                                         <div role="tabpanel" class="tab-pane fade in" id="apply">
+                                            <br/>
                                                 <div class="row">
                                                         <div class="col-lg-12">
                                                                 <label>How to apply </label>
@@ -182,13 +184,16 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="modal-footer">
+                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Close">
+                                        <input type="submit" class="btn btn-primary" value="Save">
+                                    </div>
                             </div>
+                            
                         </div>
+                       
                 </div>
-        <div class="modal-footer">
-            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-            <input type="submit" class="btn btn-danger" value="Save">
-        </div>
+       
     </form>
 </div>
 </div>
