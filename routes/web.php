@@ -111,7 +111,9 @@ Route::delete('user/attachment/delete/{id}','Backend\JobController@userAttacheme
 Route::get('user/attachment/edit/{id}','Backend\JobController@userAttachementEdit');
 Route::post('user/attachment/update/{id}','Backend\JobController@userAttachementUpdate');
 Route::post('upload/user/profile/{id}','Backend\JobController@ajaxImage');
+Route::post('upload/admin/profile/{id}','Backend\userController@updateAdminProfile');
 Route::post('reset/user/password/{id}','Backend\UserController@resetUserPassword');
+Route::post('reset/admin/password/{id}','Backend\UserController@resetAdminPassword');
 // Route::get('vacancy/detail/{id}','Backend\JobController@vacancyDetails');
 Route::get('checkUserLogin/{vacancy_id}/{candidate_id}','Backend\JobController@CheckUserLogin');
 Route::get('check/user/login','Backend\JobController@CheckUserLoginApplyJob');
