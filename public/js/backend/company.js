@@ -122,8 +122,13 @@ $("#tbl_company" + result.id).replaceWith(company);
             }
         },submitHandler: function(form) 
         {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
             jQuery.ajax({
-                    url: "{{ url('admin/company')}}",
+                    url: "/admin/company",
                     method: 'POST',
                     data: {
                         "_token": "{{ csrf_token() }}",

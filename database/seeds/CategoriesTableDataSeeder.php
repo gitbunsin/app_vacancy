@@ -1,6 +1,6 @@
 <?php
 
-use App\Model\Category;
+use App\Model\JobCategory;
 use Illuminate\Database\Seeder;
 
 class CategoriesTableDataSeeder extends Seeder
@@ -51,7 +51,7 @@ class CategoriesTableDataSeeder extends Seeder
         );
 
         for ($i=0; $i < count($array); $i++) {
-            Category::create([
+            JobCategory::create([
                 'name' => $array[$i]
             ]);
         }

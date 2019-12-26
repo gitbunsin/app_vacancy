@@ -290,6 +290,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <form id="frmCompany">
+                    <meta name="csrf-token" content="{{ csrf_token() }}">
                     <input type="hidden" name="id" id="id">
                     <div class="modal-header theme-bg">						
                         <h4 class="modal-title">Create Company</h4>

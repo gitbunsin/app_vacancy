@@ -158,7 +158,7 @@ $('#frmShowEmergencyContacts').validate({ // initialize the plugin
 
         $.ajax(
             {
-                url: "{{url('admin/employee/add/emergency/contact')}}" ,
+                url: "/admin/employee/add/emergency/contact" ,
                 type: 'POST',
                 data: {
 
@@ -356,7 +356,6 @@ $(document).ready(function () {
                 },
             street1 : {
                 required: true
-
             }
         },
         submitHandler: function (form) { // for demo
@@ -366,7 +365,7 @@ $(document).ready(function () {
 
             $.ajax(
                 {
-                    url: "{{url('admin/employee/update/contact')}}" +"/"+ id,
+                    url: "/admin/employee/update/contact" +"/"+ id,
                     type:"POST",
                     data: {
                         "id": id,

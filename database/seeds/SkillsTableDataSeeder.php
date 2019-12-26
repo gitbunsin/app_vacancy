@@ -22,7 +22,8 @@ class SkillsTableDataSeeder extends Seeder
 
         for ($i=0; $i < count($array); $i++) {
             skill::create([
-                'name' => $array[$i]
+                'name' => $array[$i] ,
+                'description' => ''
             ]);
         }
     }

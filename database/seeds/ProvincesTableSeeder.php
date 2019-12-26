@@ -1,9 +1,8 @@
 <?php
 
-use App\Model\city;
 use Illuminate\Database\Seeder;
-
-class CitiesTableDataSeeder extends Seeder
+use App\Model\province;
+class ProvincesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -41,7 +40,7 @@ class CitiesTableDataSeeder extends Seeder
         );
 
         for ($i=0; $i < count($array); $i++) {
-            city::create([
+            province::create([
                 'name' => $array[$i]
             ]);
         }

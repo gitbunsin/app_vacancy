@@ -176,9 +176,9 @@
                                         <label>Country .</label>
                                         <input name="country_code" id="country_code" value="{{$employee->country_code}}" type="text" class="form-control">
                                     </div>
-                                </div>
+                                {{-- </div> --}}
                                 {{-- <div class="card-header"><br/> --}}
-                                <div class="row">
+                                {{-- <div class="row"> --}}
                                     <div class="col-sm-4">
                                         <label>Home Telephone</label>
                                         <input value="{{$employee->telephone}}" name="telephone" id="telephone" type="text" class="form-control">
@@ -199,18 +199,26 @@
                                         <label>Other Email.</label>
                                         <input value="{{$employee->other_email}}" name="other_email" id="other_email"  type="text" class="form-control">
                                     </div>
+                                    <div class="col-sm-4">
+                                            {{-- <label>Other Email.</label>
+                                            <input value="{{$employee->other_email}}" name="other_email" id="other_email"  type="text" class="form-control"> --}}
+                                        </div>
                                 </div>
                             {{-- </div> --}}
-                            <div class="">
+                            <div class="pull-right">
+                                    <a href="{{ URL::previous() }}"><button class="btn btn-primary">Back</button></a>
                                     <button type="submit" class="btn btn-success">Save</button>
                             </div>
+                            <br/>
                             </div>
+                        
                         </form>
                     </div>
                     <!-- hotel search -->
                     <div class="bhoechie-tab-content">
                         <div class="card-header">
-                            <a href="#" data-id="{{$employee->id}}" onclick="ShowEmergencyContacts(this);" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> Add </a>
+                                <a onclick="ShowEmergencyContacts(this);" data-id="{{$employee->id}}"  onclick="AddCandidate();" class="btn btn-primary pull-right "  title="Payment"><i class="ti-plus"></i> Emergency Contacts</a>
+                            {{-- <a href="#" data-id="{{$employee->id}}" onclick="ShowEmergencyContacts(this);" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> Add </a> --}}
                             <br>
                             <h4><i class="fa fa-group"></i> Assigned Emergency Contacts</h4>
                         </div>
@@ -334,7 +342,8 @@
                     </div>
                     <div class="bhoechie-tab-content">
                       <div class="card-header">
-                            <a href="#" onclick="ShowModalBasicSalary()" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> Add </a>
+                            {{-- <a href="#" onclick="ShowModalBasicSalary()" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> Add </a> --}}
+                            <a onclick="ShowModalBasicSalary()"  onclick="AddCandidate();" class="btn btn-primary pull-right "  title="Payment"><i class="ti-plus"></i> Add Salary</a>
                             <br>
                             <h4><i class="fa fa-group"></i> Basic Salary</h4>
                         </div>
@@ -377,7 +386,8 @@
                     </div>
                     <div class="bhoechie-tab-content">
                             <div class="card-header">
-                                    <a href="#" onclick="ShowModalReporto()" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> Add Supervisors</a>
+                                    <a onclick="ShowModalReporto()"  onclick="AddCandidate();" class="btn btn-primary pull-right "  title="Payment"><i class="ti-plus"></i> Add Supervisors</a>
+                                    {{-- <a href="#" onclick="ShowModalReporto()" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> Add Supervisors</a> --}}
                                     <br>
                                     <h4><i class="fa fa-group"></i> Assigned Supervisors</h4>
                                 </div>
@@ -411,7 +421,8 @@
                                   </table>
                                  <hr/>
                                   <div class="card-header">
-                                    <a href="#" onclick="ShowModalReporto()" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> Add Subordinates</a>
+                                        <a onclick="ShowModalReporto()" onclick="AddCandidate();" class="btn btn-primary pull-right "  title="Payment"><i class="ti-plus"></i> Add Subordinates</a>
+                                    {{-- <a href="#" onclick="ShowModalReporto()" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> Add Subordinates</a> --}}
                                     <br>
                                     <h4><i class="fa fa-group"></i> Assigned Subordinates</h4>
                                 </div>
@@ -461,9 +472,8 @@
                                         <div class="tab-content tabs">
                                             <div role="tabpanel" class="tab-pane fade in active" id="Section1">
                                                 <div class="card-header">
-                                                    <a href="#" onclick="ShowModalExpericen()" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> <i class="fa fa-plus"></i></a>
+                                                    <a onclick="ShowModalExpericen()" onclick="AddCandidate();" class="btn btn-primary pull-right "  title="Payment"><i class="ti-plus"></i> Add Experience</a><br/>
                                                     <br>
-                                                    <h4><i class="fa fa-group"></i> Work Experience</h4>
                                                 </div>
                                                 <table class="table" id="tbl_work_experience">
                                                     <thead>
@@ -505,9 +515,8 @@
                                             <div role="tabpanel" class="tab-pane fade" id="Section2">
                                                 <div role="tabpanel" class="tab-pane fade in active" id="Section1">
                                                     <div class="card-header">
-                                                        <a href="#" onclick="ShowEmployeeEducation()" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> <i class="fa fa-plus"></i></a>
+                                                        <a onclick="ShowEmployeeEducation()"  class="btn btn-primary pull-right "  title="Payment"><i class="ti-plus"></i> Add Education</a><br/>
                                                         <br>
-                                                        <h4><i class="fa fa-group"></i> Employee Education</h4>
                                                     </div>
                                                     <table class="table" id="tbl_employee_education">
                                                         <thead>
@@ -542,9 +551,9 @@
                                             <div role="tabpanel" class="tab-pane fade" id="Section3">
                                                     <div role="tabpanel" class="tab-pane fade in active" id="Section1">
                                                             <div class="card-header">
-                                                                <a href="#" onclick="ShowEmployeeSkill()" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> <i class="fa fa-plus"></i></a>
+                                                        <a onclick="ShowEmployeeSkill()"  class="btn btn-primary pull-right "  title="Payment"><i class="ti-plus"></i> Add Skill</a><br/>
+                                                               
                                                                 <br>
-                                                                <h4><i class="fa fa-group"></i> Employee Skill</h4>
                                                             </div>
                                                             <table class="table" id="tbl_employee_skill">
                                                                 <thead>
@@ -579,9 +588,9 @@
                                             <div role="tabpanel" class="tab-pane fade" id="Section4">
                                                     <div role="tabpanel" class="tab-pane fade in active" id="Section1">
                                                             <div class="card-header">
-                                                                <a href="#" onclick="ShowEmployeeLanguage()" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> <i class="fa fa-plus"></i></a>
-                                                                <br>
-                                                                <h4><i class="fa fa-group"></i> Employee Languages</h4>
+                                                             
+                                                                <a onclick="ShowEmployeeLanguage()"  class="btn btn-primary pull-right "  title="Payment"><i class="ti-plus"></i> Add Language</a><br/><br/>
+                                                               
                                                             </div>
                                                             <table class="table" id="tbl_employee_language">
                                                                 <thead>
@@ -618,9 +627,8 @@
                                             <div role="tabpanel" class="tab-pane fade" id="License">
                                                     <div role="tabpanel" class="tab-pane fade in active" id="Section1">
                                                             <div class="card-header">
-                                                                <a href="#" onclick="ShowEmployeeLicense()" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> <i class="fa fa-plus"></i></a>
-                                                                <br>
-                                                                <h4><i class="fa fa-group"></i> Employee License</h4>
+                                                              
+                                                                <a onclick="ShowEmployeeLicense()" class="btn btn-primary pull-right "  title="Payment"><i class="ti-plus"></i> Add License</a><br/><br/>
                                                             </div>
                                                             <table class="table" id="tbl_employee_license">
                                                                 <thead>
