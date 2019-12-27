@@ -6,7 +6,7 @@
 		<div class="container">
 			<div class="breadcrumb-info text-center">
 				<div class="page-title">
-					<h1>Reset Password for Candidate Account</h1>
+					<h1>Reset Password for Employer Account</h1>
 				</div>		
 				<ol class="breadcrumb">
 					<li><a href="index.html">Home</a></li>
@@ -25,7 +25,7 @@
 				<div class="row">
 					<div class="col-md-10">
 						<div class="section">
-							<span class="tr-title">Reset Password For Candidate Account</span>
+							<span class="tr-title">Reset Password For Employer Account</span>
 							<p>There are many variations of passages of lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words</p>
                         <form  id="frmForgotCandidatePassword">
                                 <meta name="csrf-token" content="{{ csrf_token() }}">

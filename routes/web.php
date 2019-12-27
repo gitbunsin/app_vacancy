@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +28,11 @@ Route::post('admin-register/check/mail', ['as'=>'admin-register','uses'=>'Auth\A
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::post('/register/checkemail','\App\Http\Controllers\Auth\RegisterController@Checkemail');
 Route::get('/Register/activate/email/{id}/{token}','\App\Http\Controllers\Auth\RegisterController@verifyUserMail');
+
+Route::get('password/admin/reset','Auth\PasswordController@showFormAdminReset'); 
+Route::get('password/reset','App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm');  
+Route::post('password/reset','App\Http\Controllers\Auth\ForgotPasswordController@updateLinkRequestForm');  
+
 Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admin'], function ($request) {
 
 
@@ -114,6 +118,7 @@ Route::post('upload/user/profile/{id}','Backend\JobController@ajaxImage');
 Route::post('upload/admin/profile/{id}','Backend\userController@updateAdminProfile');
 Route::post('reset/user/password/{id}','Backend\UserController@resetUserPassword');
 Route::post('reset/admin/password/{id}','Backend\UserController@resetAdminPassword');
+Route::post('forgot/user/password','Backend\UserController@forgotUserPassword');
 // Route::get('vacancy/detail/{id}','Backend\JobController@vacancyDetails');
 Route::get('checkUserLogin/{vacancy_id}/{candidate_id}','Backend\JobController@CheckUserLogin');
 Route::get('check/user/login','Backend\JobController@CheckUserLoginApplyJob');

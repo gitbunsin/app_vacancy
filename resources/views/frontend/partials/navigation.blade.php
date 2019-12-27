@@ -176,7 +176,7 @@
                                                         <label for="logged"><input type="checkbox" name="logged" id="logged">Remember me</label>
                                                     </div>
                                                     <div class="forgot-password">
-                                                        <a href="#">I forgot password</a>
+                                                        <a href="{{url('password/reset')}}">I forgot password</a>
                                                     </div>
                                                 </div>	
                                         				
@@ -202,7 +202,7 @@
                                                         <label for="loggedAdmin"><input type="checkbox" name="loggedAdmin" id="loggedAdmin">Remember me</label>
                                                     </div>
                                                     <div class="forgot-password">
-                                                        <a href="#">I forgot password</a>
+                                                        <a href="{{url('/password/admin/reset')}}">I forgot password</a>
                                                     </div>
                                                 </div>				
                                             <button type="submit" class="btn btn-primary">Sign Up</button>
