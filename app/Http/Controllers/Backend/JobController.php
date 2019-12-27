@@ -10,8 +10,7 @@ use App\Model\userCv;
 use App\Model\UserJob;
 use App\Model\location;
 use App\User;
-use App\Model\candidate;
-use App\Model\Admin;
+use App\Model\candidate;    
 use Carbon\Carbon;
 use App\Model\candidateAttachment;
 use App\Model\jobCategory;
@@ -46,10 +45,10 @@ class JobController extends Controller
     public function vacancyDetails($id)
     {
         // dd($id);
-        $vacancy = vacancy::with(['location','category','jobType','company','skill'])->where('id',$id)->first();
-        // dd($vacancy);
+        $vacancy = vacancy::with(['admin','employee','province','jobTitle','category','jobType','company','skill'])->where('id',$id)->first();
+        // dd($vacancy);   
         // $file = jobAttachment::with(['job'])->where('job_id',$id)->first();
-        return view('frontend.pages.job-apply-detail',compact('vacancy','file'));
+        return view('frontend/pages/job-apply-detail',compact('vacancy','file'));
     }
 
     //public function profileDetails
@@ -257,49 +256,21 @@ class JobController extends Controller
         $v->category_id = $request->job_category_vacancy_id;
         $v->job_type_id = $request->job_type_id;
         $v->status = "Active"; 
-        $v->location_id = $request->location_id;
+        $v->employee_id = $request->hiring_manager_id;
+        $v->province_id = $request->location_id;
         $v->vacancy_name = $request->vacancy_name;
         $v->job_description = $request->job_description;
+        $v->job_requirement = $request->responsibilities;
         $v->closingDate = $request->closingDate;
+        $v->job_title_id = $request->job_title_id;
+        $v->salary_cycle = $request->salary_cycle;
+        $v->exp_level = $request->exp_level;
+        $v->offer_salary = $request->offer_salary;
         $v->save();
         $idAreas_skill = skill::find($request->skill_id);
         $v->skill()->sync($idAreas_skill);
         return response::json($v);
-       // dd($request->all());
-        // $files = $request->file('filename');
-       // dd($files);
-        // $data = request()->except(['skill','filename','salary']);
-        // $job =  vacancy::create($data);
-        // $job->admin_id = auth()->guard('admin')->user()->id;
-        // $job->category()->associate($request->category_id);
-        // $job->location()->associate($request->location_id);
-        // $job->jobType()->associate($request->job_type_id);
-        // $job->company()->associate($request->company_id);
-        // $salary = $request->salary;
-        // if($salary == "Negotiate"){
-        //     $job->offer_salary = "Negotiate";
-        // }else{
-        //     $offer_salary = $request->offer_salary;
-        //    // dd($offer_salary);
-        //     $job->offer_salary = $offer_salary;
-        // }
-       // dd($salary);
-        // $job->save();
-        // $areas = $request->input('skill');
-        // $idAreas = skill::find($areas);
-        // $job->skill()->sync($idAreas);
-        // if ($files) {
-        //     $destinationPath = 'public/JobUpload/'; // upload path
-        //     $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
-        //     $files->move($destinationPath, $profileImage);
-        //     $insert['filename'] = "$profileImage";
-        //     $hasFile = new jobAttachment();
-        //     $hasFile->file_name =  $insert['filename'];
-        //     $hasFile->job_id = $job->id;
-        //     $hasFile->save();
-        // }
-        // return redirect('admin/job');
-        return response::json('success');
+       
     }
 
     /**

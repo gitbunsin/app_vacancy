@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Model\jobTitle;
 use App\Model\payGrade;
 use DB; 
+use App\Model\vacancy;
 use App\Model\EmploymentStatus;
 use App\Model\Employee_work_shift;
 use App\Model\JobCategory;
@@ -69,7 +70,8 @@ class VacancyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $job = vacancy::find($id);
+        return view('backend/pages/job/edit',compact('job'));
     }
 
     /**

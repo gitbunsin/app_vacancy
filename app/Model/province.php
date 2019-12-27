@@ -13,4 +13,8 @@ class province extends Model
     {
         return $this->belongsToMany(location::class);
     }
+    public function vacancy()
+    {
+        return $this->belongsToMany(vacancy::class);
+    }
 }

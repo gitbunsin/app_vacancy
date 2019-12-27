@@ -4,6 +4,9 @@
     use App\Model\candidate_vacancy;
 @endphp
 <style>
+    #contact_person {
+  border-radius: 50%;
+}
     .not-active {
     pointer-events: none;
     cursor: default;
@@ -17,13 +20,13 @@
         <div class="breadcrumb-info text-center">
 
             <div class="page-title">
-                <h1>{{$vacancy->vacancy_name}}</h1>
+                <h3>{{$vacancy->vacancy_name}}</h3>
             </div>
             <ul class="tr-list job-meta list-inline">
-                <li><i class="fa fa-map-signs" aria-hidden="true"></i>{{$vacancy->location->name}}</li>
+                <li><i class="fa fa-map-signs" aria-hidden="true"></i>{{$vacancy->province->name}}</li>
                 <li><i class="fa fa-map-marker" aria-hidden="true"></i>{{$vacancy->jobType->name}}</li>
-                <li><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</li>
-                <li><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</li>
+                <li><i class="fa fa-money" aria-hidden="true"></i>{{$vacancy->offer_salary}}</li>
+                <li><i class="fa fa-tags" aria-hidden="true"></i>{{$vacancy->category->name}}</li>
                 <li><i class="fa fa-hourglass-start" aria-hidden="true"></i>Application Deadline : {{$vacancy->closingDate}}</li>
             </ul>	
             <div class="buttons">
@@ -52,22 +55,46 @@
         <div class="row">
             <div class="col-md-8 col-lg-8">
                 <div class="job-summary section">
-                    <span class="tr-title">Job Description</span>
+                    <span class="tr-title">Job Description : </span>
                              {!! $vacancy->job_description !!}
                     <span>Job Requirements : </span>
-                    <p>Execute all visual design stages of website design from concept to final hand-off to development Create print advertisements, social media advertisements, client collateral & digital resizes according to Client demands With direction of the Creative team, input into new design ideas for client branding Update & keep all agency collateral materials, including keeping records of Client's logos, fonts, images, etc. </p>
+                    <p>
+                            {!! $vacancy->job_requirement!!}    
+                    </p>
+                    <hr/>
+                        <span>Skills Requirement</span>
+                        @foreach ($vacancy->skill as $skills)
+                             <a href="#"  class="btn btn-primary "><i class="fa fa-briefcase" aria-hidden="true"></i>{{$skills->name}}</a>
+                        @endforeach
+                        
+                    <hr/>
+                    <span>Contact Information</span>
+                    <div class="row">
+                            <div class="col-sm-4">
+                               @if ($vacancy->employee->photo)
+                                  <img id="contact_person" class="img-circle" src="/uploads/employee/{{ $vacancy->employee->photo }}" alt="Smiley face" height="100" width="100">
+                               @else
+                               <img src="img_avatar.png" alt="Avatar">
+                               @endif
+                               
+                            </div>
+                            <div class="col-sm-8">
+                                Name :   <b> {{$vacancy->employee->last_name . ' ' .$vacancy->employee->first_name  }}</b><br/>
+                                Phone :  <b>{{$vacancy->employee->mobile}} </b> / <b> {{$vacancy->employee->work_telephone}} </b><br/>
+                                Email :  <b>{{$vacancy->employee->work_email}}</b>
+
+                            </div>
+                    
+                          </div>
+                          <hr/>
                     <span>How to apply</span>
                     <ul class="tr-list">
-                        <li>Bachelor's Degree</li>
-                        <li>2-5 years of relevant experience ( or equivalent educational experience)</li>
-                        <li>Experience developing in Wordpress and other web design platforms</li>
-                        <li>HTML, CSS and JavaScript experience a plus</li>
-                        <li>In depth knowledge & technical experience of Photoshop, Illustrator, InDesign, Adobe PDF, Keynote, PowerPoint, Microsoft Word & Excel</li>
-                        <li>Exceptional eye for design, deep understanding of creativity and ability to recognize fresh approaches to Advertising </li>
-                        <li>Must be fluent in Spanish; working written and spoken proficiency</li>
-                        <li>**All applicants must be eligible to work in the U.S. without sponsorship</li>
+                           <li>1. Please register Kh-Works Account</li> 
+                           <li>2. Apply for a job by clicking the 'Apply Now' button, please click Create CV， After create your CV, employers will review your CV online, Increase your job opportunities. Click Now Here，Learn how to register and post your CV!</i>
                     </ul>
                 </div>
+                
+                
             </div>
             <div class="col-md-4 col-lg-4">
                 <div class="tr-sidebar">
@@ -75,11 +102,11 @@
                         <div class="widget short-info">
                             <h3 class="widget_title">Short Info</h3>
                             <ul class="tr-list">
-                                <li class="media"><div class="pull-left"><i class="fa fa-calendar" aria-hidden="true"></i></div> <div class="media-body"><span>Published:</span>1 Days ago</div></li>
-                                <li class="media"><div class="pull-left"><i class="fa fa-user-plus" aria-hidden="true"></i></div> <div class="media-body"><span>Job poster:</span>Lance Ladaga</div></li>
-                                <li class="media"><div class="pull-left"><i class="fa fa-industry" aria-hidden="true"></i></div> <div class="media-body"><span>Industry:</span>Marketing and Advertising</div></li>
-                                <li class="media"><div class="pull-left"><i class="fa fa-line-chart" aria-hidden="true"></i></div> <div class="media-body"><span>Experience:</span>Entry level</div></li>
-                                <li class="media"><div class="pull-left"><i class="fa fa-key" aria-hidden="true"></i></div> <div class="media-body"><span>Job function:</span>Advertising, Design, Art/Creative</div></li>
+                                <li class="media"><div class="pull-left"><i class="fa fa-calendar" aria-hidden="true"></i></div> <div class="media-body"><span>Published:</span>{{$vacancy->created_at}}</div></li>
+                                <li class="media"><div class="pull-left"><i class="fa fa-user-plus" aria-hidden="true"></i></div> <div class="media-body"><span>Job poster:</span>{{$vacancy->admin->name}}</div></li>
+                                <li class="media"><div class="pull-left"><i class="fa fa-industry" aria-hidden="true"></i></div> <div class="media-body"><span>Industry:</span>{{$vacancy->category->name}}</div></li>
+                                <li class="media"><div class="pull-left"><i class="fa fa-line-chart" aria-hidden="true"></i></div> <div class="media-body"><span>Experience:</span>{{$vacancy->exp_level}}</div></li>
+                                <li class="media"><div class="pull-left"><i class="fa fa-key" aria-hidden="true"></i></div> <div class="media-body"><span>Job function:</span>{{$vacancy->jobTitle->name}}</div></li>
                             </ul>
                         </div><!-- /.widger -->
                         <div class="widget cmpany-info">
@@ -90,9 +117,9 @@
                                 <li><span>Address:</span> London, UK</li>
                                 <li><span>Compnay SIze:</span>  2k Employee</li>
                                 <li><span>Industry:</span> <a href="#">Technology</a></li>
-                                <li><span>Phone:</span> +1234 567 8910</li>
+                                <li><span>Phone:</span>{{$vacancy->company->phone}}</li>
                                 <li><span>Email:</span> <a href="#"><span class="__cf_email__" data-cfemail="4c25222a230c283e233c2e2334622f2321">{{$vacancy->company->email}}</span></a></li>
-                                <li><span>Website:</span> <a href="#">www.dropbox.com</a></li>
+                                <li><span>Website:</span> <a target="_blank" href="{{$vacancy->company->website_link}}">{{$vacancy->company->website_link}}</a></li>
                                 <li><span></span></li>
                             </ul>
                             <div class="widget-social">
@@ -108,7 +135,7 @@
                 </div><!-- /.tr-sidebar -->
             </div>
         </div><!-- row -->
-
+       
       
         
         <div class="tr-job-posted similar-jobs">
@@ -187,7 +214,7 @@
                                 <span><a href="#">Loop</a></span>
                             </span>
                             <ul class="tr-list job-meta">
-                                <li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>{{$vacancy->location->name}}</li>
+                                <li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>{{$vacancy->province->name}}</li>
                                 <li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>Mid Level</li>
                                 <li><span><i class="fa fa-money" aria-hidden="true"></i></span>$5,000 - $6,000</li>
                             </ul>

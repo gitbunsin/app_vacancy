@@ -19,27 +19,36 @@ class CreateVacanciesTable extends Migration
             $table->integer('admin_id')->unsigned()->nullable();
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
 
+            // $table->integer('payment_id')->unsigned()->nullable();
+            // $table->foreign('payment_id')->references('id')->on('payments')->onDelete('cascade');
+
+            $table->integer('employee_id')->unsigned()->nullable();
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
+            
             $table->integer('company_id')->unsigned()->nullable();
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
 
             $table->integer('category_id')->unsigned()->nullable();
             $table->foreign('category_id')->references('id')->on('job_categories')->onDelete('cascade');
 
+            $table->integer('job_title_id')->unsigned()->nullable();
+            $table->foreign('job_title_id')->references('id')->on('job_titles')->onDelete('cascade');
+
             $table->integer('job_type_id')->unsigned()->nullable();
             $table->foreign('job_type_id')->references('id')->on('job_types')->onDelete('cascade');
 
-            $table->integer('location_id')->unsigned()->nullable();
-            $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
+            $table->integer('province_id')->unsigned()->nullable();
+            $table->foreign('province_id')->references('id')->on('provinces')->onDelete('cascade');
             $table->string('vacancy_name')->nullable();
 
             $table->text('job_description')->nullable();
+            $table->text('job_requirement')->nullable();
             $table->integer('no_of_position')->nullable();
             $table->string('offer_salary')->nullable();
+            $table->enum('salary_cycle', ['monthly','yearly','weekly', 'daily', 'hourly'])->nullable();
+            $table->enum('exp_level', ['mid', 'entry', 'senior'])->nullable();
             $table->string('gender')->nullable();
-            $table->string('industry')->nullable();
-            $table->string('experience')->nullable();
-            $table->string('qualification')->nullable();
-            $table->string('career_level')->nullable();
+            $table->string('negotiation')->nullable();
             $table->string('status')->nullable();
             $table->string('public_in_feed')->nullable();
             $table->string('closingDate')->nullable();

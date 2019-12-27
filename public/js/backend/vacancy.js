@@ -29,6 +29,7 @@ $('#frmEditModalVacancy').validate({
     },
     submitHandler: function (form) {
         var id = $('#vacancy_id_edit').val();
+        console.log($('#responsibilities').code());
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -41,9 +42,15 @@ $('#frmEditModalVacancy').validate({
                 "job_category_vacancy_id": $('#job_category_vacancy_id_edit').val(),
                 "hiring_manager_id": $('#hiring_manager_id_edit').val(),
                 "job_type_id": $('#job_type_id_edit').val(),
+                "job_title_id" : $('#job_title_id').val(),
+                "company_id": $('#company_id').val(),
+                "salary_cycle" : $('#salary_cycle').val(),
+                "offer_salary" : $('#offer_salary').val(),
+                "responsibilities" : $('#responsibilities').code(),
+                "exp_level" : $('#exp_level').val(),
                 "skill_id": $('#skill_id_edit').val(),
                 "location_id": $('#location_id_edit').val(),
-                "job_description": $('#job_description_eidt').val(),
+                "job_description": $('#job_description_eidt').code(),
                 "vacancy_name": $('#vacancy_name_edit').val(),
                 "closingDate": $('#closingDate_edit').val(),
             },
@@ -152,11 +159,14 @@ $("#frmAddModalVacancy").validate({
         job_category_vacancy_id: {
             required: true,
         },
-        hiring_manager_id: {
+        employee_id: {
             required: true,
         },
         job_type_id : {
             required: true,
+        },
+        company_id : {
+            required : true
         },
         vacancy_name : {
             required: true,
@@ -175,6 +185,7 @@ $("#frmAddModalVacancy").validate({
         }
     }, submitHandler: function (form) {
         // console.log($('#job_description').val());
+       console.log('Hello World');
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -192,6 +203,13 @@ $("#frmAddModalVacancy").validate({
                 "job_description": $('#job_description').val(),
                 "vacancy_name": $('#vacancy_name').val(),
                 "closingDate": $('#closingDate').val(),
+                "responsibilities" : $('#responsibilities').val(),
+                "exp_level" : $('#exp_level').val(),
+                "job_title_id" : $('#job_title_id').val(),
+                "company_id": $('#company_id').val(),
+                "employee_id": $('#employee_id').val(),
+                "salary_cycle" : $('#salary_cycle').val(),
+                "offer_salary" : $('#offer_salary').val(),
             },
             success: function (result) {
                 // console.log(result);

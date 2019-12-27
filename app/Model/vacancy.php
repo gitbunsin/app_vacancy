@@ -3,7 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Admin;
 class vacancy extends Model
 {
     protected $table = 'vacancies';
@@ -26,6 +26,10 @@ class vacancy extends Model
 
         return $this->belongsTo(Admin::class,'admin_id','id');
     }
+    public function employee(){
+
+        return $this->belongsTo(employee::class,'employee_id','id');
+    }
     public function jobType(){
 
         return $this->belongsTo(JobType::class,'job_type_id','id');
@@ -35,9 +39,18 @@ class vacancy extends Model
 
         return $this->belongsTo(location::class,'location_id','id');
     }
+    public function province()
+    {
+
+        return $this->belongsTo(province::class,'province_id','id');
+    }
     public function category(){
 
         return $this->belongsTo(jobCategory::class ,'category_id','id');
+    }
+    public function jobTitle(){
+
+        return $this->belongsTo(jobtitle::class ,'job_title_id','id');
     }
     public function skill()
     {

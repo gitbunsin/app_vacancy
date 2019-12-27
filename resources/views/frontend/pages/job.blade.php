@@ -95,15 +95,12 @@
                             <div class="job-item">
                                 <div class="job-info">
                                     <div class="clearfix">
-                                        <div class="company-logo">
-                                            <img src="https://demo.themeregion.com/seeker/images/job/1.png" alt="images" class="img-fluid">
-                                        </div>
                                         <span class="tr-title">
-                                            <a href="{{'vacancy/detail/'.$jobs->id}}">{{$jobs->vacancy_name}}</a><span><a href="#">Loop</a></span>
+                                            <a href="{{'vacancy/detail/'.$jobs->id}}">{{$jobs->vacancy_name}}</a><span></span>
                                         </span>
-                                        <span><a href="#" class="btn btn-primary">
+                                        {{-- <span><a href="#" class="btn btn-primary">
                                           {{$jobs->jobType->name}}                                 
-                                        </a></span>
+                                        </a></span> --}}
                                     </div>
                                     <ul class="tr-list job-meta">
                                         <li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>San Francisco, CA, US</li>
