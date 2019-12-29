@@ -46,7 +46,7 @@
                                                                                 @foreach ($company as $key => $companies)
                                                                                     <tr id="tbl_company{{$companies->id}}">
                                                                                         <th scope="row">{{$key + 1}}</th>
-                                                                                        <td>{{$companies->company_name}}</td>
+                                                                                        <td><a href="{{url('admin/vacancy/'.$companies->id)}}">{{$companies->company_name}}</a></td>
                                                                                         <td>{{$companies->phone}}</td></td>
                                                                                         <td>{{$companies->email}}</td>
                                                                                         <th>
@@ -210,8 +210,8 @@
                                                     </div>
                         
                                                     <div class="col-sm-4">
-                                                        <label>Address</label>
-                                                        <input name="address_edit" id="address_edit" type="text" class="form-control">
+                                                        <label>Company Logo</label>
+                                                        <input name="company_logo" id="company_logo" type="file" class="form-control">
                                                     </div>
                         
                                                     <div class="col-sm-4">
@@ -240,10 +240,32 @@
                                                         <label>Zip Code</label>
                                                         <input id="zip_code_edit" name="zip_code_edit"  type="text" class="form-control">
                                                     </div>
+                                                    <div class="col-sm-4">
+                                                            <label>LinkedIn</label>
+                                                            <input name="linkedIn_link" id="linkedIn_link" type="text" class="form-control">
+                                                        </div>
+                                                    <div class="col-sm-4">
+                                                            <label>Facebook</label>
+                                                            <input name="facebook_link" id="facebook_link" type="text" class="form-control">
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                            <label>Instagram</label>
+                                                            <input name="instagram_link" id="instagram_link" type="text" class="form-control">
+                                                        </div>
+                                                    <div class="col-sm-12">
+                                                            <label>Address</label>
+                                                            <textarea class="form-control"   name="address_edit" id="address_edit" cols="10" rows="2"></textarea>
+                                                        </div>
+                                                   
+                                                <div class="col-sm-12">
+                                                        <label>Company Profiles</label>
+                                                        <textarea class="form-control"  name="company_profile" id="company_profile" cols="30" rows="7"></textarea>
+                                                    </div>
+                                                    
                                                 </div>
                                             </div>
                                         <!-- Social Accounts -->
-                                            <div class="card-header">
+                                            {{-- <div class="card-header">
                                                 <h4>Social Accounts</h4>
                                             </div>
                                             <div class="card-body">
@@ -273,13 +295,13 @@
                                                         <input name="instagram_link_edit" id="instagram_link_edit" type="text" class="form-control">
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                     </div>
                             </div>	
                     </div>
                     <div class="modal-footer">
-                            <input type="button" class="btn btn-danger" data-dismiss="modal" value="No">
-                            <input type="submit" class="btn btn-success" value="Yes">
+                            <input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancel">
+                            <input type="submit" class="btn btn-success" value="Save">
                     </div>
                 </form>
             </div>
@@ -320,15 +342,13 @@
                                                         <label>Email</label>
                                                         <input name="email" id="email" type="text" class="form-control">
                                                     </div>
-                        
+                                                    <div class="col-sm-4">
+                                                            <label>Company Logo</label>
+                                                            <input name="company_logo" id="company_logo" type="file" class="form-control">
+                                                        </div>
                                                     <div class="col-sm-4">
                                                         <label>Website Link</label>
                                                         <input name="website_link" id="website_link" type="text" class="form-control">
-                                                    </div>
-                        
-                                                    <div class="col-sm-4">
-                                                        <label>Address</label>
-                                                        <input name="address" id="address" type="text" class="form-control">
                                                     </div>
                         
                                                     <div class="col-sm-4">
@@ -357,40 +377,34 @@
                                                         <label>Zip Code</label>
                                                         <input id="zip_code" name="zip_code"  type="text" class="form-control">
                                                     </div>
-                                                </div>
-                                            </div>
-                                        <!-- Social Accounts -->
-                                            <div class="card-header">
-                                                <h4>Social Accounts</h4>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="row">
                                                     <div class="col-sm-4">
-                                                        <label><i class="fa fa-facebook mrg-r-5"></i>Facebook</label>
-                                                        <input name="facebook_link" id="facebook_link" type="text" class="form-control">
+                                                            <label>LinkedIn</label>
+                                                            <input name="linkedIn_link" id="linkedIn_link" type="text" class="form-control">
+                                                        </div>
+                                                    <div class="col-sm-4">
+                                                            <label>Facebook</label>
+                                                            <input name="facebook_link" id="facebook_link" type="text" class="form-control">
                                                     </div>
                                                     <div class="col-sm-4">
-                                                        <label><i class="fa fa-google-plus mrg-r-5"></i>Google +</label>
-                                                        <input name="google_link" id="google_link" type="text" class="form-control">
-                                                    </div>
-                                                    <div class="col-sm-4">
-                                                        <label><i class="fa fa-twitter mrg-r-5"></i>Twitter</label>
-                                                        <input name="twitter_link" id="twitter_link" type="text" class="form-control">
-                                                    </div>
-                                                    <div class="col-sm-4">
-                                                        <label><i class="fa fa-linkedin mrg-r-5"></i>LinkedIn</label>
-                                                        <input name="linkedIn_link" id="linkedIn_link" type="text" class="form-control">
-                                                    </div>
-                                                    <div class="col-sm-4">
-                                                        <label><i class="fa fa-pinterest mrg-r-5"></i>Pinterest</label>
-                                                        <input name="pinterest_link" id="pinterest_link" type="text" class="form-control">
-                                                    </div>
-                                                    <div class="col-sm-4">
-                                                        <label><i class="fa fa-instagram mrg-r-5"></i>Instagram</label>
-                                                        <input name="instagram_link" id="instagram_link" type="text" class="form-control">
+                                                            <label>Instagram</label>
+                                                            <input name="instagram_link" id="instagram_link" type="text" class="form-control">
+                                                        </div>
+                                                    <div class="col-sm-12">
+                                                            <label>Address</label>
+                                                            <textarea class="form-control"  name="address" id="address" cols="10" rows="2"></textarea>
+                                                        </div>
+                                                   
+                                                <div class="col-sm-12">
+                                                        <label>Company Profiles</label>
+                                                        <textarea class="form-control"  name="company_profile" id="company_profile" cols="30" rows="7"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
+                                            {{-- <div class="card-body">
+                                                <div class="row"> --}}
+                                                   
+                                                {{-- </div>
+                                            </div> --}}
                                     </div>
                             </div>	
                     </div>

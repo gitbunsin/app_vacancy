@@ -110,6 +110,8 @@ Route::get('job','Backend\JobController@job');
 Route::get('job-apply/{job_id}','Backend\JobController@jobApply');
 Route::get('/user/profile/{id}','Backend\JobController@profileDetails');
 Route::get('vacancy/detail/{id}','Backend\JobController@vacancyDetails');
+Route::post('vacancy-attachment/{id}','Backend\vacancyController@vacancyAttachment');
+Route::post('vacancy-attachment/update/{id}','Backend\vacancyController@vacancyUpdateAttachment');
 Route::post('user/attachment/{id}','Backend\JobController@userAttachement');
 Route::delete('user/attachment/delete/{id}','Backend\JobController@userAttachementDelete');
 Route::get('user/attachment/edit/{id}','Backend\JobController@userAttachementEdit');

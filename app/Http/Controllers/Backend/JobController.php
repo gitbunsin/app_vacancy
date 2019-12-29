@@ -9,7 +9,11 @@ use App\Model\jobType;
 use App\Model\userCv;
 use App\Model\UserJob;
 use App\Model\location;
+use App\Model\company;
+use App\Model\jobTitle;
+use App\Model\province;
 use App\User;
+use App\Model\employee;
 use App\Model\candidate;    
 use Carbon\Carbon;
 use App\Model\candidateAttachment;
@@ -31,13 +35,13 @@ class JobController extends Controller
      */
     public function index()
     {
-        $job = vacancy::with(['category','jobType'])->orderBy('created_at')->paginate('10');
-         
-        return view('backend.pages.job.index',compact('job'));
+        $job = vacancy::with(['employee','category','jobType'])->orderBy('created_at')->paginate('10');
+        // dd($job);
+        return view('backend/pages/job/index',compact('job'));
     }
     public function job()
     {
-        $job = vacancy::with(['category','jobType','company'])->get();
+        $job = vacancy::with(['company','province','category','jobType','company'])->get();
         // dd($job);
         return view('frontend/pages/job',compact('job'));
     }
@@ -269,6 +273,7 @@ class JobController extends Controller
         $v->save();
         $idAreas_skill = skill::find($request->skill_id);
         $v->skill()->sync($idAreas_skill);
+        $v['employee'] = employee::find($request->hiring_manager_id);
         return response::json($v);
        
     }
@@ -303,13 +308,11 @@ class JobController extends Controller
         $job['location'] = location::all();
         $job['vacancy_skill_id'] = DB::table('skill_vacancy')->where("vacancy_id",$id)->get();
         $job['all_skill'] = skill::all();
+        $job['company'] = company::all();
+        $job['employee'] = employee::all();
+        $job['jobTitle'] = jobTitle::all();
+        $job['province'] = province::all();
         return response::json($job);
-
-
-        // $all_skill = DB::table('job_skill')->where("job_id",$id)->get();
-        // $job_attachment = DB::table('job_attachments')->where("job_id",$id)->first();
-        // //dd( $job_attachment);
-        // return view('backend.pages.job.edit',compact('job','all_skill','job_attachment'));
     }
 
 
@@ -330,51 +333,23 @@ class JobController extends Controller
         $v->category_id = $request->job_category_vacancy_id;
         $v->job_type_id = $request->job_type_id;
         $v->status = "Active"; 
-        $v->location_id = $request->location_id;
+        $v->employee_id = $request->hiring_manager_id;
+        $v->province_id = $request->location_id;
         $v->vacancy_name = $request->vacancy_name;
         $v->job_description = $request->job_description;
+        $v->job_requirement = $request->responsibilities;
         $v->closingDate = $request->closingDate;
+        $v->job_title_id = $request->job_title_id;
+        $v->salary_cycle = $request->salary_cycle;
+        $v->exp_level = $request->exp_level;
+        $v->offer_salary = $request->offer_salary;
         $v->save();
         $idAreas_skill = skill::find($request->skill_id);
         $v->skill()->sync($idAreas_skill);
+        $v['employee'] = employee::find($request->hiring_manager_id);
         return response::json($v);
 
-//         $file = $request->file('filename');
-//         $job = vacancy::whereId($id)->first();
-//         $data = request()->except(['skill','filename']);
-//         $job->update($data);
-//         $job->admin_id = $request->admin_id;
-//         $job->category()->associate($request->category_id);
-//         $job->location()->associate($request->location_id);
-//         $job->jobType()->associate($request->job_type_id);
-//         $job->company()->associate($request->company_id);
-//         $job->save();
-//         $areas = $request->input('skill');
-//         $idAreas = skill::find($areas);
-//         $job->skill()->sync($idAreas);
-//         if($file){
-//             if(file_exists(public_path().'/JobUpload/'.$file->getClientOriginalName()))
-//             {
-//                // File::delete(public_path('JobUpload/'.$file->getClientOriginalName()));
-//                 //dd('File is exists.');
-//             }else{
-// //            $data = DB::table('job_attachments')->where('job_id',$job->id)->first();
-//                 // File::delete(public_path().'/JobUpload/'.$file->getClientOriginalName());
-//                 $data = new jobAttachment();
-//                 $data->job_id = $job->id;
-//                 $data->file_name = $file->getClientOriginalName();
-//                 $data->attachment_type = $file->getMimeType();
-//                 $data->file_size =  $file->getSize();
-//                 $data->file_type = $file->getType();
-//                 $data->file_content = $file->getPathname();
-//                 $file->move(public_path().'/JobUpload/', $file->getClientOriginalName());
-//                 $data->save();
-//                 //  dd('File is not exists.');
-//             }
-//         }else{
 
-//         }
-//         return redirect('/admin/job');
     }
     public function getDownloadCompany($filename)
     {

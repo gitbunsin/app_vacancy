@@ -20,7 +20,7 @@ class vacancy extends Model
     }
     public function jobAttachment(){
 
-        return $this->belongsToMany(jobAttachment::class);
+        return $this->hasMany(vacancyAttachment::class);
     }
     public function admin(){
 

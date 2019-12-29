@@ -1,6 +1,9 @@
 
 @extends('frontend.layouts.template')
 @section('content')
+@php
+    use App\Model\province;
+@endphp
 <div class="tr-breadcrumb bg-image section-before">
     <div class="container">
         <div class="breadcrumb-info text-center">
@@ -16,10 +19,13 @@
                     <div class="dropdown tr-change-dropdown">
                         <a data-toggle="dropdown" href="#" aria-expanded="false"><span class="change-text">Location</span><i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown-menu tr-change">
-                            <li><a href="#">Location</a></li>
-                            <li><a href="#">Location 1</a></li>
-                            <li><a href="#">Location 2</a></li>
-                            <li><a href="#">Location 3</a></li>
+                            <li><a href="#"> Location </a></li>
+                            @php
+                                $location = province::all();
+                            @endphp
+                            @foreach ($location as $item)
+                                 <li><a href="#">{{$item->name}}</a></li>  
+                            @endforeach
                         </ul>								
                     </div><!-- /.category-change -->
                     <button type="submit" class="btn btn-primary" value="Search">Search</button>
@@ -98,14 +104,12 @@
                                         <span class="tr-title">
                                             <a href="{{'vacancy/detail/'.$jobs->id}}">{{$jobs->vacancy_name}}</a><span></span>
                                         </span>
-                                        {{-- <span><a href="#" class="btn btn-primary">
-                                          {{$jobs->jobType->name}}                                 
-                                        </a></span> --}}
                                     </div>
                                     <ul class="tr-list job-meta">
-                                        <li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>San Francisco, CA, US</li>
-                                        <li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>Mid Level</li>
-                                        <li><span><i class="fa fa-money" aria-hidden="true"></i></span>$5,000 - $6,000</li>
+                                        <li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>{{$jobs->company->company_name}}</li>
+                                        <li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>{{$jobs->exp_level}}</li>
+                                        <li><span><i class="fa fa-money" aria-hidden="true"></i></span>{{$jobs->offer_salary}}</li>
+                                       
                                     </ul>
                                 </div>
                             </div>

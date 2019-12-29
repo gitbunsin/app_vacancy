@@ -43,6 +43,7 @@
                             <tr>
                             <th scope="col">#No</th>
                             <th scope="col">Vacancy Name</th>
+                            <th scope="col">Hiring Manager</th>
                             <th scope="col">Closing Date</th>
                             <th scope="col">Status</th>
                             <th scope="col">Action</th>
@@ -53,6 +54,7 @@
                             <tr id="tr_vacancy{{$jobs->id}}">
                                 <th scope="row">{{$key + 1}}</th>
                                 <td><a href="{{url('admin/vacancy/'.$jobs->id.'/edit')}}">{{$jobs->vacancy_name}}</a></td>
+                                <td>{{$jobs->employee->last_name . ' ' . $jobs->employee->first_name}}</td>
                                 <td>{{$jobs->closingDate}}</td>
                                 <td style="color:cadetblue;">{{$jobs->status}}</td>
                                 <th>
@@ -87,15 +89,13 @@
                         <ul class="nav nav-tabs" role="tablist">
                                 <li role="presentation" class="active"><a href="#info" aria-controls="home" role="tab" data-toggle="tab"> Vacancy Info</a></li>
                                 <li role="presentation"><a href="#description" aria-controls="description" role="tab" data-toggle="tab"> Requirement / Description</a></li>
-                                {{-- <li role="presentation"><a href="#apply" aria-controls="messages" role="tab" data-toggle="tab">How to apply</a></li> --}}
+                                {{-- <li role="presentation"><a href="#attachment" aria-controls="messages" role="tab" data-toggle="tab">Attachment</a></li> --}}
                             
                             </ul>
                             <!-- Tab panes -->
                             <div class="tab-content tabs">
                     
-                                <div role="tabpanel" class="tab-pane fade in active" id="info">
-                                        {{-- <form action="" id="frmEditCandidate"> --}}
-                                      
+                                <div role="tabpanel" class="tab-pane fade in active" id="info">                                      
                                         <div class="card-body">
                                                         <div class="row">
                                                                 <div class="col-lg-6">
@@ -236,7 +236,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
+                                    
                                         </div>
                                     </div>
                                 </div>
@@ -260,45 +260,67 @@
 <div id="ModalEditVacacny" class="modal fade">
     <div class="modal-dialog modal-lg">
     <div class="modal-content">
-        <form method="POST" id="frmEditModalVacancy">
-            <input type="hidden" id="vacancy_id_edit">
+       
             <div class="modal-header theme-bg">
                 <h4 class="modal-title">Posting Vacancy</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
-            <div class="modal-body">
-                    <div class="demo">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="tab" role="tabpanel">
-                                        <!-- Nav tabs -->
-                                        <ul class="nav nav-tabs" role="tablist">
-                                            <li role="presentation" class="active"><a href="#info_edit" aria-controls="home" role="tab" data-toggle="tab"> Gengeral Information</a></li>
-                                            <li role="presentation"><a href="#description_edit" aria-controls="description" role="tab" data-toggle="tab"> Responsibilities / Requirement</a></li>
-                                            <li role="presentation"><a href="#apply_edit" aria-controls="messages" role="tab" data-toggle="tab"> How to apply</a></li>
-                                        </ul>
-                                        <!-- Tab panes -->
-                                        <div class="tab-content tabs">
-                                            <div role="tabpanel" class="tab-pane fade in active" id="info_edit">
-                                                    <div class="card-body">
+            <form  id="frmEditModalVacancy">
+                    <meta name="csrf-token" content="{{ csrf_token() }}">
+                    <input type="hidden" id="vacancy_id_edit">
+            <div class="card-body">
+                   
+                    <div class="modal-body">
+                            <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation" class="active"><a href="#info_edit" aria-controls="home" role="tab" data-toggle="tab"> Vacancy Info</a></li>
+                                    <li role="presentation"><a href="#description_edit" aria-controls="description" role="tab" data-toggle="tab"> Requirement / Description</a></li>
+                                    {{-- <li role="presentation"><a href="#apply" aria-controls="messages" role="tab" data-toggle="tab">How to apply</a></li> --}}
+                                
+                                </ul>
+                                <!-- Tab panes -->
+                                <div class="tab-content tabs">
+                        
+                                    <div role="tabpanel" class="tab-pane fade in active" id="info_edit">                                      
+                                            <div class="card-body">
                                                             <div class="row">
+                                                                    <div class="col-lg-6">
+                                                                            <label> Vacancy Position </label>
+                                                                            <input  name="vacancy_name_edit" id="vacancy_name_edit" type="text" class="form-control">
+                                                                        </div>
                                                                     <div class="col-lg-6">
                                                                             <label> Job Category </label>
                                                                             <select class="form-control" required id="job_category_vacancy_id_edit" name="job_category_vacancy_id_edit">
-                                                                                <option value="">  -- Pleae Select category -- </option>
+                                                                                <option value="">  -- Pleae Select Job Tittle -- </option>
                                                                                 @php $j = JobCategory::all(); @endphp
                                                                                 @foreach ($j as $js)
                                                                                      <option value="{{$js->id}}"> {{$js->name}}</option>
                                                                                 @endforeach
                                                                             </select>
                                                                         </div>
-                                                                  <div class="col-lg-6">
-                                                                      <label> Vacancy Name </label>
-                                                                      <input  name="vacancy_name_edit" id="vacancy_name_edit" type="text" class="form-control">
-                                                                  </div>
+                                                                        <div class="col-lg-6 m-clea">
+                                                                                <label>Job Tittle</label>
+                                                                                <?php $jobTitle = jobTitle::all(); ?>
+                                                                                <select name="job_title_id_edit" id="job_title_id_edit" class="form-control">
+                                                                                <option value="">  -- Pleae Select Job Title -- </option>
+                                                                                    @foreach($jobTitle as $jobTitles)
+                                                                                      <option value="{{$jobTitles->id}}">{{$jobTitles->name}}</option>
+                                                                                   @endforeach
+                                                                                </select>
+                                                                            </div>
+                                                                    <div class="col-lg-6">
+                                                                        <label> Company  </label>
+                                                                        <select class="form-control" required id="company_id_edit" name="company_id_edit">
+                                                                            <option value="">  -- Pleae Select Company -- </option>
+                                                                            @php $company = company::all(); @endphp
+                                                                            @foreach ($company as $companies)
+                                                                                    <option value="{{$companies->id}}">{{$companies->company_name}}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                
                                                                   <div class="col-lg-6">
                                                                         <label> Hiring Manager </label>
-                                                                        <select class="form-control" required id="hiring_manager_id" name="hiring_manager_id">
+                                                                        <select class="form-control" required id="hiring_manager_id_edit" name="hiring_manager_id_edit">
                                                                             <option value="">  -- Pleae Select Employee -- </option>
                                                                             @php $employee = employee::all(); @endphp
                                                                             @foreach ($employee as $employees)
@@ -310,8 +332,8 @@
                                                                         <label>Package</label>
                                                                         <select class="form-control">
                                                                             <option>2,00000 CTC</option>
-                                                                            <option value="1">3,00000 CTC</option>
-                                                                            <option value="2">4,00000 CTC</option>
+                                                                            <option value="1">3,00000 $</option>
+                                                                            <option value="2">4,00000 $</option>
                                                                         </select>
                                                                     </div>
                                                                     <div class="col-lg-6">
@@ -319,23 +341,49 @@
                                                                         <?php $jobType = JobType::all(); ?>
                                                                         <select name="job_type_id_edit" id="job_type_id_edit" class="form-control">
                                                                         <option value="">  -- Pleae Select Job Type -- </option>
+    
                                                                             @foreach($jobType as $JobTypes)
                                                                               <option value="{{$JobTypes->id}}">{{$JobTypes->name}}</option>
                                                                            @endforeach
                                                                         </select>
                                                                     </div>
-                                                                    <div class="col-lg-6">
-                                                                        <label> Skills</label>
-                                                                        <?php $skill = skill::all(); ?>
-                                                                        <select class="multiple-skill form-control" id="skill_id_edit" name="skill_edit[]" multiple="multiple">
-                                                                            @foreach($skill as $skills)
-                                                                                <option value="{{$skills->id}}">{{$skills->name}}</option>
-                                                                            @endforeach
-                                                                        </select>
-                                                                    </div>
+    
+                                                                   
+                                                                   
+                                                                       
+    
+                                                                            <div class="col-sm-6 m-clear">
+                                                                                    <label>Closing Date</label>
+                                                                                    <input name="closingDate_edit" id="closingDate_edit" type="text" data-toggle="datepicker" class="form-control">
+                                                                                </div>
+                                                                            <div class="col-sm-6">
+                                                                                    <label>@lang('app.salary_cycle') </label>
+                                                                                @php
+                                                                                    $salary = array('monthly','yearly','weekly','daily','hourly');
+                                                                                @endphp
+                                                                                <select class="form-control" name="salary_cycle_edit" id="salary_cycle_edit">
+                                                                                      
+                                                                                        @foreach ($salary as $salaries)
+                                                                                            <option value="{{$salaries}}" >{{$salaries}}</option>
+                                                                                        @endforeach
+                                                                                </select>
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                        @php
+                                                                                        $level= array('mid', 'entry', 'senior');
+                                                                                    @endphp
+                                                                                    <label>@lang('app.exp_level') </label>
+                                                                                    <select class="form-control" name="exp_level_id" id="exp_level_id">
+                                                                                          
+                                                                                            @foreach ($level as $levels)
+                                                                                                <option value="{{$levels}}" >{{$levels}}</option>
+                                                                                            @endforeach
+                                                                                    </select>
+                                                                                    </div>
+                                                                                   
                                                                     <div class="col-sm-6">
                                                                         <label>locations </label>
-                                                                        <?php $location = location::all(); ?>
+                                                                        <?php $location = province::all(); ?>
                                                                         <select name="location_id_edit" id="location_id_edit" class="form-control">
                                                                                 <option value="">  -- Pleae Select Location -- </option>
                                                                             @foreach($location as $locations)
@@ -344,51 +392,52 @@
                                                                         </select>
                                                                     </div>
                                                                     <div class="col-lg-6">
-                                                                            <label>Job Tittle</label>
-                                                                            <?php $jobTitle = jobTitle::all(); ?>
-                                                                            <select name="job_type_id_edit" id="job_type_id_edit" class="form-control">
-                                                                            <option value="">  -- Pleae Select Job Type -- </option>
-                                                                                @foreach($jobTitle as $jobTitles)
-                                                                                  <option value="{{$jobTitles->id}}">{{$jobTitles->name}}</option>
-                                                                               @endforeach
+                                                                            <label> Skills</label>
+                                                                            <?php $skill = skill::all(); ?>
+                                                                            <select class="multiple-skill form-control" id="skill_id_edit" name="skill[]" multiple="multiple">
+                                                                                @foreach($skill as $skills)
+                                                                                    <option value="{{$skills->id}}">{{$skills->name}}</option>
+                                                                                @endforeach
                                                                             </select>
                                                                         </div>
-                                                                    <div class="col-sm-6 m-clear">
-                                                                        <label>Closing Date</label>
-                                                                        <input name="closingDate_edit" id="closingDate_edit" type="text" data-toggle="datepicker" class="form-control">
-                                                                    </div>
+                                                                        <div class="col-lg-6">
+                                                                                <label> Salary Range</label>
+                                                                                <input  name="offer_salary_edit" id="offer_salary_edit" type="text" class="form-control">
+                                                                        </div><br/>
+                                                                        <div class="col-lg-6">
+                                                                                <label> Negotiation  </label>
+                                                                                <input  name="vacancy_name" id="vacancy_name" type="checkbox" class="form-control">
+                                                                        </div>
                                                             </div>
                                                         </div>
                                             </div>
                                             <div role="tabpanel" class="tab-pane fade in" id="description_edit">
+                                                <br/>
                                                 <div class="row">
                                                         <div class="col-lg-12">
-                                                                <label>Job Description / Requirement</label>
-                                                                <textarea class="form-control job_description" id="job_description_eidt" name="job_description_eidt"></textarea>
-                                                            </div>
-                                                </div>
-                                            </div>
-                                            <div role="tabpanel" class="tab-pane fade in" id="apply_edit">
-                                                    <div class="row">
-                                                            <div class="col-lg-12">
-                                                                    <label>How to apply </label>
-                                                                    <textarea  name="description" id="description" class="form-control" cols='5' rows='5'></textarea>
-                                                            </div>
+                                                                <label>Job Description </label>
+                                                                <textarea class="form-control job_description" id="job_description_edit" name="job_description"></textarea>
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                            <label>Job Requirement</label>
+                                                            <textarea class="form-control responsibilities" id="responsibilities_edit" name="responsibilities"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
+                                            
+                                            </div>
                                         </div>
+                                      
                                     </div>
-                                </div>
-                            </div>
+                                    <div class="modal-footer">
+                                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                            <input type="submit" class="btn btn-danger" value="Save">
+                                        </div>
+                                </form>  
+                            </div>    
                     </div>
-            <div class="modal-footer">
-                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                <input type="submit" class="btn btn-danger" value="Save">
-            </div>
-        </form>
-    </div>
-    </div>
+                 </div>
+             </div>
     </div>
 
 
