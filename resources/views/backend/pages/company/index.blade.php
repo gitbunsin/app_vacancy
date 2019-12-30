@@ -35,7 +35,7 @@
                                     @foreach ($company as $key => $companies)
                                         <tr id="tbl_company{{$companies->id}}">
                                             <th scope="row">{{$key + 1}}</th>
-                                            <td>{{$companies->company_name}}</td>
+                                            <td style="color:red;"><a href=""><strong>{{$companies->company_name}}</strong></a></td>
                                             <td>{{$companies->phone}}</td></td>
                                             <td>{{$companies->email}}</td>
                                             <th>

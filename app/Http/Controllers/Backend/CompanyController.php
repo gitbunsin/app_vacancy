@@ -19,7 +19,7 @@ class CompanyController extends Controller
 
         $company = company::with(['city','country'])->orderBy('id' , 'DESC')->paginate(10);
         //dd($company);
-        return view('backend.pages.company.index',compact('company'));
+        return view('backend/pages/company/index',compact('company'));
 
     }
 
@@ -70,8 +70,8 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        //
-        
+        $company = company::find($id);
+        return view('backend/pages/company/show',compact('company'));  
     }
 
     /**

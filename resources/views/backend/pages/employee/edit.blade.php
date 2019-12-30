@@ -385,74 +385,101 @@
                           </table>
                     </div>
                     <div class="bhoechie-tab-content">
-                            <div class="card-header">
-                                    <a onclick="ShowModalReporto()"  onclick="AddCandidate();" class="btn btn-primary pull-right "  title="Payment"><i class="ti-plus"></i> Add Supervisors</a>
-                                    {{-- <a href="#" onclick="ShowModalReporto()" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> Add Supervisors</a> --}}
-                                    <br>
-                                    <h4><i class="fa fa-group"></i> Assigned Supervisors</h4>
-                                </div>
-                                <table class="table" id="tbl_assigned_supervisors">
-                                    <thead>
-                                      <tr>
-                                        <th scope="col">#No</th>
-                                        <th>Salary Component</th>
-                                        <th>Pay Frequency</th>
-                                        <th>Currency</th>
-                                        <th>Amount</th>
-                                        <th>Comments</th>
-                                        <th>Action</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                            <tr id="tr_basic_salary">
-                                                <th scope="row"></th>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <th>
-                                                      <a onclick=""  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
-                                                      <a onclick="" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
-                                                </th>
-                                              </tr>     
-                       
-                                          </tbody>
-                                  </table>
-                                 <hr/>
-                                  <div class="card-header">
-                                        <a onclick="ShowModalReporto()" onclick="AddCandidate();" class="btn btn-primary pull-right "  title="Payment"><i class="ti-plus"></i> Add Subordinates</a>
-                                    {{-- <a href="#" onclick="ShowModalReporto()" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> Add Subordinates</a> --}}
-                                    <br>
-                                    <h4><i class="fa fa-group"></i> Assigned Subordinates</h4>
-                                </div>
-                                <table class="table" id="tbl_assigned_supervisors">
-                                    <thead>
-                                      <tr>
-                                        <th scope="col">#No</th>
-                                        <th>Salary Component</th>
-                                        <th>Pay Frequency</th>
-                                        <th>Currency</th>
-                                        <th>Amount</th>
-                                        <th>Comments</th>
-                                        <th>Action</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                            <tr id="tr_basic_salary">
-                                                <th scope="row"></th>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <th>
-                                                      <a onclick="EditSalary();"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
-                                                      <a onclick="DeleteSalary();" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
-                                                </th>
-                                              </tr>     
-                                    </tbody>
-                                  </table>
+                            <div class="modal-body">
+                                    <ul class="nav nav-tabs" role="tablist">
+                                            <li role="presentation" class="active"><a href="#info" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-group"></i> Assigned Supervisors</a></li>
+                                            <li role="presentation"><a href="#description" aria-controls="description" role="tab" data-toggle="tab"><i class="fa fa-group"></i> Assigned Subordinates</a></li>
+                                        </ul>
+                                        <!-- Tab panes -->
+                                        <div class="tab-content tabs">
+                                
+                                            <div role="tabpanel" class="tab-pane fade in active" id="info">
+                                                    <form action="" id="frmEditCandidate">
+                                                    <input type="hidden" value="" id="candidate_id_edit">
+                                                    <meta name="csrf-token" content="{{ csrf_token() }}">
+                                                    <div class="card-body">
+                                                            <div class="card-header">
+                                                                    <a onclick="ShowModalReporto()" onclick="AddCandidate();" class="btn btn-primary pull-right "  title="Payment"><i class="ti-plus"></i> Add Supervisors</a>
+                                                                <br/> <br/>
+                                                                
+                                                            </div>
+                                                            <div class="row">
+                                                                    <table class="table" id="tbl_assigned_supervisors">
+                                                                            <thead>
+                                                                              <tr>
+                                                                                <th scope="col">#No</th>
+                                                                                <th>Salary Component</th>
+                                                                                <th>Pay Frequency</th>
+                                                                                <th>Currency</th>
+                                                                                <th>Amount</th>
+                                                                                <th>Comments</th>
+                                                                                <th>Action</th>
+                                                                              </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                    <tr id="tr_basic_salary">
+                                                                                        <th scope="row"></th>
+                                                                                        <td></td>
+                                                                                        <td></td>
+                                                                                        <td></td>
+                                                                                        <td></td>
+                                                                                        <td></td>
+                                                                                        <th>
+                                                                                              <a onclick="EditSalary();"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
+                                                                                              <a onclick="DeleteSalary();" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
+                                                                                        </th>
+                                                                                      </tr>     
+                                                                            </tbody>
+                                                                          </table>
+                                                            </div>
+                                                    </div>
+                                                    </form>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="description">
+                                                    <form action="" id="frmEditCandidate">
+                                                    <input type="hidden" value="" id="candidate_id_edit">
+                                                    <meta name="csrf-token" content="{{ csrf_token() }}">
+                                                    <div class="card-body">
+                                                            <div class="card-header">
+                                                                    <a onclick="ShowModalReporto()" onclick="AddCandidate();" class="btn btn-primary pull-right "  title="Payment"><i class="ti-plus"></i> Add Subordinates</a>
+                                                                {{-- <a href="#" onclick="ShowModalReporto()" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> Add Subordinates</a> --}}
+                                                                <br/> <br/>
+                                                                
+                                                            </div>
+                                                            <div class="row">
+                                                                    <table class="table" id="tbl_assigned_supervisors">
+                                                                            <thead>
+                                                                              <tr>
+                                                                                <th scope="col">#No</th>
+                                                                                <th>Salary Component</th>
+                                                                                <th>Pay Frequency</th>
+                                                                                <th>Currency</th>
+                                                                                <th>Amount</th>
+                                                                                <th>Comments</th>
+                                                                                <th>Action</th>
+                                                                              </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                    <tr id="tr_basic_salary">
+                                                                                        <th scope="row"></th>
+                                                                                        <td></td>
+                                                                                        <td></td>
+                                                                                        <td></td>
+                                                                                        <td></td>
+                                                                                        <td></td>
+                                                                                        <th>
+                                                                                              <a onclick="EditSalary();"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
+                                                                                              <a onclick="DeleteSalary();" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
+                                                                                        </th>
+                                                                                      </tr>     
+                                                                            </tbody>
+                                                                          </table>
+                                                            </div>
+                                                    </div>
+                                                    </form>
+                                            </div>
+                                        </div>
+                            </div>        
                     </div>
                     <div class="bhoechie-tab-content">
                         <div class="demo">
@@ -674,7 +701,7 @@
                     </div>
                     <div class="bhoechie-tab-content">
                             <div class="card-header">
-                                    <a href="#" onclick="ShowModalMembership()" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> <i class="fa fa-plus"></i></a>
+                                    <a onclick="ShowModalMembership()" class="btn btn-primary pull-right "  title="Payment"><i class="ti-plus"></i> Add Memberships</a>
                                     <br>
                                     <h4><i class="fa fa-group"></i>Assigned Memberships</h4>
                                 </div>

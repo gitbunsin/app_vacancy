@@ -27,7 +27,8 @@
                                                     <div class="bhoechie-tab-content active">
                                                             <div class="card-header">
                                                                     <div class="pull-right">
-                                                                       <a class="btn btn-primary" onclick="myfunc()" data-toggle="tooltip" data-placement="top" title="Company"><i class="ti-plus"></i></a>  
+                                                                       <a class="btn btn-primary" onclick="myfunc()" data-toggle="tooltip" data-placement="top" title="Company"><i class="ti-plus"></i> Add Company</a>  
+
                                                                     </div>
                                                                     <h3><span class="ti-home"></span> General Information</h3>
                                                                 </div>
@@ -46,7 +47,7 @@
                                                                                 @foreach ($company as $key => $companies)
                                                                                     <tr id="tbl_company{{$companies->id}}">
                                                                                         <th scope="row">{{$key + 1}}</th>
-                                                                                        <td><a href="{{url('admin/vacancy/'.$companies->id)}}">{{$companies->company_name}}</a></td>
+                                                                                        <td><a href="{{url('admin/company/'.$companies->id)}}"><strong>{{$companies->company_name}}</strong></a></td>
                                                                                         <td>{{$companies->phone}}</td></td>
                                                                                         <td>{{$companies->email}}</td>
                                                                                         <th>
@@ -64,7 +65,7 @@
                                                         <div class="card-header">
                                                                 <div class="card-header">
                                                                         <div class="pull-right">
-                                                                            <a  onclick="showLocation(this);"  href="#"  class="btn btn-success manage-btn" data-toggle="tooltip" data-placement="top" title="Create Location"><i class="ti-plus"></i></a>
+                                                                            <a  onclick="showLocation(this);"  href="#"  class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Create Location"><i class="ti-plus"></i>Add Location</a>
                                                                         </div>
                                                                         <h3><span class="ti-home"></span> Location</h3>
                                                                     </div>
@@ -264,38 +265,7 @@
                                                     
                                                 </div>
                                             </div>
-                                        <!-- Social Accounts -->
-                                            {{-- <div class="card-header">
-                                                <h4>Social Accounts</h4>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-sm-4">
-                                                        <label><i class="fa fa-facebook mrg-r-5"></i>Facebook</label>
-                                                        <input name="facebook_link_edit" id="facebook_link_edit" type="text" class="form-control">
-                                                    </div>
-                                                    <div class="col-sm-4">
-                                                        <label><i class="fa fa-google-plus mrg-r-5"></i>Google +</label>
-                                                        <input name="google_link_edit" id="google_link_edit" type="text" class="form-control">
-                                                    </div>
-                                                    <div class="col-sm-4">
-                                                        <label><i class="fa fa-twitter mrg-r-5"></i>Twitter</label>
-                                                        <input name="twitter_link_edit" id="twitter_link_edit" type="text" class="form-control">
-                                                    </div>
-                                                    <div class="col-sm-4">
-                                                        <label><i class="fa fa-linkedin mrg-r-5"></i>LinkedIn</label>
-                                                        <input name="linkedIn_link_edit" id="linkedIn_link_edit" type="text" class="form-control">
-                                                    </div>
-                                                    <div class="col-sm-4">
-                                                        <label><i class="fa fa-pinterest mrg-r-5"></i>Pinterest</label>
-                                                        <input name="pinterest_link_edit" id="pinterest_link_edit" type="text" class="form-control">
-                                                    </div>
-                                                    <div class="col-sm-4">
-                                                        <label><i class="fa fa-instagram mrg-r-5"></i>Instagram</label>
-                                                        <input name="instagram_link_edit" id="instagram_link_edit" type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div> --}}
+                                       
                                     </div>
                             </div>	
                     </div>
