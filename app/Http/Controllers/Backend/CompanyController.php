@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Model\company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
 class CompanyController extends Controller
@@ -42,8 +43,10 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
+        $filename = $request->file('file')->getClientOriginalName();
         $company = new Company();
         $company->company_name = $request->company_name;
+        $company->admin_id =  auth()->guard('admin')->user()->id;
         $company->phone = $request->phone;
         $company->email = $request->email;
         $company->zip_code = $request->zip_code;
@@ -53,11 +56,11 @@ class CompanyController extends Controller
         $company->address = $request->address;
         $company->website_link = $request->website_link;
         $company->facebook_link = $request->facebook_link;
-        $company->google_link = $request->google_link;
-        $company->twitter_link = $request->twitter_link;
         $company->linkedIn_link = $request->linkedIn_link;
-        $company->pinterest_link = $request->pinterest_link;
-        $company->instagram_link = $request->instagram_link;
+        $company->company_profile = $request->company_profile;
+        $company->company_logo = $filename;
+        $dir = 'uploads/UserCv';
+        $request->file('file')->move($dir, $filename);
         $company->save();
         return response()->json($company);
     }
@@ -93,27 +96,54 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function updateCompany(Request $request, $id){
+
+        $filename = $request->file('file')->getClientOriginalName();
         $company = company::find($id);
+        $company->admin_id =  auth()->guard('admin')->user()->id;
         $company->company_name = $request->company_name;
         $company->phone = $request->phone;
         $company->email = $request->email;
         $company->zip_code = $request->zip_code;
         $company->state  = $request->state;
-        // $company->city_id = $request->city_id;
-        // $company->country_id = $request->country_id;
+        $company->city_id = $request->city_id;
+        $company->country_id = $request->country_id;
         $company->address = $request->address;
         $company->website_link = $request->website_link;
         $company->facebook_link = $request->facebook_link;
-        $company->google_link = $request->google_link;
-        $company->twitter_link = $request->twitter_link;
-        $company->linkedIn_link = $request->linkedIn_link;
-        $company->pinterest_link = $request->pinterest_link;
-        $company->instagram_link = $request->instagram_link;
+        $company->linkedIn_link = $request->linkedIn_link;  
+        $company->company_profile = $request->company_profile;
+        $company->company_logo = $filename;
+        $dir = 'uploads/UserCv';
+        $request->file('file')->move($dir, $filename);
         $company->save();
         return response()->json($company);
+
+    }
+
+    public function update(Request $request, $id)
+    {
+        //
+        $filename = $request->file('file')->getClientOriginalName();
+        $company = company::find($id);
+        $company->admin_id =  auth()->guard('admin')->user()->id;
+        $company->company_name = $request->company_name;
+        $company->phone = $request->phone;
+        $company->email = $request->email;
+        $company->zip_code = $request->zip_code;
+        $company->state  = $request->state;
+        $company->city_id = $request->city_id;
+        $company->country_id = $request->country_id;
+        $company->address = $request->address;
+        $company->website_link = $request->website_link;
+        $company->facebook_link = $request->facebook_link;
+        $company->linkedIn_link = $request->linkedIn_link;  
+        $company->company_profile = $request->company_profile;
+        $company->company_logo = $filename;
+        $dir = 'uploads/UserCv';
+        $request->file('file')->move($dir, $filename);
+        $company->save();
+        return response()->json($filename);
     }
 
     /**

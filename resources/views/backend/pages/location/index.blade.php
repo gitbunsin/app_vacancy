@@ -144,14 +144,14 @@
         </div>
     </div>
 
-    <div id="DeleteCategory" class="modal fade">
+    <div id="DeleteCompany" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="POST" action="#" id="frmJobCategory">
+                <form method="POST" action="#" id="frmDeleteCompany">
                     <meta name="csrf-token" content="{{ csrf_token() }}">
-                    <input type="hidden" value="" id="jobCategory_id"/>
+                    <input type="hidden" value="" id="company_id"/>
                     <div class="modal-header theme-bg">
-                        <h4 class="modal-title">Location </h4>
+                        <h4 class="modal-title">Company  </h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body">
@@ -210,10 +210,7 @@
                                                         <input name="website_link_edit" id="website_link_edit" type="text" class="form-control">
                                                     </div>
                         
-                                                    <div class="col-sm-4">
-                                                        <label>Company Logo</label>
-                                                        <input name="company_logo" id="company_logo" type="file" class="form-control">
-                                                    </div>
+                                                   
                         
                                                     <div class="col-sm-4">
                                                         <label>City</label>
@@ -243,16 +240,21 @@
                                                     </div>
                                                     <div class="col-sm-4">
                                                             <label>LinkedIn</label>
-                                                            <input name="linkedIn_link" id="linkedIn_link" type="text" class="form-control">
+                                                            <input name="linkedIn_link_edit" id="linkedIn_link_edit" type="text" class="form-control">
                                                         </div>
                                                     <div class="col-sm-4">
                                                             <label>Facebook</label>
-                                                            <input name="facebook_link" id="facebook_link" type="text" class="form-control">
+                                                            <input name="facebook_link_edit" id="facebook_link_edit" type="text" class="form-control">
                                                     </div>
                                                     <div class="col-sm-4">
-                                                            <label>Instagram</label>
-                                                            <input name="instagram_link" id="instagram_link" type="text" class="form-control">
-                                                        </div>
+                                                        <label>Company Logo</label>
+                                                        <input name="company_logo_edit" id="company_logo_edit" type="file" class="form-control">
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <label>Logo</label>
+                                                        <img width="100px" height="100px" id="logo_edit" src="" alt="">
+                                                    </div>
+
                                                     <div class="col-sm-12">
                                                             <label>Address</label>
                                                             <textarea class="form-control"   name="address_edit" id="address_edit" cols="10" rows="2"></textarea>
@@ -260,7 +262,7 @@
                                                    
                                                 <div class="col-sm-12">
                                                         <label>Company Profiles</label>
-                                                        <textarea class="form-control"  name="company_profile" id="company_profile" cols="30" rows="7"></textarea>
+                                                        <textarea class="form-control"  name="company_profile_edit" id="company_profile_edit" cols="30" rows="7"></textarea>
                                                     </div>
                                                     
                                                 </div>
@@ -324,7 +326,7 @@
                                                     <div class="col-sm-4">
                                                         <label>City</label>
                                                         <?php $city = city::all(); ?>
-                                                        <select class="form-control">
+                                                        <select class="form-control" id="city_id">
                                                             @foreach( $city as $cities)
                                                               <option value="{{$cities->id}}">{{$cities->name}}</option>
                                                             @endforeach
@@ -337,7 +339,7 @@
                                                     <div class="col-sm-4 m-clear">
                                                         <label>Country</label>
                                                         <?php $country = country::all(); ?>
-                                                        <select class="form-control">
+                                                        <select class="form-control" id="country_id">
                                                             @foreach( $country as $countries)
                                                                 <option value="{{$countries->id}}">{{$countries->name}}</option>
                                                             @endforeach

@@ -1,11 +1,19 @@
 <style>
-
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
 #footer {
 	border-top:1px solid #efefef;
 }
 .footer-top {
 	padding: 50px 0 57px;
 	background-color: #fff;
+}
+.footer-top {
+    padding: 52px 0 20px;
+    background-color: #fff;
 }
 
 .footer-widget {
@@ -15,11 +23,16 @@
 }
 
 .footer-widget h3 {
-	font-weight: 300;
-	color: #000;
-	line-height: 28px;
-	margin-top: 20px;
-	margin-bottom: 45px;
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 35px;
+}
+.footer-widget h3 {
+    font-weight: 300;
+    color: #000;
+    line-height: 28px;
+    margin-top: -24px;
+    margin-bottom: 14px;
 }
 
 .social-widget h3,
@@ -84,11 +97,11 @@
 .footer-widget input[type="email"] {
 	margin:20px 0;
 	font-weight: 300;
-	font-size: 12px;
+	font-size: 14px;
 }
 
 .footer-widget .btn.btn-primary {
-	font-size:12px;
+	font-size:14px;
 	padding: 6px 25px 8px;
 }
 
@@ -117,7 +130,7 @@ input:-moz-placeholder {
 .footer-bottom {
  	background-color: #f7f7f7;
  	color: #6e6e6e;
- 	font-size: 12px;
+ 	font-size: 14px;
  	padding: 19px 0 12px;
  	font-weight: 300;
 }
@@ -151,7 +164,7 @@ input:-moz-placeholder {
 
 .category-section .section-title h5 {
 	float: right;
-	font-size: 12px;
+	font-size: 14px;
 	color: #000;
 	font-weight: 400;
 }
@@ -199,7 +212,7 @@ input:-moz-placeholder {
 					<!-- footer-widget -->
 					<div class="col-lg-3 col-sm-6">
 						<div class="footer-widget">
-							<h3>Quik Links</h3>
+							<h3>Customer Service</h3>
 							<ul>
 								<li><a href="#">About Us</a></li>
 								<li><a href="#">Contact Us</a></li>
@@ -214,7 +227,7 @@ input:-moz-placeholder {
 					<!-- footer-widget -->
 					<div class="col-lg-3 col-sm-6">
 						<div class="footer-widget">
-							<h3>How to sell fast</h3>
+							<h3>Useful Information</h3>
 							<ul>
 								<li><a href="#">How to sell fast</a></li>
 								<li><a href="#">Membership</a></li>
@@ -228,27 +241,43 @@ input:-moz-placeholder {
 
 					<!-- footer-widget -->
 					<div class="col-lg-3 col-sm-6">
-						<div class="footer-widget social-widget">
-							<h3>Follow us on</h3>
-							<ul>
-								<li><a href="#"><i class="fa fa-facebook-official"></i>Facebook</a></li>
-								<li><a href="#"><i class="fa fa-twitter-square"></i>Twitter</a></li>
-								<li><a href="#"><i class="fa fa-google-plus-square"></i>Google+</a></li>
-								<li><a href="#"><i class="fa fa-youtube-play"></i>youtube</a></li>
-							</ul>
+						<div class="footer-widget news-letter">
+								<h3>Follow Us</h3>
+								<p>Jobs is Worldest leading Portal platform that brings!</p>
+								<!-- form -->
+								<form action="#">
+									<input type="email" class="form-control" placeholder="Your email id">
+									<button type="submit" class="btn btn-primary">Sign Up</button>
+								</form><!-- form -->
 						</div>
 					</div><!-- footer-widget -->
 
 					<!-- footer-widget -->
 					<div class="col-lg-3 col-sm-6">
 						<div class="footer-widget news-letter">
-							<h3>Newsletter</h3>
-							<p>Jobs is Worldest leading Portal platform that brings!</p>
-							<!-- form -->
-							<form action="#">
-								<input type="email" class="form-control" placeholder="Your email id">
-								<button type="submit" class="btn btn-primary">Sign Up</button>
-							</form><!-- form -->			
+								{{-- <div class="col"> --}}
+										{{-- <h5></h5> --}}
+										<h3>Download Kh-Work app for FREE</h3>
+										<div class="row app-link">
+										<div class="col-6 text-right">
+										<a href="https://khmer24.page.link/app" target="_blank" rel="nofollow">
+										<img class="img-fluid icon-qr" src="https://www.khmer24.com/khmer24-crm-28/template/img/khmer24-qr-code.png">
+										</a>
+										</div>
+										<div class="col-6 text-left">
+										<div class="mt-2">
+										<a href="https://khmer24.page.link/ios" target="_blank" rel="nofollow">
+										<img class="img-fluid icon-app" src="https://www.khmer24.com/khmer24-crm-28/template/img/appstore.png">
+										</a>
+										</div>
+										<div class="mt-3">
+										<a href="https://khmer24.page.link/android" target="_blank" rel="nofollow">
+										<img class="img-fluid icon-app" src="https://www.khmer24.com/khmer24-crm-28/template/img/playstore.png">
+										</a>
+										</div>
+										</div>
+										</div>
+										{{-- </div>			 --}}
 						</div>
 					</div><!-- footer-widget -->
 				</div><!-- row -->
@@ -257,7 +286,7 @@ input:-moz-placeholder {
 
 		<div class="footer-bottom clearfix text-center">
 			<div class="container">
-				<p>Copyright © <a href="#">Jobs</a> 2017. Developed by <a href="http://themeregion.com/">ThemeRegion</a></p>
+				<p>Copyright © <a href="#">Jobs</a> 2020. Developed by <a href="http://themeregion.com/">Kh-Work</a></p>
 			</div>
 		</div><!-- footer-bottom -->
 	</footer>

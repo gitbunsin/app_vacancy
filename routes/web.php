@@ -64,6 +64,7 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
     Route::get('pricing', 'AppController@PricingSettings')->name('pricing_settings');
     Route::post('pricing','AppController@PricingSave');
     Route::resource('company','CompanyController');
+    Route::post('company-update/{id}','CompanyController@updateCompany');
     Route::resource('subUnit','SubUnitController');
     Route::resource('WorkShift','WorkShiftController');
     Route::resource('interview','InterviewController');

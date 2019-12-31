@@ -59,17 +59,25 @@
                     </tr>
                     <tr>
                         <td><b> Company Logo : </b></td>
-                        <td>{{$company->company_logo}}</td>
+                        @if ($company->company_logo)
+                             <td><img width="100px" height="100px" src="{{url('/uploads/UserCv/'.$company->company_logo)}}" alt=""> </td>
+                        @else
+                             <span> -- No Image FOund -- </span>  
+                        @endif
+                        
                     </tr>
+                  
                     <tr>
-                        <td><b> Company Profile : </b></td>
-                        <td>{{$company->company_logo}}</td>
+                            <td colspan="2"><b>Company Profiles :   <br/><br/></b>{{$company->company_profile}}</td>
                     </tr>
+                       
+                    
+                 
                   
                   </table>
                 
                   <div class="modal-footer">
-                    <a class="btn btn-info" href="{{ URL::previous() }}">back</a>
+                    <a class="btn btn-primary" href="{{ URL::previous() }}">Back</a>
             </div>       
             </div>
     </div>
