@@ -8,6 +8,8 @@
       use App\Model\license; 
       use App\Model\currency;
       use App\Model\membership;
+      use App\Model\country;
+      use App\Model\nationality;
 @endphp
     <input type="hidden" value="{{$employee->id}}" id="employee_id">
     <div class="container-fluid">
@@ -52,6 +54,27 @@
                             <meta name="csrf-token" content="{{ csrf_token() }}">
                             <div class="card-body">
                                 <div class="row">
+                                        <div class="col-md-4">
+                                <div class="change-photo">
+                                        <div class="user-image">
+                                            @if($employee->photo)
+                                                <img class="img-circle" id="preview" src="{{url('/uploads/employee/'.$employee->photo)}}" width="150px" height="150px"/><br/>
+                                            @else
+                                                <img class="img-circle" id="preview" src="{{asset('images/noimage.jpg')}}" width="150px" height="150px"/><br/>
+                                            @endif
+                                            <input type="file"id="image" style="display: none;"/>
+                                        </div>
+                                        <br/>
+                                        <div class="upload-photo">
+                                            <label class="btn btn-primary" for="upload-photo">
+                                                    <a style="color:white;" id="upload-photo" href="javascript:changeProfile()">Change</a>
+                                            </label>
+                                            <label class="btn btn-danger" for="upload-photo">
+                                                    <a style="color: white" href="javascript:removeImage()">Remove</a>
+                                                </label>
+                                            <span class="max-size">Max 20 MB</span>
+                                        </div>
+                                    </div></div><div class="col-md-4"></div><div class="col-md-4"></div>
                                     <div class="col-sm-4">
                                         <label>First Name</label>
                                         <input value="{{$employee->first_name}}" name="first_name" id="first_name"  type="text" class="form-control">
@@ -65,10 +88,6 @@
                                         <input name="last_name" id="last_name" value="{{$employee->last_name}}" type="text" class="form-control">
                                     </div>
                                     <div class="col-sm-4">
-                                        <label>Employee Profile.</label>
-                                        <input id="photo" name="photo" type="file" class="form-control">
-                                    </div>
-                                    <div class="col-sm-4">
                                         <label>Employee ID </label>
                                         <input id="employee_id" readonly name="employee_id" type="text" value="{{str_pad($employee->employee_id, 1, '0', STR_PAD_LEFT)}}" class="form-control">
                                     </div>
@@ -78,69 +97,44 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <label>Gender </label>
-                                        <select class="form-control"  name="gender" id="gender">
-                                            <option value="" required > -- plz select gender -- </option>
-                                            @php $gender = array("Male","Female");@endphp
-                                            @foreach($gender as $genders)
-                                                <option  value="{{$genders}}" {{$employee->gender == $genders ? "selected":" " }}> {{$genders}}</option>
-                                            @endforeach
-                                        </select>
+                                            <select class="form-control" name="gender" id="gender">
+                                                    <option value="" required > -- plz select Gender -- </option>
+                                                    <option value="male" {{ $employee->gender == 'male' ? 'selected':'' }}>Male</option>
+                                                    <option value="female" {{ $employee->gender == 'female' ? 'selected':'' }}>Female</option>     
+                                            </select>
                                     </div>
                                     <div class="col-sm-4">
                                         <label> Marital Status </label>
-                                        <select class="form-control"  name="marital_status" id="marital_status">
-                                            <option value="" required > -- plz select status -- </option>
-                                            @php $Single = array("Single","Married");@endphp
-                                            @foreach($Single as $Singles)
-                                                <option value="{{$Singles}}" {{$employee->marital_status == $Singles ? "selected":" " }}> {{$Singles}}</option>
-                                            @endforeach
+                                        <select class="form-control" name="marital_status" id="marital_status">
+                                                <option value="" required > -- plz select Status -- </option>
+                                                <option value="single" {{ $employee->marital_status == 'single' ? 'selected':'' }}>Single</option>
+                                                <option value="married" {{ $employee->marital_status == 'married' ? 'selected':'' }}>Married</option>     
                                         </select>
                                     </div>
                                     <div class="col-sm-4">
+                                            <label>BirthDay </label>
+                                            <input name="birthday_id" id="birthday_id" value="{{$employee->birthday}}" type="date" class="form-control">
+                                        </div>
+                                    <div class="col-sm-4">
                                         <label> Nationality</label>
-                                        <select class="form-control"  name="city_code" id="city_code">
+                                        <select class="form-control"  name="nationality_id" id="nationality_id">
                                             <option value="" required > -- plz select nationality -- </option>
-                                            @php $nationality = array("Cambodia","Thailand");@endphp
+                                            @php $nationality = nationality::all(); @endphp
                                             @foreach($nationality as $nationalities)
-                                                <option value="{{$Singles}}"> {{$Singles}}</option>
+                                                 <option value="{{ $nationalities->id }}" {{ ( $nationalities->id == $employee->nationality_id) ? 'selected' : '' }}> {{ $nationalities->name }} </option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
+                                <br/>
                                 <div class="pull-right">
-                                        <a href="{{ URL::previous() }}"><button class="btn btn-primary">Back</button></a>
+                                        <a class="btn btn-primary" href="{{ URL::previous() }}">Back</a>
                                         <button type="submit" class="btn btn-success">Save</button>
                                 </div>
                             </div>
                         </form>
                         <br/>
-                        <div class="card-header">
-                                <a onclick="ShowEmployeeAttachment(this);" data-id="{{$employee->id}}" onclick="AddCandidate();" class="btn btn-primary pull-right "  title="Payment"><i class="ti-plus"></i> Add Attachment</a>
-
-                            {{-- <a href="#" data-id="{{$employee->id}}" onclick="ShowEmployeeAttachment(this);" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment">  Add Attachment</a> --}}
-                            <br>
-                            <h4><i class="fa fa-file" ></i> Employee Attachment</h4>
-                        </div>
-                        <div class="card-body">
-                            @foreach($employee->attachment as $employee_attachments)
-                                <ul id="tbl_attachment{{$employee_attachments->id}}" class="list">
-                                    <li class="manage-list-row clearfix">
-                                        <div class="job-info">
-                                            <div class="job-details">
-                                                <h3 class="job-name"></h3>
-                                                <small class="job-company"><i class="ti-file"></i>{{$employee_attachments->file_name}}</small>
-                                                <small class="job-update"><i class="ti-time"></i>Attachment Type : {{$employee_attachments->attachment_type}}</small>
-                                                <span class="j-type part-time"></span>
-                                            </div>
-                                        </div>
-                                        <div class="job-buttons">
-                                            <a href="#" data-id="{{$employee_attachments->id}}"  onclick="DeleteVacancyAttachment(this);" class="btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Remove"><i class="ti-close"></i></a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            @endforeach
-
-                        </div>
+                       
                     </div>
                     <!-- train section -->
                     <!-- Contact Details  -->
@@ -176,9 +170,6 @@
                                         <label>Country .</label>
                                         <input name="country_code" id="country_code" value="{{$employee->country_code}}" type="text" class="form-control">
                                     </div>
-                                {{-- </div> --}}
-                                {{-- <div class="card-header"><br/> --}}
-                                {{-- <div class="row"> --}}
                                     <div class="col-sm-4">
                                         <label>Home Telephone</label>
                                         <input value="{{$employee->telephone}}" name="telephone" id="telephone" type="text" class="form-control">
@@ -199,10 +190,7 @@
                                         <label>Other Email.</label>
                                         <input value="{{$employee->other_email}}" name="other_email" id="other_email"  type="text" class="form-control">
                                     </div>
-                                    <div class="col-sm-4">
-                                            {{-- <label>Other Email.</label>
-                                            <input value="{{$employee->other_email}}" name="other_email" id="other_email"  type="text" class="form-control"> --}}
-                                        </div>
+                                    <div class="col-sm-4"></div>
                                 </div>
                             {{-- </div> --}}
                             <div class="pull-right">
@@ -218,7 +206,6 @@
                     <div class="bhoechie-tab-content">
                         <div class="card-header">
                                 <a onclick="ShowEmergencyContacts(this);" data-id="{{$employee->id}}"  onclick="AddCandidate();" class="btn btn-primary pull-right "  title="Payment"><i class="ti-plus"></i> Emergency Contacts</a>
-                            {{-- <a href="#" data-id="{{$employee->id}}" onclick="ShowEmergencyContacts(this);" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> Add </a> --}}
                             <br>
                             <h4><i class="fa fa-group"></i> Assigned Emergency Contacts</h4>
                         </div>
@@ -245,100 +232,123 @@
                         </div>
                     </div>
                     <div class="bhoechie-tab-content">
-                        <div class="card-header">
-                            <h4><i class="fa fa-send-o " ></i><strong> Job </strong> </h4>
-                        </div>
-                        <form id="frmContactDetails" action="#">
-                            <meta name="csrf-token" content="{{ csrf_token() }}">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <label> Job Title  </label>
-                                        <select class="form-control"  name="city_code" id="city_code">
-                                            <option value="" required > -- plz select job titles -- </option>
-                                            @php use App\Model\jobTitle;$jobTitle = jobTitle::all();@endphp
-                                            @foreach($jobTitle as $jobTitles)
-                                                <option value="{{$jobTitles->id}}"> {{$jobTitles->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label>Job Specification .</label>
-                                        <small></small>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label> Employment Status  </label>
-                                        <select class="form-control"  name="city_code" id="city_code">
-                                            <option value="" required > -- plz select status -- </option>
-                                            @php use App\Model\EmploymentStatus;$status = EmploymentStatus::all();@endphp
-                                            @foreach($status as $statuses)
-                                                <option value="{{$statuses->id}}"> {{$statuses->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label> Job Category  </label>
-                                        <select class="form-control"  name="city_code" id="city_code">
-                                            <option value="" required > -- plz select status -- </option>
-                                            @php use App\Model\jobCategory;$jobCategory = jobCategory::all(); @endphp
-                                            @foreach($jobCategory as $jobCategories)
-                                                <option value="{{$jobCategories->id}}"> {{$jobCategories->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label>Joined Date</label>
-                                        <input name="zip_code" data-toggle="datepicker"  id="zip_code" type="text" class="form-control">
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label> Sub Unit</label>
-                                        <select class="form-control"  name="city_code" id="city_code">
-                                            <option value="" required > -- plz select Sub Unit -- </option>
-                                            @php $subUnit = array("IT Department ","Accounting");@endphp
-                                            @foreach($subUnit as $subUnits)
-                                                <option value="{{$subUnits}}"> {{$subUnits}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label> Location </label>
-                                        <select class="form-control"  name="city_code" id="city_code">
-                                            <option value="" required > -- plz select Location -- </option>
-                                            @php use App\Model\location;$location = location::all();@endphp
-                                            @foreach($location as $locations)
-                                                <option value="{{$locations->id}}"> {{$locations->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="card-header">
-                                    <h4><i class="fa fa-send-o " ></i><strong> Employment Contract </strong> </h4>
-                                </div><br/>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label>Start Date </label>
-                                        <input data-toggle="datepicker"  name="telephone" id="telephone" type="text" class="form-control">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label>End Date </label>
-                                        <input  data-toggle="datepicker"  name="mobile" id="mobile"  type="text" class="form-control">
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label> Contract Details  </label>
-                                        <input name="work_telephone" id="work_telephone"  type="file" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="card-header">
-                                </div>
-                                <br/>
-                                <button type="submit" class="btn btn-success">Edit</button>
-                                <button type="submit" class="btn btn-primary">Terminate Employment</button>
-
-                                <br/>
-
-
-                            </div>
-                        </form>
+                            <div class="modal-body">
+                                        <ul class="nav nav-tabs" role="tablist">
+                                            <li role="presentation" class="active"><a href="#job" aria-controls="home" role="tab" data-toggle="tab"> Job</a></li>
+                                            <li role="presentation"><a href="#contract" aria-controls="description" role="tab" data-toggle="tab">  Employment Contract</a></li>
+                                        </ul>
+                                        <!-- Tab panes -->
+                                        <div class="tab-content tabs">
+                                            <div role="tabpanel" class="tab-pane fade in active" id="job">
+                                                   
+                                                    <div class="card-body">
+                                                            <div class="row">
+                                                                    <form id="frmEmployeeJobDetails" action="#">
+                                                                            <input type="hidden" value="{{$employee->id}}" id="employee_id_job">
+                                                                            <meta name="csrf-token" content="{{ csrf_token() }}">
+                                                                            <div class="card-body">
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-4">
+                                                                                        <label> Job Title  </label>
+                                                                                        <select class="form-control"  name="employee_job_title_id" id="employee_job_title_id">
+                                                                                            <option value="" required > -- plz select job titles -- </option>
+                                                                                            @php use App\Model\jobTitle;$jobTitle = jobTitle::all();@endphp
+                                                                                            @foreach($jobTitle as $jobTitles)
+                                                                                                 <option value="{{ $jobTitles->id }}" {{ ( $jobTitles->id == $employee->job_title_id) ? 'selected' : '' }}> {{ $jobTitles->name }} </option>
+                                                                                            @endforeach
+                                                                                        </select>
+                                                                                    </div>
+                                                                                  
+                                                                                    <div class="col-sm-4">
+                                                                                        <label> Employment Status  </label>
+                                                                                        <select class="form-control"  name="employee_status_id" id="employee_status_id">
+                                                                                            <option value="" required > -- plz select status -- </option>
+                                                                                            @php use App\Model\EmploymentStatus;$status = EmploymentStatus::all();@endphp
+                                                                                            @foreach($status as $statuses)
+                                                                                                 <option value="{{ $statuses->id }}" {{ ( $statuses->id == $employee->emp_status) ? 'selected' : '' }}> {{ $statuses->name }} </option>
+                                                                                            @endforeach
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-sm-4">
+                                                                                        <label> Job Category  </label>
+                                                                                        <select class="form-control"  name="employee_job_category_id" id="employee_job_category_id">
+                                                                                            <option value="" required > -- plz select Category -- </option>
+                                                                                            @php use App\Model\jobCategory;$jobCategory = jobCategory::all(); @endphp
+                                                                                            @foreach($jobCategory as $jobCategories)
+                                                                                                 <option value="{{ $jobCategories->id }}" {{ ( $jobCategories->id == $employee->job_category_id) ? 'selected' : '' }}> {{ $jobCategories->name }} </option>
+                                                                                            @endforeach
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-sm-4">
+                                                                                        <label>Joined Date</label>
+                                                                                        <input name="join_date" value="{{$employee->joined_date}}" data-toggle="datepicker"  id="join_date" type="text" class="form-control">
+                                                                                    </div>
+                                                                                    <div class="col-sm-4">
+                                                                                        <label> Sub Unit</label>
+                                                                                        <select class="form-control"  name="sub_unit_id" id="sub_unit_id">
+                                                                                            <option value="" required > -- plz select Sub Unit -- </option>
+                                                                                            @php $subUnit = array("IT Department ","Accounting");@endphp
+                                                                                            @foreach($subUnit as $subUnits)
+                                                                                                <option value="{{$subUnits}}"> {{$subUnits}}</option>
+                                                                                            @endforeach
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-sm-4">
+                                                                                        <label> Location </label>
+                                                                                        <select class="form-control"  name="location_id" id="location_id">
+                                                                                            <option value="" required > -- plz select Location -- </option>
+                                                                                            @php use App\Model\location;$location = location::all();@endphp
+                                                                                            @foreach($location as $locations)
+                                                                                                <option value="{{$locations->id}}"> {{$locations->name}}</option>
+                                                                                            @endforeach
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                              
+                                                                                <br/>
+                                                                                <div class="pull-right">
+                                                                                        <a href="{{ URL::previous() }}"><button class="btn btn-primary">Back</button></a>
+                                                                                        <button type="submit" class="btn btn-success">Save</button>
+                                                                                        
+                                                                                </div>
+                                                                                <br/>
+                                                                            </div>
+                                                                        </form>
+                                                            </div>
+                                                    </div>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="contract">
+                                                    <form action="" id="frmEditCandidate">
+                                                    <input type="hidden" value="" id="candidate_id_edit">
+                                                    <meta name="csrf-token" content="{{ csrf_token() }}">
+                                                    <div class="card-body">
+                                                           
+                                                            <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                        <label>Start Date </label>
+                                                                        <input data-toggle="datepicker"  name="telephone" id="telephone" type="text" class="form-control">
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <label>End Date </label>
+                                                                        <input  data-toggle="datepicker"  name="mobile" id="mobile"  type="text" class="form-control">
+                                                                    </div>
+                                                                    <div class="col-sm-4">
+                                                                        <label> Contract Details  </label>
+                                                                        <input name="work_telephone" id="work_telephone"  type="file" class="form-control">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="pull-right">
+                                                                        <button type="submit" class="btn btn-success">Save</button>
+                                                                        <button type="submit" class="btn btn-primary">Terminate Employment</button>
+                                                                </div>
+                                                                <br/>   
+                                                    </div>
+                                                  
+                                                   
+                                                    </form>
+                                            </div>
+                                        </div>
+                            </div>   
                     </div>
                     <div class="bhoechie-tab-content">
                       <div class="card-header">
@@ -493,7 +503,7 @@
                                             <li role="presentation"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">Skills</a></li>
                                             <li role="presentation"><a href="#Section4" aria-controls="messages" role="tab" data-toggle="tab">Languages</a></li>
                                             <li role="presentation"><a href="#License" aria-controls="messages" role="tab" data-toggle="tab">License</a></li>
-                                            <li role="presentation"><a href="#attachments" aria-controls="messages" role="tab" data-toggle="tab">Attachments</a></li>
+                                            <li role="presentation"><a href="#attachments" aria-controls="messages" role="tab" data-toggle="tab">Document</a></li>
                                         </ul>
                                         <!-- Tab panes -->
                                         <div class="tab-content tabs">
@@ -615,9 +625,7 @@
                                             <div role="tabpanel" class="tab-pane fade" id="Section4">
                                                     <div role="tabpanel" class="tab-pane fade in active" id="Section1">
                                                             <div class="card-header">
-                                                             
                                                                 <a onclick="ShowEmployeeLanguage()"  class="btn btn-primary pull-right "  title="Payment"><i class="ti-plus"></i> Add Language</a><br/><br/>
-                                                               
                                                             </div>
                                                             <table class="table" id="tbl_employee_language">
                                                                 <thead>
@@ -688,8 +696,30 @@
                                                         </div>
                                                 </div>
                                                 <div role="tabpanel" class="tab-pane fade" id="attachments">
-                                                        <h3>Attachments</h3>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec urna aliquam, ornare eros vel, malesuada lorem. Nullam faucibus lorem at eros consectetur lobortis. Maecenas nec nibh congue, placerat sem id, rutrum velit. Phasellus porta enim at facilisis condimentum. Maecenas pharetra dolor vel elit tempor pellentesque sed sed eros. Aenean vitae mauris tincidunt, imperdiet orci semper, rhoncus ligula. Vivamus scelerisque.</p>
+                                                        <div class="card-header">
+                                                                <a onclick="ShowEmployeeAttachment({{$employee->id}});" class="btn btn-primary pull-right "  title="Payment"><i class="ti-plus"></i> Add Attachment</a>
+                                                            <br/>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            @foreach($employee->attachment as $employee_attachments)
+                                                                <ul id="tbl_attachment{{$employee_attachments->id}}" class="list">
+                                                                    <li class="manage-list-row clearfix">
+                                                                        <div class="job-info">
+                                                                            <div class="job-details">
+                                                                                <h3 class="job-name"></h3>
+                                                                                <small class="job-company"><i class="ti-file"></i>{{$employee_attachments->file_name}}</small>
+                                                                                <small class="job-update"><i class="ti-time"></i>Attachment Type : {{$employee_attachments->attachment_type}}</small>
+                                                                                <span class="j-type part-time"></span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="job-buttons">
+                                                                            <a href="#" data-id="{{$employee_attachments->id}}"  onclick="DeleteVacancyAttachment(this);" class="btn btn-danger" data-toggle="modal" data-placement="top" title="Remove"><i class="ti-close"></i></a>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            @endforeach
+                                
+                                                        </div>
                                                     </div>
                                 
                                         </div>
@@ -731,7 +761,7 @@
                                                 <td>{{$item->amount}}</td>
                                                 @php
                                                    $edxxx = currency::where('id',$item->currency_id)->first();
-                                                   @endphp
+                                                @endphp
                                                <td>{{$edxxx->name }}</td>
                                                 <td>{{$item->commence_date}}</td>   
                                                 <td>{{$item->renewal_date}}</td>
@@ -1778,8 +1808,8 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label class="col-md-4 col-sm-3"> Attachment:</label>
-                            <div class="col-md-8 col-sm-9">
+                            <label class="col-md-2 col-sm-2"> Attachment:</label>
+                            <div class="col-md-10 col-sm-10">
                                 <label class="btn-bs-file btn">
                                     Browse
                                     <input type="file" id="file" name="file" accept="application/pdf,application/vnd.ms-excel" />

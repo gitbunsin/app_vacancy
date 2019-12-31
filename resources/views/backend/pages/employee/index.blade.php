@@ -40,8 +40,9 @@
                                         </td>
                                         <td><strong><a href="{{url('admin/employee/'.$employees->id.'/edit')}}"> {{$employees->first_name}} {{$employees->last_name}}</a></strong></td>
                                         <td>{{$employees->mobile}}</td>
-                                        <td>{{$employees->email}}</td>
-                                        <‍td>@mdo</‍td>
+                                        <td>{{$employees->work_email}}</td>
+                                        <td></td>
+                                      
                                         <td>
                                                 <a href="{{url('admin/employee/'.$employees->id.'/edit')}}"  class="btn btn-primary"  title="Edit"><i class="icon-edit"></i></a>
                                                 <a data-id="{{$employees->id}}" onclick="deleteEmployee(this);" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>

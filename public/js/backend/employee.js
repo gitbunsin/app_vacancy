@@ -1,3 +1,87 @@
+$("#frmEmployeeJobDetails").validate({
+    rules: {
+        employee_job_title_id : {
+          required: true,
+       },
+       employee_status_id : {
+        required: true,
+       },
+       employee_job_category_id : {
+        required: true,
+       }
+    }, submitHandler: function (form) {
+
+       var id  = $('#employee_id_job').val();
+       $.ajaxSetup({
+           headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+           }
+       });
+       jQuery.ajax({
+           url: "/admin/employee/job-details/" + id,
+           method: 'POST',
+           data: 
+           {
+            "job_title_id" : $('#employee_job_title_id').val(),
+            "status_id"  : $('#employee_status_id').val(),
+            "category_id" : $('#employee_job_category_id').val(),
+            "join_date" : $('#join_date').val(),
+           },
+           success: function (result) {
+             console.log(result);
+             toastr.success('Success' , 'item has been updated !');
+            //  if(result == "error"){
+            //     toastr.warning('Success' , 'Plase login  !');
+            //  }else{
+               
+            //     toastr.success('Success' , 'item has been updated !');
+            //     $('#frmContactUs').trigger('reset');
+            //  }
+           },error : function(err){
+                console.log(err);
+           }
+          });
+    }
+ });
+
+
+
+// $('#job_title_id').prop( "disabled", true );
+// $('#status_id').prop('disabled', true);
+// $('#job_category_id').prop('disabled', true); 
+// $('#join_date').prop('disabled',true);
+// $('#sub_unit_id').prop('disabled',true);
+// $('#sub_unit_id').prop('disabled',true);
+// $('#location_id').prop('disabled',true);
+   //change UserProfile
+ function changeProfile() {
+    $('#image').click();
+}
+$('#image').change(function () {
+    var imgPath = this.value;
+    var ext = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+    if (ext == "gif" || ext == "png" || ext == "jpg" || ext == "jpeg")
+        readURL(this);
+    else
+        // alert("Please select image file (jpg, jpeg, png).")
+        toastr.error('Success', 'Please select image file (jpg, jpeg, png).');
+});
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.readAsDataURL(input.files[0]);
+        reader.onload = function (e) {
+            $('#preview').attr('src', e.target.result);
+//              $("#remove").val(0);
+        };
+    }
+}
+function removeImage() {
+    $('#preview').attr('src', 'images/noimage.jpg');
+//      $("#remove").val(1);
+}
+   
+   
    // Edit Emergency Contact
    function EditEmergencyContact(id) {
 
@@ -233,9 +317,9 @@ $('#frmShowEmergencyContacts').validate({ // initialize the plugin
 
 
 //show
-function  ShowEmployeeAttachment(xx){
+function  ShowEmployeeAttachment(id){
 
-    let id = $(xx).data("id");
+    // let id = $(xx).data("id");
     $('#AddJobAttachment').modal('show');
     $('#employee_attachment_id').val(id);
 
@@ -263,7 +347,7 @@ $(document).ready(function () {
 
             $.ajax(
                 {
-                    url: "{{url('admin/employee/delete/attachment')}}" +"/"+ id,
+                    url: "/admin/employee/delete/attachment/'" + id,
                     type: 'DELETE',
                     data: {
                         "id": id,
@@ -289,33 +373,26 @@ $(document).ready(function () {
 
 
     $('#frmJobAttachment').validate({ // initialize the plugin
-
         rules: {
             file : {
-
                 required : true
             }
         },
         submitHandler: function (form) { // for demo
 
             let id = $('#employee_attachment_id').val();
-
             let file_data = $('#file').prop('files')[0];
-
             let form_data = new FormData();
-
             form_data.append('file', file_data);
 
             $.ajaxSetup({
-
                 headers: {
-
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
             $.ajax({
 
-                url: "{{url('admin/employee/add/attachment')}}" +"/"+ id,
+                url: "/admin/employee/add/attachment/" + id,
                 data: form_data,
                 type: 'POST',
                 contentType: false, // The content type used when sending data to the server.
@@ -323,18 +400,10 @@ $(document).ready(function () {
                 processData: false,
 
                 success: function (data){
-
                     console.log(data);
-
-                    if(data == "success"){
-
-                        $('#AddJobAttachment').modal('hide');
-                        toastr.success('Attachment uploaded success  !.', 'Success ', {timeOut: 5000})
-
-                        setTimeout(function(){
-                            window.location.reload(1);
-                        }, 3000);
-                    }
+                    $('#AddJobAttachment').modal('hide');
+                    toastr.success('Attachment uploaded success  !.', 'Success ', {timeOut: 5000})
+                
                 },error : function (err) {
 
                     console.log(err);
@@ -362,7 +431,11 @@ $(document).ready(function () {
 
             let id = $('#employee_id').val();
             let token = $("meta[name='csrf-token']").attr("content");
-
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
             $.ajax(
                 {
                     url: "/admin/employee/update/contact" +"/"+ id,
@@ -418,24 +491,29 @@ $(document).ready(function () {
         submitHandler: function (form) { // for demo
 
             let id = $('#employee_id').val();
-            let token = $("meta[name='csrf-token']").attr("content");
-
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
             $.ajax(
                 {
-                    url: "{{url('admin/employee/update')}}" +"/"+ id,
+                    url: "/admin/employee/update/" + id,
                     type:"POST",
                     data: {
                         "id": id,
-                        "_token": token,
                         "first_name" : $('#first_name').val(),
                         "last_name" : $('#last_name').val(),
                         "middle_name" : $('#middle_name').val(),
                         "gender" : $('#gender').val(),
+                        "birthday_id" : $('#birthday_id').val(),
                         "marital_status" : $('#marital_status').val(),
+                        "nationality_id" : $('#nationality_id').val(),
                         "other_id" : $('#other_id').val(),
                     },
-                    success: function (data){
-
+                    success: function (data)
+                    {
+                        console.log(data);
                         toastr.success('Employee update success !.', 'Success ', {timeOut: 5000})
 
                     },error : function (err) {

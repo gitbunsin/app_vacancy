@@ -15,6 +15,11 @@ class DatabaseSeeder extends Seeder
          $this->call(AdminsTableDataSeeder::class);
          $this->call(CategoriesTableDataSeeder::class);
          $this->call(ProvincesTableSeeder::class);
+         $this->call(EmployeeStatusTableSeeder::class);
+         $this->call(JobTitlesTableSeeder::class);
+         $this->call(NationalitysTableSeeder::class);
+         $this->call(CurrencysTableSeeder::class);
+         $this->call(PayPeriodsTableSeeder::class);
         $this->call(JobTypesTableDataSeeder::class);
          $this->call(CountriesTableDataSeeder::class);
         $this->call(CitiesTableDataSeeder::class);

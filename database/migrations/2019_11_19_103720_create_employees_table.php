@@ -29,14 +29,18 @@ class CreateEmployeesTable extends Migration
             //job Category
             $table->integer('job_category_id')->unsigned()->nullable();
             $table->foreign('job_category_id')->references('id')->on('job_categories')->onDelete('cascade');
-            
+
+            //job Category
+            $table->integer('nationality_id')->unsigned()->nullable();
+            $table->foreign('nationality_id')->references('id')->on('nationalities')->onDelete('cascade');
+
             $table->string('employee_id')->nullable();
             $table->string('first_name')->nullable();
             $table->string('middle_name')->nullable();
             $table->string('last_name')->nullable();
-            $table->date('birthday')->nullable();
-            $table->string('gender')->nullable();
-            $table->string('marital_status')->nullable();
+            $table->string('birthday')->nullable();
+            $table->enum('gender', ['male','female'])->nullable();
+            $table->enum('marital_status', ['single', 'married'])->nullable();
             $table->string('street1')->nullable();
             $table->string('street2')->nullable();
             $table->string('city_code')->nullable();
@@ -49,7 +53,7 @@ class CreateEmployeesTable extends Migration
             $table->string('work_email')->nullable();
             $table->string('other_email')->nullable();
             $table->string('other_id')->nullable();
-            $table->date('joined_date')->nullable();
+            $table->string('joined_date')->nullable();
             $table->string('photo')->nullable();
             $table->string('custom1')->nullable();
             $table->string('custom2')->nullable();

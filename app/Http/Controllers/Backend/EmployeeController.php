@@ -85,7 +85,7 @@ class EmployeeController extends Controller
 
                 $employee->photo = $name;
             }else{
-                $employee->photo = " ";
+                $employee->photo = Null;
             }
             //$employee->admin_id = $employee->admin()->associate(auth()->guard('admin')->user()->id);
             $employee->save();
@@ -93,6 +93,35 @@ class EmployeeController extends Controller
 
         }
         return redirect('admin/employee/' . $id . '/edit');
+    }
+    public function updateEmployeeDocument(Request $request , $id)
+    {
+        $filename = $request->file('file')->getClientOriginalName();
+        $attachment = new EmployeeAttachment();
+        $attachment->admin_id = auth()->guard('admin')->user()->id;
+        $attachment->employee_id = $id;
+        $attachment->file_name = $filename ;
+        $attachment->attachment_type = $request->file('file')->getMimeType();
+        $attachment->file_size =  $request->file('file')->getSize();
+        $attachment->file_type = $request->file('file')->getType();
+        $attachment->file_content = $request->file('file')->getPathname();
+        $attachment->attached_by_name =  auth()->guard('admin')->user()->name;
+        $dir = 'uploads/UserCv';
+        $request->file('file')->move($dir, $filename);
+        $attachment->save();
+        return response()->json($attachment);
+    }
+
+
+    public function updateEmployeeJobDetails(Request $request , $id)
+    {
+        $employee_job= employee::findorFail($id);
+        $employee_job->job_title_id = $request->job_title_id;
+        $employee_job->emp_status = $request->status_id;
+        $employee_job->job_category_id = $request->category_id;
+        $employee_job->joined_date =  $request->join_date;
+        $employee_job->save();
+        return response()->json($employee_job);
     }
 
     /**
@@ -152,6 +181,8 @@ class EmployeeController extends Controller
          $employee->gender = input::get('gender');
          $employee->marital_status = input::get('marital_status');
          $employee->other_id = input::get('other_id');
+         $employee->birthday = input::get('birthday_id');
+         $employee->nationality_id = input::get('nationality_id');
          $employee->save();
          return response()->json($employee);
      }
