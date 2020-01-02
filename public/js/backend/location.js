@@ -9,15 +9,10 @@ function EditLocation(xxx) {
         {
             url: "/admin/location/"  + id + "/edit",
             type: 'GET',
-            data: {
-
-                "id": id,
-                "_token": token
-
-            },
+            data: {},
             success: function (data){
 
-              //  console.log(data);
+               console.log(data);
 
                  $('#name_edit').val(data.name);
                //  $('#province_code_edit').val(data.province_code.name);
@@ -75,6 +70,8 @@ function EditLocation(xxx) {
                     item_country.append("<option value='" + value.id + "'" + selected + ">" + value.name + "</option>");
 
                 });
+            },error:function(err){
+                console.log(err);
             }
         });
 }
@@ -117,12 +114,11 @@ $('#frmEditLocation').validate({ // initialize the plugin
                         '<td> ' + data.name + '</td>' +
                         '<td>' + data.city_code.name + '</td>' +
                         '<td>' + data.country_code.name + '</td>' +
-                        '<td>' + data.phone + '</td>' +
                         '<td>' +  + '</td>' +
-                        '<td>' +
-                        '<a href="#" onclick="EditLocation(' + data.id+ ')"  class="btn btn-gary manage-btn" data-toggle="tooltip" data-placement="top" title="Edit"><i class="ti-pencil-alt"></i></a>' +
-                        '<a href="#" onclick="DeleteLocation( ' + data.id+ ')" class="btn btn-cancel manage-btn" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-close"></i></a>' +
-                        '</td>' +
+                        '<th>' +
+                        '<a href="#" onclick="EditLocation('+ data.id+ ')"  class="btn btn-primary" data-placement="top" title="Edit"><i class="icon-edit"></i></a>' +
+                        '<a href="#" onclick="DeleteLocation(' + data.id+ ')" class="btn btn-danger" data-placement="top" title="Delete"><i class="ti-trash"></i></a>' +
+                        '</th>' +
                         '</tr>';
                     $('#location_id' + data.id).replaceWith(table);
                     $('#showEditLocation    ').modal('hide');
@@ -180,12 +176,11 @@ $('#frmAddLocation').validate({ // initialize the plugin
                         '<td> ' + data.name + '</td>' +
                         '<td>' + data.city_code.name + '</td>' +
                         '<td>' + data.country_code.name + '</td>' +
-                        '<td>' + data.phone + '</td>' +
                         '<td>' +  + '</td>' +
-                        '<td>' +
-                        '<a href="#" onclick="EditLocation(' + data.id+ ')"  class="btn btn-gary manage-btn" data-toggle="tooltip" data-placement="top" title="Edit"><i class="ti-pencil-alt"></i></a>' +
-                        '<a href="#" onclick="DeleteLocation( ' + data.id+ ')" class="btn btn-cancel manage-btn" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-close"></i></a>' +
-                        '</td>' +
+                        '<th>' +
+                        '<a href="#" onclick="EditLocation(' + data.id+ ')"  class="btn btn-primary"  title="Edit"><i class="icon-edit"></i></a>' +
+                        '<a href="#" onclick="DeleteLocation('+ data.id +')" class="btn btn-danger"  title="Delete"><i class="ti-trash"></i></a>' +
+                        '</th>' +
                         '</tr>';
                     $('#location_list').append(table);
                     $('#showLocation').modal('hide');
@@ -199,20 +194,20 @@ $('#frmAddLocation').validate({ // initialize the plugin
     }
 });
 
-function DeleteLocation(xx){
+function DeleteLocation(id){
 
-    $('#DeleteCategory').modal('show');
-    $('#jobCategory_id').val(xx);
+    $('#DeleteLocationModal').modal('show');
+    $('#location_delete_id').val(id);
 }
 $(document).ready(function () {
 
-    $('#frmJobCategory').validate({ // initialize the plugin
+    $('#frmDeleteLocation').validate({ // initialize the plugin
 
         submitHandler: function (form) { // for demo
 
             let token = $("meta[name='csrf-token']").attr("content");
 
-            let id = $('#jobCategory_id').val();
+            let id = $('#location_delete_id').val();
 
             $.ajax(
                 {
@@ -225,7 +220,7 @@ $(document).ready(function () {
                     success: function (data){
 
                         $('#location_id'+data.id).remove();
-                        $('#DeleteCategory').modal('hide');
+                        $('#DeleteLocationModal').modal('hide');
                         toastr.success('Location has been deleted  successfully !.', 'Success ', {timeOut: 5000})
 
                     },error: function (err) {

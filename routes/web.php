@@ -53,6 +53,10 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
     Route::resource('employeeSkill','EmployeeSkillController');
     Route::resource('employeeLanguage','EmployeeLanguageController');
     Route::resource('employeeLicense','EmployeeLicenseController');
+    Route::post('employee/report/supervisor','EmployeeController@addSupervisor');
+    Route::delete('employee/report/delete/supervisor/{id}','EmployeeController@deleteSupervisor');
+    Route::get('employee/report/delete/supervisor/{id}','EmployeeController@editSupervisor');
+    Route::post('employee/report/update/supervisor/{id}','EmployeeController@updateSupervisor');
     Route::resource('employeeMembership','EmployeeMembershipController');
     Route::resource('employeeTerminate','EmployeeTerminateController');
     /* -- Basic Salary -- */

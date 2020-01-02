@@ -13,15 +13,22 @@ class employee extends Model
     {
         return $this->belongsTo(Admin::class,'admin_id','id');
     }
+    public function supervisor()
+    {
+        return $this->hasMany(employee_reporting_to::class);
+    }
     public function terminate()
     {
         return $this->belongsTo(employeeTerminate::class,'id','employee_id');
+    }
+    public function jobTitle()
+    {
+        return $this->belongsTo(jobTitle::class);
     }
     public function workShift()
     {
         return $this->belongsToMany(WorkShift::class);
     }
-
     public function salary()
     {
         return $this->hasMany(employeeBasicSalary::class);

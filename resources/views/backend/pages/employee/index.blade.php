@@ -23,6 +23,7 @@
                                       <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Name</th>
+                                        <th scope="col">Job Title</th>
                                         <th scope="col">Mobile</th>
                                         <th scope="col">Email</th>
                                         <th scope="col">Supervisor</th>
@@ -39,6 +40,7 @@
                                             {{$key + 1}}
                                         </td>
                                         <td><strong><a href="{{url('admin/employee/'.$employees->id.'/edit')}}"> {{$employees->first_name}} {{$employees->last_name}}</a></strong></td>
+                                        <td>{{$employees->jobTitle->name}}</td>
                                         <td>{{$employees->mobile}}</td>
                                         <td>{{$employees->work_email}}</td>
                                         <td></td>

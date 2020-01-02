@@ -48,7 +48,7 @@
                                                                                     <tr id="tbl_company{{$companies->id}}">
                                                                                         <th scope="row">{{$key + 1}}</th>
                                                                                         <td><a href="{{url('admin/company/'.$companies->id)}}"><strong>{{$companies->company_name}}</strong></a></td>
-                                                                                        <td>{{$companies->phone}}</td></td>
+                                                                                        <td>{{$companies->phone}}</td>
                                                                                         <td>{{$companies->email}}</td>
                                                                                         <th>
                                                                                             <a onclick="Edit({{$companies->id}});"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
@@ -77,7 +77,6 @@
                                                                                 <th scope="col">Name </th>
                                                                                 <th scope="col">City</th>
                                                                                 <th scope="col">Country</th>
-                                                                                <th scope="col">Phone</th>
                                                                                 <th scope="col">Num / Emp</th>
                                                                                 <th scope="col">Action</th>
                                                                             </tr>
@@ -90,11 +89,10 @@
                                                                                     <td>{{$locations->name}}</td>
                                                                                     <td>{{$locations->city->name}}</td>
                                                                                     <td>{{$locations->country->name}}</td>
-                                                                                    <td>{{$locations->phone}}</td>
                                                                                     <td></td>
                                                                                     <th>
-                                                                                            <a onclick="EditLocation({{$locations->id}});"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
-                                                                                            <a onclick="DeleteLocation({{$locations->id}});" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
+                                                                                            <a onclick="EditLocation({{$locations->id}});"   class="btn btn-primary"  title="Edit"><i class="icon-edit"></i></a>
+                                                                                            <a onclick="DeleteLocation({{$locations->id}});" class="btn btn-danger"  title="Delete"><i class="ti-trash"></i></a>
                                                                                       </th>
                                                                                 </tr>
                                                                                     @endforeach
@@ -465,7 +463,29 @@
         </div>
     </div>
     <!-- End Edit Company -->
-
+    <div id="DeleteLocationModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form method="POST" action="#" id="frmDeleteLocation">
+                        <meta name="csrf-token" content="{{ csrf_token() }}">
+                        <input type="hidden" value="" id="location_delete_id"/>
+                        <div class="modal-header theme-bg">
+                            <h4 class="modal-title">Location  </h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Do u want to delete this  ?</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                            <input type="submit" class="btn btn-danger" value="Yes">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     <!-- Deleted Company -->
     <div id="showLocation" class="modal fade">
         <div class="modal-dialog modal-lg">

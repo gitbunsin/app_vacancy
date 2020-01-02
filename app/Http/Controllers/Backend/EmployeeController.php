@@ -7,6 +7,8 @@ use App\Model\EmployeeAttachment;
 use App\Model\EmployeeEmergencyContacts;
 use App\Model\role;
 use App\userEmployee;
+use App\Model\employee_reporting_to;
+use App\Model\ReportingMethod;
 use App\Model\payPeriod;
 use App\Model\EmployeeBasicSalary;
 use App\Model\employeeLanguage;
@@ -27,7 +29,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employee = Employee::all();
+        $employee = Employee::with('jobTitle')->get();
         // dd($employee);
         return view('backend/pages/employee/index',compact('employee'));
     }
@@ -94,6 +96,48 @@ class EmployeeController extends Controller
         }
         return redirect('admin/employee/' . $id . '/edit');
     }
+
+    //Reporting To 
+    public function addSupervisor(Request $request)
+    {
+        $reporting = new employee_reporting_to();
+        $reporting->employee_id = $request->Supervisor_id;
+        $reporting->reporting_id = $request->reporting_method_id;
+        $reporting->save();
+        $reporting['reporting_method'] = ReportingMethod::find($request->reporting_method_id);
+        $reporting['supervisor'] = employee::find($request->Supervisor_id);
+        return response()->json($reporting);
+    }
+    public function deleteSupervisor($id)
+    {
+        $reporting = employee_reporting_to::find($id);
+        $reporting->delete();
+        return response()->json($reporting);
+    }
+
+    function editSupervisor($id)
+    {
+        $reporting = employee_reporting_to::find($id);
+        $reporting['reporting_method'] = ReportingMethod::find($reporting->reporting_id);
+        $reporting['supervisor'] = employee::find($reporting->employee_id);
+        $reporting['all_reporting_method'] = ReportingMethod::all();
+        $reporting['all_supervisor'] = employee::all();
+        return response()->json($reporting);
+    }
+
+    public function updateSupervisor(Request $request , $id)
+    {
+
+        $reporting = employee_reporting_to::find($id);
+        $reporting->employee_id = $request->Supervisor_id;
+        $reporting->reporting_id = $request->reporting_method_id;
+        $reporting->save();
+        $reporting['reporting_method'] = ReportingMethod::find($request->reporting_method_id);
+        $reporting['supervisor'] = employee::find($request->Supervisor_id);
+        return response()->json($reporting);
+
+    }
+
     public function updateEmployeeDocument(Request $request , $id)
     {
         $filename = $request->file('file')->getClientOriginalName();
@@ -228,9 +272,9 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        $employee = Employee::with(['admin','terminate','employeeMembership','employeeLicense','employeeLanguage','employeeSkill','employeeEducation','workexperience','salary','emergencyContact','attachment'])->where('id',$id)->first();
+        $employee = Employee::with(['supervisor','admin','terminate','employeeMembership','employeeLicense','employeeLanguage','employeeSkill','employeeEducation','workexperience','salary','emergencyContact','attachment'])->where('id',$id)->first();
         $basicSalary = EmployeeBasicSalary::with(['payPeriod','currency'])->where('employee_id',$employee->id)->first();
-        // dd($employee);    
+
         // dd($employee);
         // $basicPayPeriod = payPeriod::where('id',$basicSalary->payperiod_id)->first();
         return view('backend/pages/employee/edit',compact('employee','basicSalary'));

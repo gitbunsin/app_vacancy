@@ -4,13 +4,16 @@
       use App\Model\payPeriod;
       use App\Model\educations ;
       use App\Model\skill;
+      use App\Model\employee;
       use App\Model\language; 
       use App\Model\license; 
       use App\Model\currency;
       use App\Model\membership;
+      use App\Model\ReportingMethod;
       use App\Model\country;
       use App\Model\nationality;
       use App\Model\terminationResons;
+    //   use App\Model\ReportingMethod;
 @endphp
     <input type="hidden" value="{{$employee->id}}" id="employee_id">
     <div class="container-fluid">
@@ -445,7 +448,7 @@
                                                     <meta name="csrf-token" content="{{ csrf_token() }}">
                                                     <div class="card-body">
                                                             <div class="card-header">
-                                                                    <a onclick="ShowModalReporto()" onclick="AddCandidate();" class="btn btn-primary pull-right "  title="Payment"><i class="ti-plus"></i> Add Supervisors</a>
+                                                                    <a onclick="ShowModalReportosupervisors()"  class="btn btn-primary pull-right "  title="Payment"><i class="ti-plus"></i> Add Supervisors</a>
                                                                 <br/> <br/>
                                                                 
                                                             </div>
@@ -454,27 +457,27 @@
                                                                             <thead>
                                                                               <tr>
                                                                                 <th scope="col">#No</th>
-                                                                                <th>Salary Component</th>
-                                                                                <th>Pay Frequency</th>
-                                                                                <th>Currency</th>
-                                                                                <th>Amount</th>
-                                                                                <th>Comments</th>
+                                                                                <th>Name</th>
+                                                                                <th>Reporting Method</th>
                                                                                 <th>Action</th>
                                                                               </tr>
                                                                             </thead>
                                                                             <tbody>
-                                                                                    <tr id="tr_basic_salary">
-                                                                                        <th scope="row"></th>
-                                                                                        <td></td>
-                                                                                        <td></td>
-                                                                                        <td></td>
-                                                                                        <td></td>
-                                                                                        <td></td>
+                                                                                @foreach ($employee->supervisor as $key => $supervisors)
+                                                                                @php
+                                                                                    $reporting = ReportingMethod::find($supervisors->reporting_id);
+                                                                                    $supervisor = employee::find($supervisors->employee_id);
+                                                                                @endphp
+                                                                                <tr id="tr_assigned_supervisors{{$supervisors->id}}">
+                                                                                        <th scope="row">{{$key + 1}}</th>
+                                                                                        <td>{{$supervisor->last_name . ' ' .$supervisor->first_name }}</td>
+                                                                                        <td>{{$reporting->name}}</td>
                                                                                         <th>
-                                                                                              <a onclick="EditSalary();"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
-                                                                                              <a onclick="DeleteSalary();" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>
+                                                                                              <a onclick="Editsupervisor({{$supervisors->id}});"  class="btn btn-primary" title="Edit"><i class="icon-edit"></i></a>
+                                                                                              <a onclick="Deletesupervisor({{$supervisors->id}});" class="btn btn-danger" title="Delete"><i class="ti-trash"></i></a>
                                                                                         </th>
-                                                                                      </tr>     
+                                                                                      </tr> 
+                                                                                @endforeach       
                                                                             </tbody>
                                                                           </table>
                                                             </div>
@@ -493,24 +496,18 @@
                                                                 
                                                             </div>
                                                             <div class="row">
-                                                                    <table class="table" id="tbl_assigned_supervisors">
+                                                                    <table class="table" id="tbl_assigned_Subordinates">
                                                                             <thead>
                                                                               <tr>
                                                                                 <th scope="col">#No</th>
-                                                                                <th>Salary Component</th>
-                                                                                <th>Pay Frequency</th>
-                                                                                <th>Currency</th>
-                                                                                <th>Amount</th>
-                                                                                <th>Comments</th>
+                                                                                <th>Name</th>
+                                                                                <th>Reporting Method</th>
                                                                                 <th>Action</th>
                                                                               </tr>
                                                                             </thead>
                                                                             <tbody>
                                                                                     <tr id="tr_basic_salary">
                                                                                         <th scope="row"></th>
-                                                                                        <td></td>
-                                                                                        <td></td>
-                                                                                        <td></td>
                                                                                         <td></td>
                                                                                         <td></td>
                                                                                         <th>
@@ -816,7 +813,128 @@
     </div>
     </div>
 
+  {{-- //showModalReportingTo  --}}
+  <div id="showModalReportingToEdit" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form method="POST" action="#" id="frmEmployeeReportingToEdit">
+                    <meta name="csrf-token" content="{{ csrf_token() }}">
+                    <input type="hidden" value="" id="emloyee_Supervisor_id_edit"/>
+                    {{-- <input type="hidden" value="{{$employee->id}}" id="employee_reporting_to_id_edit"> --}}
+                    <div class="modal-header theme-bg">
+                        <h4 class="modal-title"> Terminate employee </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                               <label> Reporting Method </label>
+                               <select class="form-control" required id="reporting_method_id_edit" name="reporting_method_id_edit">
+                                    <option value="">  -- Pleae Select Reporting To -- </option>
+                                    @php
+                                      $ed = ReportingMethod::all();
+                                    @endphp
+                                    @foreach ($ed as $eds )
+                                    <option value="{{$eds->id}}"> {{$eds->name}}</option>                                     
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-sm-12">
+                                    <label>  Supervisor Name</label>
+                                    <select class="form-control" required id="Supervisor_id_edit" name="Supervisor_id_edit">
+                                         <option value="">  -- Pleae Select Supervisor -- </option>
+                                         @php
+                                           $ed = employee::all();
+                                         @endphp
+                                         @foreach ($ed as $eds )
+                                         <option value="{{$eds->id}}"> {{$eds->last_name . ' ' . $eds->first_name }}</option>                                     
+                                         @endforeach
+                                     </select>
+                                 </div>
+                           
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-danger" value="Assign">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  {{-- //terminate Reason --}}
+  <div id="ModalDeleteSupervoir" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST" action="#" id="frmEmployeeDeleteModalDeleteSupervoir">
+                    <meta name="csrf-token" content="{{ csrf_token() }}">
+                    <input type="hidden" value="" id="employee_Supervoir_id"/>
+                    <div class="modal-header theme-bg">
+                        <h4 class="modal-title"> Delete</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Do u want to delete this <b></b>   ?</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                        <input type="submit" class="btn btn-danger" value="Yes">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
+  <div id="showModalReportingTo" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form method="POST" action="#" id="frmEmployeeReportingTo">
+                    <meta name="csrf-token" content="{{ csrf_token() }}">
+                    <input type="hidden" value="" id="emloyee_terminate_id_edit"/>
+                    <input type="hidden" value="{{$employee->id}}" id="employee_reporting_to_id">
+                    <div class="modal-header theme-bg">
+                        <h4 class="modal-title"> Terminate employee </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                               <label> Reporting Method </label>
+                               <select class="form-control" required id="reporting_method_id" name="reporting_method_id">
+                                    <option value="">  -- Pleae Select Reporting To -- </option>
+                                    @php
+                                      $ed = ReportingMethod::all();
+                                    @endphp
+                                    @foreach ($ed as $eds )
+                                    <option value="{{$eds->id}}"> {{$eds->name}}</option>                                     
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-sm-12">
+                                    <label>  Supervisor Name</label>
+                                    <select class="form-control" required id="Supervisor_id" name="Supervisor_id">
+                                         <option value="">  -- Pleae Select Supervisor -- </option>
+                                         @php
+                                           $ed = employee::all();
+                                         @endphp
+                                         @foreach ($ed as $eds )
+                                         <option value="{{$eds->id}}"> {{$eds->last_name . ' ' . $eds->first_name }}</option>                                     
+                                         @endforeach
+                                     </select>
+                                 </div>
+                           
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-danger" value="Assign">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
   {{-- //terminate Reason --}}
   <div id="ModalDeleteTermination" class="modal fade">
@@ -843,7 +961,7 @@
         </div>
     </div>
 
-  {{-- //Edit  --}}
+
     {{-- //terminate Reason --}}
     <div id="showModalReasonEdit" class="modal fade">
             <div class="modal-dialog modal-lg">
@@ -2127,6 +2245,7 @@
 
 @endsection
 @section('scripts')
+   <script src="/js/backend/reporting_to.js"></script>
    <script src="/js/backend/terminate.js"></script>
    <script src="/js/backend/employee.js"></script>
    <script src="/js/backend/basic_salary.js"></script>

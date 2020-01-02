@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\location;
 use App\Model\company;
+use App\Model\province;
 use App\Model\country;
 use App\Model\city;
 use App\Model\subUnit;

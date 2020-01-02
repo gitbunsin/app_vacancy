@@ -92,6 +92,7 @@ return array(
     'App\\Model\\employeeTerminate' => $baseDir . '/app/Model/employeeTerminate.php',
     'App\\Model\\employeeWorkExperience' => $baseDir . '/app/Model/employeeWorkExperience.php',
     'App\\Model\\employee_interview' => $baseDir . '/app/Model/employee_interview.php',
+    'App\\Model\\employee_reporting_to' => $baseDir . '/app/Model/employee_reporting_to.php',
     'App\\Model\\employee_work_shift' => $baseDir . '/app/Model/employee_work_shift.php',
     'App\\Model\\interview' => $baseDir . '/app/Model/interview.php',
     'App\\Model\\jobAttachment' => $baseDir . '/app/Model/jobAttachment.php',

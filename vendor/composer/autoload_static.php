@@ -502,6 +502,7 @@ class ComposerStaticInit8d8674694d2e01ac5f8f266acbc6ddab
         'App\\Model\\employeeTerminate' => __DIR__ . '/../..' . '/app/Model/employeeTerminate.php',
         'App\\Model\\employeeWorkExperience' => __DIR__ . '/../..' . '/app/Model/employeeWorkExperience.php',
         'App\\Model\\employee_interview' => __DIR__ . '/../..' . '/app/Model/employee_interview.php',
+        'App\\Model\\employee_reporting_to' => __DIR__ . '/../..' . '/app/Model/employee_reporting_to.php',
         'App\\Model\\employee_work_shift' => __DIR__ . '/../..' . '/app/Model/employee_work_shift.php',
         'App\\Model\\interview' => __DIR__ . '/../..' . '/app/Model/interview.php',
         'App\\Model\\jobAttachment' => __DIR__ . '/../..' . '/app/Model/jobAttachment.php',
