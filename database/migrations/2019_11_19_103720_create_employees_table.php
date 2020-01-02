@@ -34,6 +34,10 @@ class CreateEmployeesTable extends Migration
             $table->integer('nationality_id')->unsigned()->nullable();
             $table->foreign('nationality_id')->references('id')->on('nationalities')->onDelete('cascade');
 
+            //job Category
+            $table->integer('location_id')->unsigned()->nullable();
+            $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
+
             $table->string('employee_id')->nullable();
             $table->string('first_name')->nullable();
             $table->string('middle_name')->nullable();

@@ -1,3 +1,4 @@
+
 $("#frmEmployeeJobDetails").validate({
     rules: {
         employee_job_title_id : {
@@ -26,6 +27,7 @@ $("#frmEmployeeJobDetails").validate({
             "status_id"  : $('#employee_status_id').val(),
             "category_id" : $('#employee_job_category_id').val(),
             "join_date" : $('#join_date').val(),
+            "location_id" : $('#location_id').val(),
            },
            success: function (result) {
              console.log(result);
@@ -90,7 +92,7 @@ function removeImage() {
     let token = $("meta[name='csrf-token']").attr("content");
     $.ajax(
         {
-            url: "{{url('admin/employee/show/emergency/contact')}}" + "/" + id,
+            url: "/admin/employee/show/emergency/contact/" + id,
             type: 'GET',
             data: {
 
@@ -129,7 +131,7 @@ $('#frmEditEmergencyContacts').validate({ // initialize the plugin
 
         $.ajax(
             {
-                url: "{{url('admin/employee/update/emergency/contact')}}" + "/" +  id ,
+                url: "/admin/employee/update/emergency/contact/" +  id ,
                 type: 'POST',
                 data: {
 
@@ -158,8 +160,8 @@ $('#frmEditEmergencyContacts').validate({ // initialize the plugin
                         "<span class='j-type part-time'></span>" +
                         "</div>" +
                         "</div>";
-                        ul += "<div class='job-buttons'><a href='#' onclick='EditEmergencyContact(" + data.id + ");'  class='btn btn-gary manage-btn' data-toggle='tooltip' data-placement='top' title='Edit'><i class='ti-pencil-alt'></i></a></td>"
-                        ul += "<a href='#' data-id='" + data.id + "' onclick='DeleteEmergencyContact(this);' class='btn btn-cancel manage-btn' data-toggle='modal' data-placement='top'><i class='ti-close'></i></a></div></li></ul>";
+                        ul += "<div class='job-buttons'><a href='#' onclick='EditEmergencyContact(" + data.id + ");'  class='btn btn-primary' title='Edit'><i class='ti-pencil-alt'></i></a></td>"
+                        ul += "<a href='#' onclick='DeleteEmergencyContact(" + data.id + ");' class='btn btn-danger'><i class='ti-close'></i></a></div></li></ul>";
 
                     $('#ul_emergency_contact').replaceWith(ul);
                     $('#EditEmergencyContacts').modal('hide');
@@ -185,9 +187,9 @@ function ShowEmergencyContacts(m) {
 
 }
 
-function DeleteEmergencyContact(mm)
+function DeleteEmergencyContact(id)
 {
-    let id = $(mm).data("id");
+    // let id = $(mm).data("id");
     $('#DeleteEmergencyContact').modal('show');
     $('#emergency_contact_id').val(id);
 }
@@ -205,7 +207,7 @@ $('#frmDeleteEmergencyContact').validate({ // initialize the plugin
 
         $.ajax(
             {
-                url: "{{url('admin/employee/delete/emergency/contact')}}" + "/" + id,
+                url: "/admin/employee/delete/emergency/contact/" + id,
                 type: 'DELETE',
                 data: {
 
@@ -270,8 +272,8 @@ $('#frmShowEmergencyContacts').validate({ // initialize the plugin
                         "</div>" +
                         "</div>" +
                         "<div class='job-buttons'>" +
-                        "<a href='#' onclick='EditEmergencyContact(" + data.id + ");'  class='btn btn-gary manage-btn' data-toggle='tooltip' data-placement='top' title='Edit'><i class='ti-pencil-alt'></i></a>" +
-                        "<a href='#' data-id='" + data.id + "' onclick='DeleteEmergencyContact(this);' class='btn btn-cancel manage-btn' data-toggle='modal' data-placement='top'><i class='ti-close'></i></a>" +
+                        "<a href='#' onclick='EditEmergencyContact(" + data.id + ");'  class='btn btn-primary' data-toggle='tooltip' data-placement='top' title='Edit'><i class='ti-pencil-alt'></i></a>" +
+                        "<a href='#' onclick='DeleteEmergencyContact(" + data.id + ");' class='btn btn-danger' data-toggle='modal' data-placement='top'><i class='ti-close'></i></a>" +
                         "</div>" +
                         "</li>" +
                         "</ul>");

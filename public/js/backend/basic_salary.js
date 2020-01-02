@@ -26,10 +26,11 @@ $("#frmEditBasicSalary").validate({
             "currency_id" : $('#currency_id_edit').val(),
             "paygrade_id" : $('#paygrade_id_edit').val(),
             "pay_periods_id" : $('#pay_periods_id_edit').val(),
-            "comments" :  $('#comments_salary_edit').val()
+            "comments" :  $('#comments_salary_edit').val() ,
+            "employee_id" :$('#basic_salary_id_edit').val()
         },
            success: function (result) {
-             //console.log(result);
+            //  console.log(result);
              $('#ShowEditBasicSalary').modal('hide');
              toastr.success('Success' , 'item has been updated !');
              var basicSalary = '<tr id="tr_basic_salary' + result.id + '"> <th class="scope="row">' + result.id + '</><td>' + result.salary_component + '</td><td>' + result.payPeriod.name + '</td><td>' + result.currency.name + '</td><td>' + result.basic_salary + '</td><td>' + result.comments + '</td>';
@@ -50,7 +51,7 @@ function EditSalary(id)
       url: "/admin/basicSalary" + "/" + id + "/edit",
       success: function(result)
       {
-         //console.log(result);
+         console.log(result);
          $('#ShowEditBasicSalary').modal('show');
          $('#salary_component_edit').val(result.salary_component);
          $('#comments_edit').val(result.comments);
@@ -154,7 +155,8 @@ $("#frmShowBasicSalary").validate({
                 "currency_id" : $('#currency_id').val(),
                 "paygrade_id" : $('#paygrade_id').val(),
                 "pay_periods_id" : $('#pay_periods_id').val(),
-                "comments" :  $('#comments_salary').val()
+                "comments" :  $('#comments_salary').val(),
+                "employee_id" : $('#basic_salary_id_add').val(),
             },
             success: function(result)
             {

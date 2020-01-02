@@ -10,6 +10,7 @@
       use App\Model\membership;
       use App\Model\country;
       use App\Model\nationality;
+      use App\Model\terminationResons;
 @endphp
     <input type="hidden" value="{{$employee->id}}" id="employee_id">
     <div class="container-fluid">
@@ -223,8 +224,8 @@
                                             </div>
                                         </div>
                                         <div class="job-buttons">
-                                            <a href="#" onclick="EditEmergencyContact({{$contact->id}});"  class="btn btn-gary manage-btn" data-toggle="tooltip" data-placement="top" title="Edit"><i class="ti-pencil-alt"></i></a>
-                                            <a href="#" data-id="{{$contact->id}}" onclick="DeleteEmergencyContact(this);" class="btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Remove"><i class="ti-close"></i></a>
+                                            <a href="#" onclick="EditEmergencyContact({{$contact->id}});"  class="btn btn-primary"  title="Edit"><i class="ti-pencil-alt"></i></a>
+                                            <a href="#" onclick="DeleteEmergencyContact({{$contact->id}});" class="btn btn-danger"  title="Remove"><i class="ti-close"></i></a>
                                         </div>
                                     </li>
                                 </ul>
@@ -236,6 +237,7 @@
                                         <ul class="nav nav-tabs" role="tablist">
                                             <li role="presentation" class="active"><a href="#job" aria-controls="home" role="tab" data-toggle="tab"> Job</a></li>
                                             <li role="presentation"><a href="#contract" aria-controls="description" role="tab" data-toggle="tab">  Employment Contract</a></li>
+                                            <li role="presentation"><a href="#terminate" aria-controls="description" role="tab" data-toggle="tab">  Terminate</a></li>
                                         </ul>
                                         <!-- Tab panes -->
                                         <div class="tab-content tabs">
@@ -299,7 +301,7 @@
                                                                                             <option value="" required > -- plz select Location -- </option>
                                                                                             @php use App\Model\location;$location = location::all();@endphp
                                                                                             @foreach($location as $locations)
-                                                                                                <option value="{{$locations->id}}"> {{$locations->name}}</option>
+                                                                                                 <option value="{{ $locations->id }}" {{ ( $locations->id == $employee->location_id) ? 'selected' : '' }}> {{ $locations    ->name }} </option>
                                                                                             @endforeach
                                                                                         </select>
                                                                                     </div>
@@ -339,7 +341,6 @@
                                                                 </div>
                                                                 <div class="pull-right">
                                                                         <button type="submit" class="btn btn-success">Save</button>
-                                                                        <button type="submit" class="btn btn-primary">Terminate Employment</button>
                                                                 </div>
                                                                 <br/>   
                                                     </div>
@@ -347,6 +348,41 @@
                                                    
                                                     </form>
                                             </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="terminate">
+                                                <div class="card-header">
+                                                    {{-- <a href="#" onclick="ShowModalBasicSalary()" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> Add </a> --}}
+                                                    <a onclick="ShowTerminateReason()" class="btn btn-primary pull-right "  title="Payment"><i class="ti-plus"></i>Termnate Employment</a>
+                                                    <br/> <br/>
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="div_terminate">
+                                                             @if ($employee->terminate)
+                                                             @php
+                                                                 $reason = terminationResons::find($employee->terminate->termination_id);
+                                                             @endphp
+                                                                <div id="candidate_attachment{{$employee->terminate->id}}" class="ul_id{{$employee->terminate->id}} list" >
+                                                                        <li class="manage-list-row clearfix">   
+                                                                                <div class="job-info">
+                                                                                        <div class="job-details">
+                                                                                            <small class="job-company"><i class="ti-time"></i><b>Reason</b> : {{ $reason->name}} </small>
+                                                                                            <small class="job-company"><i class="ti-location-pin"></i><b>Date </b>: {{$employee->terminate->date}} </small>         
+                                                                                            <small class="job-company"><i class="ti-file"></i><b>Note</b>: {{$employee->terminate->note}} </small>                                                                            
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="job-buttons">
+                                                                                        <a onclick="EditTerminateReason({{$employee->terminate->id}});" class="btn btn-primary"><i class="icon-edit"></i></a>
+                                                                                        <a onclick="DeleteTerminateReason({{$employee->terminate->id}});" class="btn btn-danger"><i class="ti-trash"></i></a>
+                                                                                    </div>
+                                                                            </li>
+                                                                </div>
+                                                                @endif
+                                                            </div>
+                                                        
+                                                        </div>
+                                                </div>
+                                                  
+                                                </div>
+                                        </div>
                                         </div>
                             </div>   
                     </div>
@@ -779,6 +815,126 @@
         </div>
     </div>
     </div>
+
+
+
+  {{-- //terminate Reason --}}
+  <div id="ModalDeleteTermination" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST" action="#" id="frmEmployeeDeleteTermination">
+                    <meta name="csrf-token" content="{{ csrf_token() }}">
+                    <input type="hidden" value="" id="employee_termination_delete_id"/>
+                    <div class="modal-header theme-bg">
+                        <h4 class="modal-title"> Deactivation Terminate</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Do u want to delete this <b></b>   ?</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                        <input type="submit" class="btn btn-danger" value="Yes">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+  {{-- //Edit  --}}
+    {{-- //terminate Reason --}}
+    <div id="showModalReasonEdit" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <form method="POST" action="#" id="frmEmployeeTerminateEdit">
+                        <meta name="csrf-token" content="{{ csrf_token() }}">
+                        <input type="hidden" value="" id="emloyee_terminate_id_edit"/>
+                        <input type="hidden" value="{{$employee->id}}" id="employee_termination_id">
+                        <div class="modal-header theme-bg">
+                            <h4 class="modal-title"> Terminate employee </h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                   <label> Reason </label>
+                                   <select class="form-control" required id="reason_id_edit" name="reason_id_edit">
+                                        <option value="">  -- Pleae Select Reason -- </option>
+                                        @php
+                                          $ed = terminationResons::all();
+                                        @endphp
+                                        @foreach ($ed as $eds )
+                                        <option value="{{$eds->id}}"> {{$eds->name}}</option>                                     
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-sm-12">
+                                    <label> Date </label>
+                                    <input class="form-control" type="date" name="terminate_date_edit" id="terminate_date_edit">
+                                 </div>
+                                 <div class="col-sm-12">
+                                    <label> Note </label>
+                                    <textarea class="form-control" name="terminate_note_edit" id="terminate_note_edit" cols="10" rows="5"></textarea>
+                                 </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <input type="submit" class="btn btn-danger" value="Save">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        {{-- ///end  --}}
+  <div id="showModalReason" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form method="POST" action="#" id="frmEmployeeTerminate">
+                <meta name="csrf-token" content="{{ csrf_token() }}">
+                <input type="hidden" value="{{$employee->id}}" id="emloyee_terminate_id"/>
+                <div class="modal-header theme-bg">
+                    <h4 class="modal-title"> Terminate employee </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                           <label> Reason </label>
+                           <select class="form-control" required id="reason_id" name="reason_id">
+                                <option value="">  -- Pleae Select Reason -- </option>
+                                @php
+                                  $ed = terminationResons::all();
+                                @endphp
+                                @foreach ($ed as $eds )
+                                <option value="{{$eds->id}}"> {{$eds->name}}</option>                                     
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-sm-12">
+                            <label> Date </label>
+                            <input class="form-control" type="date" name="terminate_date" id="terminate_date">
+                         </div>
+                         <div class="col-sm-12">
+                            <label> Note </label>
+                            <textarea class="form-control" name="terminate_note" id="terminate_note" cols="10" rows="5"></textarea>
+                         </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <input type="submit" class="btn btn-danger" value="Save">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 
   <!-- /# Employee Memembership -->
   <div id="ModalEditEmployeeMembership" class="modal fade">
@@ -1607,7 +1763,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <form id="frmEditBasicSalary">
-                        <input type="hidden" id="basic_salary_id_edit" value="" />
+                        <input type="hidden" id="basic_salary_id_edit" value="{{$employee->id}}" />
                         <div class="modal-header theme-bg">
                             <h4 class="modal-title">Basic Salary </h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -1704,7 +1860,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <form id="frmShowBasicSalary">
-                        <input type="hidden" id="basic_salary_id" value="" />
+                        <input type="hidden" id="basic_salary_id_add" value="{{$employee->id}}" />
                         <div class="modal-header theme-bg">
                             <h4 class="modal-title">Basic Salary </h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -1971,6 +2127,7 @@
 
 @endsection
 @section('scripts')
+   <script src="/js/backend/terminate.js"></script>
    <script src="/js/backend/employee.js"></script>
    <script src="/js/backend/basic_salary.js"></script>
    <script src="/js/backend/experience.js"></script>

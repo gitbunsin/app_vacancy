@@ -120,6 +120,7 @@ class EmployeeController extends Controller
         $employee_job->emp_status = $request->status_id;
         $employee_job->job_category_id = $request->category_id;
         $employee_job->joined_date =  $request->join_date;
+        $employee_job->location_id =  $request->location_id;
         $employee_job->save();
         return response()->json($employee_job);
     }
@@ -227,8 +228,9 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        $employee = Employee::with(['employeeMembership','employeeLicense','employeeLanguage','employeeSkill','employeeEducation','workexperience','salary','emergencyContact','attachment'])->where('id',$id)->first();
+        $employee = Employee::with(['admin','terminate','employeeMembership','employeeLicense','employeeLanguage','employeeSkill','employeeEducation','workexperience','salary','emergencyContact','attachment'])->where('id',$id)->first();
         $basicSalary = EmployeeBasicSalary::with(['payPeriod','currency'])->where('employee_id',$employee->id)->first();
+        // dd($employee);    
         // dd($employee);
         // $basicPayPeriod = payPeriod::where('id',$basicSalary->payperiod_id)->first();
         return view('backend/pages/employee/edit',compact('employee','basicSalary'));

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Model;
-
+use App\Admin;
 use Illuminate\Database\Eloquent\Model;
 class employee extends Model
 {
@@ -12,6 +12,10 @@ class employee extends Model
     public function admin()
     {
         return $this->belongsTo(Admin::class,'admin_id','id');
+    }
+    public function terminate()
+    {
+        return $this->belongsTo(employeeTerminate::class,'id','employee_id');
     }
     public function workShift()
     {

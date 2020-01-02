@@ -29,6 +29,7 @@ return array(
     'App\\Http\\Controllers\\Backend\\EmployeeMembershipController' => $baseDir . '/app/Http/Controllers/Backend/EmployeeMembershipController.php',
     'App\\Http\\Controllers\\Backend\\EmployeeSkillController' => $baseDir . '/app/Http/Controllers/Backend/EmployeeSkillController.php',
     'App\\Http\\Controllers\\Backend\\EmployeeStatusController' => $baseDir . '/app/Http/Controllers/Backend/EmployeeStatusController.php',
+    'App\\Http\\Controllers\\Backend\\EmployeeTerminateController' => $baseDir . '/app/Http/Controllers/Backend/EmployeeTerminateController.php',
     'App\\Http\\Controllers\\Backend\\InterviewController' => $baseDir . '/app/Http/Controllers/Backend/InterviewController.php',
     'App\\Http\\Controllers\\Backend\\JobCategoryController' => $baseDir . '/app/Http/Controllers/Backend/JobCategoryController.php',
     'App\\Http\\Controllers\\Backend\\JobController' => $baseDir . '/app/Http/Controllers/Backend/JobController.php',
@@ -88,6 +89,7 @@ return array(
     'App\\Model\\employeeLicense' => $baseDir . '/app/Model/employeeLicense.php',
     'App\\Model\\employeeMembership' => $baseDir . '/app/Model/employeeMembership.php',
     'App\\Model\\employeeSkill' => $baseDir . '/app/Model/employeeSkill.php',
+    'App\\Model\\employeeTerminate' => $baseDir . '/app/Model/employeeTerminate.php',
     'App\\Model\\employeeWorkExperience' => $baseDir . '/app/Model/employeeWorkExperience.php',
     'App\\Model\\employee_interview' => $baseDir . '/app/Model/employee_interview.php',
     'App\\Model\\employee_work_shift' => $baseDir . '/app/Model/employee_work_shift.php',
@@ -3823,4 +3825,5 @@ return array(
     'phpDocumentor\\Reflection\\Types\\String_' => $vendorDir . '/phpdocumentor/type-resolver/src/Types/String_.php',
     'phpDocumentor\\Reflection\\Types\\This' => $vendorDir . '/phpdocumentor/type-resolver/src/Types/This 2.php',
     'phpDocumentor\\Reflection\\Types\\Void_' => $vendorDir . '/phpdocumentor/type-resolver/src/Types/Void_.php',
+    'terminateReasonsTableSeeder' => $baseDir . '/database/seeds/terminateReasonsTableSeeder.php',
 );

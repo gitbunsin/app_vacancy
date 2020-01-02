@@ -439,6 +439,7 @@ class ComposerStaticInit8d8674694d2e01ac5f8f266acbc6ddab
         'App\\Http\\Controllers\\Backend\\EmployeeMembershipController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/EmployeeMembershipController.php',
         'App\\Http\\Controllers\\Backend\\EmployeeSkillController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/EmployeeSkillController.php',
         'App\\Http\\Controllers\\Backend\\EmployeeStatusController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/EmployeeStatusController.php',
+        'App\\Http\\Controllers\\Backend\\EmployeeTerminateController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/EmployeeTerminateController.php',
         'App\\Http\\Controllers\\Backend\\InterviewController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/InterviewController.php',
         'App\\Http\\Controllers\\Backend\\JobCategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/JobCategoryController.php',
         'App\\Http\\Controllers\\Backend\\JobController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/JobController.php',
@@ -498,6 +499,7 @@ class ComposerStaticInit8d8674694d2e01ac5f8f266acbc6ddab
         'App\\Model\\employeeLicense' => __DIR__ . '/../..' . '/app/Model/employeeLicense.php',
         'App\\Model\\employeeMembership' => __DIR__ . '/../..' . '/app/Model/employeeMembership.php',
         'App\\Model\\employeeSkill' => __DIR__ . '/../..' . '/app/Model/employeeSkill.php',
+        'App\\Model\\employeeTerminate' => __DIR__ . '/../..' . '/app/Model/employeeTerminate.php',
         'App\\Model\\employeeWorkExperience' => __DIR__ . '/../..' . '/app/Model/employeeWorkExperience.php',
         'App\\Model\\employee_interview' => __DIR__ . '/../..' . '/app/Model/employee_interview.php',
         'App\\Model\\employee_work_shift' => __DIR__ . '/../..' . '/app/Model/employee_work_shift.php',
@@ -4233,6 +4235,7 @@ class ComposerStaticInit8d8674694d2e01ac5f8f266acbc6ddab
         'phpDocumentor\\Reflection\\Types\\String_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/String_.php',
         'phpDocumentor\\Reflection\\Types\\This' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/This 2.php',
         'phpDocumentor\\Reflection\\Types\\Void_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Void_.php',
+        'terminateReasonsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/terminateReasonsTableSeeder.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
