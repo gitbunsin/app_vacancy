@@ -18,9 +18,13 @@
             
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="nav navbar-nav">
+                        <li class="{{ (request()->segment(1) == 'home') ? 'active' : '' }}">  
+                                <a href="{{'/home'}}">Home</a>
+                            </li>
                         <li class="{{ (request()->segment(1) == 'job') ? 'active' : '' }}">  
-                        <a href="{{'/job'}}">Home</a>
+                        <a href="{{'/job'}}">Jobs LIST</a>
                     </li>
+                    
                     <li class="{{ (request()->segment(1) == 'about') ? 'active' : '' }}">  
                         <a href="{{url('about')}}">About Us</a>
                     </li>

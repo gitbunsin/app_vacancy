@@ -19,7 +19,7 @@
                     </ul>
                 </li>
             <li>
-                <a href="javascript:void(0)"><i class="fa fa-user-circle-o"></i> Recruitment <span class="fa arrow"></span></a>
+                <a href="javascript:void(0)"><i class="fa fa-user-circle-o"></i> Recruitment <span class="fa arrow"></span><b class="badge bg-success pull-right">3</b></a>
                 <ul class="nav nav-second-level">
                     <li class="{{ (request()->segment(2) == 'job') ? 'active' : '' }}">
                         <a href="{{url('admin/job')}}">vacancies</a>
@@ -31,7 +31,7 @@
             </li>
 
             <li>
-                <a href="javascript:void(0)"><i class="fa fa-book fa-fw"></i>PIM<span class="fa arrow"></span> <b class="badge bg-success pull-right">3</b></a>
+                <a href="javascript:void(0)"><i class="fa fa-book fa-fw"></i>PIM<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="{{url('admin/employee')}}">Employee List</a>

@@ -106,7 +106,7 @@ input:focus, textarea:focus, select:focus,
 }
 
 .section-padding {
-	padding: 80px 0;
+	padding: 50px 0;
 }
 
 .page-content {
@@ -1245,7 +1245,7 @@ input:focus, textarea:focus, select:focus,
 }
 
 .job-meta li {
-	font-size: 12px;
+	font-size: 14px;
 	margin-bottom: 10px;
 }
 

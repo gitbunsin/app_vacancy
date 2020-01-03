@@ -7,6 +7,14 @@
     #contact_person {
   border-radius: 50%;
 }
+
+.avatar {
+  vertical-align: middle;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
     .not-active {
     pointer-events: none;
     cursor: default;
@@ -74,7 +82,7 @@
                                @if ($vacancy->employee->photo)
                                   <img id="contact_person" class="img-circle" src="/uploads/employee/{{ $vacancy->employee->photo }}" alt="Smiley face" height="100" width="100">
                                @else
-                               <img src="img_avatar.png" alt="Avatar">
+                               <img class="avatar" src="{{asset('images/img_avatar.png')}}" alt="Avatar">
                                @endif
                                
                             </div>

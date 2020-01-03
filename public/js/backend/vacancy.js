@@ -498,10 +498,21 @@ $('#frmDeleteVacancy').validate({
     
 
 
-$('.job_description').summernote({height: 200});
-$('.job_requirement_edit').summernote({height: 200});
+$('.job_description').summernote({
+      fontName : 'Montserrat',
+     height: 200,
+     fontSize: 12
+});
+$('.job_requirement_edit').summernote({
+    'fontName' : 'Montserrat',
+    height: 200
+});
 
-$('.responsibilities').summernote({height: 200});
+$('.responsibilities').summernote({
+
+    'fontName' : 'Montserrat',
+    height: 200
+});
 
 
 

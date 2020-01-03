@@ -54,7 +54,8 @@
                         <a href="messages.html">
                             <div class="message-apt">
                                 <div class="user-img">
-                                    <img src="{{asset('images/user/user-1.jpg')}}" class="img-responsive img-circle" alt="">
+                                   
+                                    {{-- <img src="{{asset('images/user/user-1.jpg')}}" class="img-responsive img-circle" alt=""> --}}
                                     <span class="profile-status online"></span>
                                 </div>
                                 <div class="message-body">
@@ -235,7 +236,15 @@
             <!-- /.dropdown -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <img src="{{asset('images/user/user-1.jpg')}}" class="img-responsive img-circle" alt="user">
+                        @php
+                        use App\Admin; $admin = auth()->guard('admin')->user();
+                    @endphp
+                        @if($admin->profile)
+                        <img class="img-responsive img-circle"  src="{{url('uploads/UserCv/'.$admin->profile)}}" width="50px" height="50px"/><br/>
+                    @else
+                        <img class="img-responsive img-circle"  src="{{asset('images/noimage.jpg')}}" width="50px" height="50px"/><br/>
+                    @endif
+                    {{-- <img src="{{asset('images/user/user-1.jpg')}}" class="img-responsive img-circle" alt="user"> --}}
                 </a>
                 <ul class="dropdown-menu dropdown-user right-swip">
                     <li><a href="{{url('admin/profile')}}"><i class="fa fa-user fa-fw"></i> User Profile</a>

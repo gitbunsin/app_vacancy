@@ -135,14 +135,14 @@ Route::get('checkUserLogin/{vacancy_id}/{candidate_id}','Backend\JobController@C
 Route::get('check/user/login','Backend\JobController@CheckUserLoginApplyJob');
 Route::post('user/applyJob/{vacancy_id}/{candidate_id}','Backend\JobController@UserApplyJob');
 Route::get('job-download-company/{filename}','Backend\JobController@getDownloadCompany');
-Route::get('pricing','testController@pricing');
-Route::get('about','testController@about');
-Route::get('contact','testController@contact');
-Route::post('contact-us', 'testController@contactUsPost');
-Route::get('create-resume','testController@createResume')->middleware('auth');;
-Route::get('app-mange-Candidate','testController@mangeCandidate');
-Route::get('user-profile','testController@profileDetails');
-
+Route::get('pricing','HomeController@pricing');
+Route::get('about','HomeController@about');
+Route::get('contact','HomeController@contact');
+Route::post('contact-us', 'HomeController@contactUsPost');
+Route::get('create-resume','HomeController@createResume')->middleware('auth');;
+Route::get('app-mange-Candidate','HomeController@mangeCandidate');
+Route::get('user-profile','HomeController@profileDetails');
+// Route::get('user-profile','HomeController@profileDetails');
 
 Auth::routes();
 

@@ -41,7 +41,7 @@
                                  @foreach($candidates->vacancy as $vacancies)
                                 <tr id="tr_candidate{{$candidates->id}}">
                                     <th>{{$key + 1}}</th>
-                                    <td><a style="color:teal;" href="{{url('admin/candidate/'.$candidates->id.'/edit')}}">{{$candidates->first_name .' '. $candidates->last_name}}</a></td>
+                                    <td><a href="{{url('admin/candidate/'.$candidates->id.'/edit')}}"> <strong>{{$candidates->first_name .' '. $candidates->last_name}}</strong></a></td>
                                     <td>{{$vacancies->vacancy_name}}</td>
                                     <td>{{$vacancies->pivot->applied_date}}</td>
                                     <td><b class="badge bg-success">{{$vacancies->pivot->status}}</b></td>

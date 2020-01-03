@@ -191,7 +191,7 @@ class JobController extends Controller
            
             $user_candidate = User::with('attachment')->where('id',$candidate_id)->first();
             $candidate = new candidate();
-            $candidate->admin_id = 9;
+            $candidate->admin_id = 1;
             $candidate->company_id = 1;
             $candidate->user_id = $candidate_id;
             $candidate->name = $user_candidate->name;

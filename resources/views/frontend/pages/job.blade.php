@@ -107,7 +107,6 @@
                                     </div>
                                     <ul class="tr-list job-meta">
                                         <li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>{{$jobs->company->company_name}}</li>
-                                        <li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>{{$jobs->exp_level}}</li>
                                         <li><span><i class="fa fa-money" aria-hidden="true"></i></span>{{$jobs->offer_salary}}</li>
                                        
                                     </ul>
