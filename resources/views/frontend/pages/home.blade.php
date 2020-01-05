@@ -1230,4 +1230,5 @@
 			</div><!-- /.row -->
 		</div><!-- /.container -->
 	</div><!-- /.tr-steps -->
+	<br/><br/><br/>
 @endsection

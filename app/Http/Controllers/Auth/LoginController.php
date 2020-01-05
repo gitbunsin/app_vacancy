@@ -55,7 +55,7 @@ class LoginController extends Controller
 
         Auth::logout();
         Auth::guard('admin')->logout();
-        return redirect('/job');
+        return redirect('/home');
 
     }
 }

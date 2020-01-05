@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use DB;
-use App\Mail\SendMailable;
+use App\Mail\SendAdminMail;
 
 class AdminRegisterController extends Controller
 {
@@ -83,7 +83,7 @@ class AdminRegisterController extends Controller
             $user->save();
             $admin_mail= Admin::where('id',$user->id)->first();
             // $name = 'Bunsin';
-            Mail::to($admin_mail->email)->send(new SendMailable($admin_mail));
+            Mail::to($admin_mail->email)->send(new SendAdminMail($admin_mail));
             return response::json('success'); 
         }
     }

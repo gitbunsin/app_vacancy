@@ -133,21 +133,23 @@
                                                                     <div class="card-body">
                                                                             <div class="row">
                                                                                     @foreach ($vacancy->jobAttachment as $vacancyAttachments)
-                                                                                    <div id="candidate_attachment" class="ul_id{{$vacancyAttachments->id}} list" >
-                                                                                            <li class="manage-list-row clearfix">   
-                                                                                                    <div class="job-info">
-                                                                                                            <div class="job-details">
-                                                                                                                <small class="job-company"><i class="ti-time"></i><b>Resume</b> : <a href="">{{$vacancyAttachments->file_name}}</a> </small>
-                                                                                                                <small class="job-company"><i class="ti-location-pin"></i><b>Attachment_type </b>: {{$vacancyAttachments->attachment_type}}</small>         
-                                                                                                                <small class="job-company"><i class="ti-file"></i><b>File Size </b>: {{$vacancyAttachments->file_size}}</small>                                                                            
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                        <div class="job-buttons">
-                                                                                                            <a onclick="EditVacancyResume({{$vacancyAttachments->id}});" class="btn btn-primary"><i class="icon-edit"></i></a>
-                                                                                                            <a onclick="DeleteVacancyResume({{$vacancyAttachments->id}});" class="btn btn-danger"><i class="ti-trash"></i></a>
-                                                                                                        </div>
-                                                                                                </li>
-                                                                                    </div>
+                                                                                    <div id="div_vacancy_attachment">
+                                                                                        <div id="candidate_attachment" class="ul_id{{$vacancyAttachments->id}} list" >
+                                                                                                <li class="manage-list-row clearfix">   
+                                                                                                        <div class="job-info">
+                                                                                                                <div class="job-details">
+                                                                                                                        <small class="job-company"><i class="ti-time"></i><b>Resume</b> : <a href="">{{$vacancyAttachments->file_name}}</a> </small>
+                                                                                                                        <small class="job-company"><i class="ti-location-pin"></i><b>Attachment_type </b>: {{$vacancyAttachments->attachment_type}}</small>         
+                                                                                                                        <small class="job-company"><i class="ti-file"></i><b>File Size </b>: {{$vacancyAttachments->file_size}}</small>                                                                            
+                                                                                                                </div>
+                                                                                                                </div>
+                                                                                                                <div class="job-buttons">
+                                                                                                                <a onclick="EditVacancyResume({{$vacancyAttachments->id}});" class="btn btn-primary"><i class="icon-edit"></i></a>
+                                                                                                                <a onclick="DeleteVacancyResume({{$vacancyAttachments->id}});" class="btn btn-danger"><i class="ti-trash"></i></a>
+                                                                                                                </div>
+                                                                                                        </li>
+                                                                                        </div>
+                                                                                </div>
                                                                                     @endforeach
                                                                             
                                                                             </div>

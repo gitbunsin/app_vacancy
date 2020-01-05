@@ -35,7 +35,7 @@
                         <a href="{{url('contact')}}">Contact Us</a>
                     </li>
                     @if(Auth::check())
-                    <li class="tr-dropdown"><a href="#">Candidate   </a>
+                    <li class="tr-dropdown"><a href="#">Candidate</a>
                         <ul class="tr-dropdown-menu tr-list fadeInUp" role="menu">
                             <li><a href="{{url('/user/profile/'.auth::user()->id)}}">Employee Profile</a></li>
                             <li><a href="view-compnay.html">View Compnay</a></li>
@@ -126,15 +126,6 @@
                                                 <div class="form-group">
                                                     <input required type="password" class="form-control" name="admin_confirm_password" id="admin_confirm_password" placeholder="Confirm Password">
                                                 </div>	
-                                                {{-- <div class="form-group">
-                                                    <select class="form-control" name="package" id="package">
-                                                        <option value="">Choose Package</option>
-                                                        <option value="saab">Free</option>
-                                                        <option value="mercedes">Siliver</option>
-                                                        <option value="audi">Gold</option>
-                                                    </select>	
-                                                </div>	
-                                                								 --}}
                                                 <button type="submit" class="btn btn-primary">Sign Up</button>
                                             </form>	
                                         </div>

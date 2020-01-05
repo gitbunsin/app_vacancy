@@ -53,10 +53,10 @@
                         @foreach ($job as $key => $jobs)
                             <tr id="tr_vacancy{{$jobs->id}}">
                                 <th scope="row">{{$key + 1}}</th>
-                                <td><a href="{{url('admin/vacancy/'.$jobs->id.'/edit')}}">{{$jobs->vacancy_name}}</a></td>
+                                <td><a href="{{url('admin/vacancy/'.$jobs->id.'/edit')}}"><strong>{{$jobs->vacancy_name}}</strong></a></td>
                                 <td>{{$jobs->employee->last_name . ' ' . $jobs->employee->first_name}}</td>
                                 <td>{{$jobs->closingDate}}</td>
-                                <td style="color:cadetblue;">{{$jobs->status}}</td>
+                                <td><b class="badge bg-success">{{$jobs->status}}</b></td>
                                 <th>
                                     <a onclick="EditVacancy({{$jobs->id}});"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
                                     <a onclick="DeleteVacancy({{$jobs->id}});" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>

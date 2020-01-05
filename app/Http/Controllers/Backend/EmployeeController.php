@@ -127,7 +127,6 @@ class EmployeeController extends Controller
 
     public function updateSupervisor(Request $request , $id)
     {
-
         $reporting = employee_reporting_to::find($id);
         $reporting->employee_id = $request->Supervisor_id;
         $reporting->reporting_id = $request->reporting_method_id;
@@ -135,7 +134,6 @@ class EmployeeController extends Controller
         $reporting['reporting_method'] = ReportingMethod::find($request->reporting_method_id);
         $reporting['supervisor'] = employee::find($request->Supervisor_id);
         return response()->json($reporting);
-
     }
 
     public function updateEmployeeDocument(Request $request , $id)

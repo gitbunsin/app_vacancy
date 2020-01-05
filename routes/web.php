@@ -12,7 +12,7 @@
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/home');
 });
 
 
@@ -27,8 +27,8 @@ Route::post('admin-register', ['as'=>'admin-register','uses'=>'Auth\AdminRegiste
 Route::post('admin-register/check/mail', ['as'=>'admin-register','uses'=>'Auth\AdminRegisterController@checkAdminMail']);
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::post('/register/checkemail','\App\Http\Controllers\Auth\RegisterController@Checkemail');
-Route::get('/Register/activate/email/{id}/{token}','\App\Http\Controllers\Auth\RegisterController@verifyUserMail');
-
+Route::get('/register/activate/email/{id}/{token}','\App\Http\Controllers\Auth\RegisterController@verifyUserMail');
+Route::get('/register/activate/admin/email/{id}/{token}','\App\Http\Controllers\Auth\RegisterController@verifyAdminMail');
 Route::get('password/admin/reset','Auth\PasswordController@showFormAdminReset'); 
 Route::get('password/reset','App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm');  
 Route::post('password/reset','App\Http\Controllers\Auth\ForgotPasswordController@updateLinkRequestForm');  

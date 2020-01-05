@@ -218,7 +218,7 @@ $("#frmAddCandidate").validate({
                    console.log(result);
                    $('#ModalAddCandidate').modal('hide');
                    toastr.success('Success' , 'item has been create !');
-                   var canddate = '<tr id="tr_candidate' + result.id + '"> <th class="scope="row">' + result.id + '</th><td><a style="color:teal;" href="/admin/candidate/'+ result.id  +'/edit' +'">'+ result.first_name + ' ' + result.last_name +'</a></td><td>' + result.vacancy.vacancy_name + '</td><td>' + result.candidate_vacancy.applied_date + '</td><td><b class="badge bg-success">' + result.candidate_vacancy.status + '</b></td>';
+                   var canddate = '<tr id="tr_candidate' + result.id + '"> <th class="scope="row">' + result.id + '</th><td><a href="/admin/candidate/'+ result.id  +'/edit' +'"><strong>'+ result.first_name + ' ' + result.last_name +'</strong></a></td><td>' + result.vacancy.vacancy_name + '</td><td>' + result.candidate_vacancy.applied_date + '</td><td><b class="badge bg-success">' + result.candidate_vacancy.status + '</b></td>';
                    canddate += '<th><a onclick="Edit(this);" data-candidate_id="'+ result.id +'" data-vacancy_id="' + result.vacancy.id +'"  class="btn btn-primary"><i class="icon-edit"></i></a>  <a onclick="Delete(' + result.id + ');"  class="btn btn-danger"><i class="ti-trash"></i></a></th></tr>';
                    $('#tbl_canidate').append(canddate);
     

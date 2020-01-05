@@ -144,7 +144,7 @@ $('#frmVacancyResume').validate({
                          // $('#tr_interview' + response.id).remove();
                       
                          let ul =
-                         '<div id="candidate_attachment" class="ul_id '+ response.id+' list" >' + 
+                         '<div id="candidate_attachment" class="ul_id'+ response.id+' list" >' + 
                          '<li class="manage-list-row clearfix"> ' + 
                                 ' <div class="job-info"> ' +
                                         ' <div class="job-details"> ' +
@@ -156,10 +156,11 @@ $('#frmVacancyResume').validate({
                                  ul += 
                                      '<div class="job-buttons">' + 
                                         '<a onclick="EditCandidateResume(' + response.id + ');" class="btn btn-primary"><i class="icon-edit"></i></a> '+
-                                    '</div></li></div>';
+                                        '<a onclick="DeleteVacancyResume(' + response.id + ');" class="btn btn-danger"><i class="ti-trash"></i></a> '+ 
+                                        '</div></li></div>';
                          
-                             $('#candidate_attachment').append(ul);
-                             toastr.success('Success', 'item has been deleted !');
+                             $('#div_vacancy_attachment').append(ul);
+                             toastr.success('Success', 'item has been Added !');
  
                      }, error: function (err) {
                          console.log(err);

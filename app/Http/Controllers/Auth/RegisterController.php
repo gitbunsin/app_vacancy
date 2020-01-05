@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMailable;
+use App\Admin;
 class RegisterController extends Controller
 {
     /*
@@ -116,6 +117,14 @@ class RegisterController extends Controller
         $user = User::find($id);
         $user->verified = 1;
         $user->save();
-        return view('frontend/pages/contact',compact('id','token'))->with('success', 'Login Successfully!');
+        return view('frontend/pages/notification')->with('success', 'Login Successfully!');
+    }
+
+    public function verifyAdminMail($id , $token)
+    {
+        $user = Admin::find($id);
+        $user->verified = 1;
+        $user->save();
+        return view('frontend/pages/notification')->with('success', 'Login Successfully!');
     }
 }
