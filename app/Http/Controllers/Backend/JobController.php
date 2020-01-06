@@ -13,6 +13,7 @@ use App\Model\company;
 use App\Model\jobTitle;
 use App\Model\province;
 use App\User;
+use App\Model\candidateHistory;
 use App\Model\employee;
 use App\Model\candidate;    
 use Carbon\Carbon;
@@ -219,6 +220,15 @@ class JobController extends Controller
             $attachment->file_type = $user_candidate->attachment[0]->file_type;
             $attachment->file_content = $user_candidate->attachment[0]->file_content;
             // $dir = 'uploads/UserCv';
+
+            $candidate_history = new candidateHistory();
+            $candidate_history->admin_id = $candidate_id;
+            $candidate_history->employee_id = $candidate_id;
+            $candidate_history->candidate_id = $candidate_id;
+            $candidate_history->vacancy_id = $vacancy_id;
+            $candidate_history->performed_date = Carbon::now();
+            $candidate_history->status = 'Application Initiated';
+            $candidate_history->save();
             // $request->file('file')->move($dir, $user_candidate->attachment->file_name);
             $attachment->save();
             $candidate['vacancy']= vacancy::where('id',$vacancy_id)->first();

@@ -147,21 +147,21 @@ $('#frmEditEmergencyContacts').validate({ // initialize the plugin
                 },
                 success: function (data){
 
-                        let ul =
-
-                        "<ul id='ul_emergency_contact' class='ul_id"+data.id+" list'>" +
-                        "<li class='manage-list-row clearfix'>" +
-                        "<div class='job-info'>" +
-                        "<div class='job-details'>" +
-                        "<h3 class='job-name'></h3>" +
-                        "<small class='job-company'><b>Name :</b> " + data.name + "  </small>" +
-                        "<small class='job-company'></i><b>Relationship :</b> " + data.relationship + " </small>" +
-                        "<small class='job-update'><i class='ti-time'></i><b>Mobile : </b> " + data.mobile + "  </small>" +
-                        "<span class='j-type part-time'></span>" +
-                        "</div>" +
-                        "</div>";
-                        ul += "<div class='job-buttons'><a href='#' onclick='EditEmergencyContact(" + data.id + ");'  class='btn btn-primary' title='Edit'><i class='ti-pencil-alt'></i></a></td>"
-                        ul += "<a href='#' onclick='DeleteEmergencyContact(" + data.id + ");' class='btn btn-danger'><i class='ti-close'></i></a></div></li></ul>";
+                    let ul =
+                    '<div id="ul_emergency_contact" class="ul_id'+ data.id+' list" >' + 
+                    '<li class="manage-list-row clearfix"> ' + 
+                           ' <div class="job-info"> ' +
+                                   ' <div class="job-details"> ' +
+                                       ' <small class="job-company"><i class="ti-time"></i><b>Name</b> : <a href="">' + data.name + '</a> </small>'+
+                                       ' <small class="job-company"><i class="ti-location-pin"></i><b>Relationship </b>:' + data.relationship+ '</small> ' +        
+                                       ' <small class="job-company"><i class="ti-file"></i><b>Mobile</b>: ' + data.mobile  + '</small> ' +                                                                
+                                    '</div>'+
+                                '</div>';
+                            ul += 
+                                '<div class="job-buttons">' + 
+                                   '<a onclick="EditEmergencyContact(' + data.id + ');" class="btn btn-primary"><i class="icon-edit"></i></a> '+
+                                   '<a onclick="DeleteEmergencyContact(' + data.id + ');" class="btn btn-danger"><i class="ti-trash"></i></a> '+ 
+                                   '</div></li></div>';
 
                     $('#ul_emergency_contact').replaceWith(ul);
                     $('#EditEmergencyContacts').modal('hide');
@@ -258,27 +258,24 @@ $('#frmShowEmergencyContacts').validate({ // initialize the plugin
 
                 },
                 success: function (data){
-
-                    $('#body_emergency').append(
-                        "<ul id='ul_emergency_contact' class='ul_id"+data.id+" list'>" +
-                        "<li class='manage-list-row clearfix'>" +
-                        "<div class='job-info'>" +
-                        "<div class='job-details'>" +
-                        "<h3 class='job-name'></h3>" +
-                        "<small class='job-company'><b>Name :</b> " + data.name + "  </small>" +
-                        "<small class='job-company'></i><b>Relationship :</b> " + data.relationship + " </small>" +
-                        "<small class='job-update'><i class='ti-time'></i><b>Mobile : </b> " + data.mobile + "  </small>" +
-                        "<span class='j-type part-time'></span>" +
-                        "</div>" +
-                        "</div>" +
-                        "<div class='job-buttons'>" +
-                        "<a href='#' onclick='EditEmergencyContact(" + data.id + ");'  class='btn btn-primary' data-toggle='tooltip' data-placement='top' title='Edit'><i class='ti-pencil-alt'></i></a>" +
-                        "<a href='#' onclick='DeleteEmergencyContact(" + data.id + ");' class='btn btn-danger' data-toggle='modal' data-placement='top'><i class='ti-close'></i></a>" +
-                        "</div>" +
-                        "</li>" +
-                        "</ul>");
-
+                    let ul =
+                    '<div id="ul_emergency_contact" class="ul_id'+ data.id+' list" >' + 
+                    '<li class="manage-list-row clearfix"> ' + 
+                           ' <div class="job-info"> ' +
+                                   ' <div class="job-details"> ' +
+                                       ' <small class="job-company"><i class="ti-time"></i><b>Name</b> : <a href="">' + data.name + '</a> </small>'+
+                                       ' <small class="job-company"><i class="ti-location-pin"></i><b>Relationship </b>:' + data.relationship+ '</small> ' +        
+                                       ' <small class="job-company"><i class="ti-file"></i><b>Mobile</b>: ' + data.mobile  + '</small> ' +                                                                
+                                    '</div>'+
+                                '</div>';
+                            ul += 
+                                '<div class="job-buttons">' + 
+                                   '<a onclick="EditEmergencyContact(' + data.id + ');" class="btn btn-primary"><i class="icon-edit"></i></a> '+
+                                   '<a onclick="DeleteEmergencyContact(' + data.id + ');" class="btn btn-danger"><i class="ti-trash"></i></a> '+ 
+                                   '</div></li></div>';
+                    $('#body_emergency').append(ul);
                     $('#ShowEmergencyContacts').modal('hide');
+
                     toastr.success('Emergency Contacts has been added  success !.', 'Success ', {timeOut: 5000})
                 },error : function(err){
                     console.log(err);
@@ -329,12 +326,10 @@ function  ShowEmployeeAttachment(id){
 }
 
 //delete
-function DeleteVacancyAttachment(xxxxx){
-
-    let id = $(xxxxx).data("id");
+function DeleteVacancyAttachment(id)
+{
     $('#Delete').modal('show');
     $('#attachment_id').val(id);
-
 }
 
 $(document).ready(function () {
@@ -349,7 +344,7 @@ $(document).ready(function () {
 
             $.ajax(
                 {
-                    url: "/admin/employee/delete/attachment/'" + id,
+                    url: "/admin/employee/delete/attachment/" + id,
                     type: 'DELETE',
                     data: {
                         "id": id,
@@ -357,16 +352,15 @@ $(document).ready(function () {
                     },
                     success: function (data){
 
-                        if(data == "success"){
+                        let concatId = 'tbl_attachment'+id;
+                        concatId = concatId.replace(/\s/g, '');
+                        document.getElementById(concatId).remove();
 
-                            let concatId = 'tbl_attachment'+id;
-                            concatId = concatId.replace(/\s/g, '');
-                            document.getElementById(concatId).remove();
+                        $('#Delete').modal('hide');
+                        toastr.success('Attachment Delete success !.', 'Success ', {timeOut: 5000});
 
-                            $('#Delete').modal('hide');
-                            toastr.success('Attachment Delete success !.', 'Success ', {timeOut: 5000})
-
-                        }
+                    },error : function(err){
+                        console.log(err);
                     }
                 });
         }
@@ -402,8 +396,26 @@ $(document).ready(function () {
                 processData: false,
 
                 success: function (data){
-                    console.log(data);
+                    // console.log(data);
                     $('#AddJobAttachment').modal('hide');
+
+
+                    let ul =
+                    '<div id="tbl_attachment'+ data.id+'" class="ul_id_'+ data.id+' list" >' + 
+                    '<li class="manage-list-row clearfix"> ' + 
+                           ' <div class="job-info"> ' +
+                                   ' <div class="job-details"> ' +
+                                       ' <small class="job-company"><i class="ti-time"></i><b>File Name</b> : <a href="">' + data.file_name + '</a> </small>'+
+                                       ' <small class="job-company"><i class="ti-location-pin"></i><b>Attachment Type </b>:' + data.attachment_type+ '</small> ' +        
+                                       ' <small class="job-company"><i class="ti-file"></i><b>File Size</b>: ' + data.file_size  + '</small> ' +                                                                
+                                    '</div>'+
+                                '</div>';
+                            ul += 
+                                '<div class="job-buttons">' + 
+                                   '<a onclick="DeleteVacancyAttachment(' + data.id + ');" class="btn btn-danger"><i class="ti-trash"></i></a> '+ 
+                                   '</div></li></div>';
+                    $('#tbl_employee_attachment').append(ul);
+
                     toastr.success('Attachment uploaded success  !.', 'Success ', {timeOut: 5000})
                 
                 },error : function (err) {
@@ -459,7 +471,7 @@ $(document).ready(function () {
                     },
                     success: function (data){
 
-                        console.log(data);
+                        // console.log(data);
                         toastr.success('Employee update success !.', 'Success ', {timeOut: 5000})
 
                     },error : function (err) {

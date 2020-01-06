@@ -262,6 +262,13 @@ class EmployeeController extends Controller
          return response()->json($data);
      }
 
+     public function deleteEmployeeDocument($id)
+     {
+        $data = employeeAttachment::find($id);
+        $data->delete();
+        return response()->json($data);
+     }
+
     /**
      * Show the form for editing the specified resource.
      *

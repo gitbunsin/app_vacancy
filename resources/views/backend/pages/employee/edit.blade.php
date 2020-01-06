@@ -220,15 +220,15 @@
                                         <div class="job-info">
                                             <div class="job-details">
                                                 <h3 class="job-name"></h3>
-                                                <small class="job-company"><b>Name :</b>{{$contact->name}}</small>
-                                                <small class="job-company"></i><b>Relationship :</b>{{$contact->relationship}}</small>
-                                                <small class="job-update"><i class="ti-time"></i><b>Mobile : </b>{{$contact->mobile}}</small>
-                                                <span class="j-type part-time"></span>
+                                                <small class="job-company"><b>Name : </b>{{$contact->name}}</small>
+                                                <small class="job-company"></i><b>Relationship : </b>{{$contact->relationship}}</small>
+                                                <small class="job-update"><i class="ti-time"></i><b> Mobile : </b>{{$contact->mobile}}</small>
+                                               
                                             </div>
                                         </div>
                                         <div class="job-buttons">
-                                            <a href="#" onclick="EditEmergencyContact({{$contact->id}});"  class="btn btn-primary"  title="Edit"><i class="ti-pencil-alt"></i></a>
-                                            <a href="#" onclick="DeleteEmergencyContact({{$contact->id}});" class="btn btn-danger"  title="Remove"><i class="ti-close"></i></a>
+                                            <a href="#" onclick="EditEmergencyContact({{$contact->id}});"  class="btn btn-primary"  title="Edit"><i class="icon-edit"></i></a>
+                                            <a href="#" onclick="DeleteEmergencyContact({{$contact->id}});" class="btn btn-danger"  title="Remove"><i class="ti-trash"></i></a>
                                         </div>
                                     </li>
                                 </ul>
@@ -733,9 +733,9 @@
                                                                 <a onclick="ShowEmployeeAttachment({{$employee->id}});" class="btn btn-primary pull-right "  title="Payment"><i class="ti-plus"></i> Add Attachment</a>
                                                             <br/>
                                                         </div>
-                                                        <div class="card-body">
+                                                        <div class="card-body" id="tbl_employee_attachment">
                                                             @foreach($employee->attachment as $employee_attachments)
-                                                                <ul id="tbl_attachment{{$employee_attachments->id}}" class="list">
+                                                                <ul id="tbl_attachment{{$employee_attachments->id}}" class="ul_id{{$employee_attachments->id}}list">
                                                                     <li class="manage-list-row clearfix">
                                                                         <div class="job-info">
                                                                             <div class="job-details">
@@ -746,7 +746,7 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="job-buttons">
-                                                                            <a href="#" data-id="{{$employee_attachments->id}}"  onclick="DeleteVacancyAttachment(this);" class="btn btn-danger" data-toggle="modal" data-placement="top" title="Remove"><i class="ti-close"></i></a>
+                                                                            <a href="#"   onclick="DeleteVacancyAttachment({{$employee_attachments->id}});" class="btn btn-danger" data-toggle="modal" data-placement="top" title="Remove"><i class="ti-close"></i></a>
                                                                         </div>
                                                                     </li>
                                                                 </ul>

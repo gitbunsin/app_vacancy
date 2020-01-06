@@ -46,6 +46,7 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
     Route::post('employee/update/contact/{id}','EmployeeController@updateContactEmployeeDetails');
     Route::post('employee/update/{id}','EmployeeController@updateEmployeeDetails');
     Route::post('employee/add/attachment/{id}','EmployeeController@updateEmployeeDocument');
+    Route::delete('employee/delete/attachment/{id}','EmployeeController@deleteEmployeeDocument');
     Route::post('employee/job-details/{id}','EmployeeController@updateEmployeeJobDetails');
     Route::match(['post', 'put'], 'employee/update/user/{id}', 'EmployeeController@updateEmployeeLogin');
     Route::resource('workexperience','WorkExperienceController');

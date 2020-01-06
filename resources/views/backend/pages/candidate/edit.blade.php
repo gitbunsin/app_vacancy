@@ -182,7 +182,7 @@
                                                                     <li class="manage-list-row clearfix">
                                                                             <div class="job-info">
                                                                                 <div class="job-details">
-                                                                                    <h3 class="job-name"><a class="job_name_tag" href="#"></a></h3>
+                                                                                        <small class="job-company"><i class="ti-time"></i><b>Status : </b> {{$histories->status}}</small>
                                                                                     <small class="job-company"><i class="ti-time"></i><b>Date : </b> {{$histories->performed_date}}</small>
                                                                                     <small class="job-company"><i class="ti-location-pin"></i><b>Performance By :</b> {{$user_admin->name}} </small>            
                                                                                                                                             
