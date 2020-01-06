@@ -59,9 +59,11 @@ class JobController extends Controller
 
     public function profileDetails($id)
     {
+        // dd('hello');
         $user_cv = userCv::where('user_id',$id)->first();
-        $user = User::where('id',$id)->first();
         // dd($user_cv);
+        $user = User::where('id',$id)->first();
+        // dd($user->id);
         return view('frontend.pages.user-profile',compact('user_cv','user'));
 
     }

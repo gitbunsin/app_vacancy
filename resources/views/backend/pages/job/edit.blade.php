@@ -100,40 +100,36 @@
                                     </div>
                                     <div role="tabpanel" class="tab-pane fade" id="description_edit">                                      
                                             <div class="card-body">
-                                                   
-                                                            <table class="table">
-                                                                   
-                                                                    <tr>
-                                                                      <td><b>job Description : </b></td>
-                                                                      <td>{!! $vacancy->job_description !!}</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                      <td><b>job Requirement : </b></td>
-                                                                      <td>{!! $vacancy->job_requirement !!}</td>
-                                                                    </tr>
-                                                                  
-                                                                  </table>
-                                                               
+                                                    <br/>
+                                                <form>
+                                                        <div class="form-group row">
+                                                          <label for="staticEmail" class="col-sm-2 col-form-label"><strong>Job Description : </strong> </label>
+                                                          <div class="col-sm-10">
+                                                                {!! $vacancy->job_description !!}
+                                                          </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                                <label for="staticEmail" class="col-sm-2 col-form-label"><strong>Job Requirement :</strong> </label>
+                                                                <div class="col-sm-10">
+                                                                        {!! $vacancy->job_requirement !!}
+                                                                </div>
+                                                              </div>
+                                                      </form>   
                                             </div>
-                                                        
-
                                             </div>
                                             <div role="tabpanel" class="tab-pane fade" id="attachment">                                      
                                                     <div class="card-body">
                                                                 <div class="card-header">
-                                                                    
-                                                                                <div class="pull-right">
-                                                                                          
-                                                                                        <a onclick="AddVacancyAttachment({{$vacancy->id}});" class="btn btn-primary"  title="Payment"><i class="ti-plus"></i> Add Attachment</a>
-                                                                                </div> 
-                                                                                <br/>
-                                                                                <h3></h3>
-                                                                            </div>
+                                                                        <div class="pull-right">       
+                                                                                <a onclick="AddVacancyAttachment({{$vacancy->id}});" class="btn btn-primary"  title="Payment"><i class="ti-plus"></i> Add Attachment</a>
+                                                                        </div> 
+                                                                        <br/>
+                                                                        <h3></h3>
+                                                                        </div>
                                                             <form action="">
-                                                                    <div class="card-body">
+                                                                    <div class="card-body" id="div_vacancy_attachment">
                                                                             <div class="row">
                                                                                     @foreach ($vacancy->jobAttachment as $vacancyAttachments)
-                                                                                    <div id="div_vacancy_attachment">
                                                                                         <div id="candidate_attachment" class="ul_id{{$vacancyAttachments->id}} list" >
                                                                                                 <li class="manage-list-row clearfix">   
                                                                                                         <div class="job-info">
@@ -153,7 +149,6 @@
                                                                                     @endforeach
                                                                             
                                                                             </div>
-                                                                    </div>
                                                                    
                                                                     </form>
                                                                        
@@ -173,6 +168,7 @@
                 <div class="modal-dialog  modal-lg">
                     <div class="modal-content">
                         <form id="frmVacancyEditResume">
+                            <input type="hidden" id="vacancy_id_attachment" value="">
                             <input type="hidden" id="vacancy_resume_id_edit" value="">
                             <meta name="csrf-token" content="{{ csrf_token() }}">
                             <div class="modal-header theme-bg">

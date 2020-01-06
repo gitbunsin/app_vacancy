@@ -101,11 +101,11 @@ class VacancyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function vacancyUpdateAttachment(Request $request, $id)
+    public function vacancyUpdateAttachment(Request $request, $attachment_id)
     {
         $filename = $request->file('file')->getClientOriginalName();
-        $attachment = vacancyAttachment::find($id);
-        $attachment->vacancy_id = 7;
+        $attachment = vacancyAttachment::find($attachment_id);
+        $attachment->vacancy_id = $request->vacancy_id;
         $attachment->file_name = $filename ;
         $attachment->attachment_type = $request->file('file')->getMimeType();
         $attachment->file_size =  $request->file('file')->getSize();

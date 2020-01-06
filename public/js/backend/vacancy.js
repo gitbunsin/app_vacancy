@@ -8,6 +8,8 @@ $('#frmVacancyEditResume').validate({
     },
     submitHandler: function (form) {
         var id = $('#vacancy_resume_id_edit').val();
+        // var vacancy_id = ;
+        // console.log(vacancy_id);
         var extension = $('#resume_file_edit').val().split('.').pop().toLowerCase();
                 // console.log(extension);
                  if ($.inArray(extension, ['pdf', 'doc', 'xlsx']) == -1) {
@@ -18,6 +20,7 @@ $('#frmVacancyEditResume').validate({
                     var file_data = $('#resume_file_edit').prop('files')[0];
                     var form_data = new FormData();
                     form_data.append('file', file_data);
+                    form_data.append('vacancy_id', $('#vacancy_id_attachment').val());
                     $.ajaxSetup({
                      headers: {
                          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -33,9 +36,8 @@ $('#frmVacancyEditResume').validate({
                      processData: false,
                      success: function (response) {
                          console.log(response);
-                         $('#ModalCandidateEditResume').modal('hide');
+                          $('#ModalCandidateEditResume').modal('hide');
                          // $('#tr_interview' + response.id).remove();
-                      
                          let ul =
                          '<div id="candidate_attachment" class="ul_id '+ response.id+' list" >' + 
                          '<li class="manage-list-row clearfix"> ' + 
@@ -48,8 +50,8 @@ $('#frmVacancyEditResume').validate({
                                      '</div>';
                                  ul += 
                                      '<div class="job-buttons">' + 
-                                        '<a onclick="EditVacancyResume(' + response.id + ');" class="btn btn-primary"><i class="icon-edit"></i></a> '+
-                                        '<a onclick="DeleteVacancyResume(' + response.id + ');" class="btn btn-danger"><i class="ti-trash"></i></a> '+ 
+                                        '<a onclick="EditVacancyResume('+ response.id +');" class="btn btn-primary"><i class="icon-edit"></i></a> '+
+                                        '<a onclick="DeleteVacancyResume('+ response.id +');" class="btn btn-danger"><i class="ti-trash"></i></a> '+ 
                                     '</div></li></div>';
                          
                              $('#candidate_attachment').replaceWith(ul);
@@ -72,6 +74,7 @@ function EditVacancyResume(id)
       {
         //  console.log(result);
          $('#vacancy_resume_id_edit').val(id);
+         $('#vacancy_id_attachment').val(result.vacancy_id);
          $('#old_attachment').val(result.file_name);
          $('#ModalCandidateEditResume').modal('show');
       },error : function(err){
@@ -155,7 +158,7 @@ $('#frmVacancyResume').validate({
                                      '</div>';
                                  ul += 
                                      '<div class="job-buttons">' + 
-                                        '<a onclick="EditCandidateResume(' + response.id + ');" class="btn btn-primary"><i class="icon-edit"></i></a> '+
+                                        '<a onclick="EditVacancyResume(' + response.id + ');" class="btn btn-primary"><i class="icon-edit"></i></a> '+
                                         '<a onclick="DeleteVacancyResume(' + response.id + ');" class="btn btn-danger"><i class="ti-trash"></i></a> '+ 
                                         '</div></li></div>';
                          
@@ -231,10 +234,10 @@ $('#frmEditModalVacancy').validate({
                 "closingDate": $('#closingDate_edit').val(),
             },
             success: function (result) {
-                console.log(result);
+                // console.log(result);
                 $('#ModalEditVacacny').modal('hide');
                 toastr.success('Success', 'item has been updated !');
-                var vacancy = '<tr id="tr_vacancy' + result.id + '"> <th class="scope="row">' + result.id + '</><td>' + result.vacancy_name + '</td><td>' + result.employee.last_name + ' ' + result.employee.first_name + '</td><td>' + result.closingDate + '</td><td style="color:cadetblue;">' + result.status + '</td>';
+                var vacancy = '<tr id="tr_vacancy' + result.id + '"> <th class="scope="row">' + result.id + '</><td><strong><a href="/admin/vacancy/' + result.id + '/edit">' + result.vacancy_name + '</a></strong></td><td>' + result.employee.last_name + ' ' + result.employee.first_name + '</td><td>' + result.closingDate + '</td><td><b class="badge bg-success">' + result.status + '</a></td>';
                 vacancy += '<th><a onclick="EditVacancy(' + result.id + ');"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Vacancy"><i class="icon-edit"></i></a>  <a onclick="DeleteVacancy(' + result.id + ');" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Vacancy"><i class="ti-trash"></i></a></th></tr>';
                 $("#tr_vacancy" + result.id).replaceWith(vacancy);
 
@@ -451,7 +454,7 @@ $("#frmAddModalVacancy").validate({
                 // console.log(result);
                 toastr.success('Success', 'item has been created !');
                 $('#ModalAddVacacny').modal('hide');
-                var vacancy = '<tr id="tr_vacancy' + result.id + '"> <th class="scope="row">' + result.id + '</><td>' + result.vacancy_name + '</td><td>' + result.employee.last_name + ' ' + result.employee.first_name + '</td><td>' + result.closingDate + '</td><td style="color:cadetblue;">' + result.status + '</td>';
+                var vacancy = '<tr id="tr_vacancy' + result.id + '"> <th class="scope="row">' + result.id + '</th><td><strong><a href="/admin/vacancy/' + result.id + '/edit">' + result.vacancy_name + '</a></strong></td><td>' + result.employee.last_name + ' ' + result.employee.first_name + '</td><td>' + result.closingDate + '</td><td><b class="badge bg-success">' + result.status + '</a></td>';
                 vacancy += '<th><a onclick="EditVacancy(' + result.id + ');"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Vacancy"><i class="icon-edit"></i></a>  <a onclick="DeleteVacancy(' + result.id + ');" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Vacancy"><i class="ti-trash"></i></a></th></tr>';
                 $('#tbl_vacancy').append(vacancy);
 

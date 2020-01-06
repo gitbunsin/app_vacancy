@@ -40,7 +40,11 @@
                                             {{$key + 1}}
                                         </td>
                                         <td><strong><a href="{{url('admin/employee/'.$employees->id.'/edit')}}"> {{$employees->first_name}} {{$employees->last_name}}</a></strong></td>
-                                        <td>{{$employees->jobTitle->name}}</td>
+                                        @if ($employees->jobTitle)
+                                                <td>{{$employees->jobTitle->name}}</td>
+                                        @else
+                                                <td></td>
+                                        @endif
                                         <td>{{$employees->mobile}}</td>
                                         <td>{{$employees->work_email}}</td>
                                         <td></td>

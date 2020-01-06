@@ -15,7 +15,10 @@
 						</ul>	
 						<a href="#" class="btn btn-primary"><i class="fa fa-cloud-download" aria-hidden="true"></i> <span>Download Resume as doc</span></a>		        			
 	        		</div><!-- /.tr-sidebar -->        		
-	        	</div>
+				</div>
+				@php
+					// dd($user->id);
+				@endphp
 	            <div class="col-md-8 col-lg-9">
 					<div class="tab-content">
 						<div role="tabpanel" class="tab-pane fade in show active account-info" id="account-info">	
@@ -84,7 +87,7 @@
 									</div>
 								</div>
 								<ul class="tr-list account-details">
-							<input type="hidden" value="{{Auth::user()->id}}" name="user_login_id" id="user_login_id">
+							<input type="hidden" value="{{$user->id}}" name="user_login_id" id="user_login_id">
 							<div class="row">
 				
 									<div class="col-lg-6">
@@ -835,7 +838,7 @@
 							<h1>Change Your Password Account</h1>
 							<span>Are you sure, you want to change your account?</span>
 							<form action="#" id="frmUserChangePassword">
-								<input type="hidden" id="user_password" value="{{auth::user()->id}}">
+								<input type="hidden" id="user_password" value="{{$user->id}}">
 								<input type="hidden" name="_token" value="{{ csrf_token()}}">
 								
 								<div class="col-lg-12">
@@ -876,7 +879,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <form id="frmUploadResume" enctype="multipart/form-data" action="#" method="POST">
-                    <input type="hidden" id="user_resume_id" value="{{auth::user()->id}}">
+                    <input type="hidden" id="user_resume_id" value="{{$user->id}}">
 					<input type="hidden" name="_token" value="{{ csrf_token()}}">
                     <div  class="modal-header theme-bg" style="background-color:#008def" >
                             <h4 class="modal-title" style="color:white;"> Upload Resume</h4>
