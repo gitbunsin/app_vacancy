@@ -13,8 +13,8 @@
                     <li><a href="index.html">We offer 12000 jobs vacation right now</a></li>
                 </ol>
                 <div class="banner-form">
-                    <form action="#">
-                        <input type="text" class="form-control" placeholder="Job Keyword">
+						<form action="{{route('jobs_listing')}}" class="form-inline" method="get">
+                        <input type="text" name='q' class="form-control" placeholder="Job Keyword">
                         <div class="dropdown tr-change-dropdown">
                             <a data-toggle="dropdown" href="#" aria-expanded="false"><span class="change-text">Location</span><i class="fa fa-angle-down"></i></a>
                             <ul class="dropdown-menu tr-change">

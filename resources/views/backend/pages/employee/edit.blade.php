@@ -1830,6 +1830,7 @@
         <div class="modal-content">
             <form id="frmShowWorkExperience">
                 <input type="hidden" id="work_experience_id" value="" />
+                <input type="hidden" id="work_experience_employee_id" value="{{$employee->id}}" />
                 <div class="modal-header theme-bg">
                     <h4 class="modal-title">Work Experience</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

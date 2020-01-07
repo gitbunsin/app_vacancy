@@ -52,6 +52,7 @@ function EditExperience(id)
          $('#from_date_edit').val(result.from);
          $('#to_date_edit').val(result.to);
          $('#comments_edit').val(result.comments);
+        
 
          //Job Title 
          var j = $('#job_title_id_edit');
@@ -121,7 +122,7 @@ $("#frmShowWorkExperience").validate({
                 "from_date" : $('#from_date').val(),
                 "to_date" : $('#to_date').val(),
                 "comments" : $('#comments').val(),
-                "employee_id" : $('#employee_id').val()
+                "employee_id" : $('#work_experience_employee_id').val()
             },
             success: function(result)
             {

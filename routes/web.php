@@ -117,6 +117,7 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
 
 
 Route::get('job','Backend\JobController@job');
+Route::get('search-jobs', 'Backend\JobController@jobsListing')->name('jobs_listing');
 Route::get('job-apply/{job_id}','Backend\JobController@jobApply');
 Route::get('/user/profile/{id}','Backend\JobController@profileDetails');
 Route::get('vacancy/detail/{id}','Backend\JobController@vacancyDetails');

@@ -68,6 +68,14 @@ class JobController extends Controller
         return view('frontend.pages.user-profile',compact('user_cv','user'));
 
     }
+    public function jobsListing(Request $request)
+    {
+        // dd($request->q);
+        $job= vacancy::where('vacancy_name','LIKE','%'.$request->q.'%')->get();
+        // dd($vacancy);
+        return view('frontend/pages/job',compact('job'));
+    }
+
      /**
      * Show the form for creating a new resource.
      *
