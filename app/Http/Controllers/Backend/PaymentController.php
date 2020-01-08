@@ -5,7 +5,10 @@ namespace App\Http\Controllers\backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
+use App\Model\payment;
 use App\Model\pricing;
+use Illuminate\Support\Facades\Auth;
+
 class PaymentController extends Controller
 {
     /**
@@ -16,8 +19,8 @@ class PaymentController extends Controller
     public function index()
     {
         //
-        $packages = Pricing::all();
-        return view('backend/pages/admin/payment/index',compact('packages'));
+        $payment = payment::all();
+        return view('backend/pages/admin/payment/index',compact('payment'));
     }
 
     /**
@@ -39,7 +42,21 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $pricing = pricing::find($request->package_id);
+        $Payer = auth()->guard('admin')->user();
+        $payment = new payment();
+        $payment->name = $Payer->name;
+        $payment->email = $Payer->email;
+        $payment->admin_id = $Payer->id;
+        $payment->package_id = $request->package_id;
+        $payment->amount = $pricing->price;
+        $payment->account_number = $request->account_number;
+        $payment->bank_swift_code = $request->swift_code;
+        $payment->branch_name = $request->branch_name;
+        $payment->branch_address = $request->branch_address;
+        $payment->account_name = $request->account_name;
+        $payment->save();
+        return response::json($payment);
         //
     }
 
@@ -78,6 +95,8 @@ class PaymentController extends Controller
     public function edit($id)
     {
         //
+        $payment = payment::find($id);
+        return view('backend/pages/admin/payment/show',compact('payment'));
     }
 
     /**
@@ -100,6 +119,8 @@ class PaymentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $payment = payment::find($id);
+        $payment->delete();
+        return response::json($payment);
     }
 }

@@ -35,7 +35,7 @@
                                             @if(!empty($employee))
                                             @foreach($employee as $key =>  $employees)
                                                     @php $id = $employees->id;@endphp
-                                      <tr>
+                                      <tr id="tr_employee_{{$employees->id}}">
                                         <td scope="row">
                                             {{$key + 1}}
                                         </td>
@@ -116,7 +116,7 @@
 
                     $.ajax(
                         {
-                            url: "{{url('admin/employee')}}" +"/"+ id,
+                            url: "/admin/employee/" + id,
                             type: 'DELETE',
                             data: {
                                 "id": id,
@@ -124,12 +124,11 @@
                             },
                             success: function (data)
                             {
-                                if(data == "success"){
-
-                                    $('#tbl_company' + id).remove();
+                                // if(data == "success"){
+                                    $('#tr_employee_'+id).remove();
                                     $('#Delete').modal('hide');
                                     toastr.success('Employee Delete success !.', 'Success ', {timeOut: 5000})
-                                }
+                                // }
 
                             },error : function (err) {
 

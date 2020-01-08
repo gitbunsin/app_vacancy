@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 @section('content')
 @php
-    use App\Model\city;use App\Model\country;
+    use App\Model\city;use App\Model\pricing;
 @endphp
 <style>
 .overlay {
@@ -81,50 +81,39 @@
 
                     <div class="card-header">
                         <div class="pull-right">
-                            <a href="{{url('admin/payment/create')}}" class="btn btn-primary"  title="Payment"><i class="ti-plus"></i> Add Payment</a>
+                            <a onclick="loadPayment(this);" class="btn btn-primary"  title="Payment"><i class="ti-plus"></i> Add Payment</a>
                         </div>
                         <input type="text" class="form-control wide-width" placeholder="Search & type" />
                     </div>
-                    <div class="card-body"> 
-
-                            <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                              <div class="modal-dialog">
-                                <div class="modal-content">
-                            
-                                  <div class="stepwizard col-md-offset-3">
-                                    <div class="stepwizard-row setup-panel">
-                                      <div class="stepwizard-step">
-                                        <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
-                            
-                                        <p>Step 1</p>
-                                      </div>
-                                      <div class="stepwizard-step">
-                                        <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
-                                        <p>Step 2</p>
-                                      </div>
-                                      <div class="stepwizard-step">
-                                        <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
-                                        <p>Step 3</p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <!--Top section showing 1, 2 3-->
-                            
-                            
-                                  <div class="modal-header" align="center">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                    </button>
-                                  </div>
-                            
-                            
-                                 
-                            
-                                </div>
-                              </div>
-                            </div>
-                            
-                           
+                    <div class="card-body">    
+                            <table class="table" id='tbl_payment'>
+                                    <thead>
+                                        <tr>
+                                        <th scope="col">#No</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Payer email</th>
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">Time</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>  
+                                    @foreach ($payment as $key => $payments)
+                                        <tr id="tr_payment{{$payments->id}}">
+                                            <th scope="row">{{$key + 1}}</th>
+                                            <td><a href="{{url('admin/payment/'.$payments->id.'/edit')}}"><strong>{{$payments->name}}</strong></a></td>
+                                            <td>{{$payments->email}}</td>
+                                            <td>{{$payments->amount}}</td>
+                                            <td>{{$payments->created_at	}}</td>
+                                            <td><b class="badge bg-success">{{$payments->status}}</b></td>
+                                            <th>
+                                                <a onclick="DeletePayment({{$payments->id}});" class="btn btn-danger"  title="Delete"><i class="ti-trash"></i></a>
+                                            </th>
+                                        </tr>
+                                        @endforeach                                
+                                    </tbody>
+                                    </table>  
                     </div>
                 </div>
             </div>
@@ -134,136 +123,108 @@
     <div id="LoadModalPaymentModule" class="modal fade">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <form id="frmEditCategory">
+                    <form id="frmAddPayment">
                         <meta name="csrf-token" content="{{ csrf_token() }}">
-                        <input type="hidden" name="" val="" id="category_edit_id">
+                        <input type="hidden" name="" val="" id="payment_id">
                         <div class="modal-header theme-bg">						
                             <h4 class="modal-title"> Payments</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">
                             <div class="card-body">
-                                    <div class="stepwizard col-md-12">
-                                            <div class="stepwizard-row setup-panel">
-                                              <div class="stepwizard-step">
-                                                <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
-                                                <p>Step 1</p>
-                                              </div>
-                                              <div class="stepwizard-step">
-                                                <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
-                                                <p>Step 2</p>
-                                              </div>
-                                              <div class="stepwizard-step">
-                                                <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
-                                                <p>Step 3</p>
-                                              </div>
-                                            </div>
-                                          </div>
+                              <div class="row">
+  
+                                <div class="col-sm-5">
+                                    <label>Package</label>
+                                    <select class="form-control" required id="package_id" name="package_id">
+                                        <option value="">  -- Please Select Package-- </option>
+                                        @php $j = pricing::all(); @endphp
+                                        @foreach ($j as $js)
+                                             <option value="{{$js->id}}"> {{$js->package_name . ' ' . $js->price }} $ </option>
+                                        @endforeach
+                                    </select>
+                                    <label>Bank Swift Code</label>
+                                    <input name="swift_code" id="swift_code" type="text"  placeholder="" class="form-control">
 
-                                            <div class="row setup-content" id="step-1">
-                                              <div class="col-xs-12">
-                                                <div class="col-md-12">
-                                                  <h3> Step 1</h3>
-                                                  <div class="form-group">
-                                    
-                                                    <label class="control-label">Name</label>
-                                                    <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Name" />
-                                                  </div>
-                                                  <div class="form-group">
-                                                    <label class="control-label">Surname</label>
-                                                    <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Surname" />
-                                                  </div>
-                                                  <div class="form-group">
-                                                    <label class="control-label">Address</label>
-                                                    <textarea required="required" class="form-control" placeholder="Enter Address"></textarea>
-                                                  </div>
-                                                  <button class="btn btn-primary nextBtn  pull-right" type="button">Next</button>
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="row setup-content" id="step-2">
-                                              <div class="col-xs-12">
-                                                <div class="col-md-12">
-                                                  <h3> Step 2</h3>
-                                                  <div class="form-group">
-                                                    <label class="control-label">Company Name</label>
-                                                    <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Name" />
-                                                  </div>
-                                                  <div class="form-group">
-                                                    <label class="control-label">Company Address</label>
-                                                    <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Address" />
-                                                  </div>
-                                                  <button class="btn btn-primary nextBtn  pull-right" type="button">Next</button>
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="row setup-content" id="step-3">
-                                              <div class="col-xs-6 col-md-offset-3">
-                                                <div class="col-md-12">
-                                                  <h3> Step 3</h3>
-                                                  <button class="btn btn-success pull-right" type="submit">Submit</button>
-                                                </div>
-                                              </div>
-                                            </div>                           
+                                    <label>Account Number *</label>
+                                    <input name="account_number" id="account_number"  type="number" class="form-control">
+
+                                    <label>Branch Name *</label>
+                                    <input name="branch_name" id="branch_name"  type="text" class="form-control">
+
+                                    <label>Branch Address *</label>
+                                    <input name="branch_address" id="branch_address"  type="text" class="form-control">
+                                    <label>Account Name *</label>
+                                    <input name="account_name"   id="account_name" type="text" class="form-control">
+                                   
+                                </div>
+    
+                                <div class="col-sm-7">
+                                    <h4>@lang('app.bank_payment_instruction')</h4>
+
+                        <table class="table">
+                            <tr>
+                                <th>@lang('app.bank_swift_code')</th>
+                                <td>ACLBKHPP</td>
+                            </tr>
+                            <tr>
+                                <th>@lang('app.account_number')</th>
+                                <td>4286 0900 1133 2861</td>
+                            </tr>
+                            <tr>
+                                <th>@lang('app.branch_name')</th>
+                                <td>Phnom Penh</td>
+                            </tr>
+                            <tr>
+                                <th>@lang('app.branch_address')</th>
+                                <td>#148 Preah Sihanouk Blvd,  </td>
+                            </tr>
+                            <tr>
+                                <th>@lang('app.account_name')</th>
+                                <td>Bunsin Toeng</td>
+                            </tr>
+                            <tr>
+                                <th>@lang('app.iban')</th>
+                                <td>AL35202111090000000001234567</td>
+                            </tr>
+                        </table>
+                                </div>
+
+                            </div>                          
                             </div>
                         </div>
                         <div class="modal-footer">
-                               
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Close">
+                            <input type="submit" class="btn btn-danger" value="Save">
                         </div>
                     </form>
                 </div>
             </div>
           </div>
+          <div id="Delete" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form method="POST" action="#" id="frmDeletePayment">
+                            <meta name="csrf-token" content="{{ csrf_token() }}">
+                            <input type="hidden" value="" id="payment_id"/>
+                            <div class="modal-header theme-bg">
+                                <h4 class="modal-title"> Payment </h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Do u want to delete this <b> Payment</b> ?</label>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                                <input type="submit" class="btn btn-danger" value="Yes">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 @endsection
 @section('scripts')
-        <script src="/js/backend/payment.js"></script>
-        <script>
-            $(document).ready(function() {
-  var navListItems = $('div.setup-panel div a'),
-    allWells = $('.setup-content'),
-    allNextBtn = $('.nextBtn');
-
-  allWells.hide();
-
-  navListItems.click(function(e) {
-    e.preventDefault();
-    var $target = $($(this).attr('href')),
-      $item = $(this);
-
-    if (!$item.hasClass('disabled')) {
-      navListItems.removeClass('btn-primary').addClass('btn-default');
-      $item.addClass('btn-primary');
-      allWells.hide();
-      $target.show();
-      $target.find('input:eq(0)').focus();
-    }
-  });
-
-  function closeNav() {
-    document.getElementById("myNav").style.height = "0%";
-  };
-
-allNextBtn.click(function() {
-  var curStep = $(this).closest(".setup-content"),
-    curStepBtn = curStep.attr("id"),
-    nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
-    curInputs = curStep.find("input[type='text'],input[type='url']"),
-    isValid = true;
-
-  $(".form-group").removeClass("has-error");
-  for (var i = 0; i < curInputs.length; i++) {
-    if (!curInputs[i].validity.valid) {
-      isValid = false;
-      $(curInputs[i]).closest(".form-group").addClass("has-error");
-    }
-  }
-
-  if (isValid)
-    nextStepWizard.removeAttr('disabled').trigger('click');
-});
-
-$('div.setup-panel div a.btn-primary').trigger('click');
-});
-
-        </script>
+          <script src="/js/backend/payment.js"></script>
 @endsection
