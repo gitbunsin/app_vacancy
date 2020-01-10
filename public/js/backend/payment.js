@@ -36,7 +36,7 @@ $("#frmAddPayment").validate({
                console.log(result);
                $('#LoadModalPaymentModule').modal('hide');
                toastr.success('Success' , 'item has been create !');
-               var payment = '<tr id="tr_payment' + result.id + '"> <th class="scope="row">' + result.id + '</><td><a href="admin/payment/' + result.id + '/edit"><strong>' + result.name + '</td><td>' + result.email + '</strong></a></td><td>' + result.amount + '</td><td>' + result.created_at + '</td><td>' + result.status + '</td>';
+               var payment = '<tr id="tr_payment' + result.id + '"> <th class="scope="row">' + result.id + '</><td><a href="/admin/payment/' + result.id + '/edit"><strong>' + result.name + '</td><td>' + result.email + '</strong></a></td><td>' + result.amount + '</td><td>' + result.created_at + '</td><td>' + result.status + '</td>';
                payment += '<th><a onclick="DeletePayment(' + result.id + ');" class="btn btn-danger"  title="Payment"><i class="ti-trash"></i></a></th></tr>';
                $('#tbl_payment').append(payment);
 

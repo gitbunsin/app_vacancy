@@ -13,6 +13,7 @@ use App\Model\company;
 use App\Model\jobTitle;
 use App\Model\province;
 use App\User;
+use App\Model\UserVacancy;
 use App\Model\candidateHistory;
 use App\Model\employee;
 use App\Model\candidate;    
@@ -36,7 +37,7 @@ class JobController extends Controller
      */
     public function index()
     {
-        $job = vacancy::with(['employee','category','jobType'])->orderBy('created_at')->paginate('10');
+        $job = vacancy::with(['employee','category','jobType'])->orderBy('created_at')->paginate('9');
         // dd($job);
         return view('backend/pages/job/index',compact('job'));
     }
@@ -71,8 +72,8 @@ class JobController extends Controller
     public function jobsListing(Request $request)
     {
         // dd($request->q);
-        $job= vacancy::where('vacancy_name','LIKE','%'.$request->q.'%')->get();
-        // dd($vacancy);
+        $job = vacancy::where('vacancy_name','LIKE','%'.$request->q.'%')->get();
+        // dd($job );
         return view('frontend/pages/job',compact('job'));
     }
 
@@ -212,33 +213,46 @@ class JobController extends Controller
             $candidate->middle_name = $user_candidate->middle_name;
             $candidate->phone = $user_candidate->phone;
             $candidate->save();
-            $candidate_vacancy = new candidate_vacancy();
-            $candidate_vacancy->candidate_id = $candidate_id;
-            $candidate_vacancy->vacancy_id = $vacancy_id;
-            $candidate_vacancy->status = 'Application Initiated';
-            $candidate_vacancy->applied_date = Carbon::now();
-            $candidate_vacancy->save();
+            $candidate_user_id = $candidate->user_id;
+
+            // $candidate_vacancy = new candidate_vacancy();
+            // $candidate_vacancy->candidate_vacancy
+            $vacancy = vacancy::find($vacancy_id);
+            $candidate->vacancy()->attach($vacancy,array('status'=>'Application Initiated','applied_date'=>Carbon::now()));
+
+
+
+            // User Vacancy
+            $userVacancy  = new UserVacancy();
+            $userVacancy->user_id = $candidate_id;
+            $userVacancy->vacancy_id = $vacancy_id;
+            $userVacancy->status = 'Application Initiated';
+            $userVacancy->applied_date = Carbon::now();
+            $userVacancy->save();
+
+            // $user = user::find($candidate_id);
+            // $candidate->user()->attach($user,array('status'=>'Application Initiated','applied_date'=>Carbon::now()));
             // $candidate->vacancy()->attach($vacancy_id,array('status'=>'Application Initiated','applied_date'=>Carbon::now()));
             //candidate attachment
-            $attachment = new candidateAttachment();
-            $attachment->candidate_id = $candidate->id;
-            $attachment->file_name =  $user_candidate->attachment[0]->file_name ;
-            $attachment->attachment_type = $user_candidate->attachment[0]->file_type ;
-            $attachment->file_size =  $user_candidate->attachment[0]->file_size;
-            $attachment->file_type = $user_candidate->attachment[0]->file_type;
-            $attachment->file_content = $user_candidate->attachment[0]->file_content;
+            // $attachment = new candidateAttachment();
+            // $attachment->candidate_id = $candidate->id;
+            // $attachment->file_name =  $user_candidate->attachment[0]->file_name ;
+            // $attachment->attachment_type = $user_candidate->attachment[0]->file_type ;
+            // $attachment->file_size =  $user_candidate->attachment[0]->file_size;
+            // $attachment->file_type = $user_candidate->attachment[0]->file_type;
+            // $attachment->file_content = $user_candidate->attachment[0]->file_content;
             // $dir = 'uploads/UserCv';
 
-            $candidate_history = new candidateHistory();
-            $candidate_history->admin_id = $candidate_id;
-            $candidate_history->employee_id = $candidate_id;
-            $candidate_history->candidate_id = $candidate_id;
-            $candidate_history->vacancy_id = $vacancy_id;
-            $candidate_history->performed_date = Carbon::now();
-            $candidate_history->status = 'Application Initiated';
-            $candidate_history->save();
+            // $candidate_history = new candidateHistory();
+            // $candidate_history->admin_id = $candidate_id;
+            // $candidate_history->employee_id = $candidate_id;
+            // $candidate_history->candidate_id = $candidate_id;
+            // $candidate_history->vacancy_id = $vacancy_id;
+            // $candidate_history->performed_date = Carbon::now();
+            // $candidate_history->status = 'Application Initiated';
+            // $candidate_history->save();
             // $request->file('file')->move($dir, $user_candidate->attachment->file_name);
-            $attachment->save();
+            // $attachment->save();
             $candidate['vacancy']= vacancy::where('id',$vacancy_id)->first();
             $candidate['candidate_vacancy'] = candidate_vacancy::where('vacancy_id',$vacancy_id)
                                                               ->where('candidate_id',$candidate_id)->first();

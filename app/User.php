@@ -48,4 +48,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(userCv::class);
     }
+    public function vacancy()
+    {
+        return $this->belongsToMany(vacancy::class)->withPivot('applied_date','status');
+    }
 }

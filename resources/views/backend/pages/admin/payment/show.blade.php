@@ -59,7 +59,7 @@
                             </tr> 
                             <tr>
                                     <td>  <input type="submit" class="btn btn-danger" value="Mark to Success"></td>
-                                  
+                                  <td></td>
                             </tr>
                     </table>
                  
@@ -79,7 +79,6 @@
         @php
         $user = auth()->guard('admin')->user();
         @endphp
-
         <div class="container">
             <div class="row">
                 <div class="col-md-8 offset-md-2">

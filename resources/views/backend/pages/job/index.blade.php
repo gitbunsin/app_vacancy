@@ -19,6 +19,7 @@
     use App\Model\company;
     use App\Model\jobTitle;
     use App\Model\province;
+    use App\Model\payment;
 @endphp
 
 <div class="container-fluid">
@@ -65,6 +66,13 @@
                             @endforeach                                
                         </tbody>
                         </table>
+                        <div class="flexbox padd-10">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                        {{ $job ->links() }}
+                                </li>
+                            </ul>
+                        </div>
         </div>
     </div>
 </div>
@@ -145,10 +153,14 @@
                                                                 </div>
                                                                 <div class="col-lg-6">
                                                                     <label>Package</label>
-                                                                    <select class="form-control">
-                                                                        <option>2,00000 CTC</option>
-                                                                        <option value="1">3,00000 $</option>
-                                                                        <option value="2">4,00000 $</option>
+                                                                    @php
+                                                                        $Payment = payment::with('pricing')->where('admin_id',auth()->guard('admin')->user()->id)->get();
+                                                                    @endphp
+                                                                    <select class="form-control" id="package_id_payment" name="package_id_payment">
+                                                                        <option value=""> -- Please Select Payment</option>
+                                                                        @foreach ($Payment  as $item)
+                                                                            <option value="{{$item->id}}"> {{$item->amount}} $</option>
+                                                                        @endforeach
                                                                     </select>
                                                                 </div>
                                                                 <div class="col-lg-6">
@@ -162,10 +174,6 @@
                                                                        @endforeach
                                                                     </select>
                                                                 </div>
-
-                                                               
-                                                               
-                                                                   
 
                                                                         <div class="col-sm-6 m-clear">
                                                                                 <label>Closing Date</label>
@@ -216,7 +224,7 @@
                                                                     </div><br/>
                                                                     <div class="col-lg-6">
                                                                             <label> Negotiation  </label>
-                                                                            <input  name="vacancy_name" id="vacancy_name" type="checkbox" class="form-control">
+                                                                            <input value="1" name="negotiation" id="negotiation" type="checkbox" class="form-control">
                                                                     </div>
                                                                 
                                                                 

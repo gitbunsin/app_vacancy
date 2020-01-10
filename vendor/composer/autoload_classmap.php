@@ -51,7 +51,6 @@ return array(
     'App\\Http\\Controllers\\backend\\PaymentController' => $baseDir . '/app/Http/Controllers/Backend/PaymentController.php',
     'App\\Http\\Controllers\\backend\\VacancyController' => $baseDir . '/app/Http/Controllers/Backend/VacancyController.php',
     'App\\Http\\Controllers\\backend\\WorkExperienceController' => $baseDir . '/app/Http/Controllers/Backend/WorkExperienceController.php',
-    'App\\Http\\Controllers\\testController' => $baseDir . '/app/Http/Controllers/testController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\CheckForMaintenanceMode' => $baseDir . '/app/Http/Middleware/CheckForMaintenanceMode.php',

@@ -461,7 +461,6 @@ class ComposerStaticInit8d8674694d2e01ac5f8f266acbc6ddab
         'App\\Http\\Controllers\\backend\\PaymentController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/PaymentController.php',
         'App\\Http\\Controllers\\backend\\VacancyController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/VacancyController.php',
         'App\\Http\\Controllers\\backend\\WorkExperienceController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/WorkExperienceController.php',
-        'App\\Http\\Controllers\\testController' => __DIR__ . '/../..' . '/app/Http/Controllers/testController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',

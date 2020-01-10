@@ -1225,10 +1225,12 @@ input:focus, textarea:focus, select:focus,
 
 .job-info .tr-title a {
 	color: #000;
+		font-size: 15px;
 }
 
 .job-info .tr-title a:hover {
 	color: #008def;
+	/* font-size: 14px; */
 }
 
 .job-info ul {
@@ -1244,8 +1246,9 @@ input:focus, textarea:focus, select:focus,
 	color: #008def;
 }
 
-.job-meta li {
-	font-size: 14px;
+.job-meta li 
+{
+	font-size: 13px;
 	margin-bottom: 10px;
 }
 
@@ -1847,7 +1850,7 @@ input:focus, textarea:focus, select:focus,
 /* Tr Sidebar */
 
 .widget {
-	color: #a9a9a9;
+	/* color: #a9a9a9; */
 	padding: 35px 25px;
 	border-radius: 4px;
 	background-color: #fff;

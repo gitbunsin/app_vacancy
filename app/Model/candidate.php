@@ -3,7 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\User;
 class candidate extends Model
 {
     protected $table = 'candidates';
@@ -18,6 +18,11 @@ class candidate extends Model
     public function vacancy()
     {
         return $this->belongsToMany(vacancy::class)->withPivot('applied_date','status');
+    }
+    
+    public function user(){
+
+        return $this->belongsToMany(User::class)->withPivot('applied_date','status');
     }
     public function interview()
     {

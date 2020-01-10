@@ -72,8 +72,7 @@ class VacancyController extends Controller
      */
     public function edit($id)
     {
-        $vacancy = vacancy::with(['jobAttachment','province','company','employee','category','jobTitle','JobType'])->where('id',$id)->first();
-        // dd($vacancy);
+        $vacancy = vacancy::with(['skill','jobAttachment','province','company','employee','category','jobTitle','JobType'])->where('id',$id)->first();
         return view('backend/pages/job/edit',compact('vacancy'));
     }
 

@@ -63,6 +63,7 @@
                                                                     <td><b> Salary : </b></td>
                                                                     <td>{{$vacancy->offer_salary}}</td>
                                                             </tr>
+                                                          
                                                             <tr>
                                                                     <td><b> Salary Cycle : </b></td>
                                                                     <td>{{$vacancy->salary_cycle}}</td>
@@ -92,6 +93,17 @@
                                                                     <td><b> closingDate : </b></td>
                                                                     <td>{{$vacancy->closingDate}}</td>
                                                             </tr>
+                                                            {{-- <tr>
+                                                                <td><b> Skills : </b></td>
+                                                                @foreach ($vacancy->skill as $item)
+                                                                 <td>{{$item->name}} </td> 
+                                                                @endforeach
+                                                               
+                                                            </tr> --}}
+                                                            <tr>
+                                                                <td><b> Status : </b></td>
+                                                                <td><b class="badge bg-success"> {{$vacancy->status}}<b></td>
+                                                        </tr>
                                                           
                                                           
                                                           </table>
@@ -149,6 +161,7 @@
                                                                                     @endforeach
                                                                             
                                                                             </div>
+                                                                            
                                                                    
                                                                     </form>
                                                                        
@@ -156,7 +169,12 @@
                                             </div>
                                     </div>
                                 </div>
+                                <div class="modal-footer">
+                                        <a class="btn btn-primary" href="{{ URL::previous() }}">Back</a>
+                                        
+                                    </div>
                     </div>
+                    
             </div>
         </div>
     </div>

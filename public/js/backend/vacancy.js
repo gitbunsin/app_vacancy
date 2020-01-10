@@ -205,7 +205,9 @@ $('#frmEditModalVacancy').validate({
         },
         closingDate_edit : {
             required: true,
-        },
+        },package_id_payment : {
+            required: true,
+        }
     },
     submitHandler: function (form) {
         var id = $('#vacancy_id_edit').val();
@@ -251,7 +253,7 @@ $('#frmEditModalVacancy').validate({
 
 
 function EditVacancy(id){
-    
+   
     $('#vacancy_id_edit').val(id);
     $.ajax({
             type: "GET",
@@ -308,20 +310,51 @@ function EditVacancy(id){
 
                  // skill
                  var s = $('#skill_id_edit');
-                 s.empty();
-                 $.each(result.all_skill, function (key , value) {
-                     var isSelected = '';
-                     $.each(result.vacancy_skill_id, function (k , v) {
+                   s.empty();
+                 var myObj =[];   
+                        $.each(result.vacancy_skill_id, function (i, value) {
+                        //    console.log(value.skill_id);
+                        myObj.push(value.skill_id);
+                   });  
+                   var myObj_skill =[];   
+                        $.each(result.all_skill, function (i, value) {
+                        //    console.log(value.id);
+                        // myObj_skill.push(value.id);
+                   });
 
-                        if(v.skill_id == value.id)
-                     {
-                         isSelected = 'selected';
-                     }
-                     s.append('<option value="'+value.id+'" '+isSelected+' >'+value.name+'</option>');
+                //    var data = myObj.join(",");
+                //    console.log(myObj);
+                //  console.log(myObj_skill);
+                const array1 = myObj;
+                // console.log(array1);
+                for(let i = 0; i < array1.length; i++) { 
+          
+                    // Loop for array2 
+                    for(let j = 0; j < result.all_skill.length; j++) {   
+                        var isSelected = '';
+                        if(array1[i] === result.all_skill[j].id) { 
+                           
+                            isSelected = 'selected';
 
-                     });
-                     
-                 });
+                        } 
+                        s.append('<option value="'+result.all_skill[j].id+'" '+isSelected+' >' + result.all_skill[j].name + '</option>');
+
+    
+                    } 
+                } 
+               
+
+                        // console.log(myObj[i]);
+        
+                //  $.each(result.all_skill, function (key , value) {
+                //         // console.log(value);
+                //         var isSelected = '';
+                //         if('3' == value.id)
+                //         {
+                //             isSelected = 'selected';
+                //         }
+                //         s.append('<option value="'+value.id+'" '+isSelected+' >'+value.name+'</option>');
+                //  });
  
 
                 // JobType
@@ -421,6 +454,8 @@ $("#frmAddModalVacancy").validate({
         },
         closingDate : {
             required: true,
+        },package_id_payment : {
+            required: true,
         }
     }, submitHandler: function (form) {
         // console.log($('#job_description').val());
@@ -451,6 +486,7 @@ $("#frmAddModalVacancy").validate({
                 "offer_salary" : $('#offer_salary').val(),
             },
             success: function (result) {
+                // location.reload();
                 // console.log(result);
                 toastr.success('Success', 'item has been created !');
                 $('#ModalAddVacacny').modal('hide');

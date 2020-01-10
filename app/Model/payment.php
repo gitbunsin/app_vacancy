@@ -10,7 +10,7 @@ class payment extends Model
 
     public function pricing()
     {
-        return $this->belongsToMany(pricing::class);
+        return $this->belongsTo(pricing::class,'package_id','id');
     }
     public function admin()
     {

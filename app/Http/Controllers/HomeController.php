@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Model\jobAttachment;
 use Illuminate\Http\Request;
 use App\Model\pricing;
+use App\Model\vacancy;
 use App\Model\contact;
 use Illuminate\Support\Facades\Response;
 class HomeController extends Controller
@@ -30,7 +31,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('frontend/pages/home');
+        $job = vacancy::with(['company','province','category','jobType','company'])->get();
+        return view('frontend/pages/home',compact('job'));
     }
     public function pricing()
     {

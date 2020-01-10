@@ -1,7 +1,7 @@
 @extends('frontend.layouts.template')
 @section('content')
 @php
-    use App\Model\candidate_vacancy;
+    use App\Model\UserVacancy;
 @endphp
 <style>
     #contact_person {
@@ -19,64 +19,82 @@
     pointer-events: none;
     cursor: default;
     text-decoration: none;
-    color: #ffc107;
+    color: white;
     font-weight: bold;
+    background: red;
+}
+.btn.btn-primary.not-active {
+    background-color: red;
+    border-color: red;
 }
 </style>
-<div class="tr-breadcrumb bg-image section-before">
-    <div class="container">
-        <div class="breadcrumb-info text-center">
-
-            <div class="page-title">
-                <h3>{{$vacancy->vacancy_name}}</h3>
-            </div>
-            <ul class="tr-list job-meta list-inline">
-                <li><i class="fa fa-map-signs" aria-hidden="true"></i>{{$vacancy->province->name}}</li>
-                <li><i class="fa fa-map-marker" aria-hidden="true"></i>{{$vacancy->jobType->name}}</li>
-                <li><i class="fa fa-money" aria-hidden="true"></i>{{$vacancy->offer_salary}}</li>
-                <li><i class="fa fa-tags" aria-hidden="true"></i>{{$vacancy->category->name}}</li>
-                <li><i class="fa fa-hourglass-start" aria-hidden="true"></i>Application Deadline : {{$vacancy->closingDate}}</li>
-            </ul>	
-            <div class="buttons">
-                 @if(Auth::check())
-                    @php
-                        $candidate_vacancy = candidate_vacancy::where('vacancy_id',$vacancy->id)->where('candidate_id',auth::user()->id)->count();                           
-                    @endphp
-                 @endif         
-                <!-- /.check login -->
-                @if(Auth::check() && $candidate_vacancy > 0)
-                    <a href="#"  data-toggle="tooltip" title="Applied For This Job!" class="btn btn-primary not-active"><i class="fa fa-briefcase" aria-hidden="true"></i>Applied For This Job</a>
-                 @elseif(Auth::check())
-                 <a href="#" data-candidate_id={{auth::user()->id}} onclick="ApplyJob({{$vacancy->id}});" class="btn btn-primary "><i class="fa fa-briefcase" aria-hidden="true"></i>Apply For This Job</a>
-                 @else
-                     <a href="#" onclick="NotLogin();" class="btn btn-primary"><i class="fa fa-briefcase" aria-hidden="true"></i>Apply For This Job</a>  
-                 @endif
-                 <a href="#" class="btn button-bookmark"><i class="fa fa-bookmark" aria-hidden="true"></i>Bookmark</a>
-               
-                 <span class="btn button-share"><i class="fa fa-share-alt" aria-hidden="true"></i>Share <span><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></span></span>
-            </div>		
-        </div>
-    </div><!-- /.container -->
-</div><!-- /.tr-breadcrumb -->
 <div class="job-details section-padding">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-lg-8">
                 <div class="job-summary section">
-                    <span class="tr-title">Job Description : </span>
+                        <div class="buttons">
+                                @if(Auth::check())
+                                   @php
+                                       $candidate_vacancy = UserVacancy::where('vacancy_id',$vacancy->id)->where('user_id',auth::user()->id)->count();                           
+                                   @endphp
+                                @endif         
+                               <!-- /.check login -->
+                               @if(Auth::check() && $candidate_vacancy > 0)
+                                   <a href="#"  data-toggle="tooltip" title="Applied For This Job!"  class="btn btn-primary  not-active"><i class="fa fa-briefcase" aria-hidden="true"></i>Applied For This Job</a>
+                                @elseif(Auth::check())
+                                <a href="#" data-candidate_id={{auth::user()->id}} onclick="ApplyJob({{$vacancy->id}});" class="btn btn-primary "><i class="fa fa-briefcase" aria-hidden="true"></i>Apply For This Job</a>
+                                @else
+                                    <a href="#" onclick="NotLogin();" class="btn btn-primary "><i class="fa fa-briefcase" aria-hidden="true"></i>Apply For This Job</a>  
+                                @endif
+                                <a href="#" class="btn button-bookmark"><i class="fa fa-bookmark" aria-hidden="true"></i>Bookmark</a>
+                              
+                           </div>		
+                           <hr/>
+                        <span>Details Info : <b>{{$vacancy->vacancy_name}} </b></span>
+                     <div>
+                            <table class="table">
+                                    <tr>
+                                        <th>Vacancy Name : </th>
+                                        <td>{{$vacancy->vacancy_name}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Location : </th>
+                                      <td>{{$vacancy->province->name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Salary : </th>
+                                        <td>{{$vacancy->offer_salary}}</td>
+                                    </tr>
+                                    <tr>
+                                            <th>Job Type : </th>
+                                            <td>{{$vacancy->jobType->name}}</td>
+                                        </tr>
+                                    <tr>
+                                        <th>function : </th>
+                                        <td>{{$vacancy->category->name}}</td>
+                                    </tr>
+                                    <tr>
+                                            <th> Application Deadline  : </th>
+                                            <td>{{$vacancy->closingDate}}</td>
+                                    </tr>
+                            </table>
+                     </div>
+                     <hr/>
+                    <span class="tr-title"><b> Job Description :</b> </span>
                              {!! $vacancy->job_description !!}
-                    <span>Job Requirements : </span>
+                    <span> <b>Job Requirements :</b> </span>
                     <p>
                             {!! $vacancy->job_requirement!!}    
                     </p>
                     <hr/>
-                        <span>Skills Requirement</span>
+                        <span><b>Skills Requirement</b></span>
                         @foreach ($vacancy->skill as $skills)
                              <a href="#"  class="btn btn-primary "><i class="fa fa-briefcase" aria-hidden="true"></i>{{$skills->name}}</a>
                         @endforeach
                         
                     <hr/>
-                    <span>Contact Information</span>
+                    <span><b>Contact Information</b></span>
                     <div class="row">
                             <div class="col-sm-4">
                                @if ($vacancy->employee->photo)
@@ -95,7 +113,7 @@
                     
                           </div>
                           <hr/>
-                    <span>How to apply</span>
+                    <span><b>How to apply</b></span>
                     <ul class="tr-list">
                            <li>1. Please register Kh-Works Account</li> 
                            <li>2. Apply for a job by clicking the 'Apply Now' button, please click Create CV， After create your CV, employers will review your CV online, Increase your job opportunities. Click Now Here，Learn how to register and post your CV!</i>
@@ -109,19 +127,43 @@
                     <div class="widget-area">
                         <div class="widget short-info">
                             <h3 class="widget_title">Short Info</h3>
-                            <ul class="tr-list">
+                            
+                            <table class="table">
+                                <tr>
+                                    <th> <b> Published : </b></th>
+                                    <td>{{$vacancy->created_at}}</td>
+                                   
+                                </tr>
+                                <tr>
+                                        <th> <b>job poster :  </b></th>
+                                        <td>{{$vacancy->admin->name}}</td>
+                                </tr>
+                                <tr>
+                                        <th> <b>Industry :  </b></th>
+                                        <td>{{$vacancy->category->name}}</td>
+                                </tr>
+                                <tr>
+                                        <th> <b>Experience :  </b></th>
+                                        <td>{{$vacancy->exp_level}}</td>
+                                </tr>
+                                <tr>
+                                        <th> <b>Job function : </b></th>
+                                        <td>{{$vacancy->jobTitle->name}}</td>
+                                </tr>
+                            </table>
+                            {{-- <ul class="tr-list">
                                 <li class="media"><div class="pull-left"><i class="fa fa-calendar" aria-hidden="true"></i></div> <div class="media-body"><span>Published:</span>{{$vacancy->created_at}}</div></li>
                                 <li class="media"><div class="pull-left"><i class="fa fa-user-plus" aria-hidden="true"></i></div> <div class="media-body"><span>Job poster:</span>{{$vacancy->admin->name}}</div></li>
                                 <li class="media"><div class="pull-left"><i class="fa fa-industry" aria-hidden="true"></i></div> <div class="media-body"><span>Industry:</span>{{$vacancy->category->name}}</div></li>
                                 <li class="media"><div class="pull-left"><i class="fa fa-line-chart" aria-hidden="true"></i></div> <div class="media-body"><span>Experience:</span>{{$vacancy->exp_level}}</div></li>
                                 <li class="media"><div class="pull-left"><i class="fa fa-key" aria-hidden="true"></i></div> <div class="media-body"><span>Job function:</span>{{$vacancy->jobTitle->name}}</div></li>
-                            </ul>
+                            </ul> --}}
                         </div><!-- /.widger -->
                         <div class="widget cmpany-info">
                             <h3 class="widget_title">Cmpany Info</h3>
                             <span><b>{{$vacancy->company->company_name}}</b></span>
                         
-                            <ul class="tr-list">
+                            {{-- <ul class="tr-list">
                                 <li><span>Address:</span> London, UK</li>
                                 <li><span>Compnay SIze:</span>  2k Employee</li>
                                 <li><span>Industry:</span> <a href="#">Technology</a></li>
@@ -129,7 +171,34 @@
                                 <li><span>Email:</span> <a href="#"><span class="__cf_email__" data-cfemail="4c25222a230c283e233c2e2334622f2321">{{$vacancy->company->email}}</span></a></li>
                                 <li><span>Website:</span> <a target="_blank" href="{{$vacancy->company->website_link}}">{{$vacancy->company->website_link}}</a></li>
                                 <li><span></span></li>
-                            </ul>
+                            </ul> --}}
+                            <table class="table">
+                                    <tr>
+                                        <th> <b> Address : </b></th>
+                                        <td>London, UK</td>
+                                       
+                                    </tr>
+                                    <tr>
+                                            <th> <b>Compnay SIze : </b></th>
+                                            <td>2k Employee</td>
+                                    </tr>
+                                    <tr>
+                                            <th> <b>Industry :  </b></th>
+                                            <td>{{$vacancy->category->name}}</td>
+                                    </tr>
+                                    <tr>
+                                            <th> <b>Phone :  </b></th>
+                                            <td>{{$vacancy->company->phone}}</td>
+                                    </tr>
+                                    <tr>
+                                            <th> <b>Email : </b></th>
+                                            <td>{{$vacancy->company->email}}</td>
+                                    </tr>
+                                    <tr>
+                                            <th> <b>Website : </b></th>
+                                            <td><a target="_blank" href="{{$vacancy->company->website_link}}">{{$vacancy->company->website_link}}</a></td>
+                                    </tr>
+                                </table>
                             <div class="widget-social">
                                 <ul class="tr-list">
                                     <li><a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>

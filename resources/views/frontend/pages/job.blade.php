@@ -96,7 +96,7 @@
         <div class="tab-content tr-job-posted">
             <div role="tabpanel" class=" active show tab-pane fade two-column" id="two-column">
                 <div class="row">
-             @if($job)
+             @if(!$job->isEmpty())
                     @foreach($job as $jobs)
                         <div class="col-sm-6">
                             <div class="job-item">
@@ -105,38 +105,32 @@
                                         <span class="tr-title">
                                             <a href="{{'vacancy/detail/'.$jobs->id}}">{{$jobs->vacancy_name}}</a><span></span>
                                         </span>
+                                        
                                     </div>
                                     <ul class="tr-list job-meta">
                                         <li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>{{$jobs->company->company_name}}</li>
                                         <li><span><i class="fa fa-money" aria-hidden="true"></i></span>{{$jobs->offer_salary}}</li>
-                                       
+                                        
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     @endforeach
                     @else
-                    <div class="page-content">
-                            <div class="container">
-                                <div class="tr-found section">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="found-image">
-                                                <img src="images/others/404.jpg" alt="Image" class="img-fluid">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="found-info">
-                                                <h1>404</h1>
-                                                <h2>Page Not Found</h2>
-                                                <p>We can't seem to find the page you're looking for.</p>
-                                                <a href="index.html" class="btn btn-primary">Back to home</a>
-                                            </div>
-                                        </div>
-                                    </div><!-- /.row -->				
-                                </div><!-- /.section -->
-                            </div><!-- /.container -->		
-                        </div><!-- /.page-content -->
+                      
+                            <div class="col-md-4">
+                                <div class="found-image">
+                                    <img src="https://demo.themeregion.com/seeker/images/others/404.jpg" alt="Image" class="img-fluid">
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="found-info">
+                                    <h1>404</h1>
+                                    <h2>Related Job Not Found</h2>
+                                    <p>We can't seem to find the page you're looking for.</p>
+                                    <a href="{{URL::previous()}}" class="btn btn-primary">Back to home</a>
+                                </div>
+                            </div>
                 @endif
                 </div><!-- /.row -->										
             </div><!-- /.tab-pane -->

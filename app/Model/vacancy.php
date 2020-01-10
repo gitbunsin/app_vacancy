@@ -14,10 +14,8 @@ class vacancy extends Model
 
         return $this->belongsToMany(candidate::class)->withPivot('applied_date','status');
     }
-    public function user(){
 
-        return $this->belongsToMany(User::class);
-    }
+   
     public function jobAttachment(){
 
         return $this->hasMany(vacancyAttachment::class);

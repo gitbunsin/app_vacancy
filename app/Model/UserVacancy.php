@@ -4,11 +4,10 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class pricing extends Model
+class UserVacancy extends Model
 {
-    protected $table ='pricings';
-    protected $guarded = [];
+    protected $table = 'user_vacancy';
+    protected $guarded = ['id'];
     public $timestamps = false;
-
 
 }
