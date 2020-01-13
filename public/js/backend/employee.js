@@ -28,6 +28,7 @@ $("#frmEmployeeJobDetails").validate({
             "category_id" : $('#employee_job_category_id').val(),
             "join_date" : $('#join_date').val(),
             "location_id" : $('#location_id').val(),
+            "sub_unit_id" : $('#sub_unit_id').val(),
            },
            success: function (result) {
              console.log(result);

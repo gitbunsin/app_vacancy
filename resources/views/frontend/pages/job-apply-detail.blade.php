@@ -35,7 +35,8 @@
                 <div class="job-summary section">
                         <div class="row">
                                 <div class="col-sm-3">
-                                    <img src="https://demo.themeregion.com/jobs/images/job/4.png" alt="">
+                                        <img width="100px;" height="100px"  src="/uploads/UserCv/{{ $vacancy->company->company_logo }}" alt="Smiley face" class="img-fluid">
+                                    {{-- <img  src="/uploads/UserCv/{{ $vacancy->company->company_logo }}" alt="Smiley face" height="100" width="100"> --}}
                                 </div>
                                 <div class="col-sm-9"> <span><b>{{$vacancy->vacancy_name}} </b></span>
                                     <div class="buttons">
@@ -159,27 +160,13 @@
                                         <td>{{$vacancy->jobTitle->name}}</td>
                                 </tr>
                             </table>
-                            {{-- <ul class="tr-list">
-                                <li class="media"><div class="pull-left"><i class="fa fa-calendar" aria-hidden="true"></i></div> <div class="media-body"><span>Published:</span>{{$vacancy->created_at}}</div></li>
-                                <li class="media"><div class="pull-left"><i class="fa fa-user-plus" aria-hidden="true"></i></div> <div class="media-body"><span>Job poster:</span>{{$vacancy->admin->name}}</div></li>
-                                <li class="media"><div class="pull-left"><i class="fa fa-industry" aria-hidden="true"></i></div> <div class="media-body"><span>Industry:</span>{{$vacancy->category->name}}</div></li>
-                                <li class="media"><div class="pull-left"><i class="fa fa-line-chart" aria-hidden="true"></i></div> <div class="media-body"><span>Experience:</span>{{$vacancy->exp_level}}</div></li>
-                                <li class="media"><div class="pull-left"><i class="fa fa-key" aria-hidden="true"></i></div> <div class="media-body"><span>Job function:</span>{{$vacancy->jobTitle->name}}</div></li>
-                            </ul> --}}
+                            
                         </div><!-- /.widger -->
                         <div class="widget cmpany-info">
                             <h3 class="widget_title">Cmpany Info</h3>
                             <span><b>{{$vacancy->company->company_name}}</b></span>
                         
-                            {{-- <ul class="tr-list">
-                                <li><span>Address:</span> London, UK</li>
-                                <li><span>Compnay SIze:</span>  2k Employee</li>
-                                <li><span>Industry:</span> <a href="#">Technology</a></li>
-                                <li><span>Phone:</span>{{$vacancy->company->phone}}</li>
-                                <li><span>Email:</span> <a href="#"><span class="__cf_email__" data-cfemail="4c25222a230c283e233c2e2334622f2321">{{$vacancy->company->email}}</span></a></li>
-                                <li><span>Website:</span> <a target="_blank" href="{{$vacancy->company->website_link}}">{{$vacancy->company->website_link}}</a></li>
-                                <li><span></span></li>
-                            </ul> --}}
+                          
                             <table class="table">
                                     <tr>
                                         <th> <b> Address : </b></th>

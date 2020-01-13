@@ -11,7 +11,7 @@ $("#frmEditBasicSalary").validate({
        }
     }, submitHandler: function (form) {
  
-       var id  = $('#basic_salary_id_edit').val();
+       var id  = $('#basic_employee_id_edit').val();
        $.ajaxSetup({
            headers: {
                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -27,14 +27,14 @@ $("#frmEditBasicSalary").validate({
             "paygrade_id" : $('#paygrade_id_edit').val(),
             "pay_periods_id" : $('#pay_periods_id_edit').val(),
             "comments" :  $('#comments_salary_edit').val() ,
-            "employee_id" :$('#basic_salary_id_edit').val()
+            "employee_id" :$('#employee_id').val()
         },
            success: function (result) {
             //  console.log(result);
              $('#ShowEditBasicSalary').modal('hide');
              toastr.success('Success' , 'item has been updated !');
              var basicSalary = '<tr id="tr_basic_salary' + result.id + '"> <th class="scope="row">' + result.id + '</><td>' + result.salary_component + '</td><td>' + result.payPeriod.name + '</td><td>' + result.currency.name + '</td><td>' + result.basic_salary + '</td><td>' + result.comments + '</td>';
-             basicSalary += '<th><a onclick="EditSalary(' + result.id + ');"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Status"><i class="icon-edit"></i></a>  <a onclick="DeleteSalary(' + result.id + ');" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Category"><i class="ti-trash"></i></a></th></tr>';
+             basicSalary += '<th><a onclick="DeleteEditSalary(' + result.id + ');"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Status"><i class="icon-edit"></i></a>  <a onclick="DeleteSalary(' + result.id + ');" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Category"><i class="ti-trash"></i></a></th></tr>';
              $("#tr_basic_salary" + result.id).replaceWith(basicSalary);
            },error : function(err){
                 console.log(err);
@@ -45,13 +45,13 @@ $("#frmEditBasicSalary").validate({
 
 function EditSalary(id)
 {
-   $('#basic_salary_id_edit').val(id);
+   $('#basic_employee_id_edit').val(id);
    $.ajax({
       type: "GET",
       url: "/admin/basicSalary" + "/" + id + "/edit",
       success: function(result)
       {
-         console.log(result);
+        //  console.log(result);
          $('#ShowEditBasicSalary').modal('show');
          $('#salary_component_edit').val(result.salary_component);
          $('#comments_edit').val(result.comments);
@@ -164,7 +164,7 @@ $("#frmShowBasicSalary").validate({
                $('#ShowBasicSalary').modal('hide');
                toastr.success('Success' , 'item has been create !');
                var basicSalary = '<tr id="tr_basic_salary' + result.id + '"> <th class="scope="row">' + result.id + '</><td>' + result.salary_component + '</td><td>' + result.payPeriod.name + '</td><td>' + result.currency.name + '</td><td>' + result.basic_salary + '</td><td>' + result.comments + '</td>';
-               basicSalary += '<th><a onclick="EditSalary(' + result.id + ');"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Status"><i class="icon-edit"></i></a>  <a onclick="DeleteSalary(' + result.id + ');" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Category"><i class="ti-trash"></i></a></th></tr>';
+               basicSalary += '<th><a onclick="EditSalary(' + result.id + ');"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Status"><i class="icon-edit"></i></a>  <a onclick="DeleteEditSalary(' + result.id + ');" data-toggle="modal" class="btn btn-danger"   title="Category"><i class="ti-trash"></i></a></th></tr>';
                $('#tbl_basic_salary').append(basicSalary);
 
             },error : function(err){

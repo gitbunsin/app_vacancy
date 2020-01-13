@@ -97,10 +97,14 @@ class EmployeeBasicSalaryController extends Controller
         $basicSalary->pay_grade_id = $request->paygrade_id;
         $basicSalary->salary_component = $request->salary_component;
         $basicSalary->basic_salary = $request->amount;
-        $basicSalary->payperiod_id = $request->pay_periods_id;
         $basicSalary->comments = $request->comments;
+        $basicSalary->payperiod_id = $request->pay_periods_id;
         $basicSalary->currency_id = $request->currency_id;
         $basicSalary->save();
+        //Paygrade 
+        $basicSalary['payGrade'] = payGrade::where('id',$request->pay_grade_id)->first();
+        $basicSalary['currency'] = currency::where('id',$request->currency_id)->first();
+        $basicSalary['payPeriod'] = payPeriod::where('id',$request->pay_periods_id)->first();
         return response()->json($basicSalary);
     }
 

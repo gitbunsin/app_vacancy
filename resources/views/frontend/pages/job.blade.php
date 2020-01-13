@@ -24,7 +24,8 @@
                                 <div class="job-info">
                                     <div class="row">
                                         <div class="col-sm-2">
-                                    <img width="50px;" src="https://demo.themeregion.com/seeker/images/others/404.jpg" alt="Image" class="img-fluid">
+                                                <img width="50px;"  src="/uploads/UserCv/{{ $jobs->company->company_logo }}" alt="Smiley face" class="img-fluid">
+                                    {{-- <img  src="https://demo.themeregion.com/seeker/images/others/404.jpg" alt="Image" class="img-fluid"> --}}
 
                                         </div>
                                         <div class="col-sm-10">

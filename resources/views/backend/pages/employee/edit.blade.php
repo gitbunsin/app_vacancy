@@ -7,6 +7,9 @@
       use App\Model\employee;
       use App\Model\language; 
       use App\Model\license; 
+      use App\Model\subUnit; 
+      use App\Model\city; 
+    
       use App\Model\currency;
       use App\Model\membership;
       use App\Model\ReportingMethod;
@@ -158,22 +161,42 @@
                                         <label>Address Street 2  .</label>
                                         <input name="street2" id="street2"  value="{{$employee->street2}}" type="text" class="form-control">
                                     </div>
-                                    <div class="col-sm-4">
+                                    {{-- <div class="col-sm-4">
                                         <label>City .</label>
                                         <input name="city_code" id="city_code" value="{{$employee->city_code}}" type="text" class="form-control">
-                                    </div>
+                                    </div> --}}
                                     <div class="col-sm-4">
+                                            <label> City</label>
+                                            <select class="form-control"  name="city_code" id="city_code">
+                                                <option value="" required > -- plz select City  -- </option>
+                                                @php $City = city::all(); @endphp
+                                                @foreach($City as $Cities)
+                                                     <option value="{{ $Cities->id }}" {{ ( $Cities->id == $employee->city_code) ? 'selected' : '' }}> {{ $Cities->name }} </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-4">
+                                                <label> State/Province</label>
+                                                <select class="form-control"  name="country_code" id="country_code">
+                                                    <option value="" required > -- plz select country  -- </option>
+                                                    @php $State = country::all(); @endphp
+                                                    @foreach($State as $States)
+                                                         <option value="{{ $States->id }}" {{ ( $States->id == $employee->country_code) ? 'selected' : '' }}> {{ $States->name }} </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                    {{-- <div class="col-sm-4">
                                         <label>State/Province</label>
                                         <input value="{{$employee->province_code}}" name="province_code" id="province_code" type="text" class="form-control">
-                                    </div>
+                                    </div> --}}
                                     <div class="col-sm-4">
                                         <label>Zip/Postal Code .</label>
                                         <input name="zip_code" id="zip_code" value="{{$employee->zip_code}}" type="text" class="form-control">
                                     </div>
-                                    <div class="col-sm-4">
+                                    {{-- <div class="col-sm-4">
                                         <label>Country .</label>
                                         <input name="country_code" id="country_code" value="{{$employee->country_code}}" type="text" class="form-control">
-                                    </div>
+                                    </div> --}}
                                     <div class="col-sm-4">
                                         <label>Home Telephone</label>
                                         <input value="{{$employee->telephone}}" name="telephone" id="telephone" type="text" class="form-control">
@@ -292,9 +315,9 @@
                                                                                         <label> Sub Unit</label>
                                                                                         <select class="form-control"  name="sub_unit_id" id="sub_unit_id">
                                                                                             <option value="" required > -- plz select Sub Unit -- </option>
-                                                                                            @php $subUnit = array("IT Department ","Accounting");@endphp
+                                                                                            @php $subUnit = subUnit::all();  @endphp
                                                                                             @foreach($subUnit as $subUnits)
-                                                                                                <option value="{{$subUnits}}"> {{$subUnits}}</option>
+                                                                                            <option value="{{ $subUnits->id }}" {{ ( $subUnits->id == $employee->sub_unit_id) ? 'selected' : '' }}> {{ $subUnits->name }} </option>
                                                                                             @endforeach
                                                                                         </select>
                                                                                     </div>
@@ -1882,7 +1905,8 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <form id="frmEditBasicSalary">
-                        <input type="hidden" id="basic_salary_id_edit" value="{{$employee->id}}" />
+                        <input type="hidden" id="basic_employee_id_edit" value="" />
+                        <input type="hidden" value="{{$employee->id}}" id="employee_id">
                         <div class="modal-header theme-bg">
                             <h4 class="modal-title">Basic Salary </h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -2142,9 +2166,21 @@
                                 <label>Name</label>
                                 <input value="" name="name" id="name" type="text" class="form-control">
                             </div>
-                            <div class="col-sm-6">
+                            {{-- <div class="col-sm-6">
                                 <label>Relationship</label>
                                 <input value="" name="relationship" id="relationship" type="text" class="form-control">
+                            </div> --}}
+                            <div class="col-sm-6">
+                                    <label> Relationship</label>
+                                        <select class="form-control" required id="relationship" name="relationship">
+                                            <option value="">  -- Pleae Select Relationship -- </option>
+                                            @php
+                                                $relationship= array('Mother','Father','Co-Worker','GrandMother','Friend');
+                                            @endphp
+                                            @foreach ($relationship as $relationships)
+                                            <option value="{{$relationships}}"> {{$relationships}}</option>                                     
+                                            @endforeach
+                                    </select>
                             </div>
                             <div class="col-sm-6">
                                 <label>Home Telephone</label>
@@ -2187,9 +2223,21 @@
                                 <label>Name</label>
                                 <input value="" name="name_edit" id="name_edit" type="text" class="form-control">
                             </div>
-                            <div class="col-sm-6">
+                            {{-- <div class="col-sm-6">
                                 <label>Relationship</label>
                                 <input value="" name="relationship_edit" id="relationship_edit" type="text" class="form-control">
+                            </div> --}}
+                            <div class="col-sm-6">
+                                    <label> Relationship</label>
+                                        <select class="form-control" required id="relationship_edit" name="relationship_edit">
+                                            <option value="">  -- Pleae Select Relationship -- </option>
+                                            @php
+                                                $relationship= array('Mother','Father','Co-Worker','GrandMother','Friend');
+                                            @endphp
+                                            @foreach ($relationship as $relationships)
+                                                 <option value="{{$relationships}}"> {{$relationships}}</option>                                     
+                                            @endforeach
+                                    </select>
                             </div>
                             <div class="col-sm-6">
                                 <label>Home Telephone</label>

@@ -1,3 +1,84 @@
+function showSubUnit(id){
+    $('#AddSubUnit').modal('show');
+
+}
+$('#frmAddSubUnit').validate({
+    rules:{
+        company_subUnit_name : {
+            required : true
+        },subUnit_head : {
+            required : true
+        }
+    },
+    submitHandler: function (form) {
+     
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        jQuery.ajax({
+            url: "/admin/subUnit",
+            data: {
+                'name' : $('#company_subUnit_name').val(),
+                'parent_id' : $('#subUnit_head').val()
+            },
+            method: 'POST',
+            success: function (response) {
+                console.log(response);
+                $('#AddSubUnit').modal('hide');
+                toastr.success('Success' , 'item has been create !');
+                var subUnit = '<tr id="subUnit_id' + response.id + '"><td>' + response.name + '</td><td>' + response.name + '</td>';
+                subUnit += '<th><a onclick="EditSubUnit(' + response.id + ');" class="btn btn-primary"  title="License"><i class="icon-edit"></i></a>  <a onclick="DeleteSubUnit(' + response.id + ');" class="btn btn-danger" data-placement="top" title="License"><i class="ti-trash"></i></a></th></tr>';
+                $('#company_list_graph').append(subUnit);
+            }, error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+
+ });
+
+
+
+
+
+
+
+function DeleteSubUnit(id){
+    $('#company_subunit_id').val(id);
+    $('#DeleteSubUnit').modal('show');
+}
+
+$('#frmDeleteSubUnit').validate({
+
+    submitHandler: function (form) {
+        var id = $('#company_subunit_id').val();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        jQuery.ajax({
+            url: "/admin/subUnit" + '/' + id,
+            method: 'Delete',
+            success: function (response) {
+                $('#DeleteSubUnit').modal('hide');
+                $('#subUnit_id' + response.id).remove();
+                toastr.success('Success', 'item has been deleted !');
+            }, error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+
+ });
+
+
+
+
+
+
 function EditLocation(xxx) {
 
     $('#edit_id').val(xxx);

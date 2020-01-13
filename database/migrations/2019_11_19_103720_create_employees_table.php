@@ -38,6 +38,10 @@ class CreateEmployeesTable extends Migration
             $table->integer('location_id')->unsigned()->nullable();
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
 
+
+            $table->integer('sub_unit_id')->unsigned()->nullable();
+            $table->foreign('sub_unit_id')->references('id')->on('sub_units')->onDelete('cascade');
+
             $table->string('employee_id')->nullable();
             $table->string('first_name')->nullable();
             $table->string('middle_name')->nullable();
@@ -47,9 +51,13 @@ class CreateEmployeesTable extends Migration
             $table->enum('marital_status', ['single', 'married'])->nullable();
             $table->string('street1')->nullable();
             $table->string('street2')->nullable();
-            $table->string('city_code')->nullable();
-            $table->string('country_code')->nullable();
-            $table->string('province_code')->nullable();
+            // $table->string('city_code')->nullable();
+            // $table->string('country_code')->nullable();
+            $table->integer('city_code')->unsigned()->nullable();
+            $table->foreign('city_code')->references('id')->on('cities')->onDelete('cascade');
+            $table->integer('country_code')->unsigned()->nullable();
+            $table->foreign('country_code')->references('id')->on('countries')->onDelete('cascade');
+
             $table->string('zip_code')->nullable();
             $table->string('telephone')->nullable();
             $table->string('mobile')->nullable();

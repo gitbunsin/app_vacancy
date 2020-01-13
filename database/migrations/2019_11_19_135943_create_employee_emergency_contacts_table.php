@@ -22,6 +22,7 @@ class CreateEmployeeEmergencyContactsTable extends Migration
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
             $table->string('name')->nullable();
             $table->string('relationship')->nullable();
+            // $table->enum('relationship', ['mother','father','friend','co-worker'])->nullable();
             $table->string('home_telephone')->nullable();
             $table->string('mobile')->nullable();
             $table->string('work_telephone')->nullable();

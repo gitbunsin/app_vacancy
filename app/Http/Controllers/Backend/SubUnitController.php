@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Response;
 use App\Model\subUnit;
 
 class SubUnitController extends Controller
@@ -37,7 +38,11 @@ class SubUnitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $subUit = new SubUnit();
+       $subUit->name = $request->name;
+       $subUit->parent_id = $request->parent_id;
+       $subUit->save();
+       return response::json($subUit);
     }
 
     /**
@@ -82,6 +87,8 @@ class SubUnitController extends Controller
      */
     public function destroy($id)
     {
-        //
+       $subUit = subUnit::find($id);
+       $subUit->delete();
+       return response::json($subUit);
     }
 }

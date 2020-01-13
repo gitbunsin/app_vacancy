@@ -163,6 +163,7 @@ class EmployeeController extends Controller
         $employee_job->job_category_id = $request->category_id;
         $employee_job->joined_date =  $request->join_date;
         $employee_job->location_id =  $request->location_id;
+        $employee_job->sub_unit_id = $request->sub_unit_id;
         $employee_job->save();
         return response()->json($employee_job);
     }
@@ -238,7 +239,7 @@ class EmployeeController extends Controller
          $employee_contact->street2 = input::get('street2');
          $employee_contact->city_code = input::get('city_code');
          $employee_contact->country_code = input::get('country_code');
-         $employee_contact->province_code = input::get('province_code');
+        //  $employee_contact->province_code = input::get('province_code');
          $employee_contact->zip_code = input::get('zip_code');
          $employee_contact->telephone = input::get('telephone');
          $employee_contact->mobile = input::get('mobile');
