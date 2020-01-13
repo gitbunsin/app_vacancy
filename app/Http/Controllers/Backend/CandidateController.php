@@ -82,14 +82,14 @@ class CandidateController extends Controller
         $request->file('file')->move($dir, $filename);
         $attachment->save();
         //Candidate History
-        $candidate_history = new candidateHistory();
-        $candidate_history->admin_id = auth::guard('admin')->user()->id;
-        $candidate_history->employee_id = auth::guard('admin')->user()->id;
-        $candidate_history->candidate_id = $candidate_id;
-        $candidate_history->vacancy_id = $request->vacancy_id;
-        $candidate_history->performed_date = Carbon::now();
-        $candidate_history->status = $request->status;
-        $candidate_history->save();
+        // $candidate_history = new candidateHistory();
+        // $candidate_history->admin_id = auth::guard('admin')->user()->id;
+        // $candidate_history->employee_id = auth::guard('admin')->user()->id;
+        // $candidate_history->candidate_id = $candidate_id;
+        // $candidate_history->vacancy_id = $request->vacancy_id;
+        // $candidate_history->performed_date = Carbon::now();
+        // $candidate_history->status = $request->status;
+        // $candidate_history->save();
 
         $candidate['vacancy']= vacancy::where('id',$request->vacancy_id)->first();
         $candidate['candidate_vacancy'] = candidate_vacancy::where('vacancy_id',$request->vacancy_id)

@@ -2680,6 +2680,10 @@ input:focus, textarea:focus, select:focus,
 	padding: 30px 40px;
 }
 
+.apply-job .job-info, .two-column .job-info {
+    padding: 15px 18px;
+    box-shadow: 0 0 8px -4px #888;
+}
 .apply-job .btn {
 	margin: 5px 0 0 0;
 }

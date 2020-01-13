@@ -44,3 +44,7 @@
     @yield('scripts')
   </body>
 </html>	
+<script>
+
+         
+</script>

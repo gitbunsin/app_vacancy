@@ -79,7 +79,7 @@ $("#frmSeekerRegister").validate({
            }
        });
        jQuery.ajax({
-           url: "register",
+           url: "/register",
            method: 'POST',
            data: {
                 "seeker_username" : $('#seeker_username').val(),

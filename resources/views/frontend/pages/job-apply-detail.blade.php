@@ -33,25 +33,33 @@
         <div class="row">
             <div class="col-md-8 col-lg-8">
                 <div class="job-summary section">
-                        <div class="buttons">
-                                @if(Auth::check())
-                                   @php
-                                       $candidate_vacancy = UserVacancy::where('vacancy_id',$vacancy->id)->where('user_id',auth::user()->id)->count();                           
-                                   @endphp
-                                @endif         
-                               <!-- /.check login -->
-                               @if(Auth::check() && $candidate_vacancy > 0)
-                                   <a href="#"  data-toggle="tooltip" title="Applied For This Job!"  class="btn btn-primary  not-active"><i class="fa fa-briefcase" aria-hidden="true"></i>Applied For This Job</a>
-                                @elseif(Auth::check())
-                                <a href="#" data-candidate_id={{auth::user()->id}} onclick="ApplyJob({{$vacancy->id}});" class="btn btn-primary "><i class="fa fa-briefcase" aria-hidden="true"></i>Apply For This Job</a>
-                                @else
-                                    <a href="#" onclick="NotLogin();" class="btn btn-primary "><i class="fa fa-briefcase" aria-hidden="true"></i>Apply For This Job</a>  
-                                @endif
-                                <a href="#" class="btn button-bookmark"><i class="fa fa-bookmark" aria-hidden="true"></i>Bookmark</a>
-                              
-                           </div>		
-                           <hr/>
-                        <span>Details Info : <b>{{$vacancy->vacancy_name}} </b></span>
+                        <div class="row">
+                                <div class="col-sm-3">
+                                    <img src="https://demo.themeregion.com/jobs/images/job/4.png" alt="">
+                                </div>
+                                <div class="col-sm-9"> <span><b>{{$vacancy->vacancy_name}} </b></span>
+                                    <div class="buttons">
+                                            @if(Auth::check())
+                                               @php
+                                                   $candidate_vacancy = UserVacancy::where('vacancy_id',$vacancy->id)->where('user_id',auth::user()->id)->count();                           
+                                               @endphp
+                                            @endif         
+                                           <!-- /.check login -->
+                                           @if(Auth::check() && $candidate_vacancy > 0)
+                                               <a href="#"  data-toggle="tooltip" title="Applied For This Job!"  class="btn btn-primary  not-active"><i class="fa fa-briefcase" aria-hidden="true"></i>Applied For This Job</a>
+                                            @elseif(Auth::check())
+                                            <a href="#" data-candidate_id={{auth::user()->id}} onclick="ApplyJob({{$vacancy->id}});" class="btn btn-primary "><i class="fa fa-briefcase" aria-hidden="true"></i>Apply For This Job</a>
+                                            @else
+                                                <a href="#" onclick="NotLogin();" class="btn btn-primary "><i class="fa fa-briefcase" aria-hidden="true"></i>Apply For This Job</a>  
+                                            @endif
+                                            <a href="#" class="btn button-bookmark"><i class="fa fa-bookmark" aria-hidden="true"></i>Bookmark</a>
+                                          
+                                       </div>	
+                                </div>
+                              </div>
+ 	
+                      
+                        <br/>
                      <div>
                             <table class="table">
                                     <tr>

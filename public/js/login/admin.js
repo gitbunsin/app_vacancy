@@ -9,7 +9,7 @@
             }
         },submitHandler: function(form) 
         {
-            var url = 'login';
+            // var url = 'login';
             // console.log('login');
             $email = $('#email').val();
             $password = $('#password').val()
@@ -19,18 +19,23 @@
                 }
             });
             jQuery.ajax({
-                url: url,
+                url: '/login',
                 method: 'POST',
                 data: {
                     "email" : $email,
                     "password" : $password
                 },
                 success: function(result){
+                    
                     // console.log(result);
                     if(result == "success"){
                         toastr.success('User' , 'logined succcess !');
-                        // redirectWithFlashMessage('/admin/app');
-                        window.location = '/job';
+                        var delay = 3000; 
+                            URL = '/job';
+                            setTimeout(function()
+                            {               
+                              window.location = URL;
+                            }, delay);
                     }else{
                         toastr.error('These credentials do not match our records.!');
                     }
@@ -63,7 +68,7 @@
                 }
             });
             jQuery.ajax({
-                url: "admin-login",
+                url: "/admin-login",
                 method: 'POST',
                 data: {
                     "email" : $email,
@@ -73,8 +78,12 @@
                     // console.log(result);
                     if(result == "success"){
                         toastr.success('Admin' , 'logined succcess !');
-                        // redirectWithFlashMessage('/admin/app');
-                        window.location = '/admin/app';
+                        var delay = 3000; 
+                            URL = '/admin/app';
+                            setTimeout(function()
+                            {               
+                              window.location = URL;
+                            }, delay);
                     }else{
                         toastr.error('These credentials do not match our records.!');
                     }
