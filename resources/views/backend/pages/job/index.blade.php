@@ -218,14 +218,26 @@
                                                                             @endforeach
                                                                         </select>
                                                                     </div>
+                                                                   
                                                                     <div class="col-lg-6">
-                                                                            <label> Salary Range</label>
-                                                                            <input  name="offer_salary" id="offer_salary" type="text" class="form-control">
-                                                                    </div><br/>
-                                                                    <div class="col-lg-6">
-                                                                            <label> Negotiation  </label>
-                                                                            <input value="1" name="negotiation" id="negotiation" type="checkbox" class="form-control">
-                                                                    </div>
+                                                                        <div class="row">
+                                                                                <div class="col-lg-6">
+                                                                                        <label> Min Salary</label>
+                                                                                        <input placeholder="$" id="minSalary" name="minSalary" type="text" class="number form-control"/>
+                                                                                   </div> 
+                                                                                <div class="col-lg-6">
+                                                                                        <label> Max Salary</label>
+                                                                                      <input placeholder="$"  id="maxSalary" name="maxSalary" type="text" class="number form-control"/>
+                                                                                   </div>
+                                                                               
+                                                                        </div>
+                                                                        </div><br/><br/>
+                                                                        <div class="col-lg-6">
+                                                                                <label></label>
+                                                                                <div class="checkbox">
+                                                                                        <label><input type="checkbox" name="checkSalary" id="checkSalary" value=""> Negotination</label>
+                                                                                      </div>
+                                                                        </div>
                                                                 
                                                                 
                                                         </div>
@@ -409,13 +421,24 @@
                                                                             </select>
                                                                         </div>
                                                                         <div class="col-lg-6">
-                                                                                <label> Salary Range</label>
-                                                                                <input  name="offer_salary_edit" id="offer_salary_edit" type="text" class="form-control">
-                                                                        </div><br/>
-                                                                        <div class="col-lg-6">
-                                                                                <label> Negotiation  </label>
-                                                                                <input  name="vacancy_name" id="vacancy_name" type="checkbox" class="form-control">
-                                                                        </div>
+                                                                                <div class="row">
+                                                                                        <div class="col-lg-6">
+                                                                                                <label> Min Salary</label>
+                                                                                                <input placeholder="$" id="minSalaryEdit" name="minSalaryEdit" type="text" class="number form-control"/>
+                                                                                           </div> 
+                                                                                        <div class="col-lg-6">
+                                                                                                <label> Max Salary</label>
+                                                                                              <input placeholder="$"  id="maxSalaryEdit" name="maxSalaryEdit" type="text" class="number form-control"/>
+                                                                                           </div>
+                                                                                       
+                                                                                </div>
+                                                                                </div><br/><br/>
+                                                                                <div class="col-lg-6">
+                                                                                        <label></label>
+                                                                                        <div class="checkbox">
+                                                                                                <label><input type="checkbox" name="checkSalaryEdit" id="checkSalaryEdit" value=""> Negotination</label>
+                                                                                              </div>
+                                                                                </div>
                                                             </div>
                                                         </div>
                                             </div>

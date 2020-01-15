@@ -76,7 +76,7 @@ class AdminLoginController extends Controller
     public function login(Request $request)
     {
         
-        if (auth()->guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (auth()->guard('admin')->attempt(['email' => $request->email, 'password' => $request->password,'verified'=> 1])) {
             return response()->json("success");
         }else {
             return response()->json("error");

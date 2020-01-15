@@ -303,7 +303,9 @@ class JobController extends Controller
         $v->job_title_id = $request->job_title_id;
         $v->salary_cycle = $request->salary_cycle;
         $v->exp_level = $request->exp_level;
-        $v->offer_salary = $request->offer_salary;
+        $v->maxSalary = $request->maxSalary;
+        $v->minSalary = $request->minSalary;
+        $v->negotiation = $request->checkSalary;
         $v->save();
         $idAreas_skill = skill::find($request->skill_id);
         $v->skill()->sync($idAreas_skill);
@@ -376,7 +378,10 @@ class JobController extends Controller
         $v->job_title_id = $request->job_title_id;
         $v->salary_cycle = $request->salary_cycle;
         $v->exp_level = $request->exp_level;
-        $v->offer_salary = $request->offer_salary;
+        $v->maxSalary = $request->maxSalary;
+        $v->minSalary = $request->minSalary;
+        $v->negotiation = $request->checkSalary;
+        $v->save();
         $v->save();
         $idAreas_skill = skill::find($request->skill_id);
         $v->skill()->sync($idAreas_skill);

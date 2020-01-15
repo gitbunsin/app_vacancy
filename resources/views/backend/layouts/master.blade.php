@@ -27,7 +27,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><img src="{{asset('images/logo-1.png')}}" class="img-responsive" alt="Logo"></a>
+            <a class="navbar-brand" href="#"><img  width="120px;" src="{{asset('images/backend-logo.png')}}" class="img-responsive" alt="Logo"></a>
         </div>
         <!-- /.navbar-header -->
         <ul class="nav navbar-top-links navbar-left header-search-form hidden-xs">

@@ -1,4 +1,14 @@
+$('#checkSalary').val('0');
+$('#checkSalary').change(function(ev) {
+    if ( $(this).is(':checked') ) $('#checkSalary').val('1');
+    else $('#checkSalary').val('0');
+});
 
+$('#checkSalaryEdit').val('0');
+$('#checkSalaryEdit').change(function(ev) {
+    if ( $(this).is(':checked') ) $('#checkSalaryEdit').val('1');
+    else $('#checkSalaryEdit').val('0');
+});
 
 $('#frmVacancyEditResume').validate({
     rules : {
@@ -179,9 +189,24 @@ function AddVacancyAttachment(id)
     $('#ModalCandidateAddResume').modal('show');
 }
 
+ //custom rule method
+ $.validator.addMethod("greaterThan",
+
+ function (value, element, param) {
+   var $min = $(param);
+   if (this.settings.onfocusout) {
+     $min.off(".validate-greaterThan").on("blur.validate-greaterThan", function () {
+       $(element).valid();
+     });
+   }
+   return parseInt(value) > parseInt($min.val());
+ }, "Max must be greater than min");
 
 $('#frmEditModalVacancy').validate({
     rules: {
+        maxSalaryEdit: {
+            greaterThan: '#minSalaryEdit'
+          },
         job_category_vacancy_id_edit: {
             required: true,
         },
@@ -226,7 +251,9 @@ $('#frmEditModalVacancy').validate({
                 "job_title_id" : $('#job_title_id_edit').val(),
                 "company_id": $('#company_id_edit').val(),
                 "salary_cycle" : $('#salary_cycle_edit').val(), 
-                "offer_salary" : $('#offer_salary_edit').val(),
+                "maxSalary" : $('#maxSalaryEdit').val(),
+                "minSalary" : $('#minSalaryEdit').val(),
+                "checkSalary" : $('#checkSalaryEdit').val(),
                 "responsibilities" : $('#responsibilities_edit').val(),
                 "exp_level" : $('#exp_level_edit').val(),
                 "skill_id": $('#skill_id_edit').val(),
@@ -266,7 +293,15 @@ function EditVacancy(id){
                 $('#closingDate_edit').val(result.closingDate);
                 $("#job_description_edit").summernote("code", result.job_description);
                 $("#responsibilities_edit").summernote("code", result.job_requirement);
-                $("#offer_salary_edit").val(result.offer_salary);
+                $("#maxSalaryEdit").val(result.maxSalary);
+                $("#minSalaryEdit").val(result.minSalary);
+
+                var check = result.negotiation;
+                if(check == "1"){
+                    $("#checkSalaryEdit").prop("checked", true);
+                }else{
+                    $("#checkSalaryEdit").prop("checked", false);
+                }
                 // skill
                 var se = $('#hiring_manager_id_edit');
                 se.empty();
@@ -426,8 +461,24 @@ function AddVacancy(){
     $('#ModalAddVacacny').modal('show');
     $("#frmAddModalVacancy").trigger('reset');
 }
+  //custom rule method
+  $.validator.addMethod("greaterThan",
+
+  function (value, element, param) {
+    var $min = $(param);
+    if (this.settings.onfocusout) {
+      $min.off(".validate-greaterThan").on("blur.validate-greaterThan", function () {
+        $(element).valid();
+      });
+    }
+    return parseInt(value) > parseInt($min.val());
+  }, "Max must be greater than min");
+
 $("#frmAddModalVacancy").validate({
     rules: {
+        maxSalary: {
+            greaterThan: '#minSalary'
+          },
         job_category_vacancy_id: {
             required: true,
         },
@@ -483,7 +534,9 @@ $("#frmAddModalVacancy").validate({
                 "company_id": $('#company_id').val(),
                 "employee_id": $('#employee_id').val(),
                 "salary_cycle" : $('#salary_cycle').val(),
-                "offer_salary" : $('#offer_salary').val(),
+                "maxSalary" : $('#maxSalary').val(),
+                "minSalary" : $('#minSalary').val(),
+                "checkSalary" : $('#checkSalary').val(),
             },
             success: function (result) {
                 // location.reload();

@@ -60,8 +60,8 @@
                                                               <td>{{$vacancy->employee->last_name . ' ' .$vacancy->employee->first_name  }}</td>
                                                             </tr>
                                                             <tr>
-                                                                    <td><b> Salary : </b></td>
-                                                                    <td>{{$vacancy->offer_salary}}</td>
+                                                                    <td><b> Max Salary  - Min Salary : </b></td>
+                                                                    <td>{{$vacancy->maxSalary . '-' .$vacancy->minSalary}} $</td>
                                                             </tr>
                                                           
                                                             <tr>

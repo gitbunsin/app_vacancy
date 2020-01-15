@@ -44,7 +44,8 @@ class CreateVacanciesTable extends Migration
             $table->text('job_description')->nullable();
             $table->text('job_requirement')->nullable();
             $table->integer('no_of_position')->nullable();
-            $table->string('offer_salary')->nullable();
+            $table->string('maxSalary')->nullable();
+            $table->string('minSalary')->nullable();
             $table->enum('salary_cycle', ['monthly','yearly','weekly', 'daily', 'hourly'])->nullable();
             $table->enum('exp_level', ['mid', 'entry', 'senior'])->nullable();
             $table->string('gender')->nullable();
