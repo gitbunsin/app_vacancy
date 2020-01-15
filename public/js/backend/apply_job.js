@@ -14,7 +14,10 @@ $("#frmVacancyApply").validate({
       jQuery.ajax({
           url: "/user/applyJob/" + vacancy_id +'/' + candidate_id,
           method: 'POST',
-          data: {},
+          data: {
+             "company_id" : $('#company_id_appy_job').val(),
+             "admin_id" : $('#admin_poster_id').val(),
+          },
          //  beforeSend:function()
          //  {
          //     $.LoadingOverlay("show");

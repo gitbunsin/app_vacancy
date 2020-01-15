@@ -19,7 +19,7 @@ class PaymentController extends Controller
     public function index()
     {
         //
-        $payment = payment::all();
+        $payment = payment::where('admin_id',auth()->guard('admin')->user()->id)->get();
         return view('backend/pages/admin/payment/index',compact('payment'));
     }
 

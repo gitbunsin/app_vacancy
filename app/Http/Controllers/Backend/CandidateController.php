@@ -26,7 +26,7 @@ class CandidateController extends Controller
     public function index()
     {
         //
-        $candidate = candidate::with('vacancy')->get();
+        $candidate = candidate::with('vacancy')->where('admin_id',auth()->guard('admin')->user()->id)->get();
         // dd($candidate);
         return view('Backend/pages/candidate/index',compact('candidate'));
 

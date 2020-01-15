@@ -348,48 +348,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="job-item">
-                        <div class="item-overlay">
-                            <div class="job-info">
-                                <a href="#" class="btn btn-primary">Full Time</a>
-                                <span class="tr-title">
-                                    <a href="#">Design Consultant</a>
-                                    <span><a href="#">Families</a></span>
-                                </span>
-                                <ul class="tr-list job-meta">
-                                    <li><i class="fa fa-map-signs" aria-hidden="true"></i>San Francisco, CA, US</li>
-                                    <li><i class="fa fa-briefcase" aria-hidden="true"></i>Mid Level</li>
-                                    <li><i class="fa fa-money" aria-hidden="true"></i>$5,000 - $6,000</li>
-                                </ul>
-                                <ul class="job-social tr-list">
-                                    <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-expand" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
-                                </ul>
-                            </div>										
-                        </div>								
-                        <div class="job-info">
-                            <div class="company-logo">
-                                <img src="images/job/4.png" alt="images" class="img-fluid">
-                            </div>
-                            <span class="tr-title">
-                                <a href="#">Design Consultant</a>
-                                <span><a href="#">Families</a></span>
-                            </span>
-                            <ul class="tr-list job-meta">
-                                <li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>San Francisco, CA, US</li>
-                                <li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>Mid Level</li>
-                                <li><span><i class="fa fa-money" aria-hidden="true"></i></span>$5,000 - $6,000</li>
-                            </ul>
-                            <div class="time">
-                                <a href="#"><span>Full Time</span></a>
-                                <span class="pull-right">Posted Oct 09, 2017</span>
-                            </div>				
-                        </div>
-                    </div>
-                </div>													
+               													
             </div>
         </div><!-- /.tr-job-posted -->		
     </div><!-- /.container -->
@@ -401,8 +360,11 @@
             <div class="modal-content">
                 <form id="frmVacancyApply">
                     <input type="hidden" id="vacancy_id" value="">
+                    <input type="hidden" id="company_id_appy_job" value="{{$vacancy->company->id}}">
+                    <input type="hidden" id="admin_poster_id" value="{{$vacancy->admin->id}}">
                     @if (Auth::check())
                      <input type="hidden" id="candidate_id" value="{{auth::user()->id}}">
+                   
                     @endif  
                     <meta name="csrf-token" content="{{ csrf_token() }}">
                     <div  class="modal-header theme-bg" style="background-color:#008def" >

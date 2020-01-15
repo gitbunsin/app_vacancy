@@ -22,8 +22,8 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $company = company::with(['city','country'])->orderBy('id' , 'DESC')->paginate(10);
-        $location = location::with(['province','city','country'])->get();
+        $company = company::with(['city','country'])->where('admin_id',auth()->guard('admin')->user()->id)->orderBy('id' , 'DESC')->paginate(10);
+        $location = location::with(['province','city','country'])->where('admin_id',auth()->guard('admin')->user()->id)->get();
         $subUnits = subUnit::get()->toTree();
         // dd($subUnit);
         return view('backend/pages/location/index',compact('location','company','subUnits'));
@@ -49,6 +49,7 @@ class LocationController extends Controller
     {
         $location = new location();
         $location->name = $request->name;
+        $location->admin_id = auth()->guard('admin')->user()->id;
         $location->country_code = $request->country_code;
         $location->province_code = $request->province_code;
         $location->city_code = $request->city_code;
@@ -103,6 +104,7 @@ class LocationController extends Controller
     {
         $location = location::findOrFail($id);
         $location->name = $request->name;
+        $location->admin_id = auth()->guard('admin')->user()->id;
         $location->country_code = $request->country_code;
         $location->province_code = $request->province_code;
         $location->city_code = $request->city_code;

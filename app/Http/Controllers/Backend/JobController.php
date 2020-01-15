@@ -37,7 +37,7 @@ class JobController extends Controller
      */
     public function index()
     {
-        $job = vacancy::with(['employee','category','jobType'])->orderBy('created_at')->paginate('9');
+        $job = vacancy::with(['employee','category','jobType'])->where('admin_id',auth()->guard('admin')->user()->id)->orderBy('created_at')->paginate('9');
         // dd($job);
         return view('backend/pages/job/index',compact('job'));
     }
@@ -203,8 +203,8 @@ class JobController extends Controller
            
             $user_candidate = User::with('attachment')->where('id',$candidate_id)->first();
             $candidate = new candidate();
-            $candidate->admin_id = 1;
-            $candidate->company_id = 1;
+            $candidate->admin_id = $request->admin_id;
+            $candidate->company_id = $request->company_id;
             $candidate->user_id = $candidate_id;
             $candidate->name = $user_candidate->name;
             $candidate->email =  $user_candidate->email;

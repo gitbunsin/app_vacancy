@@ -18,8 +18,8 @@ class CompanyController extends Controller
     {
         //
 
-        $company = company::with(['city','country'])->orderBy('id' , 'DESC')->paginate(10);
-        //dd($company);
+        $company = company::with(['city','country'])->where('admin_id',auth()->guard('admin')->user()->id)->orderBy('id' , 'DESC')->paginate(10);
+      
         return view('backend/pages/company/index',compact('company'));
 
     }

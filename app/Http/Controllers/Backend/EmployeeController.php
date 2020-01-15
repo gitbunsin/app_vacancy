@@ -29,7 +29,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employee = Employee::with('jobTitle')->get();
+        $employee = Employee::with('jobTitle')->where('admin_id',auth()->guard('admin')->user()->id)->get();
         // dd($employee);
         return view('backend/pages/employee/index',compact('employee'));
     }

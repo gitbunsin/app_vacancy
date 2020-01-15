@@ -23,7 +23,7 @@ class VacancyController extends Controller
     public function index()
     {
         $jobTitle = JobTitle::all();
-        $payGrade = PayGrade::with('currency')->get();
+        $payGrade = PayGrade::with('currency')->where('admin_id',auth()->guard('admin')->user()->id)->get();
         $status = EmploymentStatus::all();
         $category = JobCategory::all();
         $workShifts = WorkShift::with('employee')->get();
