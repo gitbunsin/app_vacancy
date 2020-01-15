@@ -9,6 +9,12 @@
         width: 100% !important;
         padding: 0;
     }
+    p#job_requirement  span{
+    color: rgb(119, 119, 119);
+    font-family: 'Montserrat', sans-serif !important;
+    letter-spacing: 10px;
+    font-size: 14px;
+}
     </style>
     {{-- @php
         use App\Model\JobCategory;
@@ -117,13 +123,13 @@
                                                         <div class="form-group row">
                                                           <label for="staticEmail" class="col-sm-2 col-form-label"><strong>Job Description : </strong> </label>
                                                           <div class="col-sm-10">
-                                                                {!! $vacancy->job_description !!}
+                                                                <p id="job_requirement">{!! $vacancy->job_description !!}</p>
                                                           </div>
                                                         </div>
                                                         <div class="form-group row">
                                                                 <label for="staticEmail" class="col-sm-2 col-form-label"><strong>Job Requirement :</strong> </label>
                                                                 <div class="col-sm-10">
-                                                                        {!! $vacancy->job_requirement !!}
+                                                                      <p id="job_requirement">{!! $vacancy->job_requirement !!}</p>  
                                                                 </div>
                                                               </div>
                                                       </form>   

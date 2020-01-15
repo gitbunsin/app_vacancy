@@ -270,7 +270,7 @@ input:focus, textarea:focus, select:focus,
 	color: #fff;
 	padding: 100px 0;
 	overflow: hidden;
-	background-image: url(../images/banner.jpg);
+	background-image: url(https://studio.tailorbrands.com/images/components/mockups/mock_iphone.png);
 }
 
 .page-title h1 {
@@ -1425,7 +1425,7 @@ input:focus, textarea:focus, select:focus,
 /* Tr Steps */
 
 .tr-steps {
-	background-image: url(../images/bg/step-bg.jpg);	
+	background-image: url(https://studio.tailorbrands.com/images/components/mockups/mock_iphone_2.png);	
 	position: relative;
 	z-index: 1;
 }

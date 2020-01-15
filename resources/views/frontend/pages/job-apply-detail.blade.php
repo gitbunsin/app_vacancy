@@ -4,6 +4,12 @@
     use App\Model\UserVacancy;
 @endphp
 <style>
+    p#job_requirement  span{
+    color: rgb(119, 119, 119);
+    font-family: 'Varela Round', sans-serif !important;
+    letter-spacing: 1px;
+    font-size: 14px;
+}
     #contact_person {
   border-radius: 50%;
 }
@@ -36,7 +42,6 @@
                         <div class="row">
                                 <div class="col-sm-3">
                                         <img width="100px;" height="100px"  src="/uploads/UserCv/{{ $vacancy->company->company_logo }}" alt="Smiley face" class="img-fluid">
-                                    {{-- <img  src="/uploads/UserCv/{{ $vacancy->company->company_logo }}" alt="Smiley face" height="100" width="100"> --}}
                                 </div>
                                 <div class="col-sm-9"> <span><b>{{$vacancy->vacancy_name}} </b></span>
                                     <div class="buttons">
@@ -73,7 +78,11 @@
                                     </tr>
                                     <tr>
                                         <th>Salary : </th>
-                                        <td>{{$vacancy->offer_salary}}</td>
+                                        <td>{{$vacancy->maxSalary .' - '. $vacancy->minSalary.' $' }} / 
+                                            @if ($vacancy->negotiation == "1")
+                                            <b >Negotiation</b>
+                                            @endif
+                                        </td>
                                     </tr>
                                     <tr>
                                             <th>Job Type : </th>
@@ -91,9 +100,9 @@
                      </div>
                      <hr/>
                     <span class="tr-title"><b> Job Description :</b> </span>
-                             {!! $vacancy->job_description !!}
+                           <p id="job_requirement"> {!! $vacancy->job_description !!}</p> 
                     <span> <b>Job Requirements :</b> </span>
-                    <p>
+                    <p id="job_requirement" style="font-size:14px;">
                             {!! $vacancy->job_requirement!!}    
                     </p>
                     <hr/>
