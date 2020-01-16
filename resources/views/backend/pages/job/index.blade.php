@@ -223,11 +223,11 @@
                                                                         <div class="row">
                                                                                 <div class="col-lg-6">
                                                                                         <label> Min Salary</label>
-                                                                                        <input placeholder="$" id="minSalary" name="minSalary" type="text" class="number form-control"/>
+                                                                                        <input placeholder="$" id="minSalary" name="minSalary" type="number" class="number form-control"/>
                                                                                    </div> 
                                                                                 <div class="col-lg-6">
                                                                                         <label> Max Salary</label>
-                                                                                      <input placeholder="$"  id="maxSalary" name="maxSalary" type="text" class="number form-control"/>
+                                                                                      <input placeholder="$"  id="maxSalary" name="maxSalary" type="number" class="number form-control"/>
                                                                                    </div>
                                                                                
                                                                         </div>

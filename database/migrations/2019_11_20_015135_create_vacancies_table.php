@@ -50,7 +50,7 @@ class CreateVacanciesTable extends Migration
             $table->enum('exp_level', ['mid', 'entry', 'senior'])->nullable();
             $table->string('gender')->nullable();
             $table->string('negotiation')->nullable();
-            $table->string('status')->nullable();
+            $table->enum('status', ['pending','blocked','approved']);
             $table->string('public_in_feed')->nullable();
             $table->string('closingDate')->nullable();
             $table->timestamps();

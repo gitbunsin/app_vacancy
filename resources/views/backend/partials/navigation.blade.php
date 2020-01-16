@@ -1,3 +1,8 @@
+@php
+    use App\Model\candidate;
+    $user = auth()->guard('admin')->user();
+    $UserActive = candidate::where('admin_id',$user->id)->count();
+@endphp
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
@@ -19,7 +24,7 @@
                     </ul>
                 </li>
             <li>
-                <a href="javascript:void(0)"><i class="fa fa-user-circle-o"></i> Recruitment <span class="fa arrow"></span><b class="badge bg-success pull-right">3</b></a>
+                <a href="javascript:void(0)"><i class="fa fa-user-circle-o"></i> Recruitment <span class="fa arrow"></span><b class="badge bg-success pull-right">{{$UserActive}}</b></a>
                 <ul class="nav nav-second-level">
                     <li class="{{ (request()->segment(2) == 'job') ? 'active' : '' }}">
                         <a href="{{url('admin/job')}}">vacancies</a>
@@ -44,15 +49,17 @@
                     </li>
                 </ul>
             </li>
-
+           @if ($user->role_id == 1)
             <li>
-                <a href="javascript:void(0)"><i class="fa fa-cog"></i>Settings<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="{{url('admin/pricing')}}">Pricing</a>
-                    </li>
-                </ul>
-            </li>
+                    <a href="javascript:void(0)"><i class="fa fa-cog"></i>Settings<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{{url('admin/pricing')}}">Pricing</a>
+                        </li>
+                    </ul>
+                </li>
+           @endif
+         
             <li class="{{ (request()->segment(2) == 'payment') ? 'active' : '' }}">
                 <a href="{{url('admin/payment')}}"><i class="fa fa-dollar"></i>Payments<span class="fa arrow"></span></a>
             </li>

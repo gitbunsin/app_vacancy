@@ -288,12 +288,17 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
+        $User = auth()->guard('admin')->user();
         $v = new Vacancy();
-        $v->admin_id = auth()->guard('admin')->user()->id;
+        $v->admin_id =   $User->id;
         $v->company_id = $request->company_id;
         $v->category_id = $request->job_category_vacancy_id;
         $v->job_type_id = $request->job_type_id;
-        $v->status = "Active"; 
+        if($User->role_id == 1){
+            $v->status = "approved"; 
+        }else{
+            $v->status = "pending"; 
+        }
         $v->employee_id = $request->hiring_manager_id;
         $v->province_id = $request->location_id;
         $v->vacancy_name = $request->vacancy_name;

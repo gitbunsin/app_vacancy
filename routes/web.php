@@ -33,9 +33,20 @@ Route::get('password/admin/reset','Auth\PasswordController@showFormAdminReset');
 Route::get('password/reset','App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm');  
 Route::post('password/reset','App\Http\Controllers\Auth\ForgotPasswordController@updateLinkRequestForm');  
 
-Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admin'], function ($request) {
+//Admin Access Only 
+Route::group(['middleware'=>'is_admin'], function(){
+    Route::group(['namespace' => 'Backend','prefix' => 'admin'], function(){
+       
+        Route::get('pricing', 'AppController@PricingSettings')->name('pricing_settings');
+        Route::post('pricing','AppController@PricingSave');
+        
+    });
+});
 
 
+Route::group(['namespace' => 'Backend','prefix' => 'admin'], function ($request) {
+
+    
 
 
     /* -- employee -- */
@@ -70,8 +81,7 @@ Route::group(['namespace' => 'Backend','middleware' => 'admin','prefix' => 'admi
     Route::get('invoice/{id}','paymentController@invoice');
     Route::get('confim/payment/{id}','paymentController@confirmPayment');
     Route::resource('payment','paymentController');
-    Route::get('pricing', 'AppController@PricingSettings')->name('pricing_settings');
-    Route::post('pricing','AppController@PricingSave');
+  
     Route::resource('company','CompanyController');
     Route::post('company-update/{id}','CompanyController@updateCompany');
     Route::resource('subUnit','SubUnitController');

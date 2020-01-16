@@ -43,4 +43,9 @@ class Admin extends Authenticatable
 
     ];
 
+    public function is_admin()
+    {
+        return $this->role_id == 1;
+    }
+
 }

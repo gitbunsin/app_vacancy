@@ -78,6 +78,7 @@ class AdminRegisterController extends Controller
             $user->name = $request->admin_username;
             $user->email = $request->admin_email;
             $user->verified = 0;
+            $user->role_id = 2;
             $user->email_token = str_random(40);
             $user->password = Hash::make($request->admin_password);
             $user->save();

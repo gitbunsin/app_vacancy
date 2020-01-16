@@ -55,7 +55,11 @@ class PaymentController extends Controller
         $payment->branch_name = $request->branch_name;
         $payment->branch_address = $request->branch_address;
         $payment->account_name = $request->account_name;
-        $payment->status = "initial";
+        if($Payer->role_id == 1){
+            $payment->status = "success";
+        }else{
+            $payment->status = "pending";
+        }
         $payment->save();
         return response::json($payment);
         //

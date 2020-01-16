@@ -19,6 +19,7 @@ class AdminsTableDataSeeder extends Seeder
                 'email' => 'admin@gmail.com',
                 'password' => Hash::make("123456"),
                 'verified' => 1,
+                'role_id' => 1
             ]);
         }
     }

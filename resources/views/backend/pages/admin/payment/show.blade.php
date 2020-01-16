@@ -2,6 +2,7 @@
 @section('content')
 @php
     use App\Model\city;use App\Model\country;
+    $User = auth()->guard('admin')->user();
 @endphp    
     <div class="container-fluid">
         <!-- /row -->
@@ -58,7 +59,11 @@
                                     <td>{{$payment->created_at}}</td>
                             </tr> 
                             <tr>
-                                    <td>  <input type="submit" class="btn btn-danger" value="Mark to Success"></td>
+                                @if ($User->role_id == 1)
+                                   <td><input type="submit" class="btn btn-danger" value="Mark to Success"></td>  
+                                @else
+                                <td></td>
+                                   @endif
                                   <td></td>
                             </tr>
                     </table>

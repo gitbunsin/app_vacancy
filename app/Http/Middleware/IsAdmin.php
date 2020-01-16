@@ -15,11 +15,15 @@ class IsAdmin
      */
     public function handle($request, Closure $next)
     {
-       
-        if (Auth::guard('admin')->check()) 
-        {
-            return $next($request);
+        if ( ! Auth::guard('admin')->check()){
+            return redirect()->guest(route('login'))->with('error', trans('app.unauthorized_access'));
         }
-        return redirect('/job');
+
+        $user = auth()->guard('admin')->user();
+     
+        if ( ! $user->is_admin())
+            return redirect(url('admin/app'))->with('error', trans('app.access_restricted'));
+
+        return $next($request);
     }
 }
