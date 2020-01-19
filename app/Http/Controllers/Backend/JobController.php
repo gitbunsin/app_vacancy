@@ -367,13 +367,17 @@ class JobController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        $User = auth()->guard('admin')->user();
         $v = vacancy::find($id);
-        $v->admin_id = auth()->guard('admin')->user()->id;
+        $v->admin_id =  $User->id;
         $v->company_id = $request->company_id;
         $v->category_id = $request->job_category_vacancy_id;
         $v->job_type_id = $request->job_type_id;
-        $v->status = "Active"; 
+        if($User->role_id == 1){
+            $v->status = "approved"; 
+        }else{
+            $v->status = "pending"; 
+        }
         $v->employee_id = $request->hiring_manager_id;
         $v->province_id = $request->location_id;
         $v->vacancy_name = $request->vacancy_name;
@@ -386,7 +390,6 @@ class JobController extends Controller
         $v->maxSalary = $request->maxSalary;
         $v->minSalary = $request->minSalary;
         $v->negotiation = $request->checkSalary;
-        $v->save();
         $v->save();
         $idAreas_skill = skill::find($request->skill_id);
         $v->skill()->sync($idAreas_skill);

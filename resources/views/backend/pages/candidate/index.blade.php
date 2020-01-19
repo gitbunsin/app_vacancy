@@ -3,6 +3,7 @@
 @php
     use App\Model\company;
     use App\Model\vacancy;
+    $user = auth()->guard('admin')->user();
 @endphp
 <style>
     .error{
@@ -20,9 +21,11 @@
             <div class="card">
                 <div class="card-header">
                     <div class="pull-right">
+                            @if ($user->role_id == 1)
                             {{-- <a onclick="AddCandidate();" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> Add </a> --}}
-                            <a onclick="AddCandidate();" class="btn btn-primary"  title="Payment"><i class="ti-plus"></i> Add Candidate</a>
-                    </div>
+                                <a onclick="AddCandidate();" class="btn btn-primary"  title="Payment"><i class="ti-plus"></i> Add Candidate</a>
+                            @endif
+                        </div>
                     <input type="text" class="form-control wide-width" placeholder="Search & type" />
                 </div>
                 <table class="table" id='tbl_canidate'>

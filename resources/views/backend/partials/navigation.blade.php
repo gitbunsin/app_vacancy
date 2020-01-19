@@ -15,12 +15,14 @@
                         <li class="{{ (request()->segment(2) == 'locations') ? 'active' : '' }}">
                             <a href="{{url('admin/location')}}"> Organization</a>
                          </li>
-                        <li class="{{ (request()->segment(2) == 'job') ? 'active' : '' }}">
-                            <a href="{{url('admin/vacancy')}}"> Job</a>
-                        </li>
-                        <li class="{{ (request()->segment(2) == 'Qualifications') ? 'active' : '' }}">
-                            <a href="{{url('admin/skill')}}"> Qualifications</a>
-                        </li>
+                         @if ($user->role_id == 1)
+                            <li class="{{ (request()->segment(2) == 'job') ? 'active' : '' }}">
+                                <a href="{{url('admin/vacancy')}}"> Job</a>
+                            </li>
+                            <li class="{{ (request()->segment(2) == 'Qualifications') ? 'active' : '' }}">
+                                <a href="{{url('admin/skill')}}"> Qualifications</a>
+                            </li>
+                        @endif
                     </ul>
                 </li>
             <li>
@@ -44,9 +46,11 @@
                     <li>
                         <a href="{{url('admin/employee/create')}}">Add Employee</a>
                     </li>
-                    <li>
-                        <a href="{{url('admin/method')}}">Configuration</a>
-                    </li>
+                    @if ($user->role_id == 1)
+                        <li>
+                            <a href="{{url('admin/method')}}">Configuration</a>
+                        </li>
+                    @endif
                 </ul>
             </li>
            @if ($user->role_id == 1)
@@ -56,6 +60,10 @@
                         <li>
                             <a href="{{url('admin/pricing')}}">Pricing</a>
                         </li>
+                        {{-- <li>
+                            <a href="{{url('admin/pricing')}}">User</a>
+                        </li>
+                         --}}
                     </ul>
                 </li>
            @endif
@@ -63,6 +71,7 @@
             <li class="{{ (request()->segment(2) == 'payment') ? 'active' : '' }}">
                 <a href="{{url('admin/payment')}}"><i class="fa fa-dollar"></i>Payments<span class="fa arrow"></span></a>
             </li>
+           
             <li class="{{ (request()->segment(2) == 'profile') ? 'active' : '' }}">
                 <a href="{{url('admin/profile')}}"><i class="ti ti-folder"></i>My Profile</a>
             </li>

@@ -3,6 +3,7 @@
 @php
      use App\Model\city;use App\Model\country;
      use App\Model\subUnit;
+     $user = auth()->guard('admin')->user();
 @endphp
 <style>
     .tree,
@@ -102,12 +103,14 @@ ul.tree>li:before {
                                                     <a href="#"  class="list-group-item active text-center">
                                                             General Info
                                                     </a>
-                                                    <a href="#"  class="list-group-item text-center">
-                                                            Location
-                                                      </a>
-                                                      <a href="#"  class="list-group-item text-center">
-                                                            Structure<br/>
-                                                      </a>   
+                                                    @if ($user->role_id == 1)
+                                                        <a href="#"  class="list-group-item text-center">
+                                                                Location
+                                                        </a>
+                                                        <a href="#"  class="list-group-item text-center">
+                                                                Structure<br/>
+                                                        </a>  
+                                                      @endif 
                                               </div>
                                             </div>
                                             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 bhoechie-tab">
@@ -157,19 +160,19 @@ ul.tree>li:before {
                                                                         </div>
                                                                         <h3><span class="ti-home"></span> Location</h3>
                                                                     </div>
-                                                                    <div class="card-body" id="jobCategory_id">
-                                                                        <table class="table">
+                                                                    <div class="card-body" >
+                                                                        <table class="table" id="tbl_location">
                                                                             <thead>
                                                                             <tr>
                                                                                 <th scope="col">#No</th>
                                                                                 <th scope="col">Name </th>
                                                                                 <th scope="col">City</th>
                                                                                 <th scope="col">Country</th>
-                                                                                <th scope="col">Num / Emp</th>
+                                                                              
                                                                                 <th scope="col">Action</th>
                                                                             </tr>
                                                                             </thead>
-                                                                            <tbody id="location_list" name="location_list">
+                                                                            <tbody>
                                                                             @if(!$location->isEmpty())
                                                                                 @foreach($location as $key => $locations)
                                                                                 <tr id="location_id{{$locations->id}}">
@@ -177,7 +180,7 @@ ul.tree>li:before {
                                                                                     <td>{{$locations->name}}</td>
                                                                                     <td>{{$locations->city->name}}</td>
                                                                                     <td>{{$locations->country->name}}</td>
-                                                                                    <td></td>
+                                                                                  
                                                                                     <th>
                                                                                             <a onclick="EditLocation({{$locations->id}});"   class="btn btn-primary"  title="Edit"><i class="icon-edit"></i></a>
                                                                                             <a onclick="DeleteLocation({{$locations->id}});" class="btn btn-danger"  title="Delete"><i class="ti-trash"></i></a>

@@ -188,21 +188,11 @@ $('#frmEditLocation').validate({ // initialize the plugin
                     "fax" : $('#fax_edit').val(),
                     "note" : $('#note_edit').val(),
                 },
-                success: function (data){
-                  // console.log(data);
-                    let table = '<tr id="location_id'+ data.id + '">' +
-                        '<th scope="row">' + data.id +  '</th>' +
-                        '<td> ' + data.name + '</td>' +
-                        '<td>' + data.city_code.name + '</td>' +
-                        '<td>' + data.country_code.name + '</td>' +
-                        '<td>' +  + '</td>' +
-                        '<th>' +
-                        '<a href="#" onclick="EditLocation('+ data.id+ ')"  class="btn btn-primary" data-placement="top" title="Edit"><i class="icon-edit"></i></a>' +
-                        '<a href="#" onclick="DeleteLocation(' + data.id+ ')" class="btn btn-danger" data-placement="top" title="Delete"><i class="ti-trash"></i></a>' +
-                        '</th>' +
-                        '</tr>';
-                    $('#location_id' + data.id).replaceWith(table);
-                    $('#showEditLocation    ').modal('hide');
+                success: function (result){
+                    var location = '<tr id="location_id' + result.id + '"><th class="scope="row">' + result.id + '</th><td>' +  result.name + '</<td><td>' +  result.city_code.name + '</<td><td>' + result.country_code.name  + '</td>';
+                    location += '<th><a onclick="EditLocation(' +  result.id + ');" class="btn btn-primary" title="Location"><i class="icon-edit"></i></a>  <a onclick="DeleteLocation(' +  result.id + ');" data-toggle="modal" class="btn btn-danger"  title="Location"><i class="ti-trash"></i></a></th></tr>';
+                    $('#location_id' + result.id).replaceWith(location);
+                    $('#showEditLocation').modal('hide');
                     toastr.success('Location has been edit  success !.', 'Success ', {timeOut: 5000})
 
                 },error: function (err) {
@@ -250,20 +240,12 @@ $('#frmAddLocation').validate({ // initialize the plugin
                     "fax" : $('#fax').val(),
                     "note" : $('#note').val()
                 },
-                success: function (data){
-                    // console.log(data.country_code.name);
-                    let table = '<tr id="location_id'+ data.id + '">' +
-                        '<th scope="row">' + data.id +  '</th>' +
-                        '<td> ' + data.name + '</td>' +
-                        '<td>' + data.city_code.name + '</td>' +
-                        '<td>' + data.country_code.name + '</td>' +
-                        '<td>' +  + '</td>' +
-                        '<th>' +
-                        '<a href="#" onclick="EditLocation(' + data.id+ ')"  class="btn btn-primary"  title="Edit"><i class="icon-edit"></i></a>' +
-                        '<a href="#" onclick="DeleteLocation('+ data.id +')" class="btn btn-danger"  title="Delete"><i class="ti-trash"></i></a>' +
-                        '</th>' +
-                        '</tr>';
-                    $('#location_list').append(table);
+                success: function (result){
+                    // console.log(result);
+                   
+                    var location = '<tr id="location_id' + result.id + '"><th class="scope="row">' + result.id + '</th><td>' +  result.name + '</<td><td>' +  result.city_code.name + '</<td><td>' + result.country_code.name  + '</td>';
+                    location += '<th><a onclick="EditLocation(' +  result.id + ');" class="btn btn-primary" title="Location"><i class="icon-edit"></i></a>  <a onclick="DeleteLocation(' +  result.id + ');" data-toggle="modal" class="btn btn-danger"  title="Location"><i class="ti-trash"></i></a></th></tr>';
+                        $('#tbl_location').append(location);
                     $('#showLocation').modal('hide');
                     toastr.success('Location has been added  success !.', 'Success ', {timeOut: 5000})
 
