@@ -98,25 +98,25 @@ $(function() {
     });
 	
 	// About Company
-	ClassicEditor
-	.create( document.querySelector( '#about-company' ) )
-	.catch( error => {
-		console.error( error );
-	} );
+	// ClassicEditor
+	// .create( document.querySelector( '#about-company' ) )
+	// .catch( error => {
+	// 	console.error( error );
+	// } );
 	
-	// Career
-	ClassicEditor
-	.create( document.querySelector( '#career' ) )
-	.catch( error => {
-		console.error( error );
-	} );
+	// // Career
+	// ClassicEditor
+	// .create( document.querySelector( '#career' ) )
+	// .catch( error => {
+	// 	console.error( error );
+	// } );
 	
-	// Resume Text
-	ClassicEditor
-	.create( document.querySelector( '#resume-text' ) )
-	.catch( error => {
-		console.error( error );
-	} );
+	// // Resume Text
+	// ClassicEditor
+	// .create( document.querySelector( '#resume-text' ) )
+	// .catch( error => {
+	// 	console.error( error );
+	// } );
 		
 		
 	$('[data-toggle="tooltip"]').tooltip();

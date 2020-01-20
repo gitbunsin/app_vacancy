@@ -1,3 +1,9 @@
+
+
+
+
+
+
 $('#checkSalary').val('0');
 $('#checkSalary').change(function(ev) {
     if ( $(this).is(':checked') ) $('#checkSalary').val('1');
@@ -236,6 +242,8 @@ $('#frmEditModalVacancy').validate({
     },
     submitHandler: function (form) {
         var id = $('#vacancy_id_edit').val();
+        var dd = $('#job_description_edit_1').val();
+        console.log(dd)
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -254,11 +262,11 @@ $('#frmEditModalVacancy').validate({
                 "maxSalary" : $('#maxSalaryEdit').val(),
                 "minSalary" : $('#minSalaryEdit').val(),
                 "checkSalary" : $('#checkSalaryEdit').val(),
-                "responsibilities" : $('#responsibilities_edit').val(),
+                "responsibilities" : $('#responsibilities_edit_1').val(),
                 "exp_level" : $('#exp_level_edit').val(),
                 "skill_id": $('#skill_id_edit').val(),
                 "location_id": $('#location_id_edit').val(),
-                "job_description": $('#job_description_edit').val(),
+                "job_description": $('#job_description_edit_1').val(),
                 "vacancy_name": $('#vacancy_name_edit').val(),
                 "closingDate": $('#closingDate_edit').val(),
             },
@@ -279,6 +287,7 @@ $('#frmEditModalVacancy').validate({
 });
 
 
+
 function EditVacancy(id){
    
     $('#vacancy_id_edit').val(id);
@@ -287,12 +296,38 @@ function EditVacancy(id){
             url: "/admin/job/" + id + "/edit",
             success: function(result)
             {
-                // console.log(result);
+                var myEditorResponsibility;
+
+                ClassicEditor
+                    .create( document.querySelector('#responsibilities_edit_1'))
+                    .then( editor => {
+                        // console.log(editor );
+                        myEditorResponsibility = editor;
+                    } )
+                    .catch( err => {
+                        console.error( err.stack );
+                    } );
+                var myEditor;
+
+                ClassicEditor
+                    .create( document.querySelector( '#job_description_edit_1'))
+                    .then( editor => {
+                        // console.log(editor );
+                        myEditor = editor;
+                    } )
+                    .catch( err => {
+                        console.error( err.stack );
+                    } );
+                // var singleValues = $( "#job_description_edit_1" ).val();
+                // CKEDITOR.instances.setData(singleValues);
+                // var mailContents = CKEDITOR.instances['job_description_edit_1'].getData();
+                console.log(result.job_description);
                 $('#ModalEditVacacny').modal('show');
                 $('#vacancy_name_edit').val(result.vacancy_name);
                 $('#closingDate_edit').val(result.closingDate);
-                $("#job_description_edit").summernote("code", result.job_description);
-                $("#responsibilities_edit").summernote("code", result.job_requirement);
+                myEditor.setData(result.job_description);   
+                myEditorResponsibility.setData(result.job_requirement);
+                // $("#responsibilities_edit_1").val(result.job_requirement);
                 $("#maxSalaryEdit").val(result.maxSalary);
                 $("#minSalaryEdit").val(result.minSalary);
 
@@ -591,21 +626,21 @@ $('#frmDeleteVacancy').validate({
     
 
 
-$('.job_description').summernote({
-      fontName : 'Montserrat',
-     height: 200,
-     fontSize: 12
-});
-$('.job_requirement_edit').summernote({
-    'fontName' : 'Montserrat',
-    height: 200
-});
+// $('.job_description').summernote({
+//       fontName : 'Montserrat',
+//      height: 200,
+//      fontSize: 12
+// });
+// $('.job_requirement_edit').summernote({
+//     'fontName' : 'Montserrat',
+//     height: 200
+// });
 
-$('.responsibilities').summernote({
+// $('.responsibilities').summernote({
 
-    'fontName' : 'Montserrat',
-    height: 200
-});
+//     'fontName' : 'Montserrat',
+//     height: 200
+// });
 
 
 

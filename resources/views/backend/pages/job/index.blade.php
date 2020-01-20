@@ -20,6 +20,7 @@
     use App\Model\jobTitle;
     use App\Model\province;
     use App\Model\payment;
+    $user = auth()->guard('admin')->user();
 @endphp
 
 <div class="container-fluid">
@@ -134,7 +135,7 @@
                                                                     <label> Company  </label>
                                                                     <select class="form-control" required id="company_id" name="company_id">
                                                                         <option value="">  -- Pleae Select Company -- </option>
-                                                                        @php $company = company::all(); @endphp
+                                                                        @php $company = company::where('admin_id',$user->id)->get(); @endphp
                                                                         @foreach ($company as $companies)
                                                                                 <option value="{{$companies->id}}">{{$companies->company_name}}</option>
                                                                         @endforeach
@@ -246,13 +247,22 @@
                                         <div role="tabpanel" class="tab-pane fade in" id="description">
                                             <br/>
                                             <div class="row">
+                                                    {{-- <div class="form-group">
+                                                            <label class="col-md-2 col-sm-3">Main Content:</label>
+                                                            <div class="col-md-10 col-sm-9">
+                                                            </div>
+                                                        </div> --}}
                                                     <div class="col-lg-12">
                                                             <label>Job Description </label>
-                                                            <textarea class="form-control job_description" id="job_description" name="job_description"></textarea>
+                                                            <textarea name="content" class="form-control" id="job_description"></textarea>
+
+                                                            {{-- <textarea class="form-control job_description" id="job_description" name="job_description"></textarea> --}}
                                                     </div>
+                                                    <br/>
                                                     <div class="col-lg-12">
                                                         <label>Job Requirement</label>
-                                                        <textarea class="form-control responsibilities" id="responsibilities" name="responsibilities"></textarea>
+                                                        <textarea name="content" class="form-control" id="responsibilities"></textarea>
+                                                        {{-- <textarea class="form-control responsibilities" id="responsibilities" name="responsibilities"></textarea> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -366,12 +376,7 @@
                                                                               <option value="{{$JobTypes->id}}">{{$JobTypes->name}}</option>
                                                                            @endforeach
                                                                         </select>
-                                                                    </div>
-    
-                                                                   
-                                                                   
-                                                                       
-    
+                                                                    </div>     
                                                                             <div class="col-sm-6 m-clear">
                                                                                     <label>Closing Date</label>
                                                                                     <input name="closingDate_edit" id="closingDate_edit" type="text" data-toggle="datepicker" class="form-control">
@@ -447,11 +452,15 @@
                                                 <div class="row">
                                                         <div class="col-lg-12">
                                                                 <label>Job Description </label>
-                                                                <textarea class="form-control job_description" id="job_description_edit" name="job_description"></textarea>
+                                                                {{-- <textarea name="content" class="form-control" id="editor"></textarea> --}}
+                                                                {{-- <textarea class="form-control job_description" id="job_description_edit" name="job_description"></textarea> --}}
+
+                                                                <textarea name="content" class="form-control" id="job_description_edit_1"></textarea>
                                                         </div>
                                                         <div class="col-lg-12">
                                                             <label>Job Requirement</label>
-                                                            <textarea class="form-control responsibilities" id="responsibilities_edit" name="responsibilities"></textarea>
+                                                            <textarea name="content" class="form-control" id="responsibilities_edit_1"></textarea>
+                                                            {{-- <textarea class="form-control responsibilities" id="responsibilities_edit" name="responsibilities"></textarea> --}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -500,5 +509,23 @@
 
 @endsection
 @section('scripts')
+    <script src="{{asset('back/js/ckeditor.js')}}"></script>
     <script src="{{asset('js/backend/vacancy.js')}}"></script>
+
+    <script>
+            // console.log("CKEDITOR.version ==",CKEDITOR.version);
+                ClassicEditor
+                    .create( document.querySelector('#job_description') )
+                    .catch( error => {
+                        console.error( error );
+                    } );
+            </script>
+            <script>
+                    // console.log("CKEDITOR.version ==",CKEDITOR.version);
+                        ClassicEditor
+                            .create( document.querySelector('#responsibilities'))
+                            .catch( error => {
+                                console.error( error );
+                            } );
+                    </script>
 @endsection

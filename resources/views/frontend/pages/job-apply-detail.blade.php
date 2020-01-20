@@ -78,7 +78,7 @@
                                     </tr>
                                     <tr>
                                         <th>Salary : </th>
-                                        <td>{{$vacancy->maxSalary .' - '. $vacancy->minSalary.' $' }} / 
+                                        <td>{{$vacancy->minSalary .' - '. $vacancy->maxSalary.' $' }} / 
                                             @if ($vacancy->negotiation == "1")
                                             <b >Negotiation</b>
                                             @endif
