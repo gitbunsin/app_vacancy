@@ -107,6 +107,8 @@ Route::group(['namespace' => 'Backend','prefix' => 'admin'], function ($request)
     Route::resource('paygrade','PayGradeController');
     Route::resource('employmentstatus','EmployeeStatusController');
     Route::resource('job','JobController');
+    Route::get('list/job','JobController@listAllVacancy');
+    Route::post('job/approved/{id}','JobController@approveVacancy');
     Route::resource('employee','EmployeeController');
     Route::get('profile','JobController@profile');
     Route::resource('app-candidate','CandidateController');

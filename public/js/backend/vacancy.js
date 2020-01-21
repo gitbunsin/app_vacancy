@@ -1,3 +1,37 @@
+//function Approve
+    function ApproveVacancy(id)
+    {
+        $('#approve_vacancy_id').val(id);
+        $('#ModalApprove').modal('show');
+    }     
+    $('#frmApproveVacacny').validate({
+        submitHandler: function (form) {
+            var id = $('#approve_vacancy_id').val();
+            // console.log(id);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            jQuery.ajax({
+                url: "/admin/job/approved" + '/' + id,
+                method: 'POST',
+                success: function (response) {
+                    // console.log(response);
+                    $('#ModalApprove').modal('hide');
+                    toastr.success('Success', 'item has been deleted !');
+                    var delay = 3000; 
+                    setTimeout(function()
+                    {               
+                        location.reload();
+                    }, delay);
+                }, error: function (err) {
+                    console.log(err);
+                }
+            });
+        }
+     });
+    
     var jDadd;
         ClassicEditor
         .create( document.querySelector('#job_description') )
@@ -286,7 +320,7 @@ $('#frmEditModalVacancy').validate({
     submitHandler: function (form) {
         var id = $('#vacancy_id_edit').val();
         var dd = $('#job_description_edit_1').val();
-        console.log(dd)
+        // console.log(dd)
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

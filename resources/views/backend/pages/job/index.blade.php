@@ -58,7 +58,13 @@
                                 <td><a href="{{url('admin/vacancy/'.$jobs->id.'/edit')}}"><strong>{{$jobs->vacancy_name}}</strong></a></td>
                                 <td>{{$jobs->employee->last_name . ' ' . $jobs->employee->first_name}}</td>
                                 <td>{{$jobs->closingDate}}</td>
-                                <td><b class="badge bg-success">{{$jobs->status}}</b></td>
+                                @if ($jobs->status == "approved")
+                                     <td><b class="badge bg-success">{{$jobs->status}}</b></td>    
+                                @elseif($jobs->status == "pending")
+                                    <td><b class="badge bg-warning">{{$jobs->status}}</b></td> 
+                                @else
+                                     <td><b class="badge bg-danger">{{$jobs->status}}</b></td> 
+                                    @endif
                                 <th>
                                     <a onclick="EditVacancy({{$jobs->id}});"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="icon-edit"></i></a>
                                     <a onclick="DeleteVacancy({{$jobs->id}});" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="ti-trash"></i></a>

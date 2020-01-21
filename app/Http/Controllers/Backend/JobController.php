@@ -42,9 +42,15 @@ class JobController extends Controller
         // dd($job);
         return view('backend/pages/job/index',compact('job'));
     }
+    public function listAllVacancy(){
+
+        $job = vacancy::with(['employee','category','jobType'])->where('admin_id','!=',auth()->guard('admin')->user()->id)->orderBy('created_at')->paginate('9');
+        return view('backend/pages/job/list_all_job',compact('job'));
+
+    }
     public function job()
     {
-        $job = vacancy::with(['company','province','category','jobType','company'])->get();
+        $job = vacancy::with(['company','province','category','jobType','company'])->where('status','approved')->get();
         // dd($job);
         return view('frontend/pages/job',compact('job'));
     }
@@ -77,7 +83,13 @@ class JobController extends Controller
         // dd($job );
         return view('frontend/pages/job',compact('job'));
     }
-
+    public function approveVacancy($id)
+    {
+        $vacancy = vacancy::find($id);
+        $vacancy->status = "approved";
+        $vacancy->save();
+        return response()->json($vacancy);
+    }
      /**
      * Show the form for creating a new resource.
      *
@@ -408,7 +420,7 @@ class JobController extends Controller
     public function getDownloadCompany($filename)
     {
         //PDF file is stored under project/public/download/info.pdf
-        $file= public_path(). "/JobUpload/".$filename;
+        $file= public_path(). "/JobUpload".'/'.$filename;
         $headers = array(
             'Content-Type: application/pdf',
         );
@@ -424,7 +436,8 @@ class JobController extends Controller
     public function destroy($id)
     {
         $job = vacancy::find($id);
-        $job->delete();
+        $job->status = 'blocked';
+        $job->save();
         return response::json($job);
         //
     }

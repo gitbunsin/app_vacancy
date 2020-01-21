@@ -52,7 +52,8 @@ class CategoriesTableDataSeeder extends Seeder
 
         for ($i=0; $i < count($array); $i++) {
             JobCategory::create([
-                'name' => $array[$i]
+                'name' => $array[$i],
+                'admin_id'=>1
             ]);
         }
     }

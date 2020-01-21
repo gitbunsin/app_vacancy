@@ -195,11 +195,9 @@ span.user-status {
                     <!-- col-md-6 -->
                     <div class="col-md-4">
                         <div class="card">
-            
-                            <div class="card-header">
-                                <h4>Hot Jobs</h4>
+                            <div style="background-color:#f56c6c;" class="card-header">
+                                <h4 style="color:white;">Hot Jobs</h4>
                             </div>
-            
                             <div class="card-body">
                                     <div class="todo-list todo-list-hover todo-list-divided">
                                         @if(!$job->isEmpty())

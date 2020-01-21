@@ -29,8 +29,13 @@
                 <a href="javascript:void(0)"><i class="fa fa-user-circle-o"></i> Recruitment <span class="fa arrow"></span><b class="badge bg-danger pull-right">{{$UserActive}}</b></a>
                 <ul class="nav nav-second-level">
                     <li class="{{ (request()->segment(2) == 'job') ? 'active' : '' }}">
-                        <a href="{{url('admin/job')}}">vacancies</a>
+                        <a href="{{url('admin/job')}}">My Vacancies</a>
                     </li>
+                    @if ($user->role_id == 1)
+                        <li class="{{ (request()->segment(2) == 'list/job') ? 'active' : '' }}">
+                            <a href="{{url('admin/list/job')}}">all vacancies</a>
+                        </li>
+                    @endif
                     <li class="{{ (request()->segment(2) == 'candidate') ? 'active' : '' }}">
                         <a href="{{url('admin/candidate')}}">candidates</a>
                     </li>

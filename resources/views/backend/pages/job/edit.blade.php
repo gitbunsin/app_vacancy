@@ -16,15 +16,9 @@
     font-size: 14px;
 }
     </style>
-    {{-- @php
-        use App\Model\JobCategory;
-        use App\Model\employee;
-        use App\Model\JobType;
-        use App\Model\skill;
-        use App\Model\location;
-        use App\Model\company;
-        use App\Model\jobTitle;
-    @endphp --}}
+    @php
+        $User = auth()->guard('admin')->user();
+    @endphp
     
     <div class="container-fluid">
     <!-- /row -->
@@ -99,17 +93,35 @@
                                                                     <td><b> closingDate : </b></td>
                                                                     <td>{{$vacancy->closingDate}}</td>
                                                             </tr>
+                                                           
                                                             {{-- <tr>
                                                                 <td><b> Skills : </b></td>
                                                                 @foreach ($vacancy->skill as $item)
-                                                                 <td>{{$item->name}} </td> 
+                                                                 <td>{{$item->name }}</td> 
                                                                 @endforeach
                                                                
                                                             </tr> --}}
                                                             <tr>
+                                                                    
                                                                 <td><b> Status : </b></td>
-                                                                <td><b class="badge bg-success"> {{$vacancy->status}}<b></td>
+                                                                @if ($vacancy->status == "approved")
+                                                                        <td><b class="badge bg-success">{{$vacancy->status}}</b></td>    
+                                                                        @elseif($vacancy->status == "pending")
+                                                                        <td><b class="badge bg-warning">{{$vacancy->status}}</b></td> 
+                                                                        @else
+                                                                        <td><b class="badge bg-danger">{{$vacancy->status}}</b></td> 
+                                                                        @endif
                                                         </tr>
+                                                        <tr>
+                                                                @if ($User->role_id == 1 && $vacancy->status == "pending")
+                                                                <td>      
+                                                                         <input onclick="ApproveVacancy({{$vacancy->id}});" type="submit" class="btn btn-success" value="Mark to Success">
+                                                                </td>  
+                                                                @else
+                                                                <td></td>
+                                                                   @endif
+                                                                  <td></td>
+                                                            </tr>
                                                           
                                                           
                                                           </table>
@@ -188,6 +200,32 @@
     <!-- /row -->
     </div>
     </div>
+    {{-- //Approve  --}}
+    <div id="ModalApprove" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form id="frmApproveVacacny">
+                            <input type="hidden" id="approve_vacancy_id" value="">
+                            <meta name="csrf-token" content="{{ csrf_token() }}">
+                            <div class="modal-header theme-bg">
+                                    <h4 class="modal-title">Vacancy Approve </h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label>Are You Sure to Approve this Vacancy?</label>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancel">
+                                        <input type="submit" class="btn btn-primary" value="Approve">
+                                    </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+
+
     <div id="ModalCandidateEditResume" class="modal fade">
                 <div class="modal-dialog  modal-lg">
                     <div class="modal-content">
