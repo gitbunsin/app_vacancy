@@ -116,7 +116,7 @@
                     <div class="row">
                             <div class="col-sm-4">
                                @if ($vacancy->employee->photo)
-                                  <img id="contact_person" class="img-circle" src="/uploads/employee/{{ $vacancy->employee->photo }}" alt="Smiley face" height="100" width="100">
+                                  <img id="contact_person" class="img-circle" src="{{asset('/uploads/employee/'.$vacancy->employee->photo)}}" alt="Smiley face" height="100" width="100">
                                @else
                                <img class="avatar" src="{{asset('images/img_avatar.png')}}" alt="Avatar">
                                @endif
@@ -218,138 +218,31 @@
         </div><!-- row -->
        
       
-        
-        <div class="tr-job-posted similar-jobs">
-            <span class="tr-title">Similar Jobs Post</span>
-            <div class="row">
-                <div class="col-md-6 col-lg-3">
-                    <div class="job-item">
-                        <div class="item-overlay">
-                            <div class="job-info">
-                                <a href="#" class="btn btn-primary">Full Time</a>
-                                <span class="tr-title">
-                                    <a href="#">Project Manager</a>
-                                    <span><a href="#">Dig File</a></span>
-                                </span>
-                                <ul class="tr-list job-meta">
-                                    <li><i class="fa fa-map-signs" aria-hidden="true"></i>San Francisco, CA, US</li>
-                                    <li><i class="fa fa-briefcase" aria-hidden="true"></i>Mid Level</li>
-                                    <li><i class="fa fa-money" aria-hidden="true"></i>$5,000 - $6,000</li>
-                                </ul>
-                                <ul class="job-social tr-list">
-                                    <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-expand" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
-                                </ul>
-                            </div>										
-                        </div>
-                        <div class="job-info">
-                            <div class="company-logo">
-                                <img src="images/job/1.png" alt="images" class="img-fluid">
-                            </div>
-                            <span class="tr-title">
-                                <a href="#">Project Manager</a>
-                                <span><a href="#">Dig File</a></span>
-                            </span>
-                            <ul class="tr-list job-meta">
-                                <li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>San Francisco, CA, US</li>
-                                <li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>Mid Level</li>
-                                <li><span><i class="fa fa-money" aria-hidden="true"></i></span>$5,000 - $6,000</li>
-                            </ul>
-                            <div class="time">
-                                <a href="#"><span>Full Time</span></a>
-                                <span class="pull-right">Posted 23 hours ago</span>
-                            </div>																				
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="job-item">
-                        <div class="item-overlay">
-                            <div class="job-info">
-                                <a href="#" class="btn btn-primary">Part Time</a>
-                                <span class="tr-title">
-                                    <a href="#">Design Associate</a>
-                                    <span><a href="#">Loop</a></span>
-                                </span>
-                                <ul class="tr-list job-meta">
-                                    <li><i class="fa fa-map-signs" aria-hidden="true"></i>San Francisco, CA, US</li>
-                                    <li><i class="fa fa-briefcase" aria-hidden="true"></i>Mid Level</li>
-                                    <li><i class="fa fa-money" aria-hidden="true"></i>$5,000 - $6,000</li>
-                                </ul>
-                                <ul class="job-social tr-list">
-                                    <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-expand" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
-                                </ul>
-                            </div>										
-                        </div>								
-                        <div class="job-info">
-                            <div class="company-logo">
-                                <img src="images/job/2.png" alt="images" class="img-fluid">
-                            </div>
-                            <span class="tr-title">
-                                <a href="#">Design Associate</a>
-                                <span><a href="#">Loop</a></span>
-                            </span>
-                            <ul class="tr-list job-meta">
-                                <li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>{{$vacancy->province->name}}</li>
-                                <li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>Mid Level</li>
-                                <li><span><i class="fa fa-money" aria-hidden="true"></i></span>$5,000 - $6,000</li>
-                            </ul>
-                            <div class="time">
-                                <a href="#"><span class="part-time">{{$vacancy->jobType->name}}</span></a>
-                                <span class="pull-right">Posted 1 day ago</span>
-                            </div>			
-                        </div>
-                    </div>
-                </div>	
-                <div class="col-md-6 col-lg-3">
-                    <div class="job-item">
-                        <div class="item-overlay">
-                            <div class="job-info">
-                                <a href="#" class="btn btn-primary">Freelance</a>
-                                <span class="tr-title">
-                                    <a href="#">Graphic Designer</a>
-                                    <span><a href="#">Humanity Creative</a></span>
-                                </span>
-                                <ul class="tr-list job-meta">
-                                    <li><i class="fa fa-map-signs" aria-hidden="true"></i>San Francisco, CA, US</li>
-                                    <li><i class="fa fa-briefcase" aria-hidden="true"></i>Mid Level</li>
-                                    <li><i class="fa fa-money" aria-hidden="true"></i>$5,000 - $6,000</li>
-                                </ul>
-                                <ul class="job-social tr-list">
-                                    <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-expand" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
-                                </ul>
-                            </div>										
-                        </div>								
-                        <div class="job-info">
-                            <div class="company-logo">
-                                <img src="images/job/3.png" alt="images" class="img-fluid">
-                            </div>
-                            <span class="tr-title">
-                                <a href="#">Graphic Designer</a>
-                                <span><a href="#">Humanity Creative</a></span>
-                            </span>
-                            <ul class="tr-list job-meta">
-                                <li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>San Francisco, CA, US</li>
-                                <li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>Mid Level</li>
-                                <li><span><i class="fa fa-money" aria-hidden="true"></i></span>$5,000 - $6,000</li>
-                            </ul>
-                            <div class="time">
-                                <a href="#"><span class="freelance">Freelance</span></a>
-                                <span class="pull-right">Posted 10 day ago</span>
-                            </div>			
-                        </div>
-                    </div>
-                </div>
-               													
-            </div>
+        <span class="tr-title">Similar Jobs Post</span>
+           
+                            <div class="row">
+                                    <!-- col-md-6 -->
+                                    <div class="col-md-8"> 
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="todo-list todo-list-hover todo-list-divided">
+                                                    {{-- @if(!$job->isEmpty())
+                                                     @foreach($job as $jobs) --}}
+                                                        <div class="todo todo-default">
+                                                            <div class="sm-avater list-avater">
+                                                                    <img width="50px;"  src="https://demo.themeregion.com/seeker/images/others/404.jpg" alt="Smiley face" class="img-fluid">
+                                                            </div>
+                                                            {{-- <h5 class="ct-title"><a href="{{'vacancy/detail/'.$jobs->id}}">{{$jobs->vacancy_name}}</a><span class="ct-designation">{{$jobs->company->company_name}} / {{$jobs->maxSalary .' - ' . $jobs->minSalary . ' $'}} / {{$jobs->jobType->name}}</span></h5> --}}
+                                                            {{-- <div class="badge badge-action">
+                                                                    <a href="#" class="btn btn-primary">View Details</a>
+                                                                </div> --}}
+                                                        </div>
+                                                        {{-- @endforeach --}}
+                                                       
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
         </div><!-- /.tr-job-posted -->		
     </div><!-- /.container -->
 </div><!-- /.tr-details -->	

@@ -216,19 +216,39 @@ class EmployeeController extends Controller
  
      }
 
-     public function updateEmployeeDetails($id)
+     public function updateEmployeeDetails($id , Request $request)
      {
-         $employee = Employee::find($id);
-         $employee->first_name = input::get('first_name');
-         $employee->last_name = input::get('last_name');
-         $employee->middle_name = input::get('middle_name');
-         $employee->gender = input::get('gender');
-         $employee->marital_status = input::get('marital_status');
-         $employee->other_id = input::get('other_id');
-         $employee->birthday = input::get('birthday_id');
-         $employee->nationality_id = input::get('nationality_id');
-         $employee->save();
-         return response()->json($employee);
+         $filename = $request->file('file')->getClientOriginalName();
+         if($filename){
+                $employee = Employee::find($id);
+                $employee->photo = $filename;
+                $employee->first_name = input::get('first_name');
+                $employee->last_name = input::get('last_name');
+                $employee->middle_name = input::get('middle_name');
+                $employee->gender = input::get('gender');
+                $employee->marital_status = input::get('marital_status');
+                $employee->other_id = input::get('other_id');
+                $employee->birthday = input::get('birthday_id');
+                $employee->nationality_id = input::get('nationality_id');
+                $dir = 'uploads/employee/';
+                $request->file('file')->move($dir, $filename);
+                $employee->save();
+                return response()->json($employee);
+         }else{
+                $employee = Employee::find($id);
+                $employee->photo = '';
+                $employee->first_name = input::get('first_name');
+                $employee->last_name = input::get('last_name');
+                $employee->middle_name = input::get('middle_name');
+                $employee->gender = input::get('gender');
+                $employee->marital_status = input::get('marital_status');
+                $employee->other_id = input::get('other_id');
+                $employee->birthday = input::get('birthday_id');
+                $employee->nationality_id = input::get('nationality_id');
+                $employee->save();
+            return response()->json($employee);
+         }
+        
      }
  
      public function updateContactEmployeeDetails($id)

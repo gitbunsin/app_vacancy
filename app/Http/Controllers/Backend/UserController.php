@@ -47,7 +47,10 @@ class UserController extends Controller
                  'phone'=> $request->phone,
                  'zip' => $request->zip_code,
                  'address' => $request->address,
-                 'profile' =>$filename
+                 'profile' =>$filename,
+                 'gender' => $request->gender,
+                 'city_id' => $request->city,
+                 'country_id' =>$request->country
             )
         );
 
@@ -61,7 +64,10 @@ class UserController extends Controller
                  'phone'=> $request->phone,
                  'zip' => $request->zip_code,
                  'address' => $request->address,
-                 'profile' => NuLL
+                 'profile' => NuLL,
+                 'gender' => $request->gender,
+                 'city_id' => $request->city,
+                 'country_id' =>$request->country
             )
         );
 

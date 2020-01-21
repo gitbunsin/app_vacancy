@@ -398,7 +398,7 @@
                                                                                         $level= array('mid', 'entry', 'senior');
                                                                                     @endphp
                                                                                     <label>@lang('app.exp_level') </label>
-                                                                                    <select class="form-control" name="exp_level_id" id="exp_level_id">
+                                                                                    <select class="form-control" name="exp_level_edit" id="exp_level_edit">
                                                                                           
                                                                                             @foreach ($level as $levels)
                                                                                                 <option value="{{$levels}}" >{{$levels}}</option>
@@ -509,23 +509,5 @@
 
 @endsection
 @section('scripts')
-    <script src="{{asset('back/js/ckeditor.js')}}"></script>
     <script src="{{asset('js/backend/vacancy.js')}}"></script>
-
-    <script>
-            // console.log("CKEDITOR.version ==",CKEDITOR.version);
-                ClassicEditor
-                    .create( document.querySelector('#job_description') )
-                    .catch( error => {
-                        console.error( error );
-                    } );
-            </script>
-            <script>
-                    // console.log("CKEDITOR.version ==",CKEDITOR.version);
-                        ClassicEditor
-                            .create( document.querySelector('#responsibilities'))
-                            .catch( error => {
-                                console.error( error );
-                            } );
-                    </script>
 @endsection

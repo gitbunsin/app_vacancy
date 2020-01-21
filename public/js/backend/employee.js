@@ -492,49 +492,53 @@ $(document).ready(function () {
             },
             marital_status :
                 {
-                    required: true
+                required: true
                 },
             first_name : {
-
                 required : true
             },
             last_name : {
-
                 required : true
             }
         },
         submitHandler: function (form) { // for demo
-
             let id = $('#employee_id').val();
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+            var file_data = $('#image').prop('files')[0];
+            var form_data = new FormData();
+            form_data.append('file', file_data);
+            form_data.append('first_name',$('#first_name').val());
+            form_data.append('last_name',$('#last_name').val());
+            form_data.append('gender',$('#gender').val());
+            form_data.append('birthday_id',$('#birthday_id').val());
+            form_data.append('marital_status',$('#marital_status').val());
+            form_data.append('nationality_id',$('#nationality_id').val());
+            form_data.append('other_id',$('#other_id').val());
+            form_data.append('city',$('#city').val());
+            form_data.append('gender',$('#gender').val());
             $.ajax(
                 {
-                    url: "/admin/employee/update/" + id,
-                    type:"POST",
-                    data: {
-                        "id": id,
-                        "first_name" : $('#first_name').val(),
-                        "last_name" : $('#last_name').val(),
-                        "middle_name" : $('#middle_name').val(),
-                        "gender" : $('#gender').val(),
-                        "birthday_id" : $('#birthday_id').val(),
-                        "marital_status" : $('#marital_status').val(),
-                        "nationality_id" : $('#nationality_id').val(),
-                        "other_id" : $('#other_id').val(),
-                    },
-                    success: function (data)
-                    {
-                        console.log(data);
-                        toastr.success('Employee update success !.', 'Success ', {timeOut: 5000})
+                url: "/admin/employee/update/" + id,
+                method: 'POST',
+                data : form_data,
+                type: 'POST',
+                dataType:"json",
+                contentType: false, // The content type used when sending data to the server.
+                cache: false, // To unable request pages to be cached
+                processData: false,
+                success: function (data)
+                {
+                    console.log(data);
+                    toastr.success('Employee update success !.', 'Success ', {timeOut: 5000})
 
-                    },error : function (err) {
+                },error : function (err) {
 
-                        console.log(err);
-                    }
+                    console.log(err);
+                }
                 });
         }
     });

@@ -1,5 +1,9 @@
 @extends('backend.layouts.master')
 @section('content')
+@php
+    use App\Model\country;
+    use App\Model\city;
+@endphp
 <div class="container-fluid">
     <!-- /row -->
     <div class="row">
@@ -68,39 +72,47 @@
 
                                                                     <div class="col-md-4">
                                                                             <label>Phone</label>
-                                                                            <input id="phone" name="phone" type="text" class="form-control" >
+                                                                            <input id="phone" value="{{$admin->phone}}" name="phone" type="text" class="form-control" >
                                                                     </div>
                                                                     <div class="col-md-4">
                                                                             <label>Gender</label>
-                                                                            <select class="form-control" id="gender" name="gender">   
-                                                                                <option>Gender</option>
-                                                                                <option value="1">Male</option>
-                                                                                <option value="2">Female</option>
-                                                                            </select>
+                                                                            <select class="form-control" name="gender" id="gender">
+                                                                                <option value="" required > -- plz select Gender -- </option>
+                                                                                <option value="male" {{ $admin->gender == 'male' ? 'selected':'' }}>Male</option>
+                                                                                <option value="female" {{ $admin->gender == 'female' ? 'selected':'' }}>Female</option>     
+                                                                        </select>
                                                                     </div>
                                                                     <div class="col-md-4">
                                                                             <label>Country</label>
                                                                             <select class="form-control" name="country" id="country">   
-                                                                                <option>Gender</option>
-                                                                                <option value="1">Male</option>
-                                                                                <option value="2">Female</option>
+                                                                                <option value=""> -- Select Country -- </option>
+                                                                                @php
+                                                                                    $country = country::all();
+                                                                                @endphp
+                                                                                @foreach ( $country as  $countries)
+                                                                                     <option value="{{ $countries->id }}" {{ ( $countries->id == $admin->country_id) ? 'selected' : '' }}> {{ $countries->name }} </option>
+                                                                                @endforeach
                                                                             </select>
                                                                     </div>
                                                                 <div class="col-md-4">
                                                                         <label>City</label>
-                                                                        <select class="form-control" class="city" id="city">   
-                                                                            <option>Gender</option>
-                                                                            <option value="1">Male</option>
-                                                                            <option value="2">Female</option>
+                                                                        <select class="form-control" name="city" id="city">   
+                                                                            <option value=""> -- Select City -- </option>
+                                                                            @php
+                                                                                $city = city::all();
+                                                                            @endphp
+                                                                            @foreach ( $city as  $cities)
+                                                                            <option value="{{ $cities->id }}" {{ ( $cities->id == $admin->city_id) ? 'selected' : '' }}> {{ $cities->name }} </option> 
+                                                                            @endforeach
                                                                         </select>
                                                                 </div>
                                                                 <div class="col-md-4">
                                                                         <label>Zip Code</label>
-                                                                        <input type="text" class="form-control" id="zip_code" name="zip_code" >
+                                                                        <input value="{{$admin->zip}}" type="text" class="form-control" id="zip_code" name="zip_code" >
                                                                 </div>
                                                                 <div class="col-md-12">
                                                                         <label>Address</label>
-                                                                        <textarea cols="5" rows="5" name="address" id="address" class="form-control"></textarea>
+                                                                        <textarea  value="" cols="5" rows="5" name="address" id="address" class="form-control">{{$admin->address}}</textarea>
                                                                 </div>
                                         
                                                         </div>

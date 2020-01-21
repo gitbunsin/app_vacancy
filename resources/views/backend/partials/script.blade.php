@@ -5,6 +5,7 @@
 <script src="{{asset('back/js/jquery.slimscroll.js')}}"></script>
 <script src="{{asset('back/js/sweetalert.js')}}"></script>
 <script src="{{asset('back/js/datepicker.js')}}"></script>
+<script src="{{asset('back/js/ckeditor.js')}}"></script>
 
 <script src="{{asset('back/js/select2.min.js')}}"></script>
 <script src="{{asset('back/js/loader.js')}}"></script>
@@ -20,25 +21,6 @@
 <script src="{{asset('back/js/jquery.bootstrap-duallistbox.min.js')}}"></script>    
 {!! Toastr::message() !!}
 
-  
-   <script>
-//        var myEditor;
-
-// ClassicEditor
-//     .create( document.querySelector( '#job_description_edit_1' ) )
-//     .then( editor => {
-//         // console.log(editor );
-//         myEditor = editor;
-//     } )
-//     .catch( err => {
-//         console.error( err.stack );
-//     } );
-            // ClassicEditor
-            //     .create( document.querySelector( '#job_description_edit_1' ) )
-            //     .catch( error => {
-            //         console.error( error );
-            //     } );
-        </script>
 
 
 

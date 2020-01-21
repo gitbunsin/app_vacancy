@@ -573,16 +573,17 @@
                       </div>
                       <div class="col-lg-6">
                           <div>
-                              <label> Max Salary </label>
-                              <input placeholder="$"  name="max_salary_edit" id="max_salary_edit" type="number" class="form-control">
-                          </div>
-                      </div>
-                      <div class="col-lg-6">
-                          <div>
                               <label>Min Salary</label>
                               <input placeholder="$" name="min_salary_edit" id="min_salary_edit" type="number" class="form-control">
                           </div>
                       </div>
+                      <div class="col-lg-6">
+                          <div>
+                              <label> Max Salary </label>
+                              <input placeholder="$"  name="max_salary_edit" id="max_salary_edit" type="number" class="form-control">
+                          </div>
+                      </div>
+                     
                     </div>
                   </div>
                 </div>
@@ -652,16 +653,17 @@
                         </div>
                         <div class="col-lg-6">
                             <div>
-                                <label> Max Salary </label>
-                                <input placeholder="$"  name="max_salary" id="max_salary" type="number" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div>
                                 <label>Min Salary</label>
                                 <input placeholder="$" name="min_salary" id="min_salary" type="number" class="form-control">
                             </div>
                         </div>
+                        <div class="col-lg-6">
+                            <div>
+                                <label> Max Salary </label>
+                                <input placeholder="$"  name="max_salary" id="max_salary" type="number" class="form-control">
+                            </div>
+                        </div>
+                       
                       </div>
                     </div>
                   </div>

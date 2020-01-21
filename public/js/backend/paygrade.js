@@ -1,3 +1,13 @@
+$.validator.addMethod("greaterThan",
+function (value, element, param) {
+  var $min = $(param);
+  if (this.settings.onfocusout) {
+    $min.off(".validate-greaterThan").on("blur.validate-greaterThan", function () {
+      $(element).valid();
+    });
+  }
+  return parseInt(value) > parseInt($min.val());
+}, "Max must be greater than min");
 $("#frmEditPayGrade").validate({
    rules: {
       pay_grade_name_edit: {
@@ -7,7 +17,7 @@ $("#frmEditPayGrade").validate({
          required : true 
       },
       max_salary_edit : {
-         required : true
+         greaterThan: '#min_salary_edit'
       },
       min_salary_edit : {
          required : true
@@ -78,6 +88,17 @@ function EditPayGrade(id)
   });
 }
 
+ //custom rule method
+ $.validator.addMethod("greaterThan",
+ function (value, element, param) {
+   var $min = $(param);
+   if (this.settings.onfocusout) {
+     $min.off(".validate-greaterThan").on("blur.validate-greaterThan", function () {
+       $(element).valid();
+     });
+   }
+   return parseInt(value) > parseInt($min.val());
+ }, "Max must be greater than min");
 $("#frmAddPayGrade").validate({
    rules: {
       pay_grade_name: {
@@ -87,7 +108,7 @@ $("#frmAddPayGrade").validate({
          required : true 
       },
       max_salary : {
-         required : true
+         greaterThan: '#min_salary'
       },
       min_salary : {
          required : true

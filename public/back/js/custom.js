@@ -112,12 +112,7 @@ $(function() {
 	// } );
 	
 	// // Resume Text
-	// ClassicEditor
-	// .create( document.querySelector( '#resume-text' ) )
-	// .catch( error => {
-	// 	console.error( error );
-	// } );
-		
+
 		
 	$('[data-toggle="tooltip"]').tooltip();
 			

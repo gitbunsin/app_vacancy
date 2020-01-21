@@ -44,6 +44,13 @@ $('#frmUpdateUserProfile').validate({
             required : true
         },user_email : {
             required : true
+        },user_phone : {
+            required : true
+        },user_first_name : {
+            required : true
+        },
+        user_last_name : {
+            required : true
         }
     },
     submitHandler: function (form) {

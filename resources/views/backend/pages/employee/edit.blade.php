@@ -57,7 +57,7 @@
                         <div class="card-header">
                             <h4><i class="fa fa-group " ></i> Info : <strong> {{$employee->first_name}} {{$employee->last_name}} </strong> </h4>
                         </div>
-                        <form action="#" id="frmEmployeeDetails">
+                        <form action="#" enctype="multipart/form-data" id="frmEmployeeDetails">
                             <meta name="csrf-token" content="{{ csrf_token() }}">
                             <div class="card-body">
                                 <div class="row">

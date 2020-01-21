@@ -1,6 +1,49 @@
+    var jDadd;
+        ClassicEditor
+        .create( document.querySelector('#job_description') )
+        .then( editor => {
+            // console.log(editor );
+            jDadd = editor;
+        } )
+        .catch( error => {
+            console.error( error );
+        } );
 
 
+        var jDrE;
+        ClassicEditor
+        .create( document.querySelector('#responsibilities') )
+        .then( editor => {
+            // console.log(editor );
+            jDrE = editor;
+        } )
+        .catch( error => {
+            console.error( error );
+        } );
 
+     var myEditor;
+     ClassicEditor
+         .create( document.querySelector( '#job_description_edit_1'))
+         .then( editor => {
+             // console.log(editor );
+             myEditor = editor;
+         } )
+         .catch( err => {
+             console.error( err.stack );
+     } );
+
+
+var myEditorResponsibility;
+
+ClassicEditor
+.create( document.querySelector('#responsibilities_edit_1'))
+.then( editor => {
+ // console.log(editor );
+ myEditorResponsibility = editor;
+} )
+.catch( err => {
+ console.error( err.stack );
+} );
 
 
 
@@ -288,6 +331,7 @@ $('#frmEditModalVacancy').validate({
 
 
 
+               
 function EditVacancy(id){
    
     $('#vacancy_id_edit').val(id);
@@ -296,32 +340,14 @@ function EditVacancy(id){
             url: "/admin/job/" + id + "/edit",
             success: function(result)
             {
-                var myEditorResponsibility;
+               
 
-                ClassicEditor
-                    .create( document.querySelector('#responsibilities_edit_1'))
-                    .then( editor => {
-                        // console.log(editor );
-                        myEditorResponsibility = editor;
-                    } )
-                    .catch( err => {
-                        console.error( err.stack );
-                    } );
-                var myEditor;
-
-                ClassicEditor
-                    .create( document.querySelector( '#job_description_edit_1'))
-                    .then( editor => {
-                        // console.log(editor );
-                        myEditor = editor;
-                    } )
-                    .catch( err => {
-                        console.error( err.stack );
-                    } );
+                // console.log(result);
+                
                 // var singleValues = $( "#job_description_edit_1" ).val();
                 // CKEDITOR.instances.setData(singleValues);
                 // var mailContents = CKEDITOR.instances['job_description_edit_1'].getData();
-                console.log(result.job_description);
+                // console.log(result.job_description);
                 $('#ModalEditVacacny').modal('show');
                 $('#vacancy_name_edit').val(result.vacancy_name);
                 $('#closingDate_edit').val(result.closingDate);
@@ -544,7 +570,11 @@ $("#frmAddModalVacancy").validate({
             required: true,
         }
     }, submitHandler: function (form) {
+        var job_description = jDadd.getData();
+        var job_requirement = jDrE.getData();
+        // console.log(value);
         // console.log($('#job_description').val());
+        // consoloe.log(jDadd.getData());  
     //    console.log('Hello World');
         $.ajaxSetup({
             headers: {
@@ -560,10 +590,10 @@ $("#frmAddModalVacancy").validate({
                 "job_type_id": $('#job_type_id').val(),
                 "skill_id": $('#skill_id').val(),
                 "location_id": $('#location_id').val(),
-                "job_description": $('#job_description').val(),
+                "job_description": job_description,
                 "vacancy_name": $('#vacancy_name').val(),
                 "closingDate": $('#closingDate').val(),
-                "responsibilities" : $('#responsibilities').val(),
+                "responsibilities" : job_requirement,
                 "exp_level" : $('#exp_level').val(),
                 "job_title_id" : $('#job_title_id').val(),
                 "company_id": $('#company_id').val(),

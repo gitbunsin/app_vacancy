@@ -151,8 +151,6 @@ class JobController extends Controller
             $user->save();
 
         }else{
-
-            $user->profile ="NULL";
             $user->name = $request->name;
             $user->email = $request->email;
             $user->phone = $request->phone;

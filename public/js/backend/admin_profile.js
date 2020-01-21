@@ -70,6 +70,10 @@ $('#frmUserChangePassword').validate({
         form_data.append('email',$('#email').val());
         form_data.append('zip_code',$('#zip_code').val());
         form_data.append('address',$('#address').val());
+        form_data.append('address',$('#address').val());
+        form_data.append('country',$('#country').val());
+        form_data.append('city',$('#city').val());
+        form_data.append('gender',$('#gender').val());
         jQuery.ajax({
             url: "/upload/admin/profile/" + id,
             method: 'POST',
@@ -80,7 +84,7 @@ $('#frmUserChangePassword').validate({
             cache: false, // To unable request pages to be cached
             processData: false,
             success: function (response) {
-                console.log(response);
+                // console.log(response);
                 toastr.success('Success', 'item has been updated !');
                 // var delay = 3000; 
                 // setTimeout(function()
