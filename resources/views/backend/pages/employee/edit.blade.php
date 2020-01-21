@@ -261,9 +261,9 @@
                     <div class="bhoechie-tab-content">
                             <div class="modal-body">
                                         <ul class="nav nav-tabs" role="tablist">
-                                            <li role="presentation" class="active"><a href="#job" aria-controls="home" role="tab" data-toggle="tab"> Job</a></li>
-                                            <li role="presentation"><a href="#contract" aria-controls="description" role="tab" data-toggle="tab">  Employment Contract</a></li>
-                                            <li role="presentation"><a href="#terminate" aria-controls="description" role="tab" data-toggle="tab">  Terminate</a></li>
+                                            <li role="presentation" class="active"><a href="#job" aria-controls="home" role="tab" data-toggle="tab"> <i class="fa fa-group"></i> Job</a></li>
+                                            <li role="presentation"><a href="#contract" aria-controls="description" role="tab" data-toggle="tab"> <i class="fa fa-group"></i>  Employment Contract</a></li>
+                                            <li role="presentation"><a href="#terminate" aria-controls="description" role="tab" data-toggle="tab"><i class="fa fa-group"></i>   Terminate</a></li>
                                         </ul>
                                         <!-- Tab panes -->
                                         <div class="tab-content tabs">
@@ -360,10 +360,10 @@
                                                                         <label>End Date </label>
                                                                         <input  data-toggle="datepicker"  name="mobile" id="mobile"  type="text" class="form-control">
                                                                     </div>
-                                                                    <div class="col-sm-4">
+                                                                    {{-- <div class="col-sm-4">
                                                                         <label> Contract Details  </label>
                                                                         <input name="work_telephone" id="work_telephone"  type="file" class="form-control">
-                                                                    </div>
+                                                                    </div> --}}
                                                                 </div>
                                                                 <div class="pull-right">
                                                                         <button type="submit" class="btn btn-success">Save</button>

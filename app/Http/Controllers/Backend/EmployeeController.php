@@ -218,10 +218,11 @@ class EmployeeController extends Controller
 
      public function updateEmployeeDetails($id , Request $request)
      {
-         $filename = $request->file('file')->getClientOriginalName();
-         if($filename){
+        if ($request->file('file')) {
+                $image = $request->file('file');
+                $name = $image->getClientOriginalName();
                 $employee = Employee::find($id);
-                $employee->photo = $filename;
+                $employee->photo = $name;
                 $employee->first_name = input::get('first_name');
                 $employee->last_name = input::get('last_name');
                 $employee->middle_name = input::get('middle_name');
@@ -231,12 +232,11 @@ class EmployeeController extends Controller
                 $employee->birthday = input::get('birthday_id');
                 $employee->nationality_id = input::get('nationality_id');
                 $dir = 'uploads/employee/';
-                $request->file('file')->move($dir, $filename);
+                $request->file('file')->move($dir,$name);
                 $employee->save();
                 return response()->json($employee);
          }else{
                 $employee = Employee::find($id);
-                $employee->photo = '';
                 $employee->first_name = input::get('first_name');
                 $employee->last_name = input::get('last_name');
                 $employee->middle_name = input::get('middle_name');
