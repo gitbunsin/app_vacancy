@@ -65,17 +65,25 @@
                         <li>
                             <a href="{{url('admin/pricing')}}">Pricing</a>
                         </li>
-                        {{-- <li>
-                            <a href="{{url('admin/pricing')}}">User</a>
-                        </li>
-                         --}}
+                        
                     </ul>
                 </li>
            @endif
          
-            <li class="{{ (request()->segment(2) == 'payment') ? 'active' : '' }}">
+            <li>
                 <a href="{{url('admin/payment')}}"><i class="fa fa-dollar"></i>Payments<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li  class="{{ (request()->segment(2) == 'payment') ? 'active' : '' }}">
+                        <a href="{{url('admin/payment')}}">My Payments</a>
+                    </li>
+                    @if ($user->role_id == 1)
+                    <li  class="{{ (request()->segment(2) == 'list') ? 'active' : '' }}">
+                        <a href="{{url('admin/list/payment')}}">All Payments</a>
+                    </li>
+                    @endif
+                </ul>
             </li>
+            
            
             <li class="{{ (request()->segment(2) == 'profile') ? 'active' : '' }}">
                 <a href="{{url('admin/profile')}}"><i class="ti ti-folder"></i>My Profile</a>

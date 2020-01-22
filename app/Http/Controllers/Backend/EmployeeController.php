@@ -18,8 +18,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 use App\Model\jobTitle;
+use App\Model\EmployeeContract;
 use App\Model\employeeLicense;
-
+use DB;
 class EmployeeController extends Controller
 {
     /**
@@ -29,8 +30,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employee = Employee::with('jobTitle')->where('admin_id',auth()->guard('admin')->user()->id)->get();
-        // dd($employee);
+        $employee = Employee::with(['supervisor','jobTitle'])->where('admin_id',auth()->guard('admin')->user()->id)->get();
+       
         return view('backend/pages/employee/index',compact('employee'));
     }
 
@@ -102,7 +103,7 @@ class EmployeeController extends Controller
     {
         $reporting = new employee_reporting_to();
         $reporting->employee_id = $request->Supervisor_id;
-        $reporting->reporting_id = $request->reporting_method_id;
+        $reporting->reporting_method_id = $request->reporting_method_id;
         $reporting->save();
         $reporting['reporting_method'] = ReportingMethod::find($request->reporting_method_id);
         $reporting['supervisor'] = employee::find($request->Supervisor_id);
@@ -110,15 +111,17 @@ class EmployeeController extends Controller
     }
     public function deleteSupervisor($id)
     {
-        $reporting = employee_reporting_to::find($id);
+        $reporting = employee_reporting_to::find(1);
         $reporting->delete();
+        // $reporting->save();
+        // $reporting->delete();
         return response()->json($reporting);
     }
 
     function editSupervisor($id)
     {
-        $reporting = employee_reporting_to::find($id);
-        $reporting['reporting_method'] = ReportingMethod::find($reporting->reporting_id);
+        $reporting = employee_reporting_to::where('reporting_method_id',$id)->first();
+        $reporting['reporting_method'] = ReportingMethod::find($reporting->reporting_method_id);
         $reporting['supervisor'] = employee::find($reporting->employee_id);
         $reporting['all_reporting_method'] = ReportingMethod::all();
         $reporting['all_supervisor'] = employee::all();
@@ -298,12 +301,28 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        $employee = Employee::with(['supervisor','admin','terminate','employeeMembership','employeeLicense','employeeLanguage','employeeSkill','employeeEducation','workexperience','salary','emergencyContact','attachment'])->where('id',$id)->first();
+        $employee = Employee::with(['contract','supervisor','admin','terminate','employeeMembership','employeeLicense','employeeLanguage','employeeSkill','employeeEducation','workexperience','salary','emergencyContact','attachment'])->where('id',$id)->first();
         $basicSalary = EmployeeBasicSalary::with(['payPeriod','currency'])->where('employee_id',$employee->id)->first();
-
         // dd($employee);
-        // $basicPayPeriod = payPeriod::where('id',$basicSalary->payperiod_id)->first();
         return view('backend/pages/employee/edit',compact('employee','basicSalary'));
+    }
+
+    public function employeeContract($id , Request $request)
+    {
+         $employeeContract = employeeContract::where('employee_id',$id)->first();
+        if($employeeContract){
+            $employeeContract->start_date = $request->start_date;
+            $employeeContract->end_date = $request->end_date;
+            $employeeContract->save();
+            return response()->json("success");
+        }else{
+            $employeeObj = new employeeContract();
+            $employeeObj->employee_id = $id;
+            $employeeObj->start_date = $request->start_date;
+            $employeeObj->end_date = $request->end_date;
+            $employeeObj->save();
+            return response()->json($employeeObj);
+        }
     }
 
     /**

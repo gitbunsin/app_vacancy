@@ -13,12 +13,12 @@ class CreateEmployeeReportingTosTable extends Migration
      */
     public function up()
     {
-        Schema::create('employee_reporting_tos', function (Blueprint $table) {
+        Schema::create('employee_reporting_method', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('employee_id')->unsigned()->nullable();
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
-            $table->integer('reporting_id')->unsigned()->nullable();
-            $table->foreign('reporting_id')->references('id')->on('reporting_methods')->onDelete('cascade');
+            $table->integer('reporting_method_id')->unsigned()->nullable();
+            $table->foreign('reporting_method_id')->references('id')->on('reporting_methods')->onDelete('cascade');
         });
     }
 

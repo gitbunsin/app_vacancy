@@ -1,4 +1,38 @@
 
+$("#frmEmployeeContract").validate({
+    rules: {
+        contract_start_date : {
+          required: true,
+       },
+       contract_end_date : {
+        required: true,
+       },
+    }, submitHandler: function (form) {
+
+       var id  = $('#employee_contract_id').val();
+       $.ajaxSetup({
+           headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+           }
+       });
+       jQuery.ajax({
+           url: "/admin/employee/contract/" + id,
+           method: 'POST',
+           data: 
+           {
+            "start_date" : $('#contract_start_date').val(),
+            "end_date"  : $('#contract_end_date').val(),
+           },
+           success: function (result) {
+             console.log(result);
+             toastr.success('Success' , 'item has been updated !');
+           },error : function(err){
+                console.log(err);
+           }
+          });
+    }
+ });
+
 $("#frmEmployeeJobDetails").validate({
     rules: {
         employee_job_title_id : {

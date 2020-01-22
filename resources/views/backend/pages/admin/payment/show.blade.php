@@ -52,14 +52,20 @@
                             </tr> 
                             <tr>
                                     <td><b> Status : </b></td>
-                                    <td><b class="badge bg-success">{{$payment->status}}</b></td>
+                                    @if ($payment->status == "success")
+                                        <td><b class="badge bg-success">{{$payment->status}}</b></td>    
+                                        @elseif($payment->status == "pending")
+                                        <td><b class="badge bg-warning">{{$payment->status}}</b></td> 
+                                        @else
+                                        <td><b class="badge bg-danger">{{$payment->status}}</b></td> 
+                                    @endif
                             </tr> 
                             <tr>
                                     <td><b> Created at  : </b></td>
                                     <td>{{$payment->created_at}}</td>
                             </tr> 
                             <tr>
-                                @if ($User->role_id == 1)
+                                @if ($User->role_id == 1 && $payment->status == "pending" )
                                    <td><input type="submit" class="btn btn-danger" value="Mark to Success"></td>  
                                 @else
                                 <td></td>

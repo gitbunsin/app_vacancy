@@ -9,13 +9,17 @@ class employee extends Model
     protected $guarded = ['id'];
     public $timestamps = false;
 
+    public function contract()
+    {
+        return $this->hasOne(employeeContract::class);
+    }
     public function admin()
     {
         return $this->belongsTo(Admin::class,'admin_id','id');
     }
     public function supervisor()
     {
-        return $this->hasMany(employee_reporting_to::class);
+        return $this->belongsToMany(reportingMethod::class);
     }
     public function terminate()
     {

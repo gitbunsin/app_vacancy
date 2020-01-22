@@ -161,10 +161,7 @@
                                         <label>Address Street 2  .</label>
                                         <input name="street2" id="street2"  value="{{$employee->street2}}" type="text" class="form-control">
                                     </div>
-                                    {{-- <div class="col-sm-4">
-                                        <label>City .</label>
-                                        <input name="city_code" id="city_code" value="{{$employee->city_code}}" type="text" class="form-control">
-                                    </div> --}}
+                                   
                                     <div class="col-sm-4">
                                             <label> City</label>
                                             <select class="form-control"  name="city_code" id="city_code">
@@ -185,10 +182,7 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                                    {{-- <div class="col-sm-4">
-                                        <label>State/Province</label>
-                                        <input value="{{$employee->province_code}}" name="province_code" id="province_code" type="text" class="form-control">
-                                    </div> --}}
+                                   
                                     <div class="col-sm-4">
                                         <label>Zip/Postal Code .</label>
                                         <input name="zip_code" id="zip_code" value="{{$employee->zip_code}}" type="text" class="form-control">
@@ -346,24 +340,27 @@
                                                     </div>
                                             </div>
                                             <div role="tabpanel" class="tab-pane fade" id="contract">
-                                                    <form action="" id="frmEditCandidate">
-                                                    <input type="hidden" value="" id="candidate_id_edit">
+                                                    <form action="" id="frmEmployeeContract">
+                                                    <input type="hidden" value="{{$employee->id}}" id="employee_contract_id">
                                                     <meta name="csrf-token" content="{{ csrf_token() }}">
                                                     <div class="card-body">
-                                                           
                                                             <div class="row">
                                                                     <div class="col-sm-6">
-                                                                        <label>Start Date </label>
-                                                                        <input data-toggle="datepicker"  name="telephone" id="telephone" type="text" class="form-control">
+                                                                        <label>Start Date </label> 
+                                                                        @if(is_null($employee->contract))
+                                                                            <input value=""  data-toggle="datepicker"  name="contract_start_date" id="contract_start_date" type="text" class="form-control"> 
+                                                                        @else
+                                                                            <input value="{{$employee->contract->start_date}}"  data-toggle="datepicker"  name="contract_start_date" id="contract_start_date" type="text" class="form-control"> 
+                                                                        @endif
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <label>End Date </label>
-                                                                        <input  data-toggle="datepicker"  name="mobile" id="mobile"  type="text" class="form-control">
+                                                                        @if(is_null($employee->contract))
+                                                                        <input value=""  data-toggle="datepicker"  name="contract_end_date" id="contract_end_date" type="text" class="form-control"> 
+                                                               @else
+                                                                       <input value="{{$employee->contract->end_date}}"  data-toggle="datepicker"  name="contract_end_date" id="contract_end_date" type="text" class="form-control"> 
+                                                                        @endif
                                                                     </div>
-                                                                    {{-- <div class="col-sm-4">
-                                                                        <label> Contract Details  </label>
-                                                                        <input name="work_telephone" id="work_telephone"  type="file" class="form-control">
-                                                                    </div> --}}
                                                                 </div>
                                                                 <div class="pull-right">
                                                                         <button type="submit" class="btn btn-success">Save</button>
@@ -487,14 +484,13 @@
                                                                             </thead>
                                                                             <tbody>
                                                                                 @foreach ($employee->supervisor as $key => $supervisors)
-                                                                                @php
-                                                                                    $reporting = ReportingMethod::find($supervisors->reporting_id);
-                                                                                    $supervisor = employee::find($supervisors->employee_id);
-                                                                                @endphp
+                                                                                 @php
+                                                                                     $employee = employee::find($supervisors->pivot->employee_id);
+                                                                                 @endphp
                                                                                 <tr id="tr_assigned_supervisors{{$supervisors->id}}">
                                                                                         <th scope="row">{{$key + 1}}</th>
-                                                                                        <td>{{$supervisor->last_name . ' ' .$supervisor->first_name }}</td>
-                                                                                        <td>{{$reporting->name}}</td>
+                                                                                        <td>{{$employee->last_name . ' ' .$employee->first_name }}</td>
+                                                                                        <td>{{$supervisors->name}}</td>
                                                                                         <th>
                                                                                               <a onclick="Editsupervisor({{$supervisors->id}});"  class="btn btn-primary" title="Edit"><i class="icon-edit"></i></a>
                                                                                               <a onclick="Deletesupervisor({{$supervisors->id}});" class="btn btn-danger" title="Delete"><i class="ti-trash"></i></a>

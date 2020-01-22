@@ -22,6 +22,11 @@ class PaymentController extends Controller
         $payment = payment::where('admin_id',auth()->guard('admin')->user()->id)->get();
         return view('backend/pages/admin/payment/index',compact('payment'));
     }
+    public function listAllPayment()
+    {
+        $payment = payment::all();
+        return view('backend/pages/admin/payment/all_payment',compact('payment'));
+    }
 
     /**
      * Show the form for creating a new resource.

@@ -66,6 +66,7 @@ Route::group(['namespace' => 'Backend','prefix' => 'admin'], function ($request)
     Route::resource('employeeLanguage','EmployeeLanguageController');
     Route::resource('employeeLicense','EmployeeLicenseController');
     Route::post('employee/report/supervisor','EmployeeController@addSupervisor');
+    Route::post('employee/contract/{id}','EmployeeController@employeeContract');
     Route::delete('employee/report/delete/supervisor/{id}','EmployeeController@deleteSupervisor');
     Route::get('employee/report/delete/supervisor/{id}','EmployeeController@editSupervisor');
     Route::post('employee/report/update/supervisor/{id}','EmployeeController@updateSupervisor');
@@ -73,15 +74,13 @@ Route::group(['namespace' => 'Backend','prefix' => 'admin'], function ($request)
     Route::resource('employeeTerminate','EmployeeTerminateController');
     /* -- Basic Salary -- */
     
-    
-
 
     Route::resource('basicSalary','EmployeeBasicSalaryController');
     Route::get('app','AppController@index');
     Route::get('invoice/{id}','paymentController@invoice');
     Route::get('confim/payment/{id}','paymentController@confirmPayment');
     Route::resource('payment','paymentController');
-  
+    Route::get('list/payment','paymentController@listAllPayment');
     Route::resource('company','CompanyController');
     Route::post('company-update/{id}','CompanyController@updateCompany');
     Route::resource('subUnit','SubUnitController');
@@ -113,7 +112,6 @@ Route::group(['namespace' => 'Backend','prefix' => 'admin'], function ($request)
     Route::get('profile','JobController@profile');
     Route::resource('app-candidate','CandidateController');
     Route::resource('user','UserController');
-   
     Route::post('user-cv/{id}','UserController@userCV');
     Route::get('create-resume','CandidateController@createResume');
     Route::post('user/resume/{id}','UserController@userCV');

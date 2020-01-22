@@ -62,7 +62,7 @@ function Editsupervisor(id)
       reporting_method.empty();
       $.each(result.all_reporting_method, function (key , value) {
             var isSelected = '';
-            if(result.reporting_method.id == value.id)
+            if(result.reporting_method.reporting_method_id == value.id)
             {
                isSelected = 'selected';
             }

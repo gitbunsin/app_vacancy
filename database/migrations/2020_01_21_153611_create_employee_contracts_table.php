@@ -14,8 +14,11 @@ class CreateEmployeeContractsTable extends Migration
     public function up()
     {
         Schema::create('employee_contracts', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+            $table->increments('id');
+            $table->integer('employee_id')->unsigned()->nullable();
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
+            $table->string('start_date');
+            $table->string('end_date');
         });
     }
 

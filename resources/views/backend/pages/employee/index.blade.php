@@ -1,5 +1,8 @@
 @extends('backend.layouts.master')
 @section('content')
+@php
+     use App\Model\employee;  
+@endphp
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 col-sm-12">
@@ -47,7 +50,10 @@
                                         @endif
                                         <td>{{$employees->mobile}}</td>
                                         <td>{{$employees->work_email}}</td>
-                                        <td></td>
+                                        {{-- @php
+                                             $employee_supervoirs = employee::find($employees->supervisor[0]->pivot->employee_id);
+                                        @endphp --}}
+                                         <td></td>
                                       
                                         <td>
                                                 <a href="{{url('admin/employee/'.$employees->id.'/edit')}}"  class="btn btn-primary"  title="Edit"><i class="icon-edit"></i></a>
@@ -94,15 +100,11 @@
 @endsection
 @section('scripts')
     <script type="text/javascript">
-
-
         function deleteEmployee(x){
 
             let id = $(x).data("id");
             $('#Delete').modal('show');
             $('#employee_id').val(id);
-
-
         }
         $(document).ready(function () {
 
