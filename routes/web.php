@@ -36,19 +36,27 @@ Route::post('password/reset','App\Http\Controllers\Auth\ForgotPasswordController
 //Admin Access Only 
 Route::group(['middleware'=>'is_admin'], function(){
     Route::group(['namespace' => 'Backend','prefix' => 'admin'], function(){
-       
         Route::get('pricing', 'AppController@PricingSettings')->name('pricing_settings');
         Route::post('pricing','AppController@PricingSave');
-        
+    });
+});
+// Frontend Route 
+Route::group(['middleware'=>'auth'], function(){
+    Route::group(['namespace' => 'Frontend','prefix' => 'user'], function(){
+        Route::post('education', 'UserController@education');
+        Route::delete('education/{id}', 'UserController@educationDelete');
+        Route::get('education/{id}', 'UserController@educationEdit');
+        Route::post('education/{id}', 'UserController@educationUpdate');
+        Route::post('skill', 'UserController@skill');
+        Route::get('skill/{id}', 'UserController@skillEdit');
+        Route::post('skill/{id}', 'UserController@skillUpdate');
+        Route::delete('skill/{id}', 'UserController@skillDelete');
+        Route::resource('experience','UserExperienceController');
     });
 });
 
-
+//Backend Route
 Route::group(['namespace' => 'Backend','prefix' => 'admin'], function ($request) {
-
-    
-
-
     /* -- employee -- */
     Route::post('employee/add/emergency/contact','EmployeeController@addEmergencyContact');
     Route::get('employee/show/emergency/contact/{id}','EmployeeController@showEmergencyContact');
@@ -73,8 +81,6 @@ Route::group(['namespace' => 'Backend','prefix' => 'admin'], function ($request)
     Route::resource('employeeMembership','EmployeeMembershipController');
     Route::resource('employeeTerminate','EmployeeTerminateController');
     /* -- Basic Salary -- */
-    
-
     Route::resource('basicSalary','EmployeeBasicSalaryController');
     Route::get('app','AppController@index');
     Route::get('invoice/{id}','paymentController@invoice');

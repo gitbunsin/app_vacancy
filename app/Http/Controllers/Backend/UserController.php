@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Backend;
 use App\Model\userCv;
 use App\User;
 use DB;
-// use App\Model\Admin;
+use App\Model\Country;
+use App\Model\City;
+use App\Model\userEducation;
+use App\Model\userSkill;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
@@ -19,11 +22,99 @@ class UserController extends Controller
      */
     public function index()
     {
-
         $user = User::all();
        // dd($user);
         return view('Backend/pages/candidate/index',compact('user'));
     }
+    public function skill(Request $request)
+    {
+        $skill = new userSkill();
+        $skill->user_id = $request->user_id;
+        $skill->school  = $request->school;
+        $skill->study = $request->study;
+        $skill->degree = $request->degree;
+        $skill->country_id  = $request->country;
+        $skill->city_id = $request->city;
+        $skill->year = $request->year;
+        $skill->year_to = $request->year_to;
+        $skill->save();
+        return response::json($skill);
+    }
+    public function skillDelete($id)
+    {
+        $skill =  userSkill::find($id);
+        $skill->delete();
+        return response::json($skill);
+    }
+    public function skillEdit($id)
+    {
+        $skill =  userSkill::find($id);
+        $skill['all_country'] = Country::all();
+        $skill['all_city'] = City::all();
+        return response::json($skill);
+    }
+
+    public function skillUpdate(Request $request , $id)
+    {
+        $skill = userSkill::find($id);
+        $skill->user_id = $request->user_id;
+        $skill->school  = $request->school;
+        $skill->study = $request->study;
+        $skill->degree = $request->degree;
+        $skill->country_id  = $request->country;
+        $skill->city_id = $request->city;
+        $skill->year = $request->year;
+        $skill->year_to = $request->year_to;
+        $skill->save();
+        return response::json($skill);
+    }
+
+
+
+    public function education(Request $request)
+    {
+        $education = new userEducation();
+        $education->user_id = $request->user_id;
+        $education->school  = $request->school;
+        $education->study = $request->study;
+        $education->degree = $request->degree;
+        $education->country_id  = $request->country;
+        $education->city_id = $request->city;
+        $education->year = $request->year;
+        $education->year_to = $request->year_to;
+        $education->save();
+        return response::json($education);
+    }
+
+    public function educationDelete($id)
+    {
+        $education =  userEducation::find($id);
+        $education->delete();
+        return response::json($education);
+    }
+    public function educationUpdate(Request $request , $id)
+    {
+        $education =  userEducation::find($id);
+        $education->user_id = $request->user_id;
+        $education->school  = $request->school;
+        $education->study = $request->study;
+        $education->degree = $request->degree;
+        $education->country_id  = $request->country;
+        $education->city_id = $request->city;
+        $education->year = $request->year;
+        $education->year_to = $request->year_to;
+        $education->save();
+        return response::json($education);
+    }
+
+    public function educationEdit($id)
+    {
+        $education =  userEducation::find($id);
+        $education['all_country'] = Country::all();
+        $education['all_city'] = City::all();
+        return response::json($education);
+    }
+
    public function resetUserPassword(Request $request , $id)
    {
         $user = User::find($id);
@@ -31,7 +122,6 @@ class UserController extends Controller
         $user->save();
         return response::json($user);
    }
-
     public function updateAdminProfile(Request $request , $id )
    {
     // $user =  Admin::findOrFail($id);

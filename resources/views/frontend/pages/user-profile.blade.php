@@ -1,5 +1,32 @@
 @extends('frontend.layouts.template')
 @section('content')
+@php
+	$User = Auth::user();	
+	use App\Model\Country;
+	use App\Model\City;
+	$country = Country::all();
+	$city = City::all();
+	use App\Model\jobTitle;
+	$job_title = jobTitle::all();
+	$degree = array("Associate degree","Bachelor degree","Master degree","Doctoral degree");
+
+@endphp
+<style>
+.selectWrapper{
+  border-radius:36px;
+  display:inline-block;
+  overflow:hidden;
+  background:#cccccc;
+  border:1px solid #cccccc;
+  margin-top: 0px;
+}
+.selectBox{
+  width:365px;
+  height:40px;
+  border:0px;
+  outline:none;
+}
+</style>
 	<div class="tr-profile section-padding">
 	    <div class="container">
 	        <div class="row">
@@ -22,43 +49,6 @@
 	            <div class="col-md-8 col-lg-9">
 					<div class="tab-content">
 						<div role="tabpanel" class="tab-pane fade in show active account-info" id="account-info">	
-							<div class="tr-fun-fact">
-								<div class="row">
-									<div class="col-sm-4">
-										<div class="fun-fact">
-											<div class="fun-fact-icon">
-												<img src="{{asset('images/icons/fun-fact4.png')}}" alt="images" class="img-fluid">
-											</div>
-											<div class="media-body">
-												<h1 class="counter">329</h1>
-												<span>Viewed my resume</span>
-											</div>
-										</div><!-- /.fun-fact -->
-									</div>
-									<div class="col-sm-4">
-										<div class="fun-fact">
-											<div class="fun-fact-icon">
-												<img src="{{asset('images/icons/fun-fact5.png')}}" alt="images" class="img-fluid">
-											</div>
-											<div class="media-body">
-												<h1 class="counter">32</h1>
-												<span>Application submit</span>
-											</div>
-										</div><!-- /.fun-fact -->									
-									</div>
-									<div class="col-sm-4">
-										<div class="fun-fact">
-											<div class="fun-fact-icon">
-												<img src="{{asset('images/icons/fun-fact6.png')}}" alt="images" class="img-fluid">
-											</div>
-											<div class="media-body">
-												<h1 class="counter">27</h1>
-												<span>Call for interview</span>
-											</div>
-										</div><!-- /.fun-fact -->
-									</div>
-								</div><!-- ./row -->							
-							</div><!-- /.tr-fun-fact -->
 							<div class="section display-information">
 								<form id="frmUpdateUserProfile">
 											<input type="hidden" name="_token" value="{{ csrf_token()}}">
@@ -161,7 +151,6 @@
 											  </tr>
 											</thead>
 											<tbody> 
-										
 											@if($user_cv)
 												<tr id="tr_userCv{{$user_cv->id}}">
 													<td>{{$user_cv->file_name}}</td>
@@ -181,134 +170,165 @@
 								<hr/>
 								<br/>
 							<ul class="tr-list resume-info">
-								<li class="career-objective">
-									<div class="icon">
-								        <i class="fa fa-black-tie" aria-hidden="true"></i>
-								    </div>  
-								    <div class="media-body">
-								    	<span class="tr-title">Career Objective</span>
-										<div class="code-edit">
-										</div>
-								    </div>
-								</li><!-- /.career-objective -->
+								
 								<li class="work-history">
-								    <div class="icon">
-								    	<i class="fa fa-briefcase" aria-hidden="true"></i>
-								    </div>
+								  
 								    <div class="media-body additem-work">
-								    	<span class="tr-title">Work History</span>
+								    	<span class="tr-title">Education</span>
 								    	<div id="addhistory" class="additem">
-								    		<span id="clone" class="icon clone"><i class="fa fa-plus" aria-hidden="true"></i></span>
+								    		<span  onclick="loadUserEducation();" class="icon clone"><i  class="fa fa-plus" aria-hidden="true"></i></span>
 								    		<span class="icon remove"><i class="fa fa-times" aria-hidden="true"></i></span>
-									    	<div class="code-edit-small">
-									    		<label>Job Title</label>
-									    		 <input type="text" class="form-control" value="2015-01-15"/>
-									    		<label>Compnay Name</label>
-									    		<input type="text" class="form-control" value="2015-01-15"/>
-												<div class="row">
-													<div class="col-sm-6 col-md-4">
-														<label>From</label>
-					                                    <div class="calendar">
-					                                         <input type="date" class="form-control" value="2015-01-15"/>
-					                                    </div><!-- calendar -->
-													</div>
-													<div class="col-sm-6 col-md-4">
-														<label>To</label>
-														<div class="calendar">
-					                                        <input type="date" class="form-control" value="2016-01-13">
-					                                    </div><!-- calendar -->
-													</div>
-													<div class="col-md-4">
-														<div class="checkbox">
-															<label for="logged-1"><input type="checkbox" name="logged-1" id="logged-1">I currently work here</label>
+									    	<div class="code-edit-small" id="card_user_education">
+												@foreach ($user->education as $educations)
+													<div class="card" id="card_education{{$educations->id}}">
+														<div class="card-body">
+															<p class="card-text">
+																<strong>School :</strong> 
+																	{{$educations->school}} ,
+																<strong> Degree : </strong> 
+																	{{$educations->degree}} , 
+																<strong>Year :</strong>
+																	{{$educations->year .' - '.$educations->year_to }} &nbsp;&nbsp;
+																 <strong>
+																	 <a href="#" onclick="educationDelete({{$educations->id}});"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp; 
+																	 <a href="#" onclick="educationEdit({{$educations->id}});"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>
+																</p>
+													
 														</div>
 													</div>
-												</div>
+													<br/>
+												@endforeach			 
 									    	</div>
 								    	</div>						    	
 								    </div>
-								</li><!-- /.work-history -->
-								<li class="education-background">
-								    <div class="icon">
-								    	<i class="fa fa-briefcase" aria-hidden="true"></i>
-								    </div>
-								    <div class="media-body additem-edu">
-								    	<span class="tr-title">Education Background</span>
-								    	<div id="add-edu" class="additem">
-								    		<span id="edu-clone" class="icon clone"><i class="fa fa-plus" aria-hidden="true"></i></span>
-								    		<span class="icon remove"><i class="fa fa-times" aria-hidden="true"></i></span>
-								    		
-								    		<div class="code-edit-small">
-								    			<label>Degree</label>
-								    			<input type="text" class="form-control" value="2015-01-15"/>
-								    			<label>Institute Name</label>
-								    			<input type="date" class="form-control" value="2016-01-13">
-												<div class="row">
-													<div class="col-sm-6 col-md-4">
-														<label>From Year</label>
-														<div class="calendar">
-					                                        <input type="date" class="form-control" value="2012-01-01">
-					                                    </div><!-- calendar -->
-													</div>
-													<div class="col-sm-6 col-md-4">
-														<label>To Year (or expected)</label>
-														<div class="calendar">
-					                                        <input type="date" class="form-control" value="2017-01-13">
-					                                    </div><!-- calendar -->
-													</div>
-													<div class="col-sm-6 col-md-4">
-														<label>Result (GPA)</label>
-														<div class="code-edit"><span>4.00/5.00</span></div>
-													</div>
-												</div>
-								    		</div>
-											<div class="code-edit">
-											</div>		
-								    	</div><!-- /.additem -->
-								    </div>
-								</li><!-- /.education-background -->	
-								<li class="qualification">
-								    <div class="icon">
-								    	<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-								    </div>
-								    <div class="media-body">
-								    	<span class="tr-title">Special Qualification:</span>
-								    	<div class="code-edit">
-									    	{{-- <ol>
-												<li>5 years+ experience designing and building products In the Design &amp; IT industry.</li>
-												<li>Passion for people-centered design, solid intuition.</li>
-												<li>Skilled at any Kind Design Tools. </li>
-												<li>Hard Worker &amp; Quick Lerner.</li>
-									    	</ol>								    		 --}}
-								    	</div>
-								    </div>
-								</li><!-- /.qualification -->	
-								<li class="language-proficiency code-edit-small">
-								    <div class="icon">
-								    	<i class="fa fa-language" aria-hidden="true"></i>
-								    </div>
-								    <div class="media-body">
-								    	<span class="tr-title">Language Proficiency:</span>
-									
-										<input type="text" class="form-control" value="username"/>    		    	
-								    </div>
-								</li><!-- /.language-proficiency -->
-								
-								<li class="personal-deatils">
-								    <div class="icon">
-								    	<i class="fa fa-hand-peace-o" aria-hidden="true"></i>
-								    </div>
-								    <div class="media-body">
-								    	<span class="tr-title">Declaration</span>
-								    	<div class="code-edit">
-								    	</div>
-								    </div>
-								</li><!-- /.personal-deatils -->				
+								</li><!-- /.work-history -->			
 							</ul>
+							<ul class="tr-list resume-info">
+									<li class="work-history">
+										<div class="media-body additem-work">
+											<span class="tr-title">Traning Skills2</span>
+											<div id="addhistory" class="additem">
+												<span onclick="LoadUserSkill();" class="icon clone"><i  class="fa fa-plus" aria-hidden="true"></i></span>
+												<div class="code-edit-small" id="card_user_skill">
+														@foreach ($user->skill as $skills)
+														<div class="card" id="card_skill{{$skills->id}}">
+															<div class="card-body">
+																<p class="card-text">
+																	<strong>School :</strong> 
+																		{{$skills->school}} ,
+																	<strong> Degree : </strong> 
+																		{{$skills->degree}} , 
+																	<strong>Year :</strong>
+																		{{$skills->year .' - '.$skills->year_to }} &nbsp;&nbsp;
+																	 <strong>
+																		 <a href="#" onclick="skillDelete({{$skills->id}});"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp; 
+																		 <a href="#" onclick="skillEdit({{$skills->id}});"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>
+																	</p>
+															</div>
+														</div>
+														<br/>
+													@endforeach					
+												</div>
+											</div>						    	
+										</div>
+									</li><!-- /.work-history -->			
+								</ul>
+								<ul class="tr-list resume-info">
+										<li class="work-history">
+											<div class="media-body additem-work">
+												<span class="tr-title">Experience</span>
+												<div id="addhistory" class="additem">
+													<span onclick="userExperience();" class="icon clone"><i class="fa fa-plus" aria-hidden="true"></i></span>
+													<div class="code-edit-small" id="div_card_experience">
+															@foreach ($user->experience as $experiences)
+																@php
+																	$title =jobTitle::where('id',$experiences->job_title_id)->first();
+																@endphp
+																<div class="card" id="card_experience{{$experiences->id}}">
+																	<div class="card-body">
+																		<p class="card-text">
+																			<strong>Job Title :</strong> 
+																				{{$title->name}} ,
+																			<strong> Company Name : </strong> 
+																				{{$experiences->company_name}} , 
+																			<strong>Year :</strong>
+																				{{$experiences->year .' - '.$experiences->year_to }} &nbsp;&nbsp;
+																			<strong>
+																				<a href="#" onclick="experienceDelete({{$experiences->id}});"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp; 
+																				<a href="#" onclick="experienceEdit({{$experiences->id}});"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>
+																			</p>
+																	</div>
+																</div>
+														<br/>
+													@endforeach				
+													</div>
+												</div>						    	
+											</div>
+										</li><!-- /.work-history -->			
+									</ul>
+									<ul class="tr-list resume-info">
+											<li class="work-history">
+												<div class="media-body additem-work">
+													<span class="tr-title">Language</span>
+													<div id="addhistory" class="additem">
+														<span id="clone" class="icon clone"><i class="fa fa-plus" aria-hidden="true"></i></span>
+														<span class="icon remove"><i class="fa fa-times" aria-hidden="true"></i></span>
+														<div class="code-edit-small">
+																<div class="card">
+																		<div class="card-body">
+																		  <p class="card-text"><strong>School :</strong> PhnomPenhSecurities ,<strong> Degree : </strong> bachelor degree , <strong>Year :</strong>  2027 - 2027</p>
+																		</div>
+																	  </div>
+																	  <br/>
+																	
+														</div>
+													</div>						    	
+												</div>
+											</li><!-- /.work-history -->			
+										</ul>
+										<ul class="tr-list resume-info">
+												<li class="work-history">
+													<div class="media-body additem-work">
+														<span class="tr-title">Computer Skill</span>
+														<div id="addhistory" class="additem">
+															<span id="clone" class="icon clone"><i class="fa fa-plus" aria-hidden="true"></i></span>
+															<span class="icon remove"><i class="fa fa-times" aria-hidden="true"></i></span>
+															<div class="code-edit-small">
+																	<div class="card">
+																			<div class="card-body">
+																			  <p class="card-text"><strong>School :</strong> PhnomPenhSecurities ,<strong> Degree : </strong> bachelor degree , <strong>Year :</strong>  2027 - 2027</p>
+																			</div>
+																		  </div>
+																		  <br/>
+																		
+															</div>
+														</div>						    	
+													</div>
+												</li><!-- /.work-history -->			
+											</ul>
+											<ul class="tr-list resume-info">
+													<li class="work-history">
+														<div class="media-body additem-work">
+															<span class="tr-title">About Me</span>
+															<div id="addhistory" class="additem">
+																<span id="clone" class="icon clone"><i class="fa fa-plus" aria-hidden="true"></i></span>
+																<span class="icon remove"><i class="fa fa-times" aria-hidden="true"></i></span>
+																<div class="code-edit-small">
+																		<div class="card">
+																				<div class="card-body">
+																				  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+																				</div>
+																			  </div>
+																			  <br/>
+																			
+																</div>
+															</div>						    	
+														</div>
+													</li><!-- /.work-history -->			
+												</ul>
 							<div class="buttons pull-right">
-								<a href="#" class="btn button-cancle">Cancle</a>
-								<a href="#" class="btn btn-primary">Update Your Resume</a>
-							</div>								
+								<a href="#" class="btn button-cancle">Back</a>
+								</div>								
 						</div><!-- /.tab-pane -->
 
 						<div role="tabpanel" class="tab-pane tab-pane open-role" id="bookmark">
@@ -373,6 +393,534 @@
 	    </div><!-- /.container -->
 	</div><!-- /.tr-profile -->	
 
+	<!-- /.tr-user-Experience -->
+	<div id="ModalAddUserExperienceEdit" class="modal fade">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<form id="frmAddUserExpericenseEdit">
+						<input type="hidden" name="user_experience_edit_id" id="user_experience_edit_id">
+						<input type="hidden" name="_token" value="{{ csrf_token()}}">
+						<div  class="modal-header theme-bg" style="background-color:#008def" >
+								<h4 class="modal-title" style="color:white;">Experience</h4>
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-lg-6">
+												<label> Job Title * </label>
+												<div class="selectWrapper">
+														<select class="selectBox" id="job_title_id_edit" name="job_title_id">
+															<option value=""> -- Please Select Job Title -- </option>
+															@foreach ($job_title as $job_titles)
+																<option value="{{$job_titles->id}}">{{$job_titles->name}}</option>
+															@endforeach
+														</select>
+													</div>
+										</div>
+										<div class="col-lg-6">
+												<label> Company Name * </label>
+												<input  name="company_name_edit" id="company_name_edit" type="text" class="form-control">
+										</div>
+										
+										<div class="col-lg-6">
+												<label> Country * </label>
+											<div class="selectWrapper">
+													<select class="selectBox" id="country_experience_edit" name="country_experience_edit">
+													<option value=""> -- Please Select Country -- </option>
+													@foreach ($country as $countries)
+														<option value="{{$countries->id}}">{{$countries->name}}</option>
+													@endforeach
+												  </select>
+											 </div>
+										</div>
+										<div class="col-lg-6">
+											<label> City * </label>
+											<div class="selectWrapper">
+												<select class="selectBox" id="city_experience_edit" name="city_experience_edit">
+													<option value=""> -- Please Select City -- </option>
+													@foreach ($city as $cities)
+														<option value="{{$cities->id}}">{{$cities->name}}</option>
+													@endforeach
+												</select>
+											</div>
+										</div>
+										<div class="col-lg-6">
+												<label> From Month: </label>
+												<input  name="from_month_edit" id="from_month_edit" type="number" class="form-control">
+											</div>
+											<div class="col-lg-6">
+													<label> To : </label>
+													<input  name="from_to_edit" id="from_to_edit" type="number" class="form-control">
+												</div>
+												<div class="col-lg-6">
+														<label> Year : </label>
+														<input  name="year_experience_edit" id="year_experience_edit" type="number" class="form-control">
+												</div>
+												<div class="col-lg-6">
+															<label> Year To : </label>
+															<input  name="year_to_experience_edit" id="year_to_experience_edit" type="number" class="form-control">
+												</div>
+										<div class="col-lg-12">
+											<label> Description * </label>
+											<textarea cols='5' rows="3" id="description_edit" name="description_edit" class="form-control"></textarea>
+										</div>
+									
+									</div>
+								</div>
+								<div class="modal-footer">
+									<input  type="button" class="btn btn-danger" data-dismiss="modal" value="Close">
+									<input type="submit" class="btn btn-primary" value="Save">
+								</div>
+						</form>
+				</div>
+			</div>
+		</div>
+
+
+	<div id="ModalDeleteUserExperience" class="modal fade">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<form id="frmDeleteUserExperience" enctype="multipart/form-data" action="#" method="POST">
+						<input type="hidden" name="user_experience_id" id="user_experience_id">
+						<input type="hidden" name="_token" value="{{ csrf_token()}}">
+						<div  class="modal-header theme-bg" style="background-color:#008def" >
+								<h4 class="modal-title" style="color:white;"> Experience </h4>
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								</div>
+								<div class="modal-body">
+									<span>Do you want to Delete this experience ? </span>
+								</div>
+								<div class="modal-footer">
+									<input  type="button" class="btn btn-danger" data-dismiss="modal" value="No">
+									<input type="submit" class="btn btn-primary" value="Yes">
+								</div>
+						</form>
+				</div>
+			</div>
+		</div>
+
+	<!-- /.tr-user-Experience -->
+	<div id="ModalAddUserExperience" class="modal fade">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<form id="frmAddUserExpericense">
+						<input type="hidden" name="_token" value="{{ csrf_token()}}">
+						<div  class="modal-header theme-bg" style="background-color:#008def" >
+								<h4 class="modal-title" style="color:white;"> Experience</h4>
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-lg-6">
+												<label> Job Title * </label>
+												<div class="selectWrapper">
+														<select class="selectBox" id="job_title_id" name="job_title_id">
+															<option value=""> -- Please Select Job Title -- </option>
+															@foreach ($job_title as $job_titles)
+																<option value="{{$job_titles->id}}">{{$job_titles->name}}</option>
+															@endforeach
+														</select>
+													</div>
+										</div>
+										<div class="col-lg-6">
+												<label> Company Name * </label>
+												<input  name="company_name" id="company_name" type="text" class="form-control">
+										</div>
+										
+										<div class="col-lg-6">
+												<label> Country * </label>
+											<div class="selectWrapper">
+													<select class="selectBox" id="country_experience" name="country_experience">
+													<option value=""> -- Please Select Country -- </option>
+													@foreach ($country as $countries)
+														<option value="{{$countries->id}}">{{$countries->name}}</option>
+													@endforeach
+												  </select>
+											 </div>
+										</div>
+										<div class="col-lg-6">
+											<label> City * </label>
+											<div class="selectWrapper">
+												<select class="selectBox" id="city_experience" name="city_experience">
+													<option value=""> -- Please Select City -- </option>
+													@foreach ($city as $cities)
+														<option value="{{$cities->id}}">{{$cities->name}}</option>
+													@endforeach
+												</select>
+											</div>
+										</div>
+										<div class="col-lg-6">
+												<label> From Month: </label>
+												<input  name="from_month" id="from_month" type="number" class="form-control">
+											</div>
+											<div class="col-lg-6">
+													<label> To : </label>
+													<input  name="from_to" id="from_to" type="number" class="form-control">
+												</div>
+												<div class="col-lg-6">
+														<label> Year : </label>
+														<input  name="year_experience" id="year_experience" type="number" class="form-control">
+												</div>
+												<div class="col-lg-6">
+															<label> Year To : </label>
+															<input  name="year_to_experience" id="year_to_experience" type="number" class="form-control">
+												</div>
+										<div class="col-lg-12">
+											<label> Description * </label>
+											<textarea cols='5' rows="3" class="form-control"></textarea>
+										</div>
+									
+									</div>
+								</div>
+								<div class="modal-footer">
+									<input  type="button" class="btn btn-danger" data-dismiss="modal" value="Close">
+									<input type="submit" class="btn btn-primary" value="Save">
+								</div>
+						</form>
+				</div>
+			</div>
+		</div>
+
+	<!-- /.tr-user-skill -->
+	<div id="ModalEditUserSkill" class="modal fade">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<form id="frmEditUserSkill" enctype="multipart/form-data" action="#" method="POST">
+						<input type="hidden" id="user_skill_id_edit" value="{{$User->id}}">
+						<input type="hidden" id="user_skill_id_edit_id" value="{{$User->id}}">
+						<input type="hidden" name="_token" value="{{ csrf_token()}}">
+						<div  class="modal-header theme-bg" style="background-color:#008def" >
+								<h4 class="modal-title" style="color:white;"> Skill</h4>
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-lg-6">
+												<label> School * </label>
+												<input placeholder="Ex : Phnom Penh International University "  name="school_skill_edit" id="school_skill_edit" type="text" class="form-control">
+										</div>
+										<div class="col-lg-6">
+												<label> Field of Study * </label>
+												<input  name="study_skill_edit" id="study_skill_edit" type="text" class="form-control">
+										</div>
+										<div class="col-lg-12">
+											<label> Degree * </label>
+											<div class="selectWrapper">
+													<select class="selectBox" id="degree_skill_edit" name="degree_skill_edit"  style="width:765px;" >
+													<option value=""> -- Please Select degree -- </option>
+													@foreach ($degree as $degrees)
+														<option value="{{$degrees}}">{{$degrees}}</option>
+													@endforeach
+												  </select>
+											 </div>
+										</div><br/>
+										<div class="col-lg-6">
+												<label> Country * </label>
+											<div class="selectWrapper">
+													<select class="selectBox" id="country_skill_edit" name="country_skill_edit">
+													<option value=""> -- Please Select Country -- </option>
+													@foreach ($country as $countries)
+														<option value="{{$countries->id}}">{{$countries->name}}</option>
+													@endforeach
+												  </select>
+											 </div>
+										</div>
+										<div class="col-lg-6">
+											<label> City * </label>
+											<div class="selectWrapper">
+												<select class="selectBox" id="city_skill_edit" name="city_skill_edit">
+													<option value=""> -- Please Select City -- </option>
+													@foreach ($city as $cities)
+														<option value="{{$cities->id}}">{{$cities->name}}</option>
+													@endforeach
+												</select>
+											</div>
+										</div>
+										<div class="col-lg-6">
+											<label> Year of Study * </label>
+											<input   name="year_skill_edit" id="year_skill_edit" type="number" class="form-control">
+										</div>
+										<div class="col-lg-6">
+											<label> To : </label>
+											<input  name="year_to_skill_edit" id="year_to_skill_edit" type="number" class="form-control">
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<input  type="button" class="btn btn-danger" data-dismiss="modal" value="Close">
+									<input type="submit" class="btn btn-primary" value="Save">
+								</div>
+						</form>
+				</div>
+			</div>
+		</div>
+
+	<!-- /.tr-user-skill -->
+	<div id="ModalDeleteUserSkill" class="modal fade">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<form id="frmDeleteUserSkill" enctype="multipart/form-data" action="#" method="POST">
+						<input type="hidden" name="user_skill_delete_id" id="user_skill_delete_id">
+						<input type="hidden" name="_token" value="{{ csrf_token()}}">
+						<div  class="modal-header theme-bg" style="background-color:#008def" >
+								<h4 class="modal-title" style="color:white;"> Skill</h4>
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								</div>
+								<div class="modal-body">
+									<span>Do you want to Delete this skill ? </span>
+								</div>
+								<div class="modal-footer">
+									<input  type="button" class="btn btn-danger" data-dismiss="modal" value="No">
+									<input type="submit" class="btn btn-primary" value="Yes">
+								</div>
+						</form>
+				</div>
+			</div>
+		</div>
+
+
+
+	<div id="ModalAddUserSkill" class="modal fade">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<form id="frmAddUserSkill" enctype="multipart/form-data" action="#" method="POST">
+						<input type="hidden" id="user_skill_id" value="{{$User->id}}">
+						<input type="hidden" name="_token" value="{{ csrf_token()}}">
+						<div  class="modal-header theme-bg" style="background-color:#008def" >
+								<h4 class="modal-title" style="color:white;"> Skill</h4>
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-lg-6">
+												<label> School * </label>
+												<input placeholder="Ex : Phnom Penh International University "  name="school_skill" id="school_skill" type="text" class="form-control">
+										</div>
+										<div class="col-lg-6">
+												<label> Field of Study * </label>
+												<input  name="study_skill" id="study_skill" type="text" class="form-control">
+										</div>
+										<div class="col-lg-12">
+											<label> Degree * </label>
+											<div class="selectWrapper">
+													<select class="selectBox" id="degree_skill" name="degree_skill"  style="width:765px;" >
+													<option value=""> -- Please Select degree -- </option>
+													@foreach ($degree as $degrees)
+														<option value="{{$degrees}}">{{$degrees}}</option>
+													@endforeach
+												  </select>
+											 </div>
+										</div><br/>
+										<div class="col-lg-6">
+												<label> Country * </label>
+											<div class="selectWrapper">
+													<select class="selectBox" id="country_skill" name="country_skill">
+													<option value=""> -- Please Select Country -- </option>
+													@foreach ($country as $countries)
+														<option value="{{$countries->id}}">{{$countries->name}}</option>
+													@endforeach
+												  </select>
+											 </div>
+										</div>
+										<div class="col-lg-6">
+											<label> City * </label>
+											<div class="selectWrapper">
+												<select class="selectBox" id="city_skill" name="city_skill">
+													<option value=""> -- Please Select City -- </option>
+													@foreach ($city as $cities)
+														<option value="{{$cities->id}}">{{$cities->name}}</option>
+													@endforeach
+												</select>
+											</div>
+										</div>
+										<div class="col-lg-6">
+											<label> Year of Study * </label>
+											<input   name="year_skill" id="year_skill" type="number" class="form-control">
+										</div>
+										<div class="col-lg-6">
+											<label> To : </label>
+											<input  name="year_to_skill" id="year_to_skill" type="number" class="form-control">
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<input  type="button" class="btn btn-danger" data-dismiss="modal" value="Close">
+									<input type="submit" class="btn btn-primary" value="Save">
+								</div>
+						</form>
+				</div>
+			</div>
+		</div>
+
+		
+	<!-- /.tr-user-education-->
+	<div id="UserEducationEdit" class="modal fade">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<form id="frmUserEducationEdit" enctype="multipart/form-data" action="#" method="POST">
+						<input type="hidden" id="user_education_id_edit" value="">
+						  <input type="hidden" id="user_edit_education_id" value="{{$User->id}}">
+						<input type="hidden" name="_token" value="{{ csrf_token()}}">
+						<div  class="modal-header theme-bg" style="background-color:#008def" >
+								<h4 class="modal-title" style="color:white;"> Education</h4>
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-lg-6">
+												<label> School * </label>
+												<input placeholder="Ex : Phnom Penh International University "  name="school_edit" id="school_edit" type="text" class="form-control">
+										</div>
+										<div class="col-lg-6">
+												<label> Field of Study * </label>
+												<input  name="study_edit" id="study_edit" type="text" class="form-control">
+										</div>
+										<div class="col-lg-12">
+											<label> Degree * </label>
+											<div class="selectWrapper">
+													<select class="selectBox" id="degree_edit" name="degree_edit"  style="width:765px;" >
+													<option value=""> -- Please Select degree -- </option>
+													@foreach ($degree as $degrees)
+														<option value="{{$degrees}}">{{$degrees}}</option>
+													@endforeach
+												  </select>
+											 </div>
+										</div><br/>
+										<div class="col-lg-6">
+												<label> Country * </label>
+											<div class="selectWrapper">
+													<select class="selectBox" id="country_edit" name="country_edit">
+													<option value=""> -- Please Select Country -- </option>
+													@foreach ($country as $countries)
+														<option value="{{$countries->id}}">{{$countries->name}}</option>
+													@endforeach
+												  </select>
+											 </div>
+										</div>
+										<div class="col-lg-6">
+											<label> City * </label>
+											<div class="selectWrapper">
+												<select class="selectBox" id="city_edit" name="city_edit">
+													<option value=""> -- Please Select City -- </option>
+													@foreach ($city as $cities)
+														<option value="{{$cities->id}}">{{$cities->name}}</option>
+													@endforeach
+												</select>
+											</div>
+										</div>
+										<div class="col-lg-6">
+											<label> Year of Study * </label>
+											<input   name="year_edit" id="year_edit" type="number" class="form-control">
+										</div>
+										<div class="col-lg-6">
+											<label> To : </label>
+											<input  name="year_to_edit" id="year_to_edit" type="number" class="form-control">
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<input  type="button" class="btn btn-danger" data-dismiss="modal" value="Close">
+									<input type="submit" class="btn btn-primary" value="Save">
+								</div>
+						</form>
+				</div>
+			</div>
+		</div>
+
+
+	<div id="ModalDeleteUserEducation" class="modal fade">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<form id="frmDeleteUserEducation" enctype="multipart/form-data" action="#" method="POST">
+						<input type="hidden" name="user_education_delete_id" id="user_education_delete_id">
+						<input type="hidden" name="_token" value="{{ csrf_token()}}">
+						<div  class="modal-header theme-bg" style="background-color:#008def" >
+								<h4 class="modal-title" style="color:white;"> Education</h4>
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								</div>
+								<div class="modal-body">
+									<span>Do you want to Delete this education ? </span>
+								</div>
+								<div class="modal-footer">
+									<input  type="button" class="btn btn-danger" data-dismiss="modal" value="No">
+									<input type="submit" class="btn btn-primary" value="Yes">
+								</div>
+						</form>
+				</div>
+			</div>
+		</div>
+	<!-- /.tr-user-education-->
+	<div id="UserEducation" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form id="frmAddEducation" enctype="multipart/form-data" action="#" method="POST">
+                    <input type="hidden" id="user_education_id" value="{{$User->id}}">
+					<input type="hidden" name="_token" value="{{ csrf_token()}}">
+                    <div  class="modal-header theme-bg" style="background-color:#008def" >
+                            <h4 class="modal-title" style="color:white;"> Education</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+								<div class="row">
+									<div class="col-lg-6">
+											<label> School * </label>
+											<input placeholder="Ex : Phnom Penh International University "  name="school" id="school" type="text" class="form-control">
+									</div>
+									<div class="col-lg-6">
+											<label> Field of Study * </label>
+											<input  name="study" id="study" type="text" class="form-control">
+									</div>
+									<div class="col-lg-12">
+										<label> Degree * </label>
+										<div class="selectWrapper">
+												<select class="selectBox" id="degree" name="degree"  style="width:765px;" >
+												<option value=""> -- Please Select degree -- </option>
+												@foreach ($degree as $degrees)
+													<option value="{{$degrees}}">{{$degrees}}</option>
+												@endforeach
+											  </select>
+										 </div>
+									</div><br/>
+									<div class="col-lg-6">
+											<label> Country * </label>
+										<div class="selectWrapper">
+												<select class="selectBox" id="country" name="country">
+												<option value=""> -- Please Select Country -- </option>
+												@foreach ($country as $countries)
+													<option value="{{$countries->id}}">{{$countries->name}}</option>
+												@endforeach
+											  </select>
+										 </div>
+									</div>
+									<div class="col-lg-6">
+										<label> City * </label>
+										<div class="selectWrapper">
+											<select class="selectBox" id="city" name="city">
+												<option value=""> -- Please Select City -- </option>
+												@foreach ($city as $cities)
+													<option value="{{$cities->id}}">{{$cities->name}}</option>
+												@endforeach
+											</select>
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<label> Year of Study * </label>
+										<input   name="year" id="year" type="number" class="form-control">
+									</div>
+									<div class="col-lg-6">
+										<label> To : </label>
+										<input  name="year_to" id="year_to" type="number" class="form-control">
+									</div>
+								</div>
+                            </div>
+                            <div class="modal-footer">
+                                <input  type="button" class="btn btn-danger" data-dismiss="modal" value="Close">
+                                <input type="submit" class="btn btn-primary" value="Save">
+                            </div>
+                    </form>
+            </div>
+        </div>
+	</div>
 	<!-- /.tr-login-apply-job not login -->
 <div id="UserUploadResume" class="modal fade">
         <div class="modal-dialog modal-lg">
@@ -453,6 +1001,9 @@
 	
 	@endsection
 	@section('scripts')
+		<script src="{{asset('js/frontend/user_experience.js')}}"></script>
+		<script src="{{asset('js/frontend/user_skill.js')}}"></script>
+		<script src="{{asset('js/frontend/user_education.js')}}"></script>
 		<script src="{{asset('js/backend/apply_job.js')}}"></script>
 		<script src="{{asset('js/backend/user_profile.js')}}"></script>
 	@endsection

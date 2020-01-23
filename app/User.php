@@ -5,6 +5,9 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Model\UserCv;
+use App\Model\userEducation;
+use App\Model\userSkill;
+use App\Model\userExperience;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -51,5 +54,17 @@ class User extends Authenticatable
     public function vacancy()
     {
         return $this->belongsToMany(vacancy::class)->withPivot('applied_date','status');
+    }
+    public function education()
+    {
+        return $this->hasMany(userEducation::class);
+    }
+    public function skill()
+    {
+        return $this->hasMany(userSkill::class);
+    }
+    public function experience()
+    {
+        return $this->hasMany(userExperience::class);
     }
 }
