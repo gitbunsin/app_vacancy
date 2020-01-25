@@ -28,7 +28,7 @@ class UserController extends Controller
     }
     public function skill(Request $request)
     {
-        $skill = new userSkill();
+        $skill = new userTraningSkill();
         $skill->user_id = $request->user_id;
         $skill->school  = $request->school;
         $skill->study = $request->study;
@@ -42,13 +42,13 @@ class UserController extends Controller
     }
     public function skillDelete($id)
     {
-        $skill =  userSkill::find($id);
+        $skill =  userTraningSkill::find($id);
         $skill->delete();
         return response::json($skill);
     }
     public function skillEdit($id)
     {
-        $skill =  userSkill::find($id);
+        $skill =  userTraningSkill::find($id);
         $skill['all_country'] = Country::all();
         $skill['all_city'] = City::all();
         return response::json($skill);
@@ -56,7 +56,7 @@ class UserController extends Controller
 
     public function skillUpdate(Request $request , $id)
     {
-        $skill = userSkill::find($id);
+        $skill = userTraningSkill::find($id);
         $skill->user_id = $request->user_id;
         $skill->school  = $request->school;
         $skill->study = $request->study;

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\model;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class userSkill extends Model
+class userLanguage extends Model
 {
-    protected $table = 'user_skills';
+    protected $table = 'user_languages';
     protected  $guarded = ['id'];
     public $timestamps = false;
     public function user()

@@ -71,7 +71,7 @@ class JobController extends Controller
         // dd('hello');
         $user_cv = userCv::where('user_id',$id)->first();
         // dd($user_cv);
-        $user = User::with(['skill','experience','education'])->where('id',$id)->first();
+        $user = User::with(['reference','skill','language','traning','experience','education'])->where('id',$id)->first();
         // dd($user);
         return view('frontend.pages.user-profile',compact('user_cv','user'));
 

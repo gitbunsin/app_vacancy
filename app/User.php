@@ -6,8 +6,11 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Model\UserCv;
 use App\Model\userEducation;
-use App\Model\userSkill;
+use App\Model\userTraningSkill;
 use App\Model\userExperience;
+use App\Model\userLanguage;
+use App\Model\userSkill;
+use App\Model\userReference;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -59,12 +62,24 @@ class User extends Authenticatable
     {
         return $this->hasMany(userEducation::class);
     }
-    public function skill()
+    public function traning()
     {
-        return $this->hasMany(userSkill::class);
+        return $this->hasMany(userTraningSkill::class);
     }
     public function experience()
     {
         return $this->hasMany(userExperience::class);
+    }
+    public function language()
+    {
+        return $this->hasMany(userLanguage::class);
+    }
+    public function skill()
+    {
+        return $this->hasMany(userSkill::class);
+    }
+    public function reference()
+    {
+        return $this->hasMany(userReference::class);
     }
 }

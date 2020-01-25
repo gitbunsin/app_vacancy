@@ -9,7 +9,9 @@
 	use App\Model\jobTitle;
 	$job_title = jobTitle::all();
 	$degree = array("Associate degree","Bachelor degree","Master degree","Doctoral degree");
-
+	use App\Model\Language;
+	$language = Language::all();
+	$level = array("Basic","Fair","Good","Very Good","Proficiency","Native");
 @endphp
 <style>
 .selectWrapper{
@@ -206,23 +208,23 @@
 							<ul class="tr-list resume-info">
 									<li class="work-history">
 										<div class="media-body additem-work">
-											<span class="tr-title">Traning Skills2</span>
+											<span class="tr-title">Traning Skills</span>
 											<div id="addhistory" class="additem">
 												<span onclick="LoadUserSkill();" class="icon clone"><i  class="fa fa-plus" aria-hidden="true"></i></span>
 												<div class="code-edit-small" id="card_user_skill">
-														@foreach ($user->skill as $skills)
-														<div class="card" id="card_skill{{$skills->id}}">
+														@foreach ($user->traning as $tranings)
+														<div class="card" id="card_skill{{$tranings->id}}">
 															<div class="card-body">
 																<p class="card-text">
 																	<strong>School :</strong> 
-																		{{$skills->school}} ,
+																		{{$tranings->school}} ,
 																	<strong> Degree : </strong> 
-																		{{$skills->degree}} , 
+																		{{$tranings->degree}} , 
 																	<strong>Year :</strong>
-																		{{$skills->year .' - '.$skills->year_to }} &nbsp;&nbsp;
+																		{{$tranings->year .' - '.$tranings->year_to }} &nbsp;&nbsp;
 																	 <strong>
-																		 <a href="#" onclick="skillDelete({{$skills->id}});"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp; 
-																		 <a href="#" onclick="skillEdit({{$skills->id}});"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>
+																		 <a href="#" onclick="skillDelete({{$tranings->id}});"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp; 
+																		 <a href="#" onclick="skillEdit({{$tranings->id}});"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>
 																	</p>
 															</div>
 														</div>
@@ -271,16 +273,30 @@
 												<div class="media-body additem-work">
 													<span class="tr-title">Language</span>
 													<div id="addhistory" class="additem">
-														<span id="clone" class="icon clone"><i class="fa fa-plus" aria-hidden="true"></i></span>
+														<span onclick="loadUserLanguage();"  class="icon clone"><i class="fa fa-plus" aria-hidden="true"></i></span>
 														<span class="icon remove"><i class="fa fa-times" aria-hidden="true"></i></span>
 														<div class="code-edit-small">
-																<div class="card">
+															<div class="code-edit-small" id="div_card_language">
+																@foreach ($user->language as $languages)
+																	@php
+																		$Lang =language::where('id',$languages->language_id)->first();
+																	@endphp
+																	<div class="card" id="card_language{{$languages->id}}">
 																		<div class="card-body">
-																		  <p class="card-text"><strong>School :</strong> PhnomPenhSecurities ,<strong> Degree : </strong> bachelor degree , <strong>Year :</strong>  2027 - 2027</p>
+																			<p class="card-text">
+																				<strong>Language :</strong> 
+																					{{$Lang->name}} ,
+																				<strong> Level : </strong> 
+																					{{$languages->level}} ,
+																				<strong>
+																					<a href="#" onclick="languageDelete({{$languages->id}});"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp; 
+																					<a href="#" onclick="languageEdit({{$languages->id}});"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>
+																				</p>
 																		</div>
-																	  </div>
-																	  <br/>
-																	
+																	</div>
+															<br/>
+														@endforeach				
+														</div>		
 														</div>
 													</div>						    	
 												</div>
@@ -289,18 +305,63 @@
 										<ul class="tr-list resume-info">
 												<li class="work-history">
 													<div class="media-body additem-work">
-														<span class="tr-title">Computer Skill</span>
+														<span class="tr-title">Skill</span>
 														<div id="addhistory" class="additem">
-															<span id="clone" class="icon clone"><i class="fa fa-plus" aria-hidden="true"></i></span>
+															<span onclick="loadSkill();" class="icon clone"><i class="fa fa-plus" aria-hidden="true"></i></span>
 															<span class="icon remove"><i class="fa fa-times" aria-hidden="true"></i></span>
 															<div class="code-edit-small">
-																	<div class="card">
-																			<div class="card-body">
-																			  <p class="card-text"><strong>School :</strong> PhnomPenhSecurities ,<strong> Degree : </strong> bachelor degree , <strong>Year :</strong>  2027 - 2027</p>
+																	<div class="code-edit-small" id="div_card_user_skill">
+																		@foreach ($user->skill as $skills)
+																			<div class="card" id="card_user_new_skill{{$skills->id}}">
+																				<div class="card-body">
+																					<p class="card-text">
+																						<strong>Skill Name :</strong> 
+																							{{$skills->name}} ,
+																						<strong> Experience Year : </strong> 
+																							{{$skills->year}} ,
+																						<strong>
+																							<a href="#" onclick="userSkillDelete({{$skills->id}});"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp; 
+																							<a href="#" onclick="userSkillEdit({{$skills->id}});"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>
+																						</p>
+																				</div>
 																			</div>
-																		  </div>
-																		  <br/>
-																		
+																	<br/>
+																@endforeach				
+																</div>		
+															</div>
+														</div>						    	
+													</div>
+												</li><!-- /.work-history -->			
+											</ul>
+											<ul class="tr-list resume-info">
+												<li class="work-history">
+													<div class="media-body additem-work">
+														<span class="tr-title">Reference</span>
+														<div id="addhistory" class="additem">
+															<span onclick="loadReference();" class="icon clone"><i class="fa fa-plus" aria-hidden="true"></i></span>
+															<div class="code-edit-small">
+																	<div class="code-edit-small" id="div_card_user_reference">
+																		@foreach ($user->reference as $references)
+																			<div class="card" id="card_user_reference{{$references->id}}">
+																				<div class="card-body">
+																					<p class="card-text">
+																						<strong>Name :</strong> 
+																							{{$references->name}} ,
+																						<strong> Position : </strong> 
+																							{{$references->position}} ,
+																						<strong> Phone : </strong> 
+																							{{$references->phone}} ,
+																						<strong> Email : </strong> 
+																							{{$references->email}} ,
+																						<strong>
+																							<a href="#" onclick="referenceDelete({{$references->id}});"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp; 
+																							<a href="#" onclick="referenceEdit({{$references->id}});"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>
+																						</p>
+																				</div>
+																			</div>
+																	<br/>
+																@endforeach				
+																</div>		
 															</div>
 														</div>						    	
 													</div>
@@ -392,7 +453,319 @@
 	        </div><!-- /.row -->
 	    </div><!-- /.container -->
 	</div><!-- /.tr-profile -->	
+<!-- /.tr-user-reference -->	
 
+
+<div id="ModalUserReferenceEdit" class="modal fade">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<form id="frmUserReferenceEdit" enctype="multipart/form-data" action="#" method="POST">
+				<input type="hidden" name="user_reference_id_edit" id="user_reference_id_edit">
+				<input type="hidden" name="_token" value="{{ csrf_token()}}">
+				<div  class="modal-header theme-bg" style="background-color:#008def" >
+						<h4 class="modal-title" style="color:white;"> Reference </h4>
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-lg-6">
+									<label> Name * </label>
+									<input  name="user_name_edit" id="user_name_edit" type="text" class="form-control">
+							</div>
+							<div class="col-lg-6">
+								<label>  Postion * </label>
+								<input  name="user_position_edit" id="user_position_edit" type="number" class="form-control">
+							</div>
+							<div class="col-lg-6">
+								<label> Email * </label>
+								<input  name="user_email_edit" id="user_email_edit" type="text" class="form-control">
+							</div>
+							<div class="col-lg-6">
+								<label> Phone * </label>
+								<input  name="user_phone_reference_edit" id="user_phone_reference_edit" type="text" class="form-control">
+							</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<input  type="button" class="btn btn-danger" data-dismiss="modal" value="No">
+							<input type="submit" class="btn btn-primary" value="Yes">
+						</div>
+				</form>
+		</div>
+	</div>
+</div>
+
+
+
+
+<div id="ModalReferenceDelete" class="modal fade">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<form id="frmReferenceDelete" enctype="multipart/form-data" action="#" method="POST">
+				<input type="hidden" name="user_reference_id" id="user_reference_id">
+				<input type="hidden" name="_token" value="{{ csrf_token()}}">
+				<div  class="modal-header theme-bg" style="background-color:#008def" >
+						<h4 class="modal-title" style="color:white;"> Reference </h4>
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						</div>
+						<div class="modal-body">
+							<span>Do you want to Delete this Reference ? </span>
+						</div>
+						<div class="modal-footer">
+							<input  type="button" class="btn btn-danger" data-dismiss="modal" value="No">
+							<input type="submit" class="btn btn-primary" value="Yes">
+						</div>
+				</form>
+		</div>
+	</div>
+</div>
+
+
+	<div id="ModalUserReference" class="modal fade">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<form id="frmUserReference" enctype="multipart/form-data" action="#" method="POST">
+				
+					<input type="hidden" name="_token" value="{{ csrf_token()}}">
+					<div  class="modal-header theme-bg" style="background-color:#008def" >
+							<h4 class="modal-title" style="color:white;"> Reference </h4>
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							</div>
+							<div class="modal-body">
+								<div class="row">
+									<div class="col-lg-6">
+										<label> Name * </label>
+										<input  name="user_name" id="user_name" type="text" class="form-control">
+								</div>
+								<div class="col-lg-6">
+									<label>  Postion * </label>
+									<input  name="user_position" id="user_position" type="number" class="form-control">
+								</div>
+								<div class="col-lg-6">
+									<label> Email * </label>
+									<input  name="user_email" id="user_email" type="text" class="form-control">
+								</div>
+								<div class="col-lg-6">
+									<label> Phone * </label>
+									<input  name="user_phone_reference" id="user_phone_reference" type="text" class="form-control">
+								</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<input  type="button" class="btn btn-danger" data-dismiss="modal" value="No">
+								<input type="submit" class="btn btn-primary" value="Yes">
+							</div>
+					</form>
+			</div>
+		</div>
+	</div>
+
+<!-- /.tr-profile -->	
+
+	<div id="ModalSkillEdit" class="modal fade">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<form id="frmSkillEdit" enctype="multipart/form-data" action="#" method="POST">
+					<input type="hidden" name="user_new_skill_id_edit" id="user_new_skill_id_edit">
+					<input type="hidden" name="_token" value="{{ csrf_token()}}">
+					<div  class="modal-header theme-bg" style="background-color:#008def" >
+							<h4 class="modal-title" style="color:white;"> Skill </h4>
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							</div>
+							<div class="modal-body">
+								<div class="row">
+									<div class="col-lg-12">
+										<label> Skill Name * </label>
+										<input placeholder="ex : ios developer"  name="user_skill_name_edit" id="user_skill_name_edit" type="text" class="form-control">
+								</div>
+								<div class="col-lg-12">
+									<label> Experience Year  * </label>
+									<input  name="skill_year_edit" id="skill_year_edit" type="number" class="form-control">
+							</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<input  type="button" class="btn btn-danger" data-dismiss="modal" value="No">
+								<input type="submit" class="btn btn-primary" value="Yes">
+							</div>
+					</form>
+			</div>
+		</div>
+	</div>
+
+	<div id="ModalSkillDelete" class="modal fade">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<form id="frmSkillDelete" enctype="multipart/form-data" action="#" method="POST">
+					<input type="hidden" name="user_skill_new_id" id="user_skill_new_id">
+					<input type="hidden" name="_token" value="{{ csrf_token()}}">
+					<div  class="modal-header theme-bg" style="background-color:#008def" >
+							<h4 class="modal-title" style="color:white;"> Skill </h4>
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							</div>
+							<div class="modal-body">
+								<span>Do you want to Delete this Skill ? </span>
+							</div>
+							<div class="modal-footer">
+								<input  type="button" class="btn btn-danger" data-dismiss="modal" value="No">
+								<input type="submit" class="btn btn-primary" value="Yes">
+							</div>
+					</form>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="ModalSkill" class="modal fade">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<form id="frmSkill" enctype="multipart/form-data" action="#" method="POST">
+					<input type="hidden" name="user_language_id" id="user_language_id">
+					<input type="hidden" name="_token" value="{{ csrf_token()}}">
+					<div  class="modal-header theme-bg" style="background-color:#008def" >
+							<h4 class="modal-title" style="color:white;"> Skill </h4>
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							</div>
+							<div class="modal-body">
+								<div class="row">
+									<div class="col-lg-12">
+										<label> Skill Name * </label>
+										<input placeholder="ex : ios developer"  name="user_skill_name" id="user_skill_name" type="text" class="form-control">
+								</div>
+								<div class="col-lg-12">
+									<label> Experience Year  * </label>
+									<input  name="skill_year" id="skill_year" type="number" class="form-control">
+							</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<input  type="button" class="btn btn-danger" data-dismiss="modal" value="No">
+								<input type="submit" class="btn btn-primary" value="Yes">
+							</div>
+					</form>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- /.tr-user-skill -->	
+
+
+
+
+	<div id="ModalEditUserLanague" class="modal fade">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<form id="frmEditUserLanguage" enctype="multipart/form-data" action="#" method="POST">
+					<input type="hidden" name="user_language_id_edit" id="user_language_id_edit">
+					<input type="hidden" name="_token" value="{{ csrf_token()}}">
+					<div  class="modal-header theme-bg" style="background-color:#008def" >
+							<h4 class="modal-title" style="color:white;"> Language </h4>
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							</div>
+							<div class="modal-body">
+								<div class="row">
+									<div class="col-lg-6">
+											<label> Language * </label>
+											<div class="selectWrapper">
+													<select class="selectBox" id="language_id_edit" name="language_id_edit">
+														<option value=""> -- Please Select Language -- </option>
+														@foreach ($language as $languages)
+															<option value="{{$languages->id}}">{{$languages->name}}</option>
+														@endforeach
+													</select>
+												</div>
+									</div>
+									<div class="col-lg-6">
+											<label> Level * </label>
+											<div class="selectWrapper">
+												<select class="selectBox" id="level_id_edit" name="level_id_edit">
+													<option value=""> -- Please Select Level -- </option>
+													@foreach ($level as $levels)
+														<option value="{{$levels}}">{{$levels}}</option>
+													@endforeach
+												</select>
+											</div>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<input  type="button" class="btn btn-danger" data-dismiss="modal" value="No">
+								<input type="submit" class="btn btn-primary" value="Yes">
+							</div>
+					</form>
+			</div>
+		</div>
+	</div>
+	<!-- /.tr-user-Language -->
+
+	<div id="ModalAddUserLanague" class="modal fade">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<form id="frmAddUserLanguage" enctype="multipart/form-data" action="#" method="POST">
+					<input type="hidden" name="_token" value="{{ csrf_token()}}">
+					<div  class="modal-header theme-bg" style="background-color:#008def" >
+							<h4 class="modal-title" style="color:white;"> Language </h4>
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							</div>
+							<div class="modal-body">
+								<div class="row">
+									<div class="col-lg-6">
+											<label> Language * </label>
+											<div class="selectWrapper">
+													<select class="selectBox" id="language_id" name="language_id">
+														<option value=""> -- Please Select Language -- </option>
+														@foreach ($language as $languages)
+															<option value="{{$languages->id}}">{{$languages->name}}</option>
+														@endforeach
+													</select>
+												</div>
+									</div>
+									<div class="col-lg-6">
+											<label> Level * </label>
+											<div class="selectWrapper">
+												<select class="selectBox" id="level_id" name="level_id">
+													<option value=""> -- Please Select Level -- </option>
+													@foreach ($level as $levels)
+														<option value="{{$levels}}">{{$levels}}</option>
+													@endforeach
+												</select>
+											</div>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<input  type="button" class="btn btn-danger" data-dismiss="modal" value="No">
+								<input type="submit" class="btn btn-primary" value="Yes">
+							</div>
+					</form>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div id="ModalDeleteUserLanguage" class="modal fade">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<form id="frmDeleteUserLanguage" enctype="multipart/form-data" action="#" method="POST">
+					<input type="hidden" name="user_language_id" id="user_language_id">
+					<input type="hidden" name="_token" value="{{ csrf_token()}}">
+					<div  class="modal-header theme-bg" style="background-color:#008def" >
+							<h4 class="modal-title" style="color:white;"> Language </h4>
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							</div>
+							<div class="modal-body">
+								<span>Do you want to Delete this Languages ? </span>
+							</div>
+							<div class="modal-footer">
+								<input  type="button" class="btn btn-danger" data-dismiss="modal" value="No">
+								<input type="submit" class="btn btn-primary" value="Yes">
+							</div>
+					</form>
+			</div>
+		</div>
+	</div>
 	<!-- /.tr-user-Experience -->
 	<div id="ModalAddUserExperienceEdit" class="modal fade">
 			<div class="modal-dialog modal-lg">
@@ -1001,11 +1374,14 @@
 	
 	@endsection
 	@section('scripts')
+		<script src="{{asset('js/frontend/user_reference.js')}}"></script>
+		<script src="{{asset('js/frontend/user_language.js')}}"></script>
 		<script src="{{asset('js/frontend/user_experience.js')}}"></script>
 		<script src="{{asset('js/frontend/user_skill.js')}}"></script>
 		<script src="{{asset('js/frontend/user_education.js')}}"></script>
 		<script src="{{asset('js/backend/apply_job.js')}}"></script>
 		<script src="{{asset('js/backend/user_profile.js')}}"></script>
+		<script src="{{asset('js/frontend/skill.js')}}"></script>
 	@endsection
 	
 	

@@ -52,6 +52,9 @@ Route::group(['middleware'=>'auth'], function(){
         Route::post('skill/{id}', 'UserController@skillUpdate');
         Route::delete('skill/{id}', 'UserController@skillDelete');
         Route::resource('experience','UserExperienceController');
+        Route::resource('language','UserLanguageController');
+        Route::resource('personal-skill','UserSkillController');
+        Route::resource('reference','UserReferenceController');
     });
 });
 
