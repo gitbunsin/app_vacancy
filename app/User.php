@@ -11,6 +11,7 @@ use App\Model\userExperience;
 use App\Model\userLanguage;
 use App\Model\userSkill;
 use App\Model\userReference;
+use App\Model\userHobby;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -81,5 +82,9 @@ class User extends Authenticatable
     public function reference()
     {
         return $this->hasMany(userReference::class);
+    }
+    public function hobby()
+    {
+        return $this->hasMany(userHobby::class);
     }
 }

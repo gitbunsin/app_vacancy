@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Model\userHobby;
 
 class UserHobbyController extends Controller
 {
@@ -35,7 +38,11 @@ class UserHobbyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $hobby = new userHobby();
+        $hobby->user_id = Auth::user()->id;
+        $hobby->name = $request->name;
+        $hobby->save();
+        return response::json($hobby);
     }
 
     /**
@@ -57,7 +64,8 @@ class UserHobbyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $hobby =  userHobby::find($id);
+        return response::json($hobby);
     }
 
     /**
@@ -69,7 +77,11 @@ class UserHobbyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $hobby =  userHobby::find($id);
+        $hobby->user_id = Auth::user()->id;
+        $hobby->name = $request->name;
+        $hobby->save();
+        return response::json($hobby);
     }
 
     /**
@@ -80,6 +92,8 @@ class UserHobbyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $hobby = userHobby::find($id);
+        $hobby->delete();
+        return response::json($hobby);
     }
 }

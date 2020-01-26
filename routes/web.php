@@ -55,6 +55,7 @@ Route::group(['middleware'=>'auth'], function(){
         Route::resource('language','UserLanguageController');
         Route::resource('personal-skill','UserSkillController');
         Route::resource('reference','UserReferenceController');
+        Route::resource('hobby','UserHobbyController');
     });
 });
 

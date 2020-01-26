@@ -1,46 +1,41 @@
 
 
 
-$("#frmSkillEdit").validate({
+$("#frmUserHobbyEdit").validate({
     rules: {
-        user_skill_name : {
+        user_hobby_edit : {
           required: true,
-       },skill_year:{
-        required: true,
        }
     }, submitHandler: function (form) {
-        var id = $('#user_new_skill_id_edit').val();
+        var id = $('#user_hobby_id_edit').val();
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
         jQuery.ajax({
-            url: "/user/personal-skill/" + id,
+            url: "/user/hobby/" + id,
             method: 'PUT',
             data: {
-                "name" : $('#user_skill_name_edit').val(),
-                "year" : $('#skill_year_edit').val(),
+                "name" : $('#name_hobby_edit').val(),
             },
             success: function(result)
             {
             //    console.log(result);
             toastr.success('Success', 'item has been updated !');
-               $('#ModalSkillEdit').modal('hide');
-               var skill = '<div class="card" id="card_user_new_skill'+ result.id +'">' +
+               $('#ModalUserHobbyEdit').modal('hide');
+               var skill = '<div class="card" id="card_user_hobby'+ result.id +'">' +
                '<div class="card-body">' +
                    '<p class="card-text">' + 
-                       '<strong>Skill Name :</strong>' +
+                       '<strong>Hobby Name :</strong>' +
                              result.name +
-                       '<strong> Experience Year : </strong> '+
-                            result.year + ',' +
-                           '<a href="#" onclick="userSkillDelete('+ result.id + ');"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp'+
-                           '<a href="#" onclick="userSkillEdit('+ result.id +');"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>' + 
+                           '<a href="#" onclick="hobbyDelete('+ result.id + ');"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp'+
+                           '<a href="#" onclick="hobbyEdit('+ result.id +');"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>' + 
                        '</p>'+
                '</div>'+
            '</div>'+
            '<br/>';
-            $('#card_user_new_skill'+result.id).replaceWith(skill);
+            $('#card_user_hobby'+result.id).replaceWith(skill);
             },error : function(err){
                 console.log(err);
             }
@@ -53,18 +48,16 @@ $("#frmSkillEdit").validate({
 
 
 
-function userSkillEdit(id){
-    // console.log(id);
-    $('#user_new_skill_id_edit').val(id);
+function hobbyEdit(id){
+    $('#user_hobby_id_edit').val(id);
     $.ajax({
         type: "GET",
-        url: "/user/personal-skill/" + id + "/edit",
+        url: "/user/hobby/" + id + "/edit",
         success: function(result)
         {
             console.log(result);   
-            $('#user_skill_name_edit').val(result.name);     
-            $('#skill_year_edit').val(result.year);     
-            $('#ModalSkillEdit').modal('show');
+            $('#name_hobby_edit').val(result.name);        
+            $('#ModalUserHobbyEdit').modal('show');
         },error : function(err){
   
               console.log(err);
@@ -73,25 +66,25 @@ function userSkillEdit(id){
   
 }
 
-function userSkillDelete(id)
+function hobbyDelete(id)
 {
-    $('#user_skill_new_id').val(id);
-    $('#ModalSkillDelete').modal('show');
+    $('#user_hobby_id').val(id);
+    $('#ModalHobbyDelete').modal('show');
 }
-$('#frmSkillDelete').validate({
+$('#frmHobby').validate({
     submitHandler: function (form) {
-        var id = $('#user_skill_new_id').val();
+        var id = $('#user_hobby_id').val();
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
         jQuery.ajax({
-            url: "/user/personal-skill" + '/' + id,
+            url: "/user/hobby" + '/' + id,
             method: 'Delete',
             success: function (response) {
-                $('#ModalSkillDelete').modal('hide');
-                $('#card_user_new_skill'+response.id).remove();
+                $('#ModalHobbyDelete').modal('hide');
+                $('#card_user_hobby'+response.id).remove();
                 toastr.success('Success', 'item has been deleted !');
             }, error: function (err) {
                 console.log(err);
@@ -109,12 +102,10 @@ function loadHobby(){
 
     $('#ModalUserHobby').modal('show');
 }
-$("#frmSkill").validate({
+$("#frmUserHobby").validate({
     rules: {
-        user_skill_name : {
+        name : {
           required: true,
-       },skill_year:{
-        required: true,
        }
     }, submitHandler: function (form) {
         $.ajaxSetup({
@@ -123,30 +114,27 @@ $("#frmSkill").validate({
             }
         });
         jQuery.ajax({
-            url: "/user/personal-skill",
+            url: "/user/hobby",
             method: 'POST',
             data: {
-                "name" : $('#user_skill_name').val(),
-                "year" : $('#skill_year').val(),
+                "name" : $('#name_hobby').val(),
             },
             success: function(result)
             {
             //    console.log(result);
-               $('#ModalSkill').modal('hide');
-               var skill = '<div class="card" id="card_user_new_skill'+ result.id +'">' +
+               $('#ModalUserHobby').modal('hide');
+               var skill = '<div class="card" id="card_user_hobby'+ result.id +'">' +
                '<div class="card-body">' +
                    '<p class="card-text">' + 
-                       '<strong>Skill Name :</strong>' +
+                       '<strong>Hobby Name : </strong>' +
                              result.name +
-                       '<strong> Experience Year : </strong> '+
-                            result.year + ',' +
-                           '<a href="#" onclick="userSkillDelete('+ result.id + ');"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp'+
-                           '<a href="#" onclick="userSkillEdit('+ result.id +');"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>' + 
+                           '<a href="#" onclick="hobbyDelete('+ result.id + ');"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp'+
+                           '<a href="#" onclick="hobbyEdit('+ result.id +');"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>' + 
                        '</p>'+
                '</div>'+
            '</div>'+
            '<br/>';
-            $('#div_card_user_skill').append(skill);
+            $('#div_card_user_hobby').append(skill);
             },error : function(err){
 
                 console.log(err);

@@ -374,16 +374,16 @@
 														<div id="addhistory" class="additem">
 															<span onclick="loadHobby();" class="icon clone"><i class="fa fa-plus" aria-hidden="true"></i></span>
 															<div class="code-edit-small">
-																	<div class="code-edit-small" id="div_card_user_reference">
-																		@foreach ($user->reference as $references)
-																			<div class="card" id="card_user_reference{{$references->id}}">
+																	<div class="code-edit-small" id="div_card_user_hobby">
+																		@foreach ($user->hobby as $hobbies)
+																			<div class="card" id="card_user_hobby{{$hobbies->id}}">
 																				<div class="card-body">
 																					<p class="card-text">
 																						<strong>Hobby Name :</strong> 
-																							{{$references->name}} ,
+																							{{$hobbies->name}} ,
 																						<strong>
-																							<a href="#" onclick="referenceDelete({{$references->id}});"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp; 
-																							<a href="#" onclick="referenceEdit({{$references->id}});"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>
+																							<a href="#" onclick="hobbyDelete({{$hobbies->id}});"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp; 
+																							<a href="#" onclick="hobbyEdit({{$hobbies->id}});"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>
 																						</p>
 																				</div>
 																			</div>
@@ -483,11 +483,12 @@
 	</div><!-- /.tr-profile -->	
 <!-- /.tr-user-reference -->	
 <!-- /.tr-user-hobby -->
-<div id="ModalUserHobby" class="modal fade">
+
+<div id="ModalUserHobbyEdit" class="modal fade">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
-			<form id="frmUserReferenceEdit" enctype="multipart/form-data" action="#" method="POST">
-				<input type="hidden" name="user_reference_id_edit" id="user_reference_id_edit">
+			<form id="frmUserHobbyEdit" enctype="multipart/form-data" action="#" method="POST">
+				<input type="hidden" name="user_hobby_id_edit" id="user_hobby_id_edit">
 				<input type="hidden" name="_token" value="{{ csrf_token()}}">
 				<div  class="modal-header theme-bg" style="background-color:#008def" >
 						<h4 class="modal-title" style="color:white;"> Hobby </h4>
@@ -497,7 +498,34 @@
 							<div class="row">
 								<div class="col-lg-12">
 									<label> Hobby Name * </label>
-									<input  name="user_name_edit" id="user_name_edit" type="text" class="form-control">
+									<input  name="name_hobby_edit" id="name_hobby_edit" type="text" class="form-control">
+							</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<input  type="button" class="btn btn-danger" data-dismiss="modal" value="No">
+							<input type="submit" class="btn btn-primary" value="Yes">
+						</div>
+				</form>
+		</div>
+	</div>
+</div>
+
+<div id="ModalUserHobby" class="modal fade">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<form id="frmUserHobby" enctype="multipart/form-data" action="#" method="POST">
+				<input type="hidden" name="user_hobby_id" id="user_hobby_id">
+				<input type="hidden" name="_token" value="{{ csrf_token()}}">
+				<div  class="modal-header theme-bg" style="background-color:#008def" >
+						<h4 class="modal-title" style="color:white;"> Hobby </h4>
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-lg-12">
+									<label> Hobby Name * </label>
+									<input  name="name_hobby" id="name_hobby" type="text" class="form-control">
 							</div>
 							</div>
 						</div>
@@ -512,11 +540,34 @@
 
 <!-- /.tr-end-user-hobby -->
 
+
+
+<div id="ModalHobbyDelete" class="modal fade">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<form id="frmHobby" enctype="multipart/form-data" action="#" method="POST">
+				<input type="hidden" name="user_hobby_id" id="user_hobby_id">
+				<input type="hidden" name="_token" value="{{ csrf_token()}}">
+				<div  class="modal-header theme-bg" style="background-color:#008def" >
+						<h4 class="modal-title" style="color:white;"> Hobby </h4>
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						</div>
+						<div class="modal-body">
+							<span>Do you want to Delete this Hobby ? </span>
+						</div>
+						<div class="modal-footer">
+							<input  type="button" class="btn btn-danger" data-dismiss="modal" value="No">
+							<input type="submit" class="btn btn-primary" value="Yes">
+						</div>
+				</form>
+		</div>
+	</div>
+</div>
+
 <div id="ModalUserReferenceEdit" class="modal fade">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<form id="frmUserReferenceEdit" enctype="multipart/form-data" action="#" method="POST">
-				<input type="hidden" name="user_reference_id_edit" id="user_reference_id_edit">
 				<input type="hidden" name="_token" value="{{ csrf_token()}}">
 				<div  class="modal-header theme-bg" style="background-color:#008def" >
 						<h4 class="modal-title" style="color:white;"> Reference </h4>
