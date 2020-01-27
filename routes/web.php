@@ -119,6 +119,8 @@ Route::group(['namespace' => 'Backend','prefix' => 'admin'], function ($request)
     Route::resource('app-candidate','CandidateController');
     Route::resource('user','UserController');
     Route::post('user-cv/{id}','UserController@userCV');
+    Route::post('bookmark/{id}','UserController@bookmark');
+    Route::delete('bookmark/{id}','UserController@bookmarkDelete');
     Route::get('create-resume','CandidateController@createResume');
     Route::post('user/resume/{id}','UserController@userCV');
     Route::get('user/view-resume/{id}','UserController@viewResume');

@@ -4,6 +4,7 @@
 	$User = Auth::user();	
 	// dd($User);
 	use App\Model\Country;
+	use App\Model\vacancy;
 	use App\Model\City;
 	$country = Country::all();
 	$city = City::all();
@@ -421,25 +422,31 @@
 						</div><!-- /.tab-pane -->
 
 						<div role="tabpanel" class="tab-pane tab-pane open-role" id="bookmark">
-									<div class="role remove-item">
+							@foreach ($user_bookmark as $user_bookmarks)
+									@php
+										$bookmark = vacancy::with(['jobType','province'])->where('id', $user_bookmarks->vacancy_id)->first();
+										// dd($bookmark);
+									@endphp
+									<div class="role remove-item{{$bookmark->id}}">
 											<div class="left-content">
 												<div class="clearfix">
 													<span class="tr-title">
-														<a href="#">Design Associate</a>
+														<a href="#">{{$bookmark->vacancy_name}}</a>
 													</span>
-													<span><a href="#" class="btn btn-primary">Part Time</a></span>
+													<span><a href="#" class="btn btn-primary">{{$bookmark->jobType->name}}</a></span>
 												</div>
-												<span class="deadline">Application Deadline : Jun 27, 2017</span>
+												<span class="deadline">Application Deadline : {{$bookmark->closingDate}}</span>
 												<ul class="tr-list job-meta">
-													<li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>San Francisco, CA, US</li>
-													<li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>Mid Level</li>
-													<li><span><i class="fa fa-money" aria-hidden="true"></i></span>$5,000 - $6,000</li>
+													<li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>{{$bookmark->province->name}}</li>
+													<li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>{{$bookmark->exp_level}}</li>
+													<li><span><i class="fa fa-money" aria-hidden="true"></i></span>{{'$'.' ' . $bookmark->minSalary . ' -' . $bookmark->maxSalary}}</li>
 												</ul>										
 											</div>
 											<div class="right-content">
-												<span style="color:red;" class="remove-icon"><i class="fa fa-trash-o"></i></span>
+													<a href="#" id="bookmark_id" data-id="{{$bookmark->id}}" onclick="bookmarkDelete({{$user_bookmarks->id}});"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp; 
 											</div>
-										</div>
+										</div>									
+							@endforeach
 						</div><!-- /.tab-pane -->
 
 						<div role="tabpanel" class="tab-pane section close-account" id="archived">
@@ -448,7 +455,6 @@
 							<form action="#" id="frmUserChangePassword">
 								<input type="hidden" id="user_password" value="{{$user->id}}">
 								<input type="hidden" name="_token" value="{{ csrf_token()}}">
-								
 								<div class="col-lg-12">
 										<div class="form-group">
 												<input type="password" placeholder="new password" class="form-control" id="new_password" name="new_password"/>
@@ -510,6 +516,31 @@
 		</div>
 	</div>
 <!-- /.tr-user-hobby -->
+
+<div id="userBookmarkDelete" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form id="frmVacancyBookmarkDelete">
+					<input type="hidden" id="user_bookmark_id_delete" value="">
+                    <meta name="csrf-token" content="{{ csrf_token() }}">
+                    <div  class="modal-header theme-bg" style="background-color:#008def" >
+                            <h4 class="modal-title" style="color:white;"> Bookmarked</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label> Do u want to Delete this Bookmarked ? </label>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <input  type="button" class="btn btn-danger" data-dismiss="modal" value="No">
+                                <input type="submit" class="btn btn-primary" value="Yes">
+                            </div>
+                    </form>
+            </div>
+        </div>
+</div>
+
 
 <div id="ModalUserHobbyEdit" class="modal fade">
 	<div class="modal-dialog modal-lg">
@@ -1507,6 +1538,7 @@
 	
 	@endsection
 	@section('scripts')
+		<script src="{{asset('js/backend/bookmark.js')}}"></script>
 		<script src="{{asset('js/frontend/user_hobby.js')}}"></script>
 		<script src="{{asset('js/frontend/user_reference.js')}}"></script>
 		<script src="{{asset('js/frontend/user_language.js')}}"></script>

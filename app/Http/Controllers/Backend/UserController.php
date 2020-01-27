@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 use App\Model\userCv;
 use App\User;
 use DB;
+use App\Model\userBookmark;
 use App\Model\Country;
 use App\Model\City;
 use App\Model\userEducation;
@@ -12,7 +13,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     /**
@@ -30,6 +31,20 @@ class UserController extends Controller
     {
         $user = User::with(['hobby','reference','skill','language','traning','experience','education'])->where('id',$id)->first();
         return view('frontend/pages/view-resume',compact('user'));
+    }
+    public function bookmark($vacancy_id)
+    {
+        $bookmark = new userBookmark();
+        $bookmark->user_id = Auth::user()->id;
+        $bookmark->vacancy_id = $vacancy_id;
+        $bookmark->save();
+        return response::json($bookmark);
+    }
+    public function bookmarkDelete(Request $request , $id)
+    {
+        $bookmark = userBookmark::find($id);
+        $bookmark->delete();
+        return response::json($bookmark);
     }
    public function resetUserPassword(Request $request , $id)
    {

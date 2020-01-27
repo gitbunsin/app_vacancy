@@ -28,6 +28,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Input;
 use App\Model\candidate_vacancy;
+use App\Model\userBookmark;
 
 class JobController extends Controller
 {
@@ -68,12 +69,16 @@ class JobController extends Controller
 
     public function profileDetails($id)
     {
-        // dd('hello');
         $user_cv = userCv::where('user_id',$id)->first();
-        // dd($user_cv);
         $user = User::with(['hobby','reference','skill','language','traning','experience','education'])->where('id',$id)->first();
-        // dd($user);
-        return view('frontend.pages.user-profile',compact('user_cv','user'));
+        $user_bookmark = userBookmark::where('user_id',Auth::user()->id)->get();
+        // dd($user_bookmark);
+        // foreach ($user_bookmark as $key => $value) {
+        //     $user_bookmark 
+            
+        // }
+        // dd( $value->vacancy_id);
+        return view('frontend.pages.user-profile',compact('user_cv','user','user_bookmark'));
 
     }
     public function jobsListing(Request $request)
