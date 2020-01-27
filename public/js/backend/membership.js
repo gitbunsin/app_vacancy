@@ -24,7 +24,7 @@ $("#frmEditMembership").validate({
              toastr.success('Success' , 'item has been updated !');
              var Membership = '<tr id="tr_memebership' + result.id + '"> <th class="scope="row">' + result.id + '</><td>' + result.name + '</td>';
              Membership += '<th><a onclick="EditMembership(' + result.id + ');"  data-toggle="modal" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title"Membership"><i class="icon-edit"></i></a>  <a onclick="DeleteMembership(' + result.id + ');" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Membership"><i class="ti-trash"></i></a></th></tr>';
-             $("#tr_memebership" + result.id).replaceWith(Membership);
+             $("#tr_memebership"+result.id).replaceWith(Membership);
            },error : function(err){
                 console.log(err);
            }
