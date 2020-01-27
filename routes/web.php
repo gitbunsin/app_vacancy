@@ -43,19 +43,15 @@ Route::group(['middleware'=>'is_admin'], function(){
 // Frontend Route 
 Route::group(['middleware'=>'auth'], function(){
     Route::group(['namespace' => 'Frontend','prefix' => 'user'], function(){
-        Route::post('education', 'UserController@education');
-        Route::delete('education/{id}', 'UserController@educationDelete');
-        Route::get('education/{id}', 'UserController@educationEdit');
-        Route::post('education/{id}', 'UserController@educationUpdate');
-        Route::post('skill', 'UserController@skill');
-        Route::get('skill/{id}', 'UserController@skillEdit');
-        Route::post('skill/{id}', 'UserController@skillUpdate');
-        Route::delete('skill/{id}', 'UserController@skillDelete');
         Route::resource('experience','UserExperienceController');
         Route::resource('language','UserLanguageController');
         Route::resource('personal-skill','UserSkillController');
         Route::resource('reference','UserReferenceController');
         Route::resource('hobby','UserHobbyController');
+        Route::resource('education','UserEducationController');
+        Route::get('about-me/{id}','UserEducationController@aboutMeEdit');
+        Route::post('update-about-me/{id}','UserEducationController@aboutMeUpdate');
+        Route::resource('skill', 'UserTraningSkillController');
     });
 });
 
@@ -125,6 +121,7 @@ Route::group(['namespace' => 'Backend','prefix' => 'admin'], function ($request)
     Route::post('user-cv/{id}','UserController@userCV');
     Route::get('create-resume','CandidateController@createResume');
     Route::post('user/resume/{id}','UserController@userCV');
+    Route::get('user/view-resume/{id}','UserController@viewResume');
 
 
 

@@ -34,8 +34,9 @@ class CreateUsersTable extends Migration
             $table->string('verified')->commnet('1 user is active & 0 is not active')->nullable();
             $table->string('password');
             $table->string('profile')->nullable();
+            $table->text('about_me')->nullable();
             $table->rememberToken();
-            $table->timestamps();
+            // $table->timestamps();
 
         });
     }

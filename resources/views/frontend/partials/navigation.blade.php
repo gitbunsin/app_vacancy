@@ -39,7 +39,7 @@
                         <ul class="tr-dropdown-menu tr-list fadeInUp" role="menu">
                             <li><a href="{{url('/user/profile/'.auth::user()->id)}}">Employee Profile</a></li>
                             <li><a href="view-compnay.html">View Compnay</a></li>
-                            <li><a href="view-resume.html">View Resume</a></li>
+                            <li><a href="{{url('/admin/user/view-resume/'.auth::user()->id)}}">View Resume</a></li>
                             <li><a href="coming-soon.html">Coming Soon</a></li>
                         </ul>
                     </li>

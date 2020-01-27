@@ -189,8 +189,11 @@ class CandidateController extends Controller
         $candidate->phone = $request->phone;
         $candidate->save();
         $candidate_id = $candidate->id;
-        $candidate_vacancy = DB::table('candidate_vacancy')->where('candidate_id', $candidate_id )->where('vacancy_id',$request->vacancy_id)->update(['status'=>$request->status,'applied_date'=>$request->date]);  
-        return response::json($request->first_name);
+        $candidate_vacancy = DB::table('candidate_vacancy')->where('candidate_id', $candidate_id )->where('vacancy_id',$request->vacancy_id)->update(['status'=>$request->status,'applied_date'=>$request->date]); 
+        $candidate['vacancy'] = vacancy::find($request->vacancy_id);
+        $candidate['candidate_vacancy'] = candidate_vacancy::where('candidate_id', $candidate_id )->where('vacancy_id',$request->vacancy_id)->first();
+
+        return response::json($candidate);
         
     }
     // public function update(Request $request, $id)

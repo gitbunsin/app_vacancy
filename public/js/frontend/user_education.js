@@ -1,3 +1,55 @@
+
+function updateAboutMe(id){
+    $('#user_about_me_id').val(id);
+    $.ajax({
+        type: "GET",
+        url: "/user/about-me/" + id,
+        success: function(result)
+        {
+            $('#about_me').val(result.about_me);
+            $('#ModalUserAboutMe').modal('show');
+
+        },error:function(err){
+            console.log(err);
+
+        }
+    });
+}
+
+$('#frmUserAboutMe').validate({
+    rules:{
+        about_me : {
+            required : true
+        }
+    },
+    submitHandler: function (form) {
+        var id = $('#user_about_me_id').val();
+        // console.log(id);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        jQuery.ajax({
+            method: 'POST',
+            url: "/user/update-about-me/" + id,
+            data : {
+                "about_me" : $('#about_me').val(),
+            },
+            success: function (response) {
+                console.log(response.about_me);
+                $('#ModalUserAboutMe').modal('hide');
+                $('#card_about_me').append(response.about_me);
+                toastr.success('Success', 'item has been updated !');
+            }, error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+ });
+
+
+
 $("#frmUserEducationEdit").validate({
     rules: {
         school_edit: {
@@ -19,8 +71,6 @@ $("#frmUserEducationEdit").validate({
        }
     }, submitHandler: function (form) {
         var id = $('#user_education_id_edit').val();
-    //    var country_id = $('#country_edit').val();
-    //    console.log(country_id);
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -28,9 +78,8 @@ $("#frmUserEducationEdit").validate({
         });
         jQuery.ajax({
             url: "/user/education/"+id,
-            method: 'POST',
+            method: 'PUT',
             data: {
-                "user_id" : $('#user_edit_education_id').val(),
                 "school" : $('#school_edit').val(),
                 "study" : $('#study_edit').val(),
                 "degree" : $('#degree_edit').val(),
@@ -41,7 +90,7 @@ $("#frmUserEducationEdit").validate({
             },
             success: function(result)
             {
-               console.log(result);
+            //    console.log(result);
                $('#UserEducationEdit').modal('hide');
                var education = '<div class="card" id="card_education'+ result.id +'">' +
                '<div class="card-body">' +
@@ -80,7 +129,7 @@ function educationEdit(id){
     $('#user_education_id_edit').val(id);
     $.ajax({
         type: "GET",
-        url: "/user/education" + "/" + id ,
+        url: "/user/education/" + id + "/edit",
         success: function(result)
         {
             $('#study_edit').val(result.study);
@@ -183,7 +232,7 @@ $("#frmAddEducation").validate({
             url: "/user/education",
             method: 'POST',
             data: {
-                "user_id" : $('#user_education_id').val(),
+                // "user_id" : $('#user_education_id').val(),
                 "school" : $('#school').val(),
                 "study" : $('#study').val(),
                 "degree" : $('#degree').val(),

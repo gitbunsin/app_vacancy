@@ -25,8 +25,8 @@ $("#frmEditUserSkill").validate({
             }
         });
         jQuery.ajax({
-            url: "/user/skill/" + id,
-            method: 'POST',
+            url: "/user/skill/" + id ,
+            method: 'PUT',
             data: {
                 "user_id" : $('#user_skill_id').val(),
                 "school" : $('#school_skill_edit').val(),
@@ -56,6 +56,7 @@ $("#frmEditUserSkill").validate({
                '</div>'+
            '</div>'+
            '<br/>';
+           toastr.success('Success', 'item has been updated !');
             $('#card_skill'+result.id).replaceWith(skill);
             },error : function(err){
 
@@ -70,11 +71,10 @@ function skillEdit(id){
     $('#user_skill_id_edit_id').val(id);
     $.ajax({
         type: "GET",
-        url: "/user/skill" + "/" + id ,
+        url: "/user/skill/" + id + '/edit' ,
         success: function(result)
         {
-            console.log(result);
-
+            // console.log(result);
             $('#study_skill_edit').val(result.study);
             $('#school_skill_edit').val(result.school);
             $('#year_skill_edit').val(result.year);

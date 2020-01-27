@@ -44,11 +44,11 @@ $("#frmEditCandidate").validate({
                    console.log(result);
                    toastr.success('Success' , 'item has been updated !');
                 //    location.reload();
-                //    $('#ModalEditCandidate').modal('hide');
+                   $('#ModalEditCandidate').modal('hide');
                 //    toastr.success('Success' , 'item has been updated !');
-                //    var canddate = '<tr id="tr_candidate' + result.id + '"> <th class="scope="row">' + result.id + '</th><td>' + result.first_name + ' ' + result.last_name + '</td><td>' + result.vacancy.vacancy_name + '</td><td>' + result.candidate_vacancy.applied_date + '</td><td>' + result.candidate_vacancy.status + '</td>';
-                //    canddate += '<th><a onclick="Edit(this);" data-candidate_id="'+ result.id +'" data-vacancy_id="' + result.vacancy.id +'"  class="btn btn-primary"><i class="icon-edit"></i></a>  <a onclick="Delete(' + result.id + ');"  class="btn btn-danger"><i class="ti-trash"></i></a></th></tr>';
-                //    $('#tr_candidate'+ result.id).replaceWith(canddate);
+                   var canddate = '<tr id="tr_candidate' + result.id + '"> <th class="scope="row">' + result.id + '</th><td><strong><a href="/admin/candidate/' + result.id + '/edit">' + result.last_name + ' ' + result.first_name +  '</a></strong></td><td>' + result.vacancy.vacancy_name + '</td><td>' + result.candidate_vacancy.applied_date + '</td><td>' + result.candidate_vacancy.status + '</td>';
+                   canddate += '<th><a onclick="Edit(this);" data-candidate_id="'+ result.id +'" data-vacancy_id="' + result.vacancy.id +'"  class="btn btn-primary"><i class="icon-edit"></i></a>  <a onclick="Delete(' + result.id + ');"  class="btn btn-danger"><i class="ti-trash"></i></a></th></tr>';
+                   $('#tr_candidate'+result.id).replaceWith(canddate);
     
                 },error : function(err){
     

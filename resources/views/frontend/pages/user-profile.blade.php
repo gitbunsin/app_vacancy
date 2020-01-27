@@ -2,6 +2,7 @@
 @section('content')
 @php
 	$User = Auth::user();	
+	// dd($User);
 	use App\Model\Country;
 	use App\Model\City;
 	$country = Country::all();
@@ -400,12 +401,11 @@
 														<div class="media-body additem-work">
 															<span class="tr-title">About Me</span>
 															<div id="addhistory" class="additem">
-																<span id="clone" class="icon clone"><i class="fa fa-plus" aria-hidden="true"></i></span>
-																<span class="icon remove"><i class="fa fa-times" aria-hidden="true"></i></span>
+																<span onclick="updateAboutMe({{Auth::user()->id}});" class="icon clone"><i class="fa fa-plus" aria-hidden="true"></i></span>
 																<div class="code-edit-small">
 																		<div class="card">
 																				<div class="card-body">
-																				  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+																				  <p id="card_about_me" class="card-text">{{Auth::user()->about_me}}</p>
 																				</div>
 																			  </div>
 																			  <br/>
@@ -481,7 +481,34 @@
 	        </div><!-- /.row -->
 	    </div><!-- /.container -->
 	</div><!-- /.tr-profile -->	
-<!-- /.tr-user-reference -->	
+<!-- /.tr-user-reference -->
+<!-- /.tr-user-about-me -->
+<div id="ModalUserAboutMe" class="modal fade">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<form id="frmUserAboutMe" enctype="multipart/form-data" action="#" method="POST">
+					<input type="hidden" name="user_about_me_id" id="user_about_me_id">
+					<input type="hidden" name="_token" value="{{ csrf_token()}}">
+					<div  class="modal-header theme-bg" style="background-color:#008def" >
+							<h4 class="modal-title" style="color:white;"> Hobby </h4>
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							</div>
+							<div class="modal-body">
+								<div class="row">
+									<div class="col-lg-12">
+										<label> About Me * </label>
+										<textarea class="form-control" name="about_me" id="about_me" cols="30" rows="10"></textarea>
+								</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<input  type="button" class="btn btn-danger" data-dismiss="modal" value="No">
+								<input type="submit" class="btn btn-primary" value="Yes">
+							</div>
+					</form>
+			</div>
+		</div>
+	</div>
 <!-- /.tr-user-hobby -->
 
 <div id="ModalUserHobbyEdit" class="modal fade">
@@ -568,6 +595,7 @@
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<form id="frmUserReferenceEdit" enctype="multipart/form-data" action="#" method="POST">
+				<input type="hidden" name="user_reference_id_edit" id="user_reference_id_edit">
 				<input type="hidden" name="_token" value="{{ csrf_token()}}">
 				<div  class="modal-header theme-bg" style="background-color:#008def" >
 						<h4 class="modal-title" style="color:white;"> Reference </h4>
@@ -1066,8 +1094,7 @@
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 					<form id="frmEditUserSkill" enctype="multipart/form-data" action="#" method="POST">
-						<input type="hidden" id="user_skill_id_edit" value="{{$User->id}}">
-						<input type="hidden" id="user_skill_id_edit_id" value="{{$User->id}}">
+						<input type="hidden" id="user_skill_id_edit" value="{{$user->id}}">
 						<input type="hidden" name="_token" value="{{ csrf_token()}}">
 						<div  class="modal-header theme-bg" style="background-color:#008def" >
 								<h4 class="modal-title" style="color:white;"> Skill</h4>
@@ -1164,7 +1191,7 @@
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 					<form id="frmAddUserSkill" enctype="multipart/form-data" action="#" method="POST">
-						<input type="hidden" id="user_skill_id" value="{{$User->id}}">
+						<input type="hidden" id="user_skill_id" value="{{$user->id}}">
 						<input type="hidden" name="_token" value="{{ csrf_token()}}">
 						<div  class="modal-header theme-bg" style="background-color:#008def" >
 								<h4 class="modal-title" style="color:white;"> Skill</h4>
@@ -1239,7 +1266,7 @@
 				<div class="modal-content">
 					<form id="frmUserEducationEdit" enctype="multipart/form-data" action="#" method="POST">
 						<input type="hidden" id="user_education_id_edit" value="">
-						  <input type="hidden" id="user_edit_education_id" value="{{$User->id}}">
+						  <input type="hidden" id="user_edit_education_id" value="{{$user->id}}">
 						<input type="hidden" name="_token" value="{{ csrf_token()}}">
 						<div  class="modal-header theme-bg" style="background-color:#008def" >
 								<h4 class="modal-title" style="color:white;"> Education</h4>
@@ -1334,7 +1361,6 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <form id="frmAddEducation" enctype="multipart/form-data" action="#" method="POST">
-                    <input type="hidden" id="user_education_id" value="{{$User->id}}">
 					<input type="hidden" name="_token" value="{{ csrf_token()}}">
                     <div  class="modal-header theme-bg" style="background-color:#008def" >
                             <h4 class="modal-title" style="color:white;"> Education</h4>
