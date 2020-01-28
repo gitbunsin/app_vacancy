@@ -58,8 +58,11 @@ $("#frmEmployerLogin").validate({
 $("#frmSeekerRegister").validate({
     rules: {
 
-       seeker_username:{
+        seeker_first_name:{
            required : true
+       },
+       seeker_last_name:{
+        required : true
        },
        seeker_email : {
            required : true
@@ -82,7 +85,8 @@ $("#frmSeekerRegister").validate({
            url: "/register",
            method: 'POST',
            data: {
-                "seeker_username" : $('#seeker_username').val(),
+                "seeker_first_name" : $('#seeker_first_name').val(),
+                "seeker_last_name" : $('#seeker_last_name').val(),
                 "seeker_email" : $('#seeker_email').val(),
                 "seeker_password" : $('#seeker_password').val()
            },

@@ -93,10 +93,13 @@
                                             <form action="#" id="frmSeekerRegister" class="tr-form">
                 
                                                 <div class="form-group">
-                                                    <input required  name="seeker_username" id="seeker_username" type="text" class="form-control" placeholder="Username">
+                                                    <input required  name="seeker_first_name" id="seeker_first_name" type="text" class="form-control" placeholder="First Name">
                                                 </div>
                                                 <div class="form-group">
-                                                    <input onblur="checkmain(this.value)" required type="email" name="seeker_email" id="seeker_email" class="form-control" placeholder="your Email">
+                                                        <input required  name="seeker_last_name" id="seeker_last_name" type="text" class="form-control" placeholder="Last Name">
+                                                    </div>
+                                                <div class="form-group">
+                                                    <input onblur="checkmain(this.value)" required type="email" name="seeker_email" id="seeker_email" class="form-control" placeholder="Email">
                                                 </div>
                                                 <div class="form-group">
                                                     <input required type="password" name="seeker_password" id="seeker_password" class="form-control" placeholder="Password">
@@ -106,9 +109,6 @@
                                                 </div>					
                                                 <button type="submit" class="btn btn-primary">Sign Up</button>
                                             </form>	
-                                            <div class="new-user text-center">
-                                                <span>Already Registered? <a href="signin.html">Sign in</a> </span>
-                                            </div>
                                         </div>
                                     </div>
                                     <div role="tabpanel" class="tab-pane" id="employers">

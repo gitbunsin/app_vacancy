@@ -100,7 +100,9 @@ class RegisterController extends Controller
         }else 
         {
             $user = new User();
-            $user->name = $request->seeker_username;
+            $user->first_name = $request->seeker_first_name;
+            $user->last_name = $request->seeker_last_name;
+            $user->name = $request->seeker_last_name.' ' .$request->seeker_last_name;
             $user->email = $request->seeker_email;
             $user->verified = 0;
             $user->email_token = str_random(40);
