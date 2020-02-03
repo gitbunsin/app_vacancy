@@ -121,15 +121,15 @@ function loadReference(){
 }
 $("#frmUserReference").validate({
     rules: {
-        user_name : {
+        user_name_reference : {
           required: true,
-       },user_email:{
+       },user_name_reference:{
         required: true,
        },
-       user_phone : {
+       user_phone_reference : {
         required: true,
        },
-       user_position : {
+       user_position_reference : {
         required: true,
        }
     }, submitHandler: function (form) {
@@ -142,10 +142,10 @@ $("#frmUserReference").validate({
             url: "/user/reference",
             method: 'POST',
             data: {
-                "name" : $('#user_name').val(),
-                "email" : $('#user_email').val(),
+                "name" : $('#user_name_reference').val(),
+                "email" : $('#user_name_reference').val(),
                 "phone" : $('#user_phone_reference').val(),
-                "position" : $('#user_position').val(),
+                "position" : $('#user_position_reference').val(),
             },
             success: function(result)
             {

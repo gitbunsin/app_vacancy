@@ -174,7 +174,7 @@
 					</li><!-- /.personal-deatils -->							
 				</ul>
 				<div class="buttons pull-right">
-					<a href="#" class="btn btn-primary"><i class="fa fa-cloud-download" aria-hidden="true"></i>Download Resume as doc</a>
+					<a href="{{url("user/generate-docx/".$user->id)}}" class="btn btn-primary"><i class="fa fa-cloud-download" aria-hidden="true"></i>Download Resume as doc</a>
 				</div>					
 			</div>
 		</div>	

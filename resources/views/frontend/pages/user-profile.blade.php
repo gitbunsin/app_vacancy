@@ -701,15 +701,15 @@
 								<div class="row">
 									<div class="col-lg-6">
 										<label> Name * </label>
-										<input  name="user_name" id="user_name" type="text" class="form-control">
+										<input  name="user_name_reference" id="user_name_reference" type="text" class="form-control">
 								</div>
 								<div class="col-lg-6">
 									<label>  Postion * </label>
-									<input  name="user_position" id="user_position" type="number" class="form-control">
+									<input  name="user_position_reference" id="user_position_reference" type="text" class="form-control">
 								</div>
 								<div class="col-lg-6">
 									<label> Email * </label>
-									<input  name="user_email" id="user_email" type="text" class="form-control">
+									<input  name="user_email_reference" id="user_email_reference" type="text" class="form-control">
 								</div>
 								<div class="col-lg-6">
 									<label> Phone * </label>

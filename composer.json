@@ -1,4 +1,4 @@
-    {
+{
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
@@ -15,6 +15,8 @@
         "kalnoy/nestedset": "^5.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
+        "laravel/ui": "^1.1",
+        "phpoffice/phpword": "^0.17.0",
         "realrashid/sweet-alert": "^3.0"
     },
     "require-dev": {
