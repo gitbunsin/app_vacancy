@@ -36,7 +36,7 @@ $("#frmAddUserExpericenseEdit").validate({
                 "city" : $('#city_experience_edit').val(),
                 "from" : $('#from_month_edit').val(),
                 "to" : $('#from_to_edit').val(),
-                "description" : $('#description_edit').val(),
+                "description" : $('#description_experience_edit').val(),
             },
             success: function(result)
             {
@@ -52,8 +52,8 @@ $("#frmAddUserExpericenseEdit").validate({
                        '<strong>Year :</strong>' +
                             result.year + ' - '+ result.year_to + ' &nbsp;&nbsp ' + 
                         '<strong>' + 
-                           '<a href="#" onclick="skillExperience('+ result.id + ');"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp'+
-                           '<a href="#" onclick="skillExperience('+ result.id +');"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>' + 
+                           '<a href="#" onclick="experienceDelete('+ result.id + ');"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp'+
+                           '<a href="#" onclick="experienceEdit('+ result.id +');"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>' + 
                        '</p>'+
                '</div>'+
            '</div>'+
@@ -83,7 +83,7 @@ function experienceEdit(id){
             $('#from_to_edit').val(result.from_month_to);
             $('#year_experience_edit').val(result.year);
             $('#year_to_experience_edit').val(result.year_to);
-            $('#description_edit').val(result.description);
+            $('#description_experience_edit').val(result.description);
             var jx = $('#job_title_id_edit');
             jx.empty();
             $.each(result.title, function (key , value) {
@@ -197,7 +197,7 @@ $("#frmAddUserExpericense").validate({
                 "city" : $('#city_experience').val(),
                 "from" : $('#from_month').val(),
                 "to" : $('#from_to').val(),
-                "description" : $('#description').val(),
+                "description" : $('#description_experience').val(),
             },
             success: function(result)
             {
@@ -213,8 +213,8 @@ $("#frmAddUserExpericense").validate({
                        '<strong>Year :</strong>' +
                             result.year + ' - '+ result.year_to + ' &nbsp;&nbsp ' + 
                         '<strong>' + 
-                           '<a href="#" onclick="skillExperience('+ result.id + ');"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp'+
-                           '<a href="#" onclick="skillExperience('+ result.id +');"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>' + 
+                           '<a href="#" onclick="experienceDelete('+ result.id + ');"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp'+
+                           '<a href="#" onclick="experienceEdit('+ result.id +');"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>' + 
                        '</p>'+
                '</div>'+
            '</div>'+

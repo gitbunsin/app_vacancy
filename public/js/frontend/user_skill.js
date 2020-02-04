@@ -35,7 +35,8 @@ $("#frmEditUserSkill").validate({
                 "year" : $('#year_skill_edit').val(),
                 "year_to" : $('#year_to_skill_edit').val(),
                 "country" : $('#country_skill_edit').val(),
-                "city" : $('#city_skill_edit').val()
+                "city" : $('#city_skill_edit').val(),
+                "description" : $('#description_training_skill_edit').val()
             },
             success: function(result)
             {
@@ -79,6 +80,7 @@ function skillEdit(id){
             $('#school_skill_edit').val(result.school);
             $('#year_skill_edit').val(result.year);
             $('#year_to_skill_edit').val(result.year_to);
+            $('#description_training_skill_edit').val(result.description);
             var jx = $('#degree_skill_edit');
             var all_degree = ["Associate degree","Bachelor degree","Master degree","Doctoral degree"];
             jx.empty();
@@ -192,7 +194,8 @@ $("#frmAddUserSkill").validate({
                 "year" : $('#year_skill').val(),
                 "year_to" : $('#year_to_skill').val(),
                 "country" : $('#country_skill').val(),
-                "city" : $('#city_skill').val()
+                "city" : $('#city_skill').val(),
+                "description" : $('#description_training_skill').val()
             },
             success: function(result)
             {

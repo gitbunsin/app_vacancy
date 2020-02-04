@@ -53,6 +53,7 @@ Route::group(['middleware'=>'auth'], function(){
         Route::post('update-about-me/{id}','UserEducationController@aboutMeUpdate');
         Route::resource('skill', 'UserTraningSkillController');
         Route::get('generate-docx/{id}', 'UserEducationController@generateDocx');
+        Route::get('list-company', 'UserEducationController@listCompany');
     });
 });
 

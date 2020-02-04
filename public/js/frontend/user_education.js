@@ -86,7 +86,8 @@ $("#frmUserEducationEdit").validate({
                 "year" : $('#year_edit').val(),
                 "year_to" : $('#year_to_edit').val(),
                 "country" : $('#country_edit').val(),
-                "city" : $('#city_edit').val()
+                "city" : $('#city_edit').val(),
+                "description" : $('#description_education_edit'),
             },
             success: function(result)
             {
@@ -136,6 +137,7 @@ function educationEdit(id){
             $('#school_edit').val(result.school);
             $('#year_edit').val(result.year);
             $('#year_to_edit').val(result.year_to);
+            $('#description_education_edit').val(result.description);
             // console.log(result);
             var jx = $('#degree_edit');
             var all_degree = ["Associate degree","Bachelor degree","Master degree","Doctoral degree"];
@@ -239,7 +241,8 @@ $("#frmAddEducation").validate({
                 "year" : $('#year').val(),
                 "year_to" : $('#year_to').val(),
                 "country" : $('#country').val(),
-                "city" : $('#city').val()
+                "city" : $('#city').val(),
+                "description" : $('#description_education').val()
             },
             success: function(result)
             {

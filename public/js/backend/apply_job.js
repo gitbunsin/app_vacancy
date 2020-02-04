@@ -123,7 +123,7 @@ $(document).ready(function () {
 
          var id = $('#user_resume_id_edit').val();
          var extension = $('#file_name_edit').val().split('.').pop().toLowerCase();
-         if ($.inArray(extension, ['pdf', 'doc', 'xlsx']) == -1) {
+         if ($.inArray(extension, ['pdf', 'doc', 'docx']) == -1) {
             toastr.error('Please Select Valid File... !');
             //  $('#errormessage').html('Please Select Valid File... ');
          } else {
@@ -139,7 +139,7 @@ $(document).ready(function () {
             });
    
              $.ajax({
-                 url: "user/attachment/update/" + id, // point to server-side PHP script
+                 url: "/user/attachment/update/" + id, // point to server-side PHP script
                  data: form_data,
                  type: 'POST',
                  dataType:"json",
@@ -229,7 +229,7 @@ $(document).ready(function () {
 
          var id = $('#user_resume_id').val();
          var extension = $('#file_name').val().split('.').pop().toLowerCase();
-         if ($.inArray(extension, ['pdf', 'doc', 'xlsx']) == -1) {
+         if ($.inArray(extension, ['docx','pdf', 'doc', 'xlsx']) == -1) {
             toastr.warning('Please Select Valid File !');
             //  $('#errormessage').html('Please Select Valid File... ');
          } else {

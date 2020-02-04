@@ -161,7 +161,7 @@
                                                                 <div class="col-lg-6">
                                                                     <label>Package</label>
                                                                     @php
-                                                                        $Payment = payment::with('pricing')->where('admin_id',auth()->guard('admin')->user()->id)->get();
+                                                                        $Payment = payment::with('pricing')->where('status','=','success')->where('admin_id',auth()->guard('admin')->user()->id)->get();
                                                                     @endphp
                                                                     <select class="form-control" id="package_id_payment" name="package_id_payment">
                                                                         <option value=""> -- Please Select Payment</option>

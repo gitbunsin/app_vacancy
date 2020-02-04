@@ -2,6 +2,7 @@
 @section('content')
 @php
      use App\Model\language;
+     use App\Model\jobTitle;
 @endphp
     <div class="all-view section-padding">
 		<div class="container">
@@ -36,13 +37,39 @@
                                     <li>
                                         <span><strong>{{$educations->school}}</strong></span>
                                         <span class="present">{{$educations->year . ' - ' . $educations->year_to }} :  {{$educations->degree}} </span>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                        <p>{{$educations->description}}</p>
                                     </li>
                                 @endforeach
 					    		
 					    	</ul>
 					    </div>
-					</li><!-- /.work-history -->	
+                    </li><!-- /.work-history -->	
+                    <li class="education-background media">
+					    <div class="icon">
+					    	<i class="fa fa-briefcase" aria-hidden="true"></i>
+					    </div>
+					    <div class="media-body">
+					    	<span class="tr-title">Experience</span>
+					    	<ul class="tr-list">
+                                @foreach ($user->experience as $experiences)
+                                @php
+                                    $jobTitle = jobTitle::where('id',$experiences->job_title_id)->first();
+                                @endphp
+                                    <li>
+                                        <span><strong>{{$experiences->company_name}}</strong></span>
+                                        <ul class="tr-list">
+                                            <li>Year: {{$experiences->year . ' -' . $experiences->year_to}}</li>
+                                            <li>Major: {{$jobTitle->name}}</li>
+                                            <li>From Month :  {{$experiences->from_month}}</li>
+                                            <li>From Month To :  {{$experiences->from_month_to}}</li>
+                                        </ul>
+                                        <p>{{$experiences->description}}</p>
+                                    </li>
+                                @endforeach
+					    		
+					    	</ul>
+					    </div>
+					</li><!-- /.education-background -->
 					<li class="education-background media">
 					    <div class="icon">
 					    	<i class="fa fa-briefcase" aria-hidden="true"></i>
@@ -56,10 +83,8 @@
                                         <ul class="tr-list">
                                             <li>Year: {{$tranings->year . ' -' . $tranings->year_to}}</li>
                                             <li>Major: {{$tranings->degree}}</li>
-                                            <li>Course Duration: 2 Years</li>
-                                            <li>Result: 4.00</li>
                                         </ul>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                        <p>{{$educations->description}}</p>
                                     </li>
                                 @endforeach
 					    		

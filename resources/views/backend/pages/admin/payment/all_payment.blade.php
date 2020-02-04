@@ -106,10 +106,18 @@
                                             <td>{{$payments->email}}</td>
                                             <td>{{$payments->amount}}</td>
                                             <td>{{$payments->created_at	}}</td>
-                                            <td><b class="badge bg-success">{{$payments->status}}</b></td>
-                                            <th>
+                                            @if ($payments->status == "success")
+                                            <td>
+                                                    <b class="badge bg-success">{{$payments->status}}</b></td>
+                                                <td>
+                                            @else
+                                              <td>
+                                                    <b class="badge bg-warning">{{$payments->status}}</b></td>
+                                                <td>
+                                            @endif
+                                           
                                                 <a onclick="DeletePayment({{$payments->id}});" class="btn btn-danger"  title="Delete"><i class="ti-trash"></i></a>
-                                            </th>
+                                            </td>
                                         </tr>
                                         @endforeach                                
                                     </tbody>

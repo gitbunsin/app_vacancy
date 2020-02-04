@@ -38,13 +38,11 @@
 	        		<div class="tr-sidebar">
 						<ul class="nav nav-tabs profile-tabs section" role="tablist">
 							<li role="presentation"><a class="active" href="#account-info" aria-controls="account-info" role="tab" data-toggle="tab"><i class="fa fa-life-ring" aria-hidden="true"></i> Account Info</a></li>
-							{{-- <li role="presentation"><a href="#resume" aria-controls="resume" role="tab" data-toggle="tab"><span><i class="fa fa-user-o" aria-hidden="true"></i></span> </a></li> --}}
 							<li role="presentation"><a href="#edit-resume" aria-controls="edit-resume" role="tab" data-toggle="tab"><span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span> My Resume</a></li>
 							<li role="presentation"><a href="#bookmark" aria-controls="bookmark" role="tab" data-toggle="tab"><span><i class="fa fa-bookmark-o" aria-hidden="true"></i></span> Bookmark</a></li>
 							<li role="presentation"><a href="#archived" aria-controls="archived" role="tab" data-toggle="tab"><span><i class="fa fa-clone" aria-hidden="true"></i></span>Change Password</a></li>
 							<li role="presentation"><a href="#close-account" aria-controls="close-account" role="tab" data-toggle="tab"><span><i class="fa fa-scissors" aria-hidden="true"></i></span> Close Account</a></li>
 						</ul>	
-						<a href="#" class="btn btn-primary"><i class="fa fa-cloud-download" aria-hidden="true"></i> <span>Download Resume as doc</span></a>		        			
 	        		</div><!-- /.tr-sidebar -->        		
 				</div>
 				@php
@@ -55,7 +53,7 @@
 						<div role="tabpanel" class="tab-pane fade in show active account-info" id="account-info">	
 							<div class="section display-information">
 								<form id="frmUpdateUserProfile">
-											<input type="hidden" name="_token" value="{{ csrf_token()}}">
+											<input type="hidden" name="_token" value="{{csrf_token()}}">
 								<div class="title title-after">
 									<div class="icon"><img src="{{asset('images/icons/2.png')}}" alt="Icon" class="img-fluid"></div> 
 									<span>Your display Information</span>
@@ -417,6 +415,8 @@
 													</li><!-- /.work-history -->			
 												</ul>
 							<div class="buttons pull-right">
+						<a href="{{url('/admin/user/view-resume/'.Auth::user()->id)}}" class="btn btn-primary"><i class="fa fa-cloud-download" aria-hidden="true"></i> <span>preview Resume as </span></a>		        			
+
 								<a href="#" class="btn button-cancle">Back</a>
 								</div>								
 						</div><!-- /.tab-pane -->
@@ -992,17 +992,17 @@
 													<input  name="from_to_edit" id="from_to_edit" type="number" class="form-control">
 												</div>
 												<div class="col-lg-6">
-														<label> Year : </label>
-														<input  name="year_experience_edit" id="year_experience_edit" type="number" class="form-control">
+													<label> Year : </label>
+													<input  name="year_experience_edit" id="year_experience_edit" type="number" class="form-control">
 												</div>
 												<div class="col-lg-6">
-															<label> Year To : </label>
-															<input  name="year_to_experience_edit" id="year_to_experience_edit" type="number" class="form-control">
+													<label> Year To : </label>
+													<input  name="year_to_experience_edit" id="year_to_experience_edit" type="number" class="form-control">
 												</div>
-										<div class="col-lg-12">
-											<label> Description * </label>
-											<textarea cols='5' rows="3" id="description_edit" name="description_edit" class="form-control"></textarea>
-										</div>
+												<div class="col-lg-12">
+													<label> Description * </label>
+													<textarea cols='5' id="description_experience_edit" rows="5" class="form-control"></textarea>
+												</div>
 									
 									</div>
 								</div>
@@ -1106,7 +1106,7 @@
 												</div>
 										<div class="col-lg-12">
 											<label> Description * </label>
-											<textarea cols='5' rows="3" class="form-control"></textarea>
+											<textarea cols='5' id="description_experience" rows="5" class="form-control"></textarea>
 										</div>
 									
 									</div>
@@ -1125,7 +1125,7 @@
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 					<form id="frmEditUserSkill" enctype="multipart/form-data" action="#" method="POST">
-						<input type="hidden" id="user_skill_id_edit" value="{{$user->id}}">
+						<input type="hidden" id="user_skill_id_edit_id" value="">
 						<input type="hidden" name="_token" value="{{ csrf_token()}}">
 						<div  class="modal-header theme-bg" style="background-color:#008def" >
 								<h4 class="modal-title" style="color:white;"> Skill</h4>
@@ -1181,6 +1181,10 @@
 										<div class="col-lg-6">
 											<label> To : </label>
 											<input  name="year_to_skill_edit" id="year_to_skill_edit" type="number" class="form-control">
+										</div>
+										<div class="col-lg-12">
+											<label> Description * </label>
+											<textarea name="description_training_skill_edit" id="description_training_skill_edit" cols='5' rows="3" class="form-control"></textarea>
 										</div>
 									</div>
 								</div>
@@ -1279,6 +1283,10 @@
 											<label> To : </label>
 											<input  name="year_to_skill" id="year_to_skill" type="number" class="form-control">
 										</div>
+										<div class="col-lg-12">
+											<label> Description * </label>
+											<textarea name="description_training_skill" id="description_training_skill" cols='5' rows="3" class="form-control"></textarea>
+										</div>
 									</div>
 								</div>
 								<div class="modal-footer">
@@ -1353,6 +1361,10 @@
 										<div class="col-lg-6">
 											<label> To : </label>
 											<input  name="year_to_edit" id="year_to_edit" type="number" class="form-control">
+										</div>
+										<div class="col-lg-12">
+											<label> Description * </label>
+											<textarea cols='5' rows="8" id="description_education_edit" name="description_education_edit" class="form-control"></textarea>
 										</div>
 									</div>
 								</div>
@@ -1447,6 +1459,10 @@
 									<div class="col-lg-6">
 										<label> To : </label>
 										<input  name="year_to" id="year_to" type="number" class="form-control">
+									</div>
+									<div class="col-lg-12">
+										<label> Description * </label>
+										<textarea cols='5' rows="8" id="description_education" name="description_education" class="form-control"></textarea>
 									</div>
 								</div>
                             </div>

@@ -11,6 +11,7 @@ use App\Model\Country;
 use App\Model\City;
 use App\User;
 use Exception;
+use App\Model\company;
 use App\Model\Language;
 class UserEducationController extends Controller
 {
@@ -22,6 +23,11 @@ class UserEducationController extends Controller
     public function index()
     {
         //
+    }
+    public function listCompany(){
+
+        $company = company::all();
+        return view('frontend/pages/list-company',compact('company'));
     }
     function aboutMeEdit($id)
     {
@@ -310,6 +316,7 @@ class UserEducationController extends Controller
         $education->city_id = $request->city;
         $education->year = $request->year;
         $education->year_to = $request->year_to;
+        $education->description = $request->description;
         $education->save();
         return response::json($education);
     }
@@ -357,6 +364,7 @@ class UserEducationController extends Controller
         $education->city_id = $request->city;
         $education->year = $request->year;
         $education->year_to = $request->year_to;
+        $education->description = $request->description;
         $education->save();
         return response::json($education);
     }

@@ -49,6 +49,7 @@ class UserTraningSkillController extends Controller
         $skill->city_id = $request->city;
         $skill->year = $request->year;
         $skill->year_to = $request->year_to;
+        $skill->description = $request->description;
         $skill->save();
         return response::json($skill);
     }
@@ -96,6 +97,7 @@ class UserTraningSkillController extends Controller
         $skill->city_id = $request->city;
         $skill->year = $request->year;
         $skill->year_to = $request->year_to;
+        $skill->description = $request->description;
         $skill->save();
         return response::json($skill);
     }

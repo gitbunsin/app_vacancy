@@ -81,7 +81,7 @@ function Edit(id){
             var id = $('#id_edit').val();
             var extension = $('#company_logo_edit').val().split('.').pop().toLowerCase();
             // console.log(extension);
-            if ($.inArray(extension, ['png','jpg','rtf','odt']) == -1) {
+            if ($.inArray(extension, ['png','jpg','png','odt']) == -1) {
                toastr.error('Please Select Valid File... !');
                //  $('#errormessage').html('Please Select Valid File... ');
             } else {
@@ -142,7 +142,7 @@ $("#tbl_company" + result.id).replaceWith(user);
         {
             var extension = $('#company_logo').val().split('.').pop().toLowerCase();
             console.log(extension);
-            if ($.inArray(extension, ['png','docx','rtf','odt']) == -1) {
+            if ($.inArray(extension, ['png','jpg','png','odt']) == -1) {
                toastr.error('Please Select Valid File... !');
                //  $('#errormessage').html('Please Select Valid File... ');
             } else {

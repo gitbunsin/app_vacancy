@@ -159,59 +159,18 @@ span.user-status {
                         <div class="card">
                             <div class="card-body">
                                 <div class="todo-list todo-list-hover todo-list-divided">
-                                    @if(!$job->isEmpty())
-                                     @foreach($job as $jobs)
+                                    @foreach ($company as $companies)
                                         <div class="todo todo-default">
                                             <div class="sm-avater list-avater">
-                                                    <img width="50px;"  src="/uploads/UserCv/{{ $jobs->company->company_logo }}" alt="Smiley face" class="img-fluid">
+                                                    <img width="50px;"  src="/uploads/UserCv/{{$companies->company_logo }}" alt="Smiley face" class="img-fluid">
                                             </div>
-                                            <h5 class="ct-title"><a href="{{'vacancy/detail/'.$jobs->id}}">{{$jobs->vacancy_name}}</a><span class="ct-designation">{{$jobs->company->company_name}} / {{$jobs->maxSalary .' - ' . $jobs->minSalary . ' $'}} / {{$jobs->jobType->name}}</span></h5>
-                                            {{-- <div class="badge badge-action">
-                                                    <a href="#" class="btn btn-primary">View Details</a>
-                                                </div> --}}
-                                        </div>
-                                        @endforeach
-                                        @else
-                                        <div class="col-md-4">
-                                                <div class="found-image">
-                                                    <img src="https://demo.themeregion.com/seeker/images/others/404.jpg" alt="Image" class="img-fluid">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="found-info">
-                                                    <h1>404</h1>
-                                                    <h2>Related Job Not Found</h2>
-                                                    <p>We can't seem to find the page you're looking for.</p>
-                                                    <a href="{{URL::previous()}}" class="btn btn-primary">Back to home</a>
-                                                </div>
-                                            </div>
-                                    @endif
+                                            <h5 class="ct-title"><a href="{{url('/user/detail/'.$companies->id)}}">{{$companies->company_name}}</a><span class="ct-designation">{{$companies->email}} / {{$companies->website_link}}</span></h5>
+                                        </div> 
+                                    @endforeach     
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- /col-md-6 -->
-            
-                    <!-- col-md-6 -->
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div style="background-color:#f56c6c;" class="card-header">
-                                <h4 style="color:white;">Hot Jobs</h4>
-                            </div>
-                            <div class="card-body">
-                                    <div class="todo-list todo-list-hover todo-list-divided">
-                                        @if(!$job->isEmpty())
-                                            @foreach($job as $jobs)
-                                            <div class="todo todo-default">
-                                                <h6 class="ct-title"><a href="{{'vacancy/detail/'.$jobs->id}}">{{$jobs->vacancy_name}}</a><span class="ct-designation">{{$jobs->company->company_name}} / {{$jobs->maxSalary .' - ' . $jobs->minSalary . ' $'}} / {{$jobs->jobType->name}} / <strong style="color:red;">Negotiation</strong></span></h6> 
-                                            </div>
-                                            @endforeach
-                                        @endif
-                                    </div>
-                            </div>
-    
-                    </div>
-            </div>
     </div>
        
     </div>

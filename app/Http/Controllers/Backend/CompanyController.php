@@ -16,13 +16,10 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
-
         $company = company::with(['city','country'])->where('admin_id',auth()->guard('admin')->user()->id)->orderBy('id' , 'DESC')->paginate(10);
-      
         return view('backend/pages/company/index',compact('company'));
-
     }
+
 
     /**
      * Show the form for creating a new resource.

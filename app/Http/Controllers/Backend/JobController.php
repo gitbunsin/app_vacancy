@@ -40,7 +40,6 @@ class JobController extends Controller
     public function index()
     {
         $job = vacancy::with(['employee','category','jobType'])->where('admin_id',auth()->guard('admin')->user()->id)->orderBy('created_at')->paginate('9');
-        // dd($job);
         return view('backend/pages/job/index',compact('job'));
     }
     public function listAllVacancy(){
@@ -60,9 +59,10 @@ class JobController extends Controller
     {
         // dd($id);
         $vacancy = vacancy::with(['admin','employee','province','jobTitle','category','jobType','company','skill'])->where('id',$id)->first();
-        // dd($vacancy);   
+        $relatedVacancy = vacancy::where('company_id',$vacancy->company_id)->whereNotIn('id', [$id])->get();
+        // dd($relatedVacancy);   
         // $file = jobAttachment::with(['job'])->where('job_id',$id)->first();
-        return view('frontend/pages/job-apply-detail',compact('vacancy','file'));
+        return view('frontend/pages/job-apply-detail',compact('vacancy','file','relatedVacancy'));
     }
 
     //public function profileDetails
