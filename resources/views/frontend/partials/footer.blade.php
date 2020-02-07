@@ -260,22 +260,10 @@ input:-moz-placeholder {
 										<h3>Download Kh-Work app for FREE</h3>
 										<div class="row app-link">
 										<div class="col-6 text-right">
-										<a href="https://khmer24.page.link/app" target="_blank" rel="nofollow">
-										<img class="img-fluid icon-qr" src="https://www.khmer24.com/khmer24-crm-28/template/img/khmer24-qr-code.png">
-										</a>
+												{!! QrCode::size(150)->generate('www.khwork-qrCode.com'); !!}
+									
 										</div>
-										<div class="col-6 text-left">
-										<div class="mt-2">
-										<a href="https://khmer24.page.link/ios" target="_blank" rel="nofollow">
-										<img class="img-fluid icon-app" src="https://www.khmer24.com/khmer24-crm-28/template/img/appstore.png">
-										</a>
-										</div>
-										<div class="mt-3">
-										<a href="https://khmer24.page.link/android" target="_blank" rel="nofollow">
-										<img class="img-fluid icon-app" src="https://www.khmer24.com/khmer24-crm-28/template/img/playstore.png">
-										</a>
-										</div>
-										</div>
+										
 										</div>
 										{{-- </div>			 --}}
 						</div>

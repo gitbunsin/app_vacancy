@@ -50,9 +50,10 @@ class JobController extends Controller
     }
     public function job()
     {
-        $job = vacancy::with(['company','province','category','jobType','company'])->where('status','approved')->get();
+        $job = vacancy::with(['company','province','category','jobType','company'])->where('status','approved')->paginate(10);
+        $popularJob = vacancy::with(['company','province','category','jobType','company'])->where('status','approved')->take(10)->get();
         // dd($job);
-        return view('frontend/pages/job',compact('job'));
+        return view('frontend/pages/job',compact('job','popularJob'));
     }
 
     public function vacancyDetails($id)

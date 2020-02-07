@@ -24,9 +24,12 @@ class LocationController extends Controller
     {
         $company = company::with(['city','country'])->where('admin_id',auth()->guard('admin')->user()->id)->orderBy('id' , 'DESC')->paginate(10);
         $location = location::with(['province','city','country'])->where('admin_id',auth()->guard('admin')->user()->id)->get();
-        $subUnits = subUnit::get()->toTree();
-        // dd($subUnit);
-        return view('backend/pages/location/index',compact('location','company','subUnits'));
+        // $subUnits = subUnit::get()->toTree();
+     
+        $subUnit = subUnit::with('childs')->where('parent_id', '=', 0)->get();
+        $allSubUnit= subUnit::pluck('title','id')->all();
+        // dd($allSubUnit);
+        return view('backend/pages/location/index',compact('location','company','allSubUnit','subUnit'));
     }
 
     /**

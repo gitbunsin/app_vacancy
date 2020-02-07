@@ -20,6 +20,7 @@ class CreateUserSkillsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('name')->nullable();
             $table->string('year')->nullable();
+            $table->text('description')->nullable();
         
         });
     }

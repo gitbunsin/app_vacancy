@@ -3,6 +3,17 @@
 @php
     use App\Model\province;
 @endphp
+<style>
+	#job_id {
+    max-width: 100%;
+    height: 100px !important;
+}
+.job-item .time a span {
+    color: #fff;
+    background-color: #f1592a !important;
+    border-color: #f1592a;
+}
+</style>
 <div class="tr-breadcrumb bg-image section-before">
         <div class="container">
             <div class="breadcrumb-info text-center">
@@ -35,6 +46,7 @@
     </div><!-- tr-breadcrumb -->
 
 	<div class="tr-category section-padding">
+		
 		<div class="container">
 			<div class="section-title">
 				<h1>Browse Jobs By Category</h1>
@@ -155,7 +167,48 @@
 			</ul>
 		</div><!-- /.container -->
 	</div><!-- /.tr-category -->
-
+	<div class="tr-job-posted section-padding">
+			<div class="container">
+				<div class="section-title">
+					<h1>Jobs you may be interested in</h1>
+				</div>
+				<div class="job-tab text-center">
+					
+					<div class="tab-content text-left">
+						<div role="tabpanel" class="tab-pane fade show active" id="hot-jobs">
+							<div class="row">
+							@foreach ($job as $jobs)
+								<div class="col-md-6 col-lg-3">
+									<div class="job-item">
+																		
+										<div class="job-info">
+											<div class="company-logo">
+													<img id="job_id" width="200px;"  src="/uploads/UserCv/{{ $jobs->company->company_logo }}" alt="Smiley face" class="img-fluid">
+											</div>
+											<span class="tr-title">
+												<a href="{{'vacancy/detail/'.$jobs->id}}">{{$jobs->vacancy_name}}</a>
+											</span>
+											<ul class="tr-list job-meta">
+												<li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>{{$jobs->province->name}}</li>
+												<li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>{{ucfirst($jobs->exp_level)}}</li>
+												<li><span><i class="fa fa-money" aria-hidden="true"></i></span>{{$jobs->maxSalary .' - ' . $jobs->minSalary . ' $'}}</li>
+											</ul>
+											<div class="time">
+												<a href="#"><span class="part-time">{{$jobs->jobType->name}}</span></a>
+												<span class="pull-right">Posted 1 day ago</span>
+											</div>			
+										</div>
+									</div>
+								</div>	
+							@endforeach
+							</div><!-- /.row -->
+						</div><!-- /.tab-pane -->
+							</div><!-- /.row -->	
+						</div><!-- /.tab-pane -->
+					</div>				
+				</div><!-- /.job-tab -->			
+			</div><!-- /.container -->
+		</div><!-- /.tr-job-posted -->
 	<div class="tr-steps bg-image section-padding section-before">
 		<div class="container">
 			<div class="row">

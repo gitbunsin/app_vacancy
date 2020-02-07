@@ -39,7 +39,7 @@ class SubUnitController extends Controller
     public function store(Request $request)
     {
        $subUit = new SubUnit();
-       $subUit->name = $request->name;
+       $subUit->title = $request->name;
        $subUit->parent_id = $request->parent_id;
        $subUit->save();
        return response::json($subUit);

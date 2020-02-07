@@ -131,6 +131,27 @@ Route::group(['namespace' => 'Backend','prefix' => 'admin'], function ($request)
 
 });
 
+Route::get('qr-code-g', function () {
+    \QrCode::size(500)
+              ->format('png')
+              ->generate('ItSolutionStuff.com', public_path('images/qrcode.png'));
+      
+    return view('qrCode');
+      
+  });
+
+  Route::get('send-mail', function () {
+   
+    $details = [
+        'title' => 'Mail from ItSolutionStuff.com',
+        'body' => 'This is for testing email using smtp'
+    ];
+   
+    \Mail::to('bunsingit@gmail.com')->send(new \App\Mail\MyTestMail($details));
+   
+    dd("Email is Sent.");
+});
+
 
 /************************************************************************************
  *                                  Frontend routes

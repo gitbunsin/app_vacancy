@@ -15,8 +15,9 @@ class CreateSubUnitsTable extends Migration
     {
         Schema::create('sub_units', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            NestedSet::columns($table);
+            $table->string('title');
+            $table->integer('parent_id');
+            // NestedSet::columns($table);
             // $table->timestamps();
         });
     }

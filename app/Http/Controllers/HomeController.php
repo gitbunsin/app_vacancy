@@ -31,7 +31,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $job = vacancy::with(['company','province','category','jobType','company'])->get();
+        $job = vacancy::with(['company','province','category','jobType','company'])->take(8)->get();
+        // dd($job);
         return view('frontend/pages/home',compact('job'));
     }
     public function pricing()

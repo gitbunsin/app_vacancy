@@ -26,6 +26,7 @@ class CreateUserTraningSkillsTable extends Migration
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->string('year')->nullable();
             $table->string('year_to')->nullable();
+            $table->text('description')->nullable();
         });
     }
 

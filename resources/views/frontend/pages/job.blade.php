@@ -68,6 +68,10 @@
     flex: 1 1 0%;
     -webkit-box-flex: 1;
 }
+#job_id {
+    max-width: 100%;
+    height: 50px !important;
+}
 span.user-status {
     width: 7px;
     height: 7px;
@@ -163,14 +167,19 @@ span.user-status {
                                      @foreach($job as $jobs)
                                         <div class="todo todo-default">
                                             <div class="sm-avater list-avater">
-                                                    <img width="50px;"  src="/uploads/UserCv/{{ $jobs->company->company_logo }}" alt="Smiley face" class="img-fluid">
+                                                    <img id="job_id" width="50px;"  src="/uploads/UserCv/{{ $jobs->company->company_logo }}" alt="Smiley face" class="img-fluid">
                                             </div>
                                             <h5 class="ct-title"><a href="{{'vacancy/detail/'.$jobs->id}}">{{$jobs->vacancy_name}}</a><span class="ct-designation">{{$jobs->company->company_name}} / {{$jobs->maxSalary .' - ' . $jobs->minSalary . ' $'}} / {{$jobs->jobType->name}}</span></h5>
                                             {{-- <div class="badge badge-action">
                                                     <a href="#" class="btn btn-primary">View Details</a>
                                                 </div> --}}
                                         </div>
+                                        
                                         @endforeach
+                                        <br/>
+                                        <div class="panigation pull-right">
+                                                {!! $job->render() !!}
+                                        </div>
                                         @else
                                         <div class="col-md-4">
                                                 <div class="found-image">
@@ -186,7 +195,11 @@ span.user-status {
                                                 </div>
                                             </div>
                                     @endif
+                                    <br/>
+                                   
+                                  
                                 </div>
+                              
                             </div>
                         </div>
                     </div>
@@ -195,15 +208,15 @@ span.user-status {
                     <!-- col-md-6 -->
                     <div class="col-md-4">
                         <div class="card">
-                            <div style="background-color:#f56c6c;" class="card-header">
-                                <h4 style="color:white;">Hot Jobs</h4>
+                            <div style="background-color:#008def;" class="card-header">
+                                <h4 style="color:white;">Popular Vacancies</h4>
                             </div>
                             <div class="card-body">
                                     <div class="todo-list todo-list-hover todo-list-divided">
                                         @if(!$job->isEmpty())
-                                            @foreach($job as $jobs)
+                                            @foreach($popularJob as $popularJobs)
                                             <div class="todo todo-default">
-                                                <h6 class="ct-title"><a href="{{'vacancy/detail/'.$jobs->id}}">{{$jobs->vacancy_name}}</a><span class="ct-designation">{{$jobs->company->company_name}} / {{$jobs->maxSalary .' - ' . $jobs->minSalary . ' $'}} / {{$jobs->jobType->name}} / <strong style="color:red;">Negotiation</strong></span></h6> 
+                                                <h6 class="ct-title"><a href="{{'vacancy/detail/'.$popularJobs->id}}">{{$popularJobs->vacancy_name}}</a><span class="ct-designation">{{$popularJobs->company->company_name}} / {{$popularJobs->maxSalary .' - ' . $popularJobs->minSalary . ' $'}} / {{$popularJobs->jobType->name}} / <strong style="color:red;">Negotiation</strong></span></h6> 
                                             </div>
                                             @endforeach
                                         @endif

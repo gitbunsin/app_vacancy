@@ -6,7 +6,7 @@ use App\Model\company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-
+use App\Model\subUnit;
 class CompanyController extends Controller
 {
     /**
@@ -59,6 +59,11 @@ class CompanyController extends Controller
         $dir = 'uploads/UserCv';
         $request->file('file')->move($dir, $filename);
         $company->save();
+        //create Company Strature 
+        $subUnit = new subUnit();
+        $subUnit->title =  $company->company_name;
+        $subUnit->parent_id = 0;
+        $subUnit->save();
         return response()->json($company);
     }
 

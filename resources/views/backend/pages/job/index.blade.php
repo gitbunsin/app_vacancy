@@ -32,11 +32,7 @@
         <div class="card-header">
             <div class="pull-right">
                     <a onclick="AddVacancy();" class="btn btn-primary"  title="Payment"><i class="ti-plus"></i> Add Vacancy</a> &nbsp;&nbsp;&nbsp;
-               
-            </div>
-            {{-- <a onclick="AddVacancy();" class=" pull-right btn btn-cancel manage-btn" data-toggle="modal" data-placement="top" title="Add Attachment"> Add </a> --}}
-            {{-- <a href="{{url('admin/job/create')}}" class=" pull-right btn btn-cancel manage-btn" title="Add Attachment"> <i class="ti-plus"></i> Add </a> --}}
-           
+            </div>   
             <input type="text" class="form-control wide-width" placeholder="Search & type" />
         </div>
         <div class="card-body">

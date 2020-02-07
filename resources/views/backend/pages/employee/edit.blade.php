@@ -309,9 +309,9 @@
                                                                                         <label> Sub Unit</label>
                                                                                         <select class="form-control"  name="sub_unit_id" id="sub_unit_id">
                                                                                             <option value="" required > -- plz select Sub Unit -- </option>
-                                                                                            @php $subUnit = subUnit::all();  @endphp
+                                                                                            @php $subUnit = subUnit::where('parent_id','!=' , 0)->get();  @endphp
                                                                                             @foreach($subUnit as $subUnits)
-                                                                                            <option value="{{ $subUnits->id }}" {{ ( $subUnits->id == $employee->sub_unit_id) ? 'selected' : '' }}> {{ $subUnits->name }} </option>
+                                                                                            <option value="{{ $subUnits->id }}" {{ ( $subUnits->id == $employee->sub_unit_id) ? 'selected' : '' }}> {{ $subUnits->title }} </option>
                                                                                             @endforeach
                                                                                         </select>
                                                                                     </div>
