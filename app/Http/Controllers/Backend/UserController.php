@@ -4,8 +4,14 @@ namespace App\Http\Controllers\Backend;
 use App\Model\userCv;
 use App\User;
 use DB;
+use App\Admin;
+use App\Model\employee;
+use App\userEmployee;
 use App\Model\userBookmark;
 use App\Model\Country;
+use App\Model\role;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\UserMail;
 use App\Model\City;
 use App\Model\userEducation;
 use App\Model\userSkill;
@@ -112,7 +118,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        // dd('hello');
+        $user = userEmployee::all();
+        // dd($user);
+        return view('Backend/pages/admin/user/index',compact('user'));
     }
 
     /**
@@ -123,9 +132,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
-//        dd(auth()->user()->id);
+        $user = new Admin();
+        $user->username = $request->username;
+        $user->email = $request->email;
 
+        $user->verified = 0;
+        $user->role_id = 3;
+        $user->admin_id = auth()->guard('admin')->user()->id;
+        $user->employee_id = $request->employee_id;
+        $user->role_id = $request->role_id;
+        $user->email_token = str_random(40);
+        $user->password = Hash::make($request->password);
+        $user->save();
+        
+        $user['employee'] = employee::where('id',$user->employee_id)->first();
+        Mail::to($user->email)->send(new UserMail($user));
+        return response::json($user); 
     }
 
     /**
@@ -147,9 +169,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //dd($request->all());
-
-        //
+        $user = userEmployee::find($id);
+        $user['employee'] = employee::where('id',$user->employee_id)->first();
+        $user['all_employee'] = employee::all();
+        $user['role'] = role::where('id',$user->role_id)->first();
+        $user['all_role'] = role::all();
+        return response::json($user); 
     }
 
     /**
@@ -162,7 +187,21 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
 
-        
+        $user = userEmployee::find($id);
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->verified = 0;
+        $user->role_id = $request->role_id;
+        $user->admin_id = auth()->guard('admin')->user()->id;
+        $user->employee_id = $request->employee_id;
+        $user->role_id = $request->role_id;
+        $user->email_token = str_random(40);
+        $user->password = Hash::make($request->password);
+        $user->save();
+        // $admin_mail= Admin::where('id',$user->id)->first();
+        // $name = 'Bunsin';
+        // Mail::to($admin_mail->email)->send(new SendAdminMail($admin_mail));
+        return response::json($user); 
         return response::json('success');
     }
 
@@ -174,6 +213,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = userEmployee::find($id);
+        $user->delete();
+        return response::json($user);
+
     }
 }

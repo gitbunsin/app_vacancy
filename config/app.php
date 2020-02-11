@@ -177,6 +177,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         'Grimthorr\LaravelToast\ServiceProvider',
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+        Srmklive\PayPal\Providers\PayPalServiceProvider::class
 
     ],
 
@@ -231,7 +232,7 @@ return [
         // 'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
         'Toast' => 'Grimthorr\LaravelToast\Facade',
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
-
+        'PayPal' => Srmklive\PayPal\Facades\PayPal::class
     ],
 
 ];

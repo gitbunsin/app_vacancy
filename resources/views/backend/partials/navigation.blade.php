@@ -16,6 +16,9 @@
                             <a href="{{url('admin/location')}}"> Organization</a>
                          </li>
                          @if ($user->role_id == 1)
+                           <li class="{{ (request()->segment(2) == 'user') ? 'active' : '' }}">
+                                <a href="{{url('admin/user/create')}}"> User Management</a>
+                           </li>
                             <li class="{{ (request()->segment(2) == 'job') ? 'active' : '' }}">
                                 <a href="{{url('admin/vacancy')}}"> Job</a>
                             </li>
@@ -26,7 +29,7 @@
                     </ul>
                 </li>
             <li>
-                <a href="javascript:void(0)"><i class="fa fa-user-circle-o"></i> Recruitment <span class="fa arrow"></span><b class="badge bg-danger pull-right">{{$UserActive}}</b></a>
+                <a href="javascript:void(0)"><i class="fa fa-user"></i> Recruitment <span class="fa arrow"></span><b class="badge bg-danger pull-right">{{$UserActive}}</b></a>
                 <ul class="nav nav-second-level">
                     <li class="{{ (request()->segment(2) == 'job') ? 'active' : '' }}">
                         <a href="{{url('admin/job')}}">My Vacancies</a>

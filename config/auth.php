@@ -47,10 +47,12 @@ return [
             'hash' => false,
         ],
         'admin' => [
-
             'driver' => 'session',
-
             'provider' => 'admins',
+
+        ],'employee' => [
+            'driver' => 'session',
+            'provider' => 'employees',
 
         ],
     ],
@@ -80,8 +82,12 @@ return [
         'admins' => [
 
             'driver' => 'eloquent',
-
             'model' => App\Admin::class,
+
+        ],
+        'employees' => [
+            'driver' => 'eloquent',
+            'model' => App\userEmployee::class,
 
         ]
     ],
@@ -110,14 +116,16 @@ return [
         'admins' => [
 
             'provider' => 'admins',
-
             'email' => 'auth.emails.password',
-
             'table' => 'password_resets',
-
             'expire' => 60,
 
-        ],
+        ],'employees' => [
+            'provider' => 'employees',
+            'email' => 'auth.emails.password',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ]
     ],
 
 ];

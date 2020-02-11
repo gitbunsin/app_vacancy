@@ -354,9 +354,6 @@ outline: 0;
                                                     <label>Website Link</label>
                                                     <input name="website_link_edit" id="website_link_edit" type="text" class="form-control">
                                                 </div>
-                    
-                                                
-                    
                                                 <div class="col-sm-4">
                                                     <label>City</label>
                                                     <?php $city = city::all(); ?>

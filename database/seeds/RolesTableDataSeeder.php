@@ -14,6 +14,7 @@ class RolesTableDataSeeder extends Seeder
         $array = array(
             "Admin",
             "Employee",
+            "User"
         );
 
         for ($i=0; $i < count($array); $i++) {

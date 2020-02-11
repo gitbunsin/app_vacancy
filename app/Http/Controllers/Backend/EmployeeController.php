@@ -31,7 +31,6 @@ class EmployeeController extends Controller
     public function index()
     {
         $employee = Employee::with(['supervisor','jobTitle'])->where('admin_id',auth()->guard('admin')->user()->id)->get();
-       
         return view('backend/pages/employee/index',compact('employee'));
     }
 
@@ -44,6 +43,25 @@ class EmployeeController extends Controller
     {
         return view('backend/pages/employee/create');
     }
+     /**
+     * Show the form for creating a new resource.
+     * login to own screen for user id 
+     * @return \Illuminate\Http\Response
+     */
+    // public function getLogin($token , $id)
+    // {
+    //     $user = userEmployee::where('employee_id',$id)->first();
+    //     return view('frontend/pages/employee/login',compact('user'));
+    // }
+
+    // public function Login()
+    // {
+    //     if (auth()->guard('employee')->attempt(['email' => $request->email, 'password' => $request->password,'verified'=> 1])) {
+    //         return response()->json("success");
+    //     }else {
+    //         return response()->json("error");
+    //     }
+    // }
 
     /**
      * Store a newly created resource in storage.

@@ -20,6 +20,8 @@ Route::get('/', function () {
  *                                  Backend routes
  ************************************************************************************/
 Route::get('admin-login', 'Auth\AdminLoginController@showLoginForm');
+Route::get('employee/activate/login/{token}/{id}','Auth\EmployeeLoginController@showEmployeeLoginForm');
+Route::post('employee/login','Auth\EmployeeLoginController@login');
 Route::post('admin-login', ['as'=>'admin-login','uses'=>'Auth\AdminLoginController@login']);
 Route::get('admin-logout', ['as'=>'admin-logout','uses'=>'Auth\AdminLoginController@logout']);
 Route::get('admin-register', ['as'=>'admin-register','uses'=>'Auth\AdminRegisterController@showLoginForm']);
@@ -69,6 +71,9 @@ Route::group(['namespace' => 'Backend','prefix' => 'admin'], function ($request)
     Route::post('employee/add/attachment/{id}','EmployeeController@updateEmployeeDocument');
     Route::delete('employee/delete/attachment/{id}','EmployeeController@deleteEmployeeDocument');
     Route::post('employee/job-details/{id}','EmployeeController@updateEmployeeJobDetails');
+   
+    // Route::get('employee/activate/login/{token}/{id}','EmployeeController@getLogin');
+    // Route::get('employee/login','EmployeeController@Login');
     Route::match(['post', 'put'], 'employee/update/user/{id}', 'EmployeeController@updateEmployeeLogin');
     Route::resource('workexperience','WorkExperienceController');
     Route::resource('employeeEduction','EmployeeEductionController');
@@ -119,6 +124,7 @@ Route::group(['namespace' => 'Backend','prefix' => 'admin'], function ($request)
     Route::resource('employee','EmployeeController');
     Route::get('profile','JobController@profile');
     Route::resource('app-candidate','CandidateController');
+   
     Route::resource('user','UserController');
     Route::post('user-cv/{id}','UserController@userCV');
     Route::post('bookmark/{id}','UserController@bookmark');
@@ -152,6 +158,9 @@ Route::get('qr-code-g', function () {
     dd("Email is Sent.");
 });
 
+Route::get('payment', 'PayPalController@payment')->name('payment');
+Route::get('cancel', 'PayPalController@cancel')->name('payment.cancel');
+Route::get('payment/success', 'PayPalController@success')->name('payment.success');
 
 /************************************************************************************
  *                                  Frontend routes
