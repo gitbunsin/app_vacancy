@@ -23,6 +23,11 @@ use App\Model\employeeLicense;
 use DB;
 class EmployeeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('is_employee')->only('index');
+        // $this->middleware('isAdmin')->except(['loginEmployee','EmployeeLogin']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -30,7 +35,14 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employee = Employee::with(['supervisor','jobTitle'])->where('admin_id',auth()->guard('admin')->user()->id)->get();
+        if(auth()->guard('admin')->user()){
+            $admin_id = auth()->guard('admin')->user()->id;
+        }else{
+            $admin_id = auth()->guard('employee')->user()->admin_id;
+        }
+        // dd(auth()->guard('employee')->user());
+        $employee = Employee::with(['supervisor','jobTitle'])->where('admin_id',$admin_id)->get();
+        // dd($employee);
         return view('backend/pages/employee/index',compact('employee'));
     }
 

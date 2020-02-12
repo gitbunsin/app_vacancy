@@ -41,13 +41,13 @@
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         @php
-                        use App\Admin; $admin = auth()->guard('admin')->user();
+                        // use App\Admin; $admin = auth()->guard('admin')->user();
                     @endphp
-                        @if($admin->profile)
-                        <img class="img-responsive img-circle"  src="{{url('uploads/UserCv/'.$admin->profile)}}" width="50px" height="50px"/><br/>
-                    @else
+                        {{-- @if($admin->profile) --}}
+                        {{-- <img class="img-responsive img-circle"  src="{{url('uploads/UserCv/'.$admin->profile)}}" width="50px" height="50px"/><br/> --}}
+                    {{-- @else --}}
                         <img class="img-responsive img-circle"  src="{{asset('images/noimage.jpg')}}" width="50px" height="50px"/><br/>
-                    @endif
+                    {{-- @endif --}}
                     {{-- <img src="{{asset('images/user/user-1.jpg')}}" class="img-responsive img-circle" alt="user"> --}}
                 </a>
                 <ul class="dropdown-menu dropdown-user right-swip">

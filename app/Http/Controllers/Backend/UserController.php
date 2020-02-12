@@ -132,7 +132,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new Admin();
+        $user = new userEmployee();
         $user->username = $request->username;
         $user->email = $request->email;
 

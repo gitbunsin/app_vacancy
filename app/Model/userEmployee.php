@@ -45,9 +45,9 @@ class userEmployee extends Authenticatable
 
     ];
 
-    public function is_admin()
+    public function is_employee()
     {
-        return $this->role_id == 1;
+        return $this->role_id == 3;
     }
 
 }
