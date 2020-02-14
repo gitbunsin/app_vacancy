@@ -1,7 +1,14 @@
 <?php
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Database\Capsule\Manager as DB;
+// if(Auth::guard('admin')->user()->check()){
+//     $user_type = Auth::guard('admin')->user()->id;
 
+// }
+// dd($user_type);
 return [
 
     /*
@@ -124,10 +131,11 @@ return [
     |
     */
 
-    'cookie' => env(
-        'SESSION_COOKIE',
-        Str::slug(env('APP_NAME', 'laravel'), '_').'_session'
-    ),
+    // 'cookie' => env(
+    //     'SESSION_COOKIE',
+    //     Str::slug(env('APP_NAME', 'laravel'), '_').'_session' 
+    // ),
+    'cookie' => 'laravel_session' . 1,
 
     /*
     |--------------------------------------------------------------------------

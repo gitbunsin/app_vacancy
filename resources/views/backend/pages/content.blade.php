@@ -2,6 +2,7 @@
 @section('content')
 @php
      $user = auth()->guard('admin')->user();
+    //  dd($user);
 @endphp
 
 <div class="container-fluid">

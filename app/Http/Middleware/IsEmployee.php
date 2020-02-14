@@ -21,8 +21,12 @@ class IsEmployee
 
         $user = auth()->guard('employee')->user();
      
-        if ( ! $user->is_employee())
+        if ( ! $user->is_employee()){
+            $request->session()->put('KEY', 'VALUE');
+            // Config::set('session.driver', 'array');
             return redirect(url('admin/employee'))->with('error', trans('app.access_restricted'));
+
+        }
 
         return $next($request);
     }

@@ -13,7 +13,7 @@ class CreateUserEmployeeTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_employee', function (Blueprint $table) {
+        Schema::connection('common_database')->create('user_employee', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('admin_id')->unsigned()->nullable();
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');

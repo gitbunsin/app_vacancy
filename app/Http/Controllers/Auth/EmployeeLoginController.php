@@ -82,7 +82,7 @@ class EmployeeLoginController extends Controller
     public function login(Request $request)
     { 
         if (Auth::guard('employee')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            return response()->json("success");
+            return response()->json("success")->withCookie(cookie('employee', $request->email, 3600));;
         }else {
             return response()->json("error");
         }

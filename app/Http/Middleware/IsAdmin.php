@@ -4,7 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
-class IsAdmin
+use Config;
+
+use Illuminate\Session\Middleware\StartSession as BaseStartSession;
+class IsAdmin extends BaseStartSession
 {
     /**
      * Handle an incoming request.
@@ -21,8 +24,12 @@ class IsAdmin
 
         $user = auth()->guard('admin')->user();
      
-        if ( ! $user->is_admin())
+        if ( ! $user->is_admin()){
+            
+            Config::set('session.driver', 'array');
             return redirect(url('admin/app'))->with('error', trans('app.access_restricted'));
+
+        }
 
         return $next($request);
     }

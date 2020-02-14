@@ -159,7 +159,6 @@
                                 <div role="tabpanel" class="tab-pane active" id="seekerLogin">
                                     <div class="account-content">
                                         <form action="#" id="frmUserLogin" class="tr-form">
-                                                <meta name="csrf-token" content="{{ csrf_token() }}">
                                             <div class="form-group">
                                                 <input type="email" id="email" name="email" class="form-control" placeholder="email">
                                             </div>
@@ -185,7 +184,6 @@
                                 <div role="tabpanel" class="tab-pane" id="admin">
                                     <div class="account-content">
                                         <form action="#" class="tr-form" id="frmLoginEmployer">
-                                            <meta name="csrf-token" content="{{ csrf_token() }}">
                                             <div class="form-group">
                                                 <input required id="admin_email_login" name="admin_email_login" type="email" class="form-control" placeholder="email">
                                             </div>

@@ -77,7 +77,7 @@ class AdminLoginController extends Controller
     {
         
         if (auth()->guard('admin')->attempt(['email' => $request->email, 'password' => $request->password,'verified'=> 1])) {
-            return response()->json("success");
+            return response()->json("success")->withCookie(cookie('coupon', $request->email, 3600));
         }else {
             return response()->json("error");
         }

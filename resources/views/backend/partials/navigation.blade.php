@@ -2,8 +2,10 @@
     use App\Model\candidate;
     if(auth()->guard('admin')->user()){
         $user = auth()->guard('admin')->user();
+        // dd($user);
     }else{
         $user = auth()->guard('employee')->user(); 
+        // dd($user);
         // dd($user->role_id);
     }
            
