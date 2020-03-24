@@ -1,280 +1,132 @@
+  <link rel="stylesheet" href="https://www.khmer24.com/khmer24-crm-30/template/css/home.css">
+
 <style>
-ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+    footer {
+    background-color: #069;
+    position: relative;
+    margin-top: 160px;
+   
 }
-#footer {
-	border-top:1px solid #efefef;
+footer:before {
+    content: '';
+    position: absolute;
+    display: block;
+    top: -100px;
+    left: 0;
+    height: 125px;
+    width: 100%;
+    background: url(https://www.khmer24.com/khmer24-crm-30/template/img/footer.png) center top no-repeat;
 }
-.footer-top {
-	padding: 50px 0 57px;
-	background-color: #fff;
+footer .col {
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
-.footer-top {
-    padding: 52px 0 20px;
-    background-color: #fff;
+.col {
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
 }
-
-.footer-widget {
-	font-size: 12px;
-	color: #000;
-	line-height: 30px
+footer ul li a {
+    display: block;
+    font-size: 14px;
+    padding: 2px 0;
+    line-height: 1.8;
 }
-
-.footer-widget h3 {
+footer h5 {
+    color: #fff;
+    font-weight: 600;
     font-size: 16px;
-    color: #000;
-    margin-bottom: 35px;
+    margin-top: 14px;
+    line-height: 1.8;
 }
-.footer-widget h3 {
-    font-weight: 300;
-    color: #000;
-    line-height: 28px;
-    margin-top: -24px;
-    margin-bottom: 14px;
+.my-container {
+    max-width: 1140px;
+    min-width: 1060px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
 }
-
-.social-widget h3,
-.news-widget h3 {
-	margin-bottom: 50px;
-}
-
-.footer-widget ul li {
-	color:#858585;
-	font-size: 16px;
-	font-weight: 300;
-	line-height: 36px;
-	margin-bottom:10px;
-}
-
-.footer-widget ul li:last-child {
-	margin-bottom:0;
-}
-
-.footer-widget ul li a {
-	color: #858585;
-	font-size: 14px;
-	line-height: 10px;
-    text-transform: capitalize;
-    display:block;
-}
-
-.social-widget ul li a {
-	display:inline-block;
-}
-
-.footer-widget ul li a i {
-    color: #3b5998;
-    font-size: 45px;
+footer ul.has-icon .icon {
+    font-size: 22px;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #fff;
+    text-align: center;
+    line-height: 1.5;
     vertical-align: middle;
-    margin-right: 15px;
+    margin-right: 4px;
 }
-
-.footer-widget ul li.active a,
-.footer-widget ul li a:hover {
-	color: #000;
+footer .has-icon .icon-facebook {
+    color: #3b5998;
 }
-
-.social-widget .fa-twitter-square{
-	color: #76c0f3;
+.icon-facebook:before {
+    content: "\e915";
 }
-
-.social-widget .fa-google-plus-square {
-	color: #282725;
+footer a {
+    color: #eee;
 }
-
-.social-widget .fa-youtube-play {
-	color: #c1272d;
+footer .copy-right {
+    border-top: 1px solid #015b88;
+    color: #fff;
+    font-size: 12px;
 }
-
-.footer-widget input {
-	width: 100%;
-	height: 44px;
-	border: 1px solid #e3e3e3;
-}
-
-.footer-widget input[type="email"] {
-	margin:20px 0;
-	font-weight: 300;
-	font-size: 14px;
-}
-
-.footer-widget .btn.btn-primary {
-	font-size:14px;
-	padding: 6px 25px 8px;
-}
-
-input::-webkit-input-placeholder { 
-  color: #cfcfcf;  
-}
-
-input::-moz-placeholder { 
-  color: #cfcfcf;  
-}
-
-input:-ms-input-placeholder { 
-  color: #cfcfcf;  
-}
-
-input:-moz-placeholder { 
-  color: #cfcfcf;  
-}
-
-.footer-widget.news-letter{
-	font-size: 12px;
-	line-height: 22px;
-	font-weight:300;
-}
-
-.footer-bottom {
- 	background-color: #f7f7f7;
- 	color: #6e6e6e;
- 	font-size: 14px;
- 	padding: 19px 0 12px;
- 	font-weight: 300;
-}
-
-.footer-bottom a {
-  	color: #6e6e6e;
-}
-
-.footer-bottom a:hover {
-  	color: #00a651;
-  	text-decoration: underline;
-}
-
-
-/* Category Section */
-
-.page {
-	background-color: #f7f7f7;
-	padding-bottom: 70px;
-}
-
-.page .section-title {
-	border-bottom: 1px solid #f2f2f2;
-	padding-bottom: 5px;
-	overflow: hidden;
-}
-
-.category-section .section-title h4 {
-	float: left;
-}
-
-.category-section .section-title h5 {
-	float: right;
-	font-size: 14px;
-	color: #000;
-	font-weight: 400;
-}
-
-.category-section {
-	background-color: #fff;
-	padding: 0 30px;
-	padding-top: 15px;
-	padding-bottom: 20px;
-	margin-top: 40px;
-	margin-bottom: 30px;
-	border-radius: 4px;
-}
-
-.cars-category {
-	padding-left: 20px;
-	overflow: hidden;
-}
-
-.category-menu {
-	margin-top: 25px;
-	width: 16.6%;
-	float: left;
-}
-
-.category-menu li {
-	margin-bottom: 25px;
-}
-
-.category-menu li a {
-	color: #000;
-	font-size: 14px;
-}
-
-.category-menu li a:hover {
-	color: #00a651;
-}
-
 </style>
-<footer id="footer" class="clearfix">
-		<!-- footer-top -->
-		<section class="footer-top clearfix">
-			<div class="container">
-				<div class="row">
-					<!-- footer-widget -->
-					<div class="col-lg-3 col-sm-6">
-						<div class="footer-widget">
-							<h3>Customer Service</h3>
-							<ul>
-								<li><a href="#">About Us</a></li>
-								<li><a href="#">Contact Us</a></li>
-								<li><a href="#">Careers</a></li>
-								<li><a href="#">All Cities</a></li>
-								<li><a href="#">Help &amp; Support</a></li>
-								<li><a href="#">Advertise With Us</a></li>
-							</ul>
-						</div>
-					</div><!-- footer-widget -->
-
-					<!-- footer-widget -->
-					<div class="col-lg-3 col-sm-6">
-						<div class="footer-widget">
-							<h3>Useful Information</h3>
-							<ul>
-								<li><a href="#">How to sell fast</a></li>
-								<li><a href="#">Membership</a></li>
-								<li><a href="#">Banner Advertising</a></li>
-								<li><a href="#">Promote your ad</a></li>
-								<li><a href="#">Jobs Delivers</a></li>
-								<li><a href="#">FAQ</a></li>
-							</ul>
-						</div>
-					</div><!-- footer-widget -->
-
-					<!-- footer-widget -->
-					<div class="col-lg-3 col-sm-6">
-						<div class="footer-widget news-letter">
-								<h3>Follow Us</h3>
-								<p>Jobs is Worldest leading Portal platform that brings!</p>
-								<!-- form -->
-								<form action="#">
-									<input type="email" class="form-control" placeholder="Your email id">
-									<button type="submit" class="btn btn-primary">Sign Up</button>
-								</form><!-- form -->
-						</div>
-					</div><!-- footer-widget -->
-
-					<!-- footer-widget -->
-					<div class="col-lg-3 col-sm-6">
-						<div class="footer-widget news-letter">
-								{{-- <div class="col"> --}}
-										{{-- <h5></h5> --}}
-										<h3>Download Kh-Work app for FREE</h3>
-										<div class="row app-link">
-										<div class="col-6 text-right">
-												{!! QrCode::size(150)->generate('www.khwork-qrCode.com'); !!}
-									
-										</div>
-										
-										</div>
-										{{-- </div>			 --}}
-						</div>
-					</div><!-- footer-widget -->
-				</div><!-- row -->
-			</div><!-- container -->
-		</section><!-- footer-top -->
-
-		<div class="footer-bottom clearfix text-center">
-			<div class="container">
-				<p>Copyright © <a href="#">Jobs</a> 2020. Developed by <a href="http://themeregion.com/">Kh-Work</a></p>
-			</div>
-		</div><!-- footer-bottom -->
-	</footer>
+<footer>
+<div class="my-container">
+<div class="row">
+<div class="col">
+<h5>Follow Us</h5>
+<ul class="list-unstyled has-icon">
+<li><a href="https://khmer24.page.link/facebook" target="_blank" rel="nofollow">
+    <span class="icon icon-facebook"></span> Facebook</a></li>
+<li><a href="https://khmer24.page.link/youtube" target="_blank" rel="nofollow"><span class="icon icon-youtube"></span> YouTube</a></li>
+</ul>
+</div>
+<div class="col">
+<h5>Customer Service</h5>
+<ul class="list-unstyled">
+<li><a href="https://www.khmer24.com/en/contact.html" title="Contact Us">Contact Us</a></li>
+<li><a href="https://www.khmer24.com/en/membership.html">Membership</a></li>
+<li><a href="https://www.khmer24.com/en/promote-ad.html">Promote Ad</a></li>
+<li><a href="https://www.khmer24.com/en/privacy-policy.html" title="Privacy Policy">Private Policy</a></li>
+</ul>
+</div>
+<div class="col">
+<h5>Useful Information</h5>
+<ul class="list-unstyled">
+<li><a href="https://www.khmer24.com/en/safety-tips.html">Safety Tip</a></li>
+<li><a href="https://www.khmer24.com/en/posting-rule.html">Ad Posting Rule</a></li>
+</ul>
+</div>
+<div class="col">
+<h5>Download  app for FREE</h5>
+<div class="row app-link">
+<div class="col-6 text-right">
+<a href="https://khmer24.page.link/app" target="_blank" rel="nofollow">
+{!! QrCode::size(100)->generate('www.khwork-qrCode.com'); !!}
+<!-- <img class="img-fluid icon-qr" src="https://www.khmer24.com/khmer24-crm-30/template/img/khmer24-qr-code.png"> -->
+</a>
+</div>
+<div class="col-6 text-left">
+<div class="mt-2">
+<a href="https://khmer24.page.link/ios" target="_blank" rel="nofollow">
+<img class="img-fluid icon-app" src="https://www.khmer24.com/khmer24-crm-30/template/img/appstore.png">
+</a>
+</div>
+<div class="mt-3">
+<a href="https://khmer24.page.link/android" target="_blank" rel="nofollow">
+<img class="img-fluid icon-app" src="https://www.khmer24.com/khmer24-crm-30/template/img/playstore.png">
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p class="copy-right text-center p-2 m-0">Copyright ©2020 <a href="https://www.khmer24.com/en/">HAPPY-JOBS</a> (Cambodia). All rights reserved.</p>
+</footer>

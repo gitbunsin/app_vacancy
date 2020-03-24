@@ -25,7 +25,7 @@ class EmployeeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('is_employee')->only('index');
+        // $this->middleware('is_employee')->only('index');
         // $this->middleware('isAdmin')->except(['loginEmployee','EmployeeLogin']);
     }
     /**
