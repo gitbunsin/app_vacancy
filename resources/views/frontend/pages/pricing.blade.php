@@ -1,68 +1,102 @@
 @extends('frontend.layouts.template')
 @section('content')
-<div class="tr-breadcrumb bg-image section-before">
-		<div class="container">
-			<div class="breadcrumb-info text-center">
-				<div class="page-title">
-					<h1> Our Packages</h1>
-				</div>		
-				<ol class="breadcrumb">
-					<li><a href="index.html">Home</a></li>
-					<li class="active">Packages</li>
-				</ol>			
+<div class="pageTitle">
+	<div class="container">
+	  <div class="row">
+		<div class="col-md-6 col-sm-6">
+		  <h1 class="page-heading">Packages</h1>
+		</div>
+		<div class="col-md-6 col-sm-6">
+		  <div class="breadCrumb"><a href="#.">Home</a> / <span>Packages</span></div>
+		</div>
+	  </div>
+	</div>
+  </div>
+  <!-- Page Title End -->
+  
+  <div class="paypackages"> 	
+	<!---three-paln-->
+	<div style="padding: 0px;" class="three-plan">
+	  <div class="container">
+		{{-- <h3>Our Plan</h3> --}}
+		<ul class="row">
+		  <li class="col-md-3 col-sm-6 col-xs-12">
+			<div class="boxes">
+			  <ul>
+				<li class="plan-name-dt">Pricing
+				  Plans</li>
+				<li class="plan-pages"><i class="fa fa-paper-plane" aria-hidden="true"></i>Premium Jobs Post</li>
+				<li class="plan-pages"><i class="fa fa-paper-plane" aria-hidden="true"></i>Sell Unlimited Products</li>
+				<li class="plan-pages"><i class="fa fa-paper-plane" aria-hidden="true"></i>E-Mail support available</li>
+				<li class="plan-pages"><i class="fa fa-paper-plane" aria-hidden="true"></i>Unlimited Applicants</li>
+				<li class="plan-pages"><i class="fa fa-paper-plane" aria-hidden="true"></i>Unlimited Regular Job Post</li>
+				<li class="plan-pages"><i class="fa fa-paper-plane" aria-hidden="true"></i>E-Mail support available</li>
+			  </ul>
 			</div>
-		</div><!-- /.container -->
-	</div><!-- /.tr-breadcrumb -->
-
-	<div class="tr-pricing section-padding">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-lg-4">
-					<div class="pricing">
-						<span>Free Package</span>
-						<h1><sup>$</sup>0<span>/Per Month</span></h1>
-						<div class="pricing-list">
-							<ul class="tr-list">
-								<li><i class="fa fa-check" aria-hidden="true"></i>Package : Free Package </li>
-								<li><i class="fa fa-check" aria-hidden="true"></i>Dashboard access to manage</li>
-								<li><i class="fa fa-check" aria-hidden="true"></i>Package Duration : 1/ Month</li>
-								<li><i class="fa fa-times" aria-hidden="true"></i>No Premium Job Post</li>
-								<li><i class="fa fa-times" aria-hidden="true"></i>limited Regular Job Post</li>
-								<li><i class="fa fa-times" aria-hidden="true"></i>limited Applicants</li>
-
-								<li><i class="fa fa-times" aria-hidden="true"></i>No support available</li>
-								<li><i class="fa fa-times" aria-hidden="true"></i>1 Job Post</li>
-							</ul>
-							<a href="#" class="btn btn-primary">Purchas Package</a>
-						</div>
-					</div><!-- /.price -->
-				</div>
-				@foreach($packages as $package)
-					<div class="col-md-6 col-lg-4">
-						<div class="pricing">
-							<div class="most-popular">
-								<span>Premium</span>
-							</div>
-							<span>{{$package->package_name}}</span>
-							<h1><sup>$</sup>{{$package->price}}</h1>
-							<div class="pricing-list">
-								<ul class="tr-list">
-									<li><i class="fa fa-check" aria-hidden="true"></i>Package : {{$package->package_name}}</li>
-									<li><i class="fa fa-check" aria-hidden="true"></i>{{$package->premium_job}} Premium Jobs Post </li>
-									<li><i class="fa fa-check" aria-hidden="true"></i>Package Duration : 3 / Month</li>
-									<li><i class="fa fa-check" aria-hidden="true"></i>Sell Unlimited Products</li>
-									<li><i class="fa fa-check" aria-hidden="true"></i>Mobile-Optimized Website</li>
-									<li><i class="fa fa-check" aria-hidden="true"></i>Unlimited Regular Job Post</li>
-									<li><i class="fa fa-check" aria-hidden="true"></i>Unlimited Applicants</li>
-									<li><i class="fa fa-times" aria-hidden="true"></i>E-Mail support available</li>
-								</ul>
-								<a href="#" class="btn btn-primary">Purchas Package</a>
-							</div>
-						</div><!-- /.price -->
-					</div>
-				@endforeach
-			</div><!-- /.row -->
-		</div><!-- /.container -->
-	</div><!-- /.tr-pricing -->
-
-    @endsection
+		  </li>
+		  <li class="col-md-3 col-sm-6 col-xs-12">
+			<div class="boxes">
+			  <div class="pricing-table1"> Free Package<strong>30 Days sample text</strong> </div>
+			  <div class="main-unit">
+				<div class="pricing-unit1">$</div>
+				<div class="pricing-unit1-1">0</div>
+				<div class="pricing-unit1-2">per <span class="pricing-unit1-3">mont</span></div>
+				<div class="clearfix"></div>
+			  </div>
+			  <ul class="pricing-detail">
+				<li class="plan-detail">300 GB</li>
+				<li class="plan-detail">500 GB</li>
+				<li class="plan-detail">2 Domains</li>
+				<li class="plan-detail">5 Free</li>
+				<li class="plan-detail ico"><i class="fa fa-times" aria-hidden="true"></i></li>
+				<li class="plan-detail ico"><i class="fa fa-times" aria-hidden="true"></i></li>
+				<li class="order-1"><a href="#.">order now</a></li>
+			  </ul>
+			</div>
+		  </li>
+		  <li class="col-md-3 col-sm-6 col-xs-12">
+			<div class="boxes">
+			  <div class="pricing-table1-2"> Gold<strong>30 Days sample text</strong> </div>
+			  <div class="main-unit">
+				<div class="pricing-unit2">$</div>
+				<div class="pricing-unit2-1">10</div>
+				<div class="pricing-unit2-2">per <span class="pricing-unit2-3">mont</span></div>
+				<div class="clearfix"></div>
+			  </div>
+			  <ul class="pricing-detail">
+				<li class="plan-detail">300 GB</li>
+				<li class="plan-detail">500 GB</li>
+				<li class="plan-detail">2 Domains</li>
+				<li class="plan-detail">5 Free</li>
+				<li class="plan-detail1"><i class="fa fa-check" aria-hidden="true"></i></li>
+				<li class="plan-detail"><i class="fa fa-times" aria-hidden="true"></i></li>
+				<li class="order-2"><a href="#.">order now</a></li>
+			  </ul>
+			</div>
+		  </li>
+		  <li class="col-md-3 col-sm-6 col-xs-12">
+			<div class="boxes">
+			  <div class="pricing-table1-3"> Premium<strong>30 Days sample text</strong> </div>
+			  <div class="main-unit">
+				<div class="pricing-unit3">$</div>
+				<div class="pricing-unit3-1">20</div>
+				<div class="pricing-unit3-2">per <span class="pricing-unit3-3">mont</span></div>
+				<div class="clearfix"></div>
+			  </div>
+			  <ul class="pricing-detail">
+				<li class="plan-detail">300 GB</li>
+				<li class="plan-detail">500 GB</li>
+				<li class="plan-detail">2 Domains</li>
+				<li class="plan-detail">5 Free</li>
+				<li class="plan-detail1"><i class="fa fa-check" aria-hidden="true"></i></li>
+				<li class="plan-detail1"><i class="fa fa-check" aria-hidden="true"></i></li>
+				<li class="order-3"><a href="#.">order now</a></li>
+			  </ul>
+			</div>
+		  </li>
+		</ul>
+	  </div>
+	  <br/> <br/>
+	</div>
+	<!---end three-paln--> 
+@endsection

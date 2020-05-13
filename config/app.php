@@ -161,6 +161,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        'Intervention\Image\ImageServiceProvider',
 
 
         /*
@@ -232,7 +233,8 @@ return [
         // 'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
         'Toast' => 'Grimthorr\LaravelToast\Facade',
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
-        'PayPal' => Srmklive\PayPal\Facades\PayPal::class
+        'PayPal' => Srmklive\PayPal\Facades\PayPal::class,
+        'Image' => 'Intervention\Image\Facades\Image'
     ],
 
 ];

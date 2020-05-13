@@ -31,25 +31,22 @@ $("#frmUserReferenceEdit").validate({
             success: function(result)
             {
                $('#ModalUserReferenceEdit').modal('hide');
-               var reference = '<div class="card" id="card_user_reference'+ result.id +'">' +
-               '<div class="card-body">' +
-                   '<p class="card-text">' + 
-                       '<strong>Name :</strong>' +
-                             result.name +
-                       '<strong> Position : </strong> '+
-                            result.position + ',' +
-                     '<strong> Phone : </strong> '+
-                            result.phone + ',' +
-                        '<strong> Email : </strong> '+
-                        result.email + ',' +
-                           '<a href="#" onclick="referenceDelete('+ result.id + ');"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp'+
-                           '<a href="#" onclick="referenceSkillEdit('+ result.id +');"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>' + 
-                       '</p>'+
-               '</div>'+
-           '</div>'+
-           '<br/>';
+               var reference = '<div  id="card_reference_edit'+result.id+'">'+
+        '<div class="jobint user-delete-reference'+result.id+'">'+
+        '<div class="row">'+
+        '<div class="col-md-8 col-sm-8">'+
+            '<h4><a href="#.">'+   result.name  +'</a></h4>'+
+            '<div class="company"><a href="#.">'+ result.position+'</a></div>'+
+            '<div class="jobloc"><label class="fulltime">' + result.phone +' - '+ result.email +'</label></div>'+
+        '</div>'+
+        '<div class="col-md-3 col-sm-3">'+
+            '<a href="#." onclick="referenceEdit('+result.id+');" class="applybtn">Edit</a> <a href="#." onclick="referenceDelete('+result.id+');" class="applybtn">Delete</a>'+
+        '</div>'+
+        '</div>'+
+    '</div>'+
+    '<br/>';
             toastr.success('Success', 'item has been update !');
-            $('#card_user_reference' + result.id).replaceWith(reference);
+            $('#card_reference_edit'+result.id).replaceWith(reference);
             },error : function(err)
             {
                 console.log(err);
@@ -101,7 +98,7 @@ $('#frmReferenceDelete').validate({
             method: 'Delete',
             success: function (response) {
                 $('#ModalReferenceDelete').modal('hide');
-                $('#card_user_reference'+response.id).remove();
+                $('.user-delete-reference'+response.id).remove();
                 toastr.success('Success', 'item has been deleted !');
             }, error: function (err) {
                 console.log(err);
@@ -151,25 +148,23 @@ $("#frmUserReference").validate({
             {
             //    console.log(result);
                $('#ModalUserReference').modal('hide');
-               var reference = '<div class="card" id="card_user_reference'+ result.id +'">' +
-               '<div class="card-body">' +
-                   '<p class="card-text">' + 
-                       '<strong>Name :</strong>' +
-                             result.name +
-                       '<strong> Position : </strong> '+
-                            result.position + ',' +
-                     '<strong> Phone : </strong> '+
-                            result.phone + ',' +
-                        '<strong> Email : </strong> '+
-                        result.email + ',' +
-                           '<a href="#" onclick="referenceDelete('+ result.id + ');"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp'+
-                           '<a href="#" onclick="referenceEdit('+ result.id +');"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>' + 
-                       '</p>'+
-               '</div>'+
-           '</div>'+
-           '<br/>';
+    
+        var reference = '<div  id="card_reference_edit'+result.id+'">'+
+        '<div class="jobint user-delete-reference'+result.id+'">'+
+        '<div class="row">'+
+        '<div class="col-md-8 col-sm-8">'+
+            '<h4><a href="#.">'+   result.name  +'</a></h4>'+
+            '<div class="company"><a href="#.">'+ result.position+'</a></div>'+
+            '<div class="jobloc"><label class="fulltime">' + result.phone +' - '+ result.email +'</label></div>'+
+        '</div>'+
+        '<div class="col-md-3 col-sm-3">'+
+            '<a href="#." onclick="referenceEdit('+result.id+');" class="applybtn">Edit</a> <a href="#." onclick="referenceDelete('+result.id+');" class="applybtn">Delete</a>'+
+        '</div>'+
+        '</div>'+
+    '</div>'+
+    '<br/>';
             toastr.success('Success', 'item has been created !');
-            $('#div_card_user_reference').append(reference);
+            $('#user-reference').append(reference);
             },error : function(err){
 
                 console.log(err);

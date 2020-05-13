@@ -82,7 +82,9 @@
                         <li>
                             <a href="{{url('admin/pricing')}}">Pricing</a>
                         </li>
-                        
+                        <li>
+                            <a href="{{url('admin/post')}}">News</a>
+                        </li>
                     </ul>
                 </li>
            @endif

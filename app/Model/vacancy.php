@@ -15,6 +15,12 @@ class vacancy extends Model
         return $this->belongsToMany(candidate::class)->withPivot('applied_date','status');
     }
 
+    public function scopePending($query){
+        return $query->where('status', '=', 0);
+    }
+    public function scopeApproved($query){
+        return $query->where('status', '=', 1);
+    }
    
     public function jobAttachment(){
 
@@ -62,4 +68,5 @@ class vacancy extends Model
     {
         return $this->hasMany(interview::class);
     }
+
 }

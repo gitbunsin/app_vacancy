@@ -57,6 +57,7 @@ $("#frmVacancyApply").validate({
 
 function ApplyJob(vacancy_id)
 {
+   // alert('ok');
    $('#vacancy_id').val(vacancy_id);
    var candidate_id = $('#candidate_id').val();
    $.ajax({
@@ -151,7 +152,7 @@ $(document).ready(function () {
                   $('#ModalEditUserCv').modal('hide');
                   toastr.success('Success', 'item has been Updated !');
                   var resume = '<tr id="tr_userCV' + result.id + '"><td>' + result.file_name + '</td><td>' + result.file_size + '</td><td>' + result.attachment_type + '</td>';
-                  resume += '<th><a onclick="EditUserCv('+ result.id + ');"  data-toggle="modal" class="btn btn-primary">Edit</a>  <a onclick="DeleteUserCv(' + result.id + ');"  class="btn btn-danger">Delete</a></th></tr>';
+                  resume += '<th><a onclick="EditUserCv('+ result.id + ');"  data-toggle="modal"><i class="fa fa-edit" aria-hidden="true"></i> | </a><a onclick="DeleteUserCv(' + result.id + ');"><i style="color:red;" class="fa fa-trash" aria-hidden="true"></i></a></th></tr>';
                   $("#tr_userCv"+result.id).replaceWith(resume);
                  },error:function(err){
                   console.log(err);
@@ -256,7 +257,8 @@ $(document).ready(function () {
                        $('#UserUploadResume').modal('hide');
                        toastr.success('Success', 'item has been deleted !');
                        var resume = '<tr id="tr_userCV' + result.id + '"><td>' + result.file_name + '</td><td>' + result.file_size + '</td><td>' + result.attachment_type + '</td>';
-                       resume += '<th><a onclick="EditUserCv('+result.id+');" class="btn btn-primary">Edit</a>  <a onclick="DeleteUserCv('+ result.id + ');" class="btn btn-danger">Delete</a></th></tr>';
+                       var resume = '<tr id="tr_userCV' + result.id + '"><td>' + result.file_name + '</td><td>' + result.file_size + '</td><td>' + result.attachment_type + '</td>';
+                       resume += '<th><a onclick="EditUserCv('+ result.id + ');"  data-toggle="modal"><i class="fa fa-edit" aria-hidden="true"></i> | </a><a onclick="DeleteUserCv(' + result.id + ');"><i style="color:red;" class="fa fa-trash" aria-hidden="true"></i></a></th></tr>';
                        $('#tbl_resume').append(resume);
                  },error:function(err){
                   console.log(err);

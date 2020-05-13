@@ -1,38 +1,27 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="Theme Region">
-   	<meta name="description" content="">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title> Kh-Works | Everthing here for You</title>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Online Job Portal HTML</title>
+<!-- Fav Icon -->
+<link rel="shortcut icon" href="favicon.ico">
+<meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}">
+<!-- Owl carousel -->
 
-   	<!-- CSS -->
-    @include('frontend.partials.style')
-	
-	<!-- font -->
-	<link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
-	
-	<!-- icons -->
-	<link rel="icon" href="images/ico/favicon.ico">	
-    <link rel="apple-touch-icon" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon" sizes="57x57" href="images/ico/apple-touch-icon-57-precomposed.png">
-    <!-- icons -->
+@include('frontend.partials.style')
+<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700,300' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Signika+Negative:400,300,600,700' rel='stylesheet' type='text/css'>
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="js/html5shiv.min.js"></script>
+  <script src="js/respond.min.js"></script>
+<![endif]-->
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <!-- Template Developed By ThemeRegion -->
-  </head>
-  <body>
+</head>
+<body>
 	@include('frontend.partials.navigation')
 
 	@yield('content')

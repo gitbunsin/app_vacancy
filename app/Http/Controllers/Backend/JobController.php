@@ -56,6 +56,57 @@ class JobController extends Controller
         return view('frontend/pages/job',compact('job','popularJob'));
     }
 
+    // public function jobsListing(Request $request){
+        // dd('hello');
+        // $title = "Browse Jobs";
+
+
+        // $categories = Category::orderBy('category_name', 'asc')->get();
+        // $countries = Country::all();
+        // $old_country = false;
+        // if (request('country')){
+        //     $old_country = Country::find(request('country'));
+        // }
+
+
+        // $jobs = Job::active();
+
+        // if ($request->q){
+        //     $jobs = $jobs->where(function ($query) use($request){
+        //         $query->where('job_title', 'like', "%{$request->q}%")
+        //             ->orWhere('position', 'like', "%{$request->q}%")
+        //             ->orWhere('description', 'like', "%{$request->q}%");
+        //     });
+        // }
+
+        // if ($request->location){
+        //     $jobs = $jobs->where('city_name', 'like', "%{$request->location}%");
+        // }
+
+        // if ($request->gender){
+        //     $jobs = $jobs->whereGender($request->gender);
+        // }
+        // if ($request->exp_level){
+        //     $jobs = $jobs->whereExpLevel($request->exp_level);
+        // }
+        // if ($request->job_type){
+        //     $jobs = $jobs->whereJobType($request->job_type);
+        // }
+        // if ($request->country){
+        //     $jobs = $jobs->whereCountryId($request->country);
+        // }
+        // if ($request->state){
+        //     $jobs = $jobs->whereStateId($request->state);
+        // }
+        // if ($request->category){
+        //     $jobs = $jobs->whereCategoryId($request->category);
+        // }
+
+        // $jobs = $jobs->orderBy('id', 'desc')->with('employer')->paginate(20);
+
+        // return view('jobs', compact('title', 'jobs','categories', 'countries', 'old_country'));
+    // }
+
     public function vacancyDetails($id)
     {
         // dd($id);
@@ -63,7 +114,7 @@ class JobController extends Controller
         $relatedVacancy = vacancy::where('company_id',$vacancy->company_id)->whereNotIn('id', [$id])->get();
         // dd($relatedVacancy);   
         // $file = jobAttachment::with(['job'])->where('job_id',$id)->first();
-        return view('frontend/pages/job-apply-detail',compact('vacancy','file','relatedVacancy'));
+        return view('frontend/pages/job-apply-detail',compact('vacancy','relatedVacancy'));
     }
 
     //public function profileDetails
@@ -72,6 +123,7 @@ class JobController extends Controller
     {
         $user_cv = userCv::where('user_id',$id)->first();
         $user = User::with(['hobby','reference','skill','language','traning','experience','education'])->where('id',$id)->first();
+        dd($user);
         $user_bookmark = userBookmark::where('user_id',Auth::user()->id)->get();
         // dd($user_bookmark);
         // foreach ($user_bookmark as $key => $value) {
@@ -84,9 +136,16 @@ class JobController extends Controller
     }
     public function jobsListing(Request $request)
     {
-        // dd($request->q);
-        $job = vacancy::where('vacancy_name','LIKE','%'.$request->q.'%')->get();
-        // dd($job );
+        $job = vacancy::where('category_id','=',$request->category)->get();
+        return view('frontend/pages/job',compact('job'));
+    }
+
+    public function searchSalaryRange(Request $request)
+    {
+        if ($request->minSalary){
+            $job = vacancy::where('maxSalary', 'like', "%{$request->maxSalary}%")
+            ->where('minSalary', 'like', "%{$request->minSalary}%")->get();
+        }
         return view('frontend/pages/job',compact('job'));
     }
     public function approveVacancy($id)

@@ -20,6 +20,9 @@ Route::get('/', function () {
  *                                  Backend routes
  ************************************************************************************/
 Route::get('admin-login', 'Auth\AdminLoginController@showLoginForm');
+Route::get('news','HomeController@news');
+Route::get('blog-details','HomeController@blogDetails');
+Route::get('package','HomeController@package');
 Route::get('employee/activate/login/{token}/{id}','Auth\EmployeeLoginController@showEmployeeLoginForm');
 Route::post('employee/login','Auth\EmployeeLoginController@login');
 Route::post('admin-login', ['as'=>'admin-login','uses'=>'Auth\AdminLoginController@login']);
@@ -28,6 +31,7 @@ Route::get('admin-register', ['as'=>'admin-register','uses'=>'Auth\AdminRegister
 Route::post('admin-register', ['as'=>'admin-register','uses'=>'Auth\AdminRegisterController@register']);
 Route::post('admin-register/check/mail', ['as'=>'admin-register','uses'=>'Auth\AdminRegisterController@checkAdminMail']);
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Route::post('/login', '\App\Http\Controllers\Auth\LoginController@login');
 Route::post('/register/checkemail','\App\Http\Controllers\Auth\RegisterController@Checkemail');
 Route::get('/register/activate/email/{id}/{token}','\App\Http\Controllers\Auth\RegisterController@verifyUserMail');
 Route::get('/register/activate/admin/email/{id}/{token}','\App\Http\Controllers\Auth\RegisterController@verifyAdminMail');
@@ -50,6 +54,12 @@ Route::group(['middleware'=>'auth'], function(){
         Route::resource('personal-skill','UserSkillController');
         Route::resource('reference','UserReferenceController');
         Route::resource('hobby','UserHobbyController');
+        Route::get('my-profile','HomeUserController@myProfile');
+        Route::get('my-resume','HomeUserController@myResume');
+        Route::get('my-dashboard','HomeUserController@myDashboard');
+        Route::get('view-profile','HomeUserController@viewProfile');
+        Route::get('account-setting','HomeUserController@accountSetting');
+        Route::get('upload-resume','HomeUserController@uploadResume');
         Route::resource('education','UserEducationController');
         Route::get('about-me/{id}','UserEducationController@aboutMeEdit');
         Route::post('update-about-me/{id}','UserEducationController@aboutMeUpdate');
@@ -76,6 +86,7 @@ Route::group(['namespace' => 'Backend','prefix' => 'admin'], function ($request)
     // Route::get('employee/login','EmployeeController@Login');
     Route::match(['post', 'put'], 'employee/update/user/{id}', 'EmployeeController@updateEmployeeLogin');
     Route::resource('workexperience','WorkExperienceController');
+    Route::resource('post','PostController');
     Route::resource('employeeEduction','EmployeeEductionController');
     Route::resource('employeeSkill','EmployeeSkillController');
     Route::resource('employeeLanguage','EmployeeLanguageController');
@@ -133,8 +144,6 @@ Route::group(['namespace' => 'Backend','prefix' => 'admin'], function ($request)
     Route::post('user/resume/{id}','UserController@userCV');
     Route::get('user/view-resume/{id}','UserController@viewResume');
 
-
-
 });
 
 Route::get('qr-code-g', function () {
@@ -169,6 +178,7 @@ Route::get('payment/success', 'PayPalController@success')->name('payment.success
 
 Route::get('job','Backend\JobController@job');
 Route::get('search-jobs', 'Backend\JobController@jobsListing')->name('jobs_listing');
+Route::get('search-salary-range', 'Backend\JobController@searchSalaryRange');
 Route::get('job-apply/{job_id}','Backend\JobController@jobApply');
 Route::get('/user/profile/{id}','Backend\JobController@profileDetails');
 Route::get('vacancy/detail/{id}','Backend\JobController@vacancyDetails');

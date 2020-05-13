@@ -40,25 +40,23 @@ $("#frmEditUserSkill").validate({
             },
             success: function(result)
             {
-                $('#ModalEditUserSkill').modal('hide');
-               var skill = '<div class="card" id="card_skill'+ result.id +'">' +
-               '<div class="card-body">' +
-                   '<p class="card-text">' + 
-                       '<strong>School :</strong>' +
-                           result.school +
-                       '<strong> Degree : </strong> '+
-                            result.degree + ',' +
-                       '<strong>Year :</strong>' +
-                            result.year + ' - '+ result.year_to + ' &nbsp;&nbsp ' + 
-                        '<strong>' + 
-                           '<a href="#" onclick="skillDelete('+ result.id + ');"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp'+
-                           '<a href="#" onclick="skillEdit('+ result.id +');"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>' + 
-                       '</p>'+
+            $('#ModalEditUserSkill').modal('hide');
+                var skill = '<div  id="card_training_skills_edit'+result.id+'">'+
+               '<div class="jobint user-delete-training_skills'+result.id+'">'+
+               '<div class="row">'+
+               '<div class="col-md-8 col-sm-8">'+
+                   '<h4><a href="#.">'+ result.school +'</a></h4>'+
+                   '<div class="company"><a href="#.">'+ result.degree +'</a></div>'+
+                   '<div class="jobloc"><label class="fulltime">' + result.year +' - '+result.year_to+'</label></div>'+
+               '</div>'+
+               '<div class="col-md-3 col-sm-3">'+
+                   '<a href="#." onclick="skillEdit('+result.id+');" class="applybtn">Edit</a> <a href="#." onclick="skillDelete('+result.id+');" class="applybtn">Delete</a>'+
+               '</div>'+
                '</div>'+
            '</div>'+
            '<br/>';
            toastr.success('Success', 'item has been updated !');
-            $('#card_skill'+result.id).replaceWith(skill);
+            $('#card_training_skills_edit'+result.id).replaceWith(skill);
             },error : function(err){
 
                 console.log(err);
@@ -143,7 +141,7 @@ $('#frmDeleteUserSkill').validate({
             method: 'Delete',
             success: function (response) {
                 $('#ModalDeleteUserSkill').modal('hide');
-                $('#card_skill'+response.id).remove();
+                $('.user-delete-training_skills'+response.id).remove();
                 toastr.success('Success', 'item has been deleted !');
             }, error: function (err) {
                 console.log(err);
@@ -201,23 +199,21 @@ $("#frmAddUserSkill").validate({
             {
                // console.log(result);
                $('#ModalAddUserSkill').modal('hide');
-               var skill = '<div class="card" id="card_skill'+ result.id +'">' +
-               '<div class="card-body">' +
-                   '<p class="card-text">' + 
-                       '<strong>School :</strong>' +
-                           result.school +
-                       '<strong> Degree : </strong> '+
-                            result.degree + ',' +
-                       '<strong>Year :</strong>' +
-                            result.year + ' - '+ result.year_to + ' &nbsp;&nbsp ' + 
-                        '<strong>' + 
-                           '<a href="#" onclick="skillDelete('+ result.id + ');"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp'+
-                           '<a href="#" onclick="skillEdit('+ result.id +');"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>' + 
-                       '</p>'+
+               var skill = '<div  id="card_training_skills_edit'+result.id+'">'+
+               '<div class="jobint user-delete-training_skills'+result.id+'">'+
+               '<div class="row">'+
+               '<div class="col-md-8 col-sm-8">'+
+                   '<h4><a href="#.">'+ result.school +'</a></h4>'+
+                   '<div class="company"><a href="#.">'+ result.degree +'</a></div>'+
+                   '<div class="jobloc"><label class="fulltime">' + result.year +' - '+result.year_to+'</label></div>'+
+               '</div>'+
+               '<div class="col-md-3 col-sm-3">'+
+                   '<a href="#." onclick="skillEdit('+result.id+');" class="applybtn">Edit</a> <a href="#." onclick="skillDelete('+result.id+');" class="applybtn">Delete</a>'+
+               '</div>'+
                '</div>'+
            '</div>'+
            '<br/>';
-            $('#card_user_skill').append(skill);
+            $('#user-training').append(skill);
             },error : function(err){
 
                 console.log(err);

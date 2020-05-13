@@ -23,20 +23,21 @@ $("#frmEditUserLanguage").validate({
             {
                console.log(result);
                $('#ModalEditUserLanague').modal('hide');
-               var language = '<div class="card" id="card_language'+ result.id +'">' +
-               '<div class="card-body">' +
-                   '<p class="card-text">' + 
-                       '<strong>Language :</strong>' +
-                             result.lang.name +
-                       '<strong> Level : </strong> '+
-                            result.level + ',' +
-                           '<a href="#" onclick="languageDelete('+ result.id + ');"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp'+
-                           '<a href="#" onclick="languageEdit('+ result.id +');"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>' + 
-                       '</p>'+
+               var language = '<div  id="card_language_edit'+result.id+'">'+
+               '<div class="jobint user-delete-language'+result.id+'">'+
+               '<div class="row">'+
+               '<div class="col-md-8 col-sm-8">'+
+                   '<h4><a href="#.">'+  result.lang.name +'</a></h4>'+
+                   '<div class="jobloc"><label class="fulltime">' +  result.level +'</label></div>'+
                '</div>'+
-           '</div>'+
-           '<br/>';
-            $('#card_language'+result.id).replaceWith(language);
+               '<div class="col-md-3 col-sm-3">'+
+                   '<a href="#." onclick="languageEdit('+result.id+');" class="applybtn">Edit</a> <a href="#." onclick="languageDelete('+result.id+');" class="applybtn">Delete</a>'+
+               '</div>'+
+               '</div>'+
+            '</div>'+
+            '<br/>';
+            toastr.success('Success', 'item has been updated !');
+            $('#card_language_edit'+result.id).replaceWith(language);
             },error : function(err){
 
                 console.log(err);
@@ -104,7 +105,7 @@ $('#frmDeleteUserLanguage').validate({
             method: 'Delete',
             success: function (response) {
                 $('#ModalDeleteUserLanguage').modal('hide');
-                $('#card_language'+response.id).remove();
+                $('.user-delete-language'+response.id).remove();
                 toastr.success('Success', 'item has been deleted !');
             }, error: function (err) {
                 console.log(err);
@@ -141,20 +142,20 @@ $("#frmAddUserLanguage").validate({
             {
                console.log(result);
                $('#ModalAddUserLanague').modal('hide');
-               var language = '<div class="card" id="card_language'+ result.id +'">' +
-               '<div class="card-body">' +
-                   '<p class="card-text">' + 
-                       '<strong>Language :</strong>' +
-                             result.lang.name +
-                       '<strong> Level : </strong> '+
-                            result.level + ',' +
-                           '<a href="#" onclick="languageDelete('+ result.id + ');"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp'+
-                           '<a href="#" onclick="languageEdit('+ result.id +');"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>' + 
-                       '</p>'+
+               var language = '<div  id="card_language_edit'+result.id+'">'+
+               '<div class="jobint user-delete-language'+result.id+'">'+
+               '<div class="row">'+
+               '<div class="col-md-8 col-sm-8">'+
+                   '<h4><a href="#.">'+  result.lang.name +'</a></h4>'+
+                   '<div class="jobloc"><label class="fulltime">' +  result.level +'</label></div>'+
+               '</div>'+
+               '<div class="col-md-3 col-sm-3">'+
+                   '<a href="#." onclick="languageEdit('+result.id+');" class="applybtn">Edit</a> <a href="#." onclick="languageDelete('+result.id+');" class="applybtn">Delete</a>'+
+               '</div>'+
                '</div>'+
            '</div>'+
            '<br/>';
-            $('#div_card_language').append(language);
+            $('#user-language').append(language);
             },error : function(err){
 
                 console.log(err);

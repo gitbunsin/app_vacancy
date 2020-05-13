@@ -40,25 +40,23 @@ $("#frmAddUserExpericenseEdit").validate({
             },
             success: function(result)
             {
-               console.log(result);
+            //    console.log(result);
             $('#ModalAddUserExperienceEdit').modal('hide');
-               var experience = '<div class="card" id="card_experience'+ result.id +'">' +
-               '<div class="card-body">' +
-                   '<p class="card-text">' + 
-                       '<strong>Job Title :</strong>' +
-                           result.title.name +
-                       '<strong> Company Name : </strong> '+
-                            result.company_name + ',' +
-                       '<strong>Year :</strong>' +
-                            result.year + ' - '+ result.year_to + ' &nbsp;&nbsp ' + 
-                        '<strong>' + 
-                           '<a href="#" onclick="experienceDelete('+ result.id + ');"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp'+
-                           '<a href="#" onclick="experienceEdit('+ result.id +');"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>' + 
-                       '</p>'+
-               '</div>'+
-           '</div>'+
-           '<br/>';
-            $('#card_experience'+ result.id).replaceWith(experience);
+            var experience = '<div  id="card_training_experiences_edit'+result.id+'">'+
+                '<div class="jobint user-delete-experiences'+result.id+'">'+
+                '<div class="row">'+
+                '<div class="col-md-8 col-sm-8">'+
+                    '<h4><a href="#.">'+  result.title.name  +'</a></h4>'+
+                    '<div class="company"><a href="#.">'+ result.company_name +'</a></div>'+
+                    '<div class="jobloc"><label class="fulltime">' + result.year +' - '+result.year_to+'</label></div>'+
+                '</div>'+
+                '<div class="col-md-3 col-sm-3">'+
+                    '<a href="#." onclick="experienceEdit('+result.id+');" class="applybtn">Edit</a> <a href="#." onclick="experienceDelete('+result.id+');" class="applybtn">Delete</a>'+
+                '</div>'+
+                '</div>'+
+            '</div>'+
+            '<br/>';
+            $('#card_training_experiences_edit'+result.id).replaceWith(experience);
             },error : function(err){
 
                 console.log(err);
@@ -145,7 +143,7 @@ $('#frmDeleteUserExperience').validate({
             method: 'Delete',
             success: function (response) {
                 $('#ModalDeleteUserExperience').modal('hide');
-                $('#card_experience'+response.id).remove();
+                $('.user-delete-experiences'+response.id).remove();
                 toastr.success('Success', 'item has been deleted !');
             }, error: function (err) {
                 console.log(err);
@@ -203,23 +201,22 @@ $("#frmAddUserExpericense").validate({
             {
             //    console.log(result);
                $('#ModalAddUserExperience').modal('hide');
-               var experience = '<div class="card" id="card_experience'+ result.id +'">' +
-               '<div class="card-body">' +
-                   '<p class="card-text">' + 
-                       '<strong>Job Title :</strong>' +
-                           result.title.name +
-                       '<strong> Company Name : </strong> '+
-                            result.company_name + ',' +
-                       '<strong>Year :</strong>' +
-                            result.year + ' - '+ result.year_to + ' &nbsp;&nbsp ' + 
-                        '<strong>' + 
-                           '<a href="#" onclick="experienceDelete('+ result.id + ');"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp'+
-                           '<a href="#" onclick="experienceEdit('+ result.id +');"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>' + 
-                       '</p>'+
+               var experience = '<div  id="card_training_experiences_edit'+result.id+'">'+
+               '<div class="jobint user-delete-experiences'+result.id+'">'+
+               '<div class="row">'+
+               '<div class="col-md-8 col-sm-8">'+
+                   '<h4><a href="#.">'+  result.title.name  +'</a></h4>'+
+                   '<div class="company"><a href="#.">'+ result.company_name +'</a></div>'+
+                   '<div class="jobloc"><label class="fulltime">' + result.year +' - '+result.year_to+'</label></div>'+
+               '</div>'+
+               '<div class="col-md-3 col-sm-3">'+
+                   '<a href="#." onclick="experienceEdit('+result.id+');" class="applybtn">Edit</a> <a href="#." onclick="experienceDelete('+result.id+');" class="applybtn">Delete</a>'+
+               '</div>'+
                '</div>'+
            '</div>'+
            '<br/>';
-            $('#div_card_experience').append(experience);
+    
+            $('#user-experience').append(experience);
             },error : function(err){
 
                 console.log(err);

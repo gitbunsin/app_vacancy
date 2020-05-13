@@ -2,97 +2,87 @@
 @extends('frontend.layouts.template')
 @section('content')
 
-<div class="tr-breadcrumb bg-image section-before">
+<div class="pageTitle">
     <div class="container">
-        <div class="breadcrumb-info text-center">
-            <div class="page-title">
-                <h1>Create a New Account</h1>
-                <span>Lorem Ipsum is simply dummy text of the printing pesetting.</span>
-            </div>				
+      <div class="row">
+        <div class="col-md-6 col-sm-6">
+          <h1 class="page-heading">Register</h1>
         </div>
-    </div><!-- /.container -->
-</div><!-- tr-breadcrumb -->	
-
-<div class="tr-account section-padding">
-    <div class="container text-center">
-        <div class="user-account">
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs  nav-justified" role="tablist">
-                <li role="presentation"><a class="active" href="#seeker" aria-controls="seeker" role="tab" data-toggle="tab">Job Seeker</a></li>
-                <li role="presentation"><a href="#employers" aria-controls="employers" role="tab" data-toggle="tab">Employers</a></li>
-            </ul>
-
-            <!-- Tab panes -->
+        <div class="col-md-6 col-sm-6">
+          <div class="breadCrumb"><a href="#.">Home</a> / <span>Register</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page Title End -->
+  
+  <div class="listpgWraper">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="userccount">
+            <div class="socialLogin">
+              <h5>Login Or Register with Social</h5>
+             </div>
+            {{-- <div class="alert alert-success" role="alert"><strong>Well done!</strong> Your account successfully created.</div>
+            <div class="alert alert-warning" role="alert"><strong>Warning!</strong> Better check yourself, you're not looking too good.</div>
+            <div class="alert alert-danger" role="alert"><strong>Oh snap!</strong> Change a few things up and try submitting again.</div> --}}
+            <div class="userbtns">
+              <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#candidate">Candidate</a></li>
+                <li><a data-toggle="tab" href="#employer">Employer</a></li>
+              </ul>
+            </div>
             <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="seeker">
-                    <div class="account-content">
-                        <form action="#" class="tr-form">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Full Name">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Username">
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control" placeholder="your Email">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Password">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Confirm Password">
-                            </div>					
-                            <div class="dropdown tr-change-dropdown">
-
-                                <a data-toggle="dropdown" aria-expanded="false"><span class="change-text">Gender</span><i class="fa fa-angle-down"></i></a>
-
-                                <ul class="dropdown-menu tr-change">
-                                    <li><a href="#">Male</a></li>
-                                    <li><a href="#">Female</a></li>
-                                </ul>								
-                            </div><!-- /.category-change -->
-                            <button type="submit" class="btn btn-primary">Sign Up</button>
-                        </form>	
-                        <div class="new-user text-center">
-                            <span>Already Registered? <a href="signin.html">Sign in</a> </span>
-                        </div>
+              <div id="candidate" class="formpanel tab-pane fade in active">
+                <form action="#" id="frmSeekerRegister" class="tr-form">
+                    <div class="formrow">
+                      <input required  name="seeker_first_name" id="seeker_first_name" type="text" class="form-control" placeholder="First Name">
                     </div>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="employers">
-                    <div class="account-content">
-                        <form action="#" class="tr-form">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Your Full Name">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Username">
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control" placeholder="your Email">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Password">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Confirm Password">
-                            </div>
-                            <div class="dropdown tr-change-dropdown">
-                                <a data-toggle="dropdown" href="#" aria-expanded="false"><span class="change-text">Industry Type</span><i class="fa fa-angle-down"></i></a>
-                                <ul class="dropdown-menu tr-change">
-                                    <li><a href="#">Industry 1</a></li>
-                                    <li><a href="#">Industry 2</a></li>
-                                    <li><a href="#">Industry 3</a></li>
-                                </ul>								
-                            </div><!-- /.category-change -->												
-                            <button type="submit" class="btn btn-primary">Sign Up</button>
-                        </form>	
-                        <div class="new-user text-center">
-                            <span>Already Registered? <a href="signin.html">Sign in</a> </span>
-                        </div>
+                    <div class="formrow">
+                      <input required  name="seeker_last_name" id="seeker_last_name" type="text" class="form-control" placeholder="Last Name">
                     </div>
+                    <div class="formrow">
+                      <input onblur="checkmain(this.value)" required type="email" name="seeker_email" id="seeker_email" class="form-control" placeholder="Email">
+                    </div>
+                    <div class="formrow">
+                      <input required type="password" name="seeker_password" id="seeker_password" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="formrow">
+                      <input type="password" name="seeker_confirm_password" id="seeker_confirm_password" class="form-control" placeholder="Confirm Password">
+                    </div>
+                    <div class="formrow">
+                      <input type="checkbox" value="agree text" name="agree" />
+                      There are many variations of passages of Lorem Ipsum available</div>
+                    <input type="submit" class="btn" value="Register">
+                </form>
+              </div>
+              <!-- Employer Register -->
+              <div id="employer" class="formpanel tab-pane fade in">
+                <form action="#" id="frmEmployerLogin" class="tr-form">
+                    <div class="formrow">
+                      <input required type="text" class="form-control" name="admin_user_name" id="admin_user_name" placeholder="Username">
+                    </div>
+                    <div class="formrow">
+                      <input onblur="checkAdminMail(this.value)" required type="email" class="form-control" name="admin_email" id="admin_email" placeholder="Email">
+                    </div>
+                    <div class="formrow">
+                      <input required type="password" class="form-control" name="admin_password" id="admin_password" placeholder="Password">
+                    </div>
+                    <div class="formrow">
+                      <input required type="password" class="form-control" name="admin_confirm_password" id="admin_confirm_password" placeholder="Confirm Password">
+                    </div>
+                    <div class="formrow">
+                      <input type="checkbox" value="agree text c" name="cagree" />
+                      There are many variations of passages of Lorem Ipsum available</div>
+                    <input type="submit" class="btn" value="Register">
+                </form>
                 </div>
-            </div>				
-        </div>				
-    </div><!-- container -->
-</div><!-- /.tr-account-->	
+            </div>
+            <div class="newuser"><i class="fa fa-user" aria-hidden="true"></i> Already a Member? <a href="{{url('login')}}">Login Here</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection

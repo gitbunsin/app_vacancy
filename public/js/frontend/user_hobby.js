@@ -24,18 +24,19 @@ $("#frmUserHobbyEdit").validate({
             //    console.log(result);
             toastr.success('Success', 'item has been updated !');
                $('#ModalUserHobbyEdit').modal('hide');
-               var skill = '<div class="card" id="card_user_hobby'+ result.id +'">' +
-               '<div class="card-body">' +
-                   '<p class="card-text">' + 
-                       '<strong>Hobby Name :</strong>' +
-                             result.name +
-                           '<a href="#" onclick="hobbyDelete('+ result.id + ');"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp'+
-                           '<a href="#" onclick="hobbyEdit('+ result.id +');"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>' + 
-                       '</p>'+
+               var hobby = '<div  id="card_hobby_edit'+result.id+'">'+
+               '<div class="jobint user-delete-hobby'+result.id+'">'+
+               '<div class="row">'+
+               '<div class="col-md-8 col-sm-8">'+
+                   '<h4><a href="#.">'+ result.name +'</a></h4>'+
+               '</div>'+
+               '<div class="col-md-3 col-sm-3">'+
+                   '<a href="#." onclick="hobbyEdit('+result.id+');" class="applybtn">Edit</a> <a href="#." onclick="hobbyDelete('+result.id+');" class="applybtn">Delete</a>'+
+               '</div>'+
                '</div>'+
            '</div>'+
            '<br/>';
-            $('#card_user_hobby'+result.id).replaceWith(skill);
+            $('#card_hobby_edit'+result.id).replaceWith(hobby);
             },error : function(err){
                 console.log(err);
             }
@@ -84,7 +85,7 @@ $('#frmHobby').validate({
             method: 'Delete',
             success: function (response) {
                 $('#ModalHobbyDelete').modal('hide');
-                $('#card_user_hobby'+response.id).remove();
+                $('.user-delete-hobby'+response.id).remove();
                 toastr.success('Success', 'item has been deleted !');
             }, error: function (err) {
                 console.log(err);
@@ -123,18 +124,19 @@ $("#frmUserHobby").validate({
             {
             //    console.log(result);
                $('#ModalUserHobby').modal('hide');
-               var skill = '<div class="card" id="card_user_hobby'+ result.id +'">' +
-               '<div class="card-body">' +
-                   '<p class="card-text">' + 
-                       '<strong>Hobby Name : </strong>' +
-                             result.name +
-                           '<a href="#" onclick="hobbyDelete('+ result.id + ');"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp'+
-                           '<a href="#" onclick="hobbyEdit('+ result.id +');"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>' + 
-                       '</p>'+
+               var hobby = '<div  id="card_hobby_edit'+result.id+'">'+
+               '<div class="jobint user-delete-hobby'+result.id+'">'+
+               '<div class="row">'+
+               '<div class="col-md-8 col-sm-8">'+
+                   '<h4><a href="#.">'+ result.name +'</a></h4>'+
+               '</div>'+
+               '<div class="col-md-3 col-sm-3">'+
+                   '<a href="#." onclick="hobbyEdit('+result.id+');" class="applybtn">Edit</a> <a href="#." onclick="hobbyDelete('+result.id+');" class="applybtn">Delete</a>'+
+               '</div>'+
                '</div>'+
            '</div>'+
            '<br/>';
-            $('#div_card_user_hobby').append(skill);
+            $('#user-hobby').append(hobby);
             },error : function(err){
 
                 console.log(err);

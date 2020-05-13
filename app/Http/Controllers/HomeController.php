@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Model\job;
@@ -11,6 +10,8 @@ use Illuminate\Http\Request;
 use App\Model\pricing;
 use App\Model\vacancy;
 use App\Model\contact;
+use App\Model\post;
+use App\Model\jobCategory;
 use Illuminate\Support\Facades\Response;
 class HomeController extends Controller
 {
@@ -32,15 +33,23 @@ class HomeController extends Controller
     public function index()
     {
         $job = vacancy::with(['company','province','category','jobType','company'])->take(8)->get();
-        // dd($job);
-        return view('frontend/pages/home',compact('job'));
+        $categories = jobCategory::orderBy('name', 'asc')->get();
+        return view('frontend/pages/home',compact('job','categories'));
     }
-    public function pricing()
+    public function package()
     {
         $packages = Pricing::all();
         return view('frontend.pages.pricing',compact('packages'));
     }
+    public function news()
+    {
+        $posts = Post::paginate(10);
+        return view('frontend.pages.blog',compact('posts'));
+    }
+    public function blogDetails(){
 
+        return view('frontend/pages/blog-detail');
+    }
     public function contactUsPost(Request $request)
     {
          $user_id = $request->user_id;
@@ -61,9 +70,9 @@ class HomeController extends Controller
     {
         return view('frontend.pages.register');
     }
+
     public function login()
     {
-
         return view('frontend.pages.login');
     }
 
@@ -73,7 +82,6 @@ class HomeController extends Controller
     }
     public function contact()
     {
-
         return view('frontend/pages/contact');
     }
     public function createResume(){

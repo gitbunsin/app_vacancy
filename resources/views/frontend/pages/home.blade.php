@@ -1,246 +1,281 @@
-@extends('frontend.layouts.template')
-@section('content')
-@php
-    use App\Model\province;
-@endphp
-<style>
-	#job_id {
-    max-width: 100%;
-    height: 100px !important;
-}
-.job-item .time a span {
-    color: #fff;
-    background-color: #f1592a !important;
-    border-color: #f1592a;
-}
-</style>
-<div class="tr-breadcrumb bg-image section-before">
-        <div class="container">
-            <div class="breadcrumb-info text-center">
-                <div class="page-title">
-                    <h1>The Easiest Way to Get Your New Job</h1>
-                </div>		
-                <ol class="breadcrumb">
-                    <li><a href="index.html">We offer 12000 jobs vacation right now</a></li>
-                </ol>
-                <div class="banner-form">
-						<form action="{{route('jobs_listing')}}" class="form-inline" method="get">
-                        <input type="text" name='q' class="form-control" placeholder="Job Keyword">
-                        <div class="dropdown tr-change-dropdown">
-                            <a data-toggle="dropdown" href="#" aria-expanded="false"><span class="change-text">Location</span><i class="fa fa-angle-down"></i></a>
-                            <ul class="dropdown-menu tr-change">
-                                <li><a href="#"> Location </a></li>
-                                @php
-                                    $location = province::all();
-                                @endphp
-                                @foreach ($location as $item)
-                                     <li><a href="#">{{$item->name}}</a></li>  
-                                @endforeach
-                            </ul>								
-                        </div><!-- /.category-change -->
-                        <button type="submit" class="btn btn-primary" value="Search">Search</button>
-                    </form>
-                </div><!-- /.banner-form -->				
-            </div>
-        </div><!-- /.container -->
-    </div><!-- tr-breadcrumb -->
 
-	<div class="tr-category section-padding">
-		
-		<div class="container">
-			<div class="section-title">
-				<h1>Browse Jobs By Category</h1>
-			</div>
-			<ul class="category-list tr-list">
-				<li>
-					<a href="#">
-						<span class="icon">
-							<img src="https://demo.themeregion.com/seeker/images/icons/category1.png" alt="Icon" class="img-fluid">
-						</span>
-						<span class="category-title">Accounting/Finance</span>
-						<span class="category-quantity">(1298)</span>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="icon">
-							<img src="https://demo.themeregion.com/seeker/images/icons/category2.png" alt="Icon" class="img-fluid">
-						</span>
-						<span class="category-title">Education/Training</span>
-						<span class="category-quantity">(76212)</span>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="icon">
-							<img src="https://demo.themeregion.com/seeker/images/icons/category3.png" alt="Icon" class="img-fluid">
-						</span>
-						<span class="category-title">Engineer/Architects</span>
-						<span class="category-quantity">(212)</span>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="icon">
-							<img src="https://demo.themeregion.com/seeker/images/icons/category4.png" alt="Icon" class="img-fluid">
-						</span>
-						<span class="category-title">Garments/Textile</span>
-						<span class="category-quantity">(972)</span>
-					</a>
-				</li>
-			</ul>
-			<ul class="category-list tr-list">
-				<li>
-					<a href="#">
-						<span class="icon">
-							<img src="https://demo.themeregion.com/seeker/images/icons/category5.png" alt="Icon" class="img-fluid">
-						</span>
-						<span class="category-title">HR/Org. Development</span>
-						<span class="category-quantity">(1298)</span>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="icon">
-							<img src="https://demo.themeregion.com/seeker/images/icons/category6.png" alt="Icon" class="img-fluid">
-						</span>
-						<span class="category-title">Design/Creative</span>
-						<span class="category-quantity">(76212)</span>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="icon">
-							<img src="https://demo.themeregion.com/seeker/images/icons/category7.png" alt="Icon" class="img-fluid">
-						</span>
-						<span class="category-title">Research/Consultancy</span>
-						<span class="category-quantity">(1298)</span>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="icon">
-							<img src="https://demo.themeregion.com/seeker/images/icons/category12.png" alt="Icon" class="img-fluid">
-						</span>
-						<span class="category-title">Medical/Pharma</span>
-						<span class="category-quantity">(76212)</span>
-					</a>
-				</li>
-			</ul>
-			<ul class="category-list category-list-bottom tr-list">
-				<li>
-					<a href="#">
-						<span class="icon">
-							<img src="https://demo.themeregion.com/seeker/images/icons/category8.png" alt="Icon" class="img-fluid">
-						</span>
-						<span class="category-title">Music & Arts</span>
-						<span class="category-quantity">(212)</span>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="icon">
-							<img src="https://demo.themeregion.com/seeker/images/icons/category12.png" alt="Icon" class="img-fluid">
-						</span>
-						<span class="category-title">Marketing/Sales</span>
-						<span class="category-quantity">(972)</span>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="icon">
-							<img src="https://demo.themeregion.com/seeker/images/icons/category11.png" alt="Icon" class="img-fluid">
-						</span>
-						<span class="category-title">Production/Operation</span>
-						<span class="category-quantity">(212)</span>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="icon">
-							<img src="https://demo.themeregion.com/seeker/images/icons/category12.png" alt="Icon" class="img-fluid">
-						</span>
-						<span class="category-title">Miscellaneous</span>
-						<span class="category-quantity">(972)</span>
-					</a>
-				</li>
-			</ul>
-		</div><!-- /.container -->
-	</div><!-- /.tr-category -->
-	<div class="tr-job-posted section-padding">
-			<div class="container">
-				<div class="section-title">
-					<h1>Jobs you may be interested in</h1>
-				</div>
-				<div class="job-tab text-center">
-					
-					<div class="tab-content text-left">
-						<div role="tabpanel" class="tab-pane fade show active" id="hot-jobs">
-							<div class="row">
-							@foreach ($job as $jobs)
-								<div class="col-md-6 col-lg-3">
-									<div class="job-item">
-																		
-										<div class="job-info">
-											<div class="company-logo">
-													<img id="job_id" width="200px;"  src="/uploads/UserCv/{{ $jobs->company->company_logo }}" alt="Smiley face" class="img-fluid">
-											</div>
-											<span class="tr-title">
-												<a href="{{'vacancy/detail/'.$jobs->id}}">{{$jobs->vacancy_name}}</a>
-											</span>
-											<ul class="tr-list job-meta">
-												<li><span><i class="fa fa-map-signs" aria-hidden="true"></i></span>{{$jobs->province->name}}</li>
-												<li><span><i class="fa fa-briefcase" aria-hidden="true"></i></span>{{ucfirst($jobs->exp_level)}}</li>
-												<li><span><i class="fa fa-money" aria-hidden="true"></i></span>{{$jobs->maxSalary .' - ' . $jobs->minSalary . ' $'}}</li>
-											</ul>
-											<div class="time">
-												<a href="#"><span class="part-time">{{$jobs->jobType->name}}</span></a>
-												<span class="pull-right">Posted 1 day ago</span>
-											</div>			
-										</div>
-									</div>
-								</div>	
-							@endforeach
-							</div><!-- /.row -->
-						</div><!-- /.tab-pane -->
-							</div><!-- /.row -->	
-						</div><!-- /.tab-pane -->
-					</div>				
-				</div><!-- /.job-tab -->			
-			</div><!-- /.container -->
-		</div><!-- /.tr-job-posted -->
-	<div class="tr-steps bg-image section-padding section-before">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-4">
-					<div class="step">
-						<div class="step-image">
-							<img src="https://demo.themeregion.com/seeker/images/icons/step2.png" alt="images" class="img-fluid">
-						</div>
-						<h1>01 Steps</h1>
-						<h2>Register an account</h2>
-					</div><!-- step -->
-				</div>
-				<div class="col-sm-4">
-					<div class="step">
-						<div class="step-image">
-							<img src="https://demo.themeregion.com/seeker/images/icons/step2.png" alt="images" class="img-fluid">
-						</div>
-						<h1>02 Steps</h1>
-						<h2>search your desired job</h2>
-					</div><!-- /.step -->
-				</div>
-				<div class="col-sm-4">
-					<div class="step">
-						<div class="step-image">
-							<img src="https://demo.themeregion.com/seeker/images/icons/step2.png" alt="images" class="img-fluid">
-						</div>
-						<h1>03 Steps</h1>
-						<h2>Send your resume to employers</h2>
-					</div><!-- /.step -->
-				</div>
-			</div><!-- /.row -->
-		</div><!-- /.container -->
-	</div><!-- /.tr-steps -->
-	<br/><br/><br/>
-@endsection
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Online Job Portal HTML</title>
+<style>
+.tp-bgimg defaultimg{
+background-color: rgba(0, 0, 0, 0);
+    background-repeat: no-repeat;
+    background-image: url(https://www.sharjeelanjum.com/html/jobs-portal/demo/images/slider/banner2.jpg) !important;
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    visibility: inherit;
+    
+}
+
+</style>
+<!-- Fav Icon -->
+<link rel="shortcut icon" href="favicon.ico">
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+@include('frontend.partials.style')
+	<!-- font -->
+	<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700,300' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Signika+Negative:400,300,600,700' rel='stylesheet' type='text/css'>
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="js/html5shiv.min.js"></script>
+  <script src="js/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<!-- Header start -->
+@include('frontend.partials.navigation')
+<!-- Header end --> 
+
+<!-- Revolution slider start -->
+<div class="tp-banner-container">
+  <div class="tp-banner" >
+    <ul>
+      <!--Slide-->
+      <li data-slotamount="7" data-transition="3dcurtain-vertical" data-masterspeed="1000" data-saveperformance="on"> <img alt="Your alt text" src="images/slider/dummy.png" data-lazyload="images/slider/banner.jpg">
+        <div class="caption lfl large-title tp-resizeme slidertext1" data-x="left" data-y="100" data-speed="600" data-start="1600">Search Your Job<br />
+          In your Area</div>
+        <div class="caption lfb large-title tp-resizeme sliderpara" data-x="left" data-y="200" data-speed="600" data-start="2800">I never dreamed about success. I worked for it.<br />
+          Choose a job you love, and you will never have to work a day in your life</div>
+        <div class="caption lfl large-title tp-resizeme slidertext5" data-x="left" data-y="280" data-speed="600" data-start="3500"><a href="#.">Contact Us</a></div>
+      </li>
+      <!--Slide end--> 
+      <!--Slide-->
+      <li data-slotamount="7" data-transition="3dcurtain-vertical" data-masterspeed="1000" data-saveperformance="on"> <img alt="Your alt text" src="images/slider/dummy.png" data-lazyload="images/slider/banner2.jpg">
+        <div class="caption lfl large-title tp-resizeme slidertext1" data-x="left" data-y="100" data-speed="600" data-start="1600">The Easiest Way to <br />
+          Find Job</div>
+        <div class="caption lfb large-title tp-resizeme sliderpara" data-x="left" data-y="200" data-speed="600" data-start="2800">Here You Can See<br />
+          Explore The Right Job</div>
+        <div class="caption lfl large-title tp-resizeme slidertext5" data-x="left" data-y="280" data-speed="600" data-start="3500"><a href="#.">Contact Us</a></div>
+      </li>
+      <!--Slide end-->
+      
+    </ul>
+  </div>
+</div>
+<!-- Revolution slider end --> 
+
+<!-- Popular Searches start -->
+<div class="section">
+	<div class="container"> 
+	  <!-- title start -->
+	  <div class="titleTop">
+		<div class="subtitle">Here You Can See</div>
+		<h3>Popular <span>Searches</span></h3>
+	  </div>
+	  <!-- title end -->
+	  <div class="topsearchwrap row">
+		<div class="col-md-12"> 
+		  <!--Categories start-->
+		  <h4>Browse By Categories</h4>
+		  <ul class="row catelist">
+        @if($categories->count())
+          @foreach ($categories as $category)
+            <li class="col-md-3 col-sm-3">
+              <a href="{{route('jobs_listing', ['category' => $category->id])}}">{{$category->name}} <span>{{$category->count()}}</span></a>
+            </li>         
+          @endforeach
+        @endif
+		  </ul>
+		  <!--Categories end--> 
+		</div>
+	  </div>
+	</div>
+  </div>
+  <!-- Popular Searches ends --> 
+<!-- Search End --> 
+
+<!-- How it Works start -->
+<div class="section howitwrap">
+  <div class="container"> 
+    <!-- title start -->
+    <div class="titleTop">
+      <div class="subtitle">Here You Can See</div>
+      <h3>How It <span>Works?</span></h3>
+    </div>
+    <!-- title end -->
+    <ul class="howlist row">
+      <!--step 1-->
+      <li class="col-md-4 col-sm-4">
+        <div class="iconcircle"><i class="fa fa-user" aria-hidden="true"></i></div>
+        <h4>Create An Account</h4>
+      </li>
+      <!--step 1 end--> 
+      
+      <!--step 2-->
+      <li class="col-md-4 col-sm-4">
+        <div class="iconcircle">
+          <i class="fa fa-graduation-cap" aria-hidden="true"></i></div>
+        <h4>Search Desired Job</h4>
+      </li>
+      <!--step 2 end--> 
+      
+      <!--step 3-->
+      <li class="col-md-4 col-sm-4">
+        <div class="iconcircle"><i class="fa fa-file-text" aria-hidden="true"></i></div>
+        <h4>Send Your Resume</h4>
+      </li>
+      <!--step 3 end-->
+    </ul>
+  </div>
+</div>
+<!-- How it Works Ends --> 
+
+<!-- Top Employers start -->
+<div class="section greybg">
+  <div class="container"> 
+    <!-- title start -->
+    <div class="titleTop">
+      <div class="subtitle">Here You Can See</div>
+      <h3>Top <span>Employers</span></h3>
+    </div>
+    <!-- title end -->
+    
+    <ul class="employerList">
+      <!--employer-->
+      <li data-toggle="tooltip" data-placement="top" title="" data-original-title="Company Name"><a href="company-detail.html"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/employers/emplogo1.jpg" alt="Company Name" /></a></li>
+      <!--employer-->
+      <li data-toggle="tooltip" data-placement="top" title="" data-original-title="Company Name"><a href="company-detail.html"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/employers/emplogo1.jpg" alt="Company Name" /></a></li>
+      <!--employer-->
+      <li data-toggle="tooltip" data-placement="top" title="" data-original-title="Company Name"><a href="company-detail.html"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/employers/emplogo1.jpg" alt="Company Name" /></a></li>
+      <!--employer-->
+      <li data-toggle="tooltip" data-placement="top" title="" data-original-title="Company Name"><a href="company-detail.html"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/employers/emplogo1.jpg" alt="Company Name" /></a></li>
+      <!--employer-->
+      <li data-toggle="tooltip" data-placement="top" title="" data-original-title="Company Name"><a href="company-detail.html"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/employers/emplogo1.jpg" alt="Company Name" /></a></li>
+      <!--employer-->
+      <li data-toggle="tooltip" data-placement="top" title="" data-original-title="Company Name"><a href="company-detail.html"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/employers/emplogo1.jpg" alt="Company Name" /></a></li>
+      <!--employer-->
+      <li data-toggle="tooltip" data-placement="top" title="" data-original-title="Company Name"><a href="company-detail.html"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/employers/emplogo1.jpg" alt="Company Name" /></a></li>
+      <!--employer-->
+      <li data-toggle="tooltip" data-placement="top" title="" data-original-title="Company Name"><a href="company-detail.html"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/employers/emplogo1.jpg" alt="Company Name" /></a></li>
+      <!--employer-->
+      <li data-toggle="tooltip" data-placement="top" title="" data-original-title="Company Name"><a href="company-detail.html"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/employers/emplogo1.jpg" alt="Company Name" /></a></li>
+      <!--employer-->
+      <li data-toggle="tooltip" data-placement="top" title="" data-original-title="Company Name"><a href="company-detail.html"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/employers/emplogo1.jpg" alt="Company Name" /></a></li>
+      <!--employer-->
+      <li data-toggle="tooltip" data-placement="top" title="" data-original-title="Company Name"><a href="company-detail.html"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/employers/emplogo1.jpg" alt="Company Name" /></a></li>
+      <!--employer-->
+      <li data-toggle="tooltip" data-placement="top" title="" data-original-title="Company Name"><a href="company-detail.html"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/employers/emplogo1.jpg" alt="Company Name" /></a></li>
+      <!--employer-->
+      <li data-toggle="tooltip" data-placement="top" title="" data-original-title="Company Name"><a href="company-detail.html"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/employers/emplogo1.jpg" alt="Company Name" /></a></li>
+      <!--employer-->
+      <li data-toggle="tooltip" data-placement="top" title="" data-original-title="Company Name"><a href="company-detail.html"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/employers/emplogo1.jpg" alt="Company Name" /></a></li>
+      <!--employer-->
+      <li data-toggle="tooltip" data-placement="top" title="" data-original-title="Company Name"><a href="company-detail.html"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/employers/emplogo1.jpg" alt="Company Name" /></a></li>
+      <!--employer-->
+      <li data-toggle="tooltip" data-placement="top" title="" data-original-title="Company Name"><a href="company-detail.html"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/employers/emplogo1.jpg" alt="Company Name" /></a></li>
+    </ul>
+  </div>
+</div>
+<!-- Top Employers ends --> 
+
+
+
+<!-- Featured Jobs start -->
+<div class="section greybg">
+  <div class="container"> 
+    <!-- title start -->
+    <div class="titleTop">
+      <div class="subtitle">Here You Can See</div>
+      <h3>Featured <span>Jobs</span></h3>
+    </div>
+    <!-- title end --> 
+    
+    <!--Featured Job start-->
+    <ul class="jobslist row">
+      <!--Job start-->
+      @if($job )
+      @foreach ($job as $jobs)
+      <li class="col-md-6">
+        <div class="jobint">
+          <div class="row">
+            <div class="col-md-2 col-sm-2"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/employers/emplogo1.jpg" alt="Job Name" /></div>
+            <div class="col-md-7 col-sm-7">
+              <h4><a href="{{url('vacancy/detail/'.$jobs->id)}}">{{$jobs->vacancy_name}}</a></h4>
+              <div class="company"><a href="#.">{{$jobs->category->name}}</a></div>
+              <div class="jobloc"><label class="fulltime">{{$jobs->jobType->name}}</label>   - <span>{{$jobs->province->name}}</span></div>
+            </div>
+            <div class="col-md-3 col-sm-3"><a href="#." class="applybtn">Apply Now</a></div>
+          </div>
+        </div>
+      </li>           
+      @endforeach
+      @endif
+      <!--Job end--> 
+    </ul>
+    <!--Featured Job end--> 
+    
+    <!--button start-->
+    <!--button end--> 
+  </div>
+</div>
+<!-- Featured Jobs ends --> 
+<!-- Latest Jobs start -->
+<div class="section greybg">
+  <div class="container"> 
+    <!-- title start -->
+    <div class="titleTop">
+      <div class="subtitle">Here You Can See</div>
+      <h3>Latest <span>Jobs</span></h3>
+    </div>
+    <!-- title end -->
+    
+    <ul class="jobslist row">
+      <!--Job 1-->
+      @if($job )
+      @foreach ($job as $jobs)
+      <li class="col-md-6">
+        <div class="jobint">
+          <div class="row">
+            <div class="col-md-2 col-sm-2"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/employers/emplogo1.jpg" alt="Job Name" /></div>
+            <div class="col-md-7 col-sm-7">
+              <h4><a href="{{url('vacancy/detail/'.$jobs->id)}}">{{$jobs->vacancy_name}}</a></h4>
+              <div class="company"><a href="#.">{{$jobs->category->name}}</a></div>
+              <div class="jobloc"><label class="fulltime">{{$jobs->jobType->name}}</label>   - <span>{{$jobs->province->name}}</span></div>
+            </div>
+            <div class="col-md-3 col-sm-3"><a href="#." class="applybtn">Apply Now</a></div>
+          </div>
+        </div>
+      </li>           
+      @endforeach
+      @endif
+    </ul>
+    <!--view button-->
+    <!--view button end--> 
+  </div>
+</div>
+<!--Footer-->
+@include('frontend/partials/footer')
+
+
+
+<!-- Bootstrap's JavaScript --> 
+<script src="{{asset('js/jquery-2.1.4.min.js')}}"></script> 
+<script src="{{asset('js/bootstrap.min.js')}}"></script> 
+
+<!-- Revolution Slider --> 
+<script type="text/javascript" src="{{asset('js/jquery.themepunch.tools.min.js')}}"></script> 
+<script type="text/javascript" src="{{asset('js/jquery.themepunch.revolution.min.js')}}"></script> 
+<!-- map with geo locations --> 
+
+<!-- Owl carousel --> 
+<script src="{{asset('js/owl.carousel.js')}}"></script> 
+
+<!-- Custom js --> 
+<script src="{{asset('js/script.js')}}"></script>
+</body>
+</html>

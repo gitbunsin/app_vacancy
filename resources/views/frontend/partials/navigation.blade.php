@@ -1,217 +1,64 @@
-{{-- <input id="registrar-btn" type="button"> <span id="in-progress"> 0 </span> --}}
 <style>
-    #package {
-        -webkit-appearance: none;
-    -webkit-border-radius: 30px;
-    }
+
+
 </style>
-<header class="tr-header">
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <div class="navbar-header">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"><i class="fa fa-align-justify"></i></span>
-                </button>
-                <a class="navbar-brand" href="{{url('/home')}}"><img width="130px;" class="img-fluid" src="{{asset('images/new-logo.png')}}" alt="Logo"></a>
-            </div>
-            <!-- /.navbar-header -->
-            
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="nav navbar-nav">
-                        <li class="{{ (request()->segment(1) == 'home') ? 'active' : '' }}">  
-                                <a href="{{'/home'}}">Home</a>
-                            </li>
-                        <li class="{{ (request()->segment(1) == 'job') ? 'active' : '' }}">  
-                        <a href="{{'/job'}}">Jobs LIST</a>
-                    </li>
-                    
-                    <li class="{{ (request()->segment(1) == 'about') ? 'active' : '' }}">  
-                        <a href="{{url('about')}}">About Us</a>
-                    </li>
-                    <li class="{{ (request()->segment(1) == 'pricing') ? 'active' : '' }}"> 
-                        <a href="{{url('pricing')}}">pricing</a>
-                    </li>
-                    <li class="{{ (request()->segment(1) == 'contact') ? 'active' : '' }}"> 
-                        <a href="{{url('contact')}}">Contact Us</a>
-                    </li>
-                    @if(Auth::check())
-                    <li class="tr-dropdown"><a href="#">Candidate</a>
-                        <ul class="tr-dropdown-menu tr-list fadeInUp" role="menu">
-                            <li><a href="{{url('/user/profile/'.auth::user()->id)}}">Employee Profile</a></li>
-                            <li><a href="{{url('/user/list-company')}}">View Compnay</a></li>
-                            <li><a href="{{url('/admin/user/view-resume/'.auth::user()->id)}}">View Resume</a></li>
-                            {{-- <li><a href="coming-soon.html">Coming Soon</a></li> --}}
-                        </ul>
-                    </li>
-                    @endif
-                </ul>
-            </div>
-            <div class="navbar-right">	
-                	
-                    @if (Auth::check())
-                    <div class="dropdown tr-change-dropdown">
-                            <i class="fa fa-user"></i>
-                            <a data-toggle="dropdown" href="#" aria-expanded="false"><span class="change-text"><b>
-                                    {{ Auth::user()->name }}
-                            </b></span><i class="fa fa-angle-down"></i></a>
-                            <ul class="dropdown-menu tr-list">
-                                {{-- <ul class="dropdown-menu tr-change tr-list"> --}}
-                                <li><a  href="{{url('/logout')}}">Logout</a></li>
-                            </ul>								
-                        </div><!-- /.language-dropdown -->	
+<div class="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2 col-sm-3 col-xs-12"> <a href="index.html" class="logo"><img src="https://demo.themeregion.com/jobs/images/logo.png" alt="" /></a>
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="col-md-10 col-sm-12 col-xs-12"> 
+          <!-- Nav start -->
+          <div class="navbar navbar-default" role="navigation">
+            <div class="navbar-collapse collapse" id="nav-main">
+              <ul class="nav navbar-nav">
+                <li class="{{ (request()->segment(1) == 'home') ? 'active' : '' }}">  
+                  <a href="{{url('home')}}">Home</a>
+                </li>
+                {{-- <li class="{{ (request()->segment(1) == 'about') ? 'active' : '' }}"> 
+                  <a href="{{url('about')}}">About us</a>
+                </li> --}}
+                <li class="{{ (request()->segment(1) == 'job') ? 'active' : '' }}"> 
+                  <a href="{{url('job')}}">Job Listing</a>
+                </li>
+                <li class="{{ (request()->segment(1) == 'package') ? 'active' : '' }}"> 
+                  <a href="{{url('package')}}">Our Package</a>
+                </li>
+                <li class="{{ (request()->segment(1) == 'news') ? 'active' : '' }}"> 
+                  <a href="{{url('news')}}">Blog</a>
+                </li>
+                <li class="{{ (request()->segment(1) == 'contact') ? 'active' : '' }}">
+                  <a href="{{url("contact")}}">Contact</a>
+                </li>
+                @if (Auth::check())
+                  <li class="dropdown userbtn"><a href=""><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/candidates/01.jpg" alt="" class="userimg" /></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="{{url('/user/my-dashboard')}}"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a></li>
+                      <li><a href="{{url('/user/my-profile')}}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit Profile</a></li>
+                      <li><a href="#"><i class="fa fa-briefcase" aria-hidden="true"></i> My Jobs</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li><a href="{{url('logout')}}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+                    </ul>
+                </li>
                 @else
-                <ul class="sign-in tr-list">
-                        <li><i class="fa fa-user"></i></li>
-                        <li><a href="#" data-toggle="modal" data-target="#login">Sign In </a></li>
-                        <li><a href="#" onclick="LoadRegister();">Register</a></li>
-                    </ul><!-- /.sign-in -->	
-              @endif    					
-            </div><!-- /.nav-right -->
-        </div><!-- /.container -->
-    </nav><!-- /.navbar -->
-</header><!-- /.tr-header -->
-<!-- /.Register  -->
-<div class="modal fade" id="Register" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div style="background-color:#008def" class="modal-header">
-          {{-- <h5 style="color:white;" class="modal-title" id="exampleModalLabel">Register</h5> --}}
-            <h5 style="color:white;" class="modal-title" >Register</h5>
-        </div>
-        <div class="modal-body">
-                        <div class="text-center">
-                            <div class="user-account">
-                                <!-- Nav tabs -->
-                                <ul class="nav nav-tabs  nav-justified" role="tablist">
-                                    <li role="presentation"><a class="active" href="#seeker" aria-controls="seeker" role="tab" data-toggle="tab">Job Seeker</a></li>
-                                    <li role="presentation"><a href="#employers" aria-controls="employers" role="tab" data-toggle="tab">Employers</a></li>
-                                </ul>
-                                <!-- Tab panes -->
-                                <div class="tab-content">
-                                    <div role="tabpanel" class="tab-pane active" id="seeker">
-                                        <div class="account-content">
-                                            <form action="#" id="frmSeekerRegister" class="tr-form">
+                  <li class="postjob"><a  href="{{url('login')}}">Post a job  </a></li> 
+                  <li class="jobseeker"><a href="{{url('register')}}">Job Seeker</a></li>
+                @endif   
                 
-                                                <div class="form-group">
-                                                    <input required  name="seeker_first_name" id="seeker_first_name" type="text" class="form-control" placeholder="First Name">
-                                                </div>
-                                                <div class="form-group">
-                                                        <input required  name="seeker_last_name" id="seeker_last_name" type="text" class="form-control" placeholder="Last Name">
-                                                    </div>
-                                                <div class="form-group">
-                                                    <input onblur="checkmain(this.value)" required type="email" name="seeker_email" id="seeker_email" class="form-control" placeholder="Email">
-                                                </div>
-                                                <div class="form-group">
-                                                    <input required type="password" name="seeker_password" id="seeker_password" class="form-control" placeholder="Password">
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="password" name="seeker_confirm_password" id="seeker_confirm_password" class="form-control" placeholder="Confirm Password">
-                                                </div>					
-                                                <button type="submit" class="btn btn-primary">Sign Up</button>
-                                            </form>	
-                                        </div>
-                                    </div>
-                                    <div role="tabpanel" class="tab-pane" id="employers">
-                                        <div class="account-content">
-                                            <form action="#" id="frmEmployerLogin" class="tr-form">
-                                                <div class="form-group">
-                                                    <input required type="text" class="form-control" name="admin_user_name" id="admin_user_name" placeholder="Username">
-                                                </div>
-                                                <div class="form-group">
-                                                    <input onblur="checkAdminMail(this.value)" required type="email" class="form-control" name="admin_email" id="admin_email" placeholder="Email">
-                                                </div>
-                                                <div class="form-group">
-                                                    <input required type="password" class="form-control" name="admin_password" id="admin_password" placeholder="Password">
-                                                </div>
-                                                <div class="form-group">
-                                                    <input required type="password" class="form-control" name="admin_confirm_password" id="admin_confirm_password" placeholder="Confirm Password">
-                                                </div>	
-                                                <button type="submit" class="btn btn-primary">Sign Up</button>
-                                            </form>	
-                                        </div>
-                                    </div>
-                                </div>				
-                            </div>				
-                        </div><!-- container -->
+              </ul>
+              
+              <!-- Nav collapes end --> 
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <!-- Nav end --> 
         </div>
       </div>
+      <!-- row end --> 
     </div>
+    <!-- Header container end --> 
   </div>
-
-
-  <!-- /.Login  -->
-<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div style="background-color:#008def" class="modal-header">
-          <h5 style="color:white;" class="modal-title" id="exampleModalLabel">Sign In</h5>
-        </div>
-        <div class="modal-body">
-                <div class="text-center">
-                        <div class="user-account">
-                            <!-- Nav tabs -->
-                            <ul class="nav nav-tabs  nav-justified" role="tablist">
-                                <li role="presentation"><a class="active" href="#seekerLogin" aria-controls="seeker" role="tab" data-toggle="tab">Job Seeker</a></li>
-                                <li role="presentation"><a href="#admin" aria-controls="employers" role="tab" data-toggle="tab">Employers</a></li>
-                            </ul>
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane active" id="seekerLogin">
-                                    <div class="account-content">
-                                        <form action="#" id="frmUserLogin" class="tr-form">
-                                            <div class="form-group">
-                                                <input type="email" id="email" name="email" class="form-control" placeholder="email">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="password" id="password" name="password" class="form-control" placeholder="password">
-                                            </div>
-                                            <div class="user-option">
-                                                    <div class="checkbox">
-                                                        <label for="logged"><input type="checkbox" name="logged" id="logged">Remember me</label>
-                                                    </div>
-                                                    <div class="forgot-password">
-                                                        <a href="{{url('password/reset')}}">I forgot password</a>
-                                                    </div>
-                                                </div>	
-                                        				
-                                            <button type="submit" class="btn btn-primary">Sign Up</button>
-                                        </form>	
-                                        <div class="new-user text-center">
-                                            <span>Already Registered? <a href="signin.html">Register</a> </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div role="tabpanel" class="tab-pane" id="admin">
-                                    <div class="account-content">
-                                        <form action="#" class="tr-form" id="frmLoginEmployer">
-                                            <div class="form-group">
-                                                <input required id="admin_email_login" name="admin_email_login" type="email" class="form-control" placeholder="email">
-                                            </div>
-                                            <div class="form-group">
-                                                <input required id="admin_password_login" name="admin_password_login" type="password" class="form-control" placeholder="password">
-                                            </div>
-                                            <div class="user-option">
-                                                    <div class="checkbox">
-                                                        <label for="loggedAdmin"><input type="checkbox" name="loggedAdmin" id="loggedAdmin">Remember me</label>
-                                                    </div>
-                                                    <div class="forgot-password">
-                                                        <a href="{{url('/password/admin/reset')}}">I forgot password</a>
-                                                    </div>
-                                                </div>				
-                                            <button type="submit" class="btn btn-primary">Sign Up</button>
-                                        </form>	
-                                        <div class="new-user text-center">
-                                            <span>Already Registered? <a href="signin.html">Register</a> </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>				
-                        </div>				
-                    </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  @section('scripts')
-       
-  @endsection

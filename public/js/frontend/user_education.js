@@ -87,29 +87,27 @@ $("#frmUserEducationEdit").validate({
                 "year_to" : $('#year_to_edit').val(),
                 "country" : $('#country_edit').val(),
                 "city" : $('#city_edit').val(),
-                "description" : $('#description_education_edit'),
+                "description" : $('#description_education_edit').val(),
             },
             success: function(result)
             {
-            //    console.log(result);
                $('#UserEducationEdit').modal('hide');
-               var education = '<div class="card" id="card_education'+ result.id +'">' +
-               '<div class="card-body">' +
-                   '<p class="card-text">' + 
-                       '<strong>School :</strong>' +
-                           result.school +
-                       '<strong> Degree : </strong> '+
-                            result.degree + ',' +
-                       '<strong>Year :</strong>' +
-                            result.year + ' - '+ result.year_to + ' &nbsp;&nbsp ' + 
-                        '<strong>' + 
-                           '<a href="#" onclick="educationDelete('+ result.id + ');"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp'+
-                           '<a href="#" onclick="educationEdit('+ result.id +');"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>' + 
-                       '</p>'+
+               var education = '<div  id="card_education-edit'+result.id+'">'+
+               '<div class="jobint user-delete-education'+result.id+'">'+
+               '<div class="row">'+
+               '<div class="col-md-8 col-sm-8">'+
+                   '<h4><a href="#.">'+ result.school +'</a></h4>'+
+                   '<div class="company"><a href="#.">'+ result.degree +'</a></div>'+
+                   '<div class="jobloc"><label class="fulltime">' + result.year +' - '+result.year_to+'</label>   - <span>'+result.city.name+'</span></div>'+
+               '</div>'+
+               '<div class="col-md-3 col-sm-3">'+
+                   '<a href="#." onclick="educationEdit('+result.id+');" class="applybtn">Edit</a> <a href="#." onclick="educationDelete('+ result.id +');" class="applybtn">Delete</a>'+
+               '</div>'+
                '</div>'+
            '</div>'+
            '<br/>';
-            $('#card_education'+result.id).replaceWith(education);
+            $('#card_education-edit'+result.id).replaceWith(education);
+            toastr.success('Success', 'item has been updated !');
             },error : function(err){
 
                 console.log(err);
@@ -121,11 +119,7 @@ function loadUserEducation(){
 
     $('#UserEducation').modal('show');
 }
-function educationDelete(id)
-{
-    $('#user_education_delete_id').val(id);
-    $('#ModalDeleteUserEducation').modal('show');
-}
+
 function educationEdit(id){
     $('#user_education_id_edit').val(id);
     $.ajax({
@@ -182,6 +176,12 @@ function educationEdit(id){
   
 }
 
+function educationDelete(id)
+{
+    // console.log(id);
+    $('#user_education_delete_id').val(id);
+    $('#ModalDeleteUserEducation').modal('show');
+}
 $('#frmDeleteUserEducation').validate({
     submitHandler: function (form) {
         var id = $('#user_education_delete_id').val();
@@ -191,11 +191,12 @@ $('#frmDeleteUserEducation').validate({
             }
         });
         jQuery.ajax({
-            url: "/user/education" + '/' + id,
+            url: "/user/education" +'/'+ id,
             method: 'Delete',
             success: function (response) {
+                console.log(id);
                 $('#ModalDeleteUserEducation').modal('hide');
-                $('#card_education'+response.id).remove();
+                $('.user-delete-education'+response.id).remove();
                 toastr.success('Success', 'item has been deleted !');
             }, error: function (err) {
                 console.log(err);
@@ -248,23 +249,21 @@ $("#frmAddEducation").validate({
             {
                console.log(result);
                $('#UserEducation').modal('hide');
-               var education = '<div class="card" id="card_education'+ result.id +'">' +
-               '<div class="card-body">' +
-                   '<p class="card-text">' + 
-                       '<strong>School :</strong>' +
-                           result.school +
-                       '<strong> Degree : </strong> '+
-                            result.degree + ',' +
-                       '<strong>Year :</strong>' +
-                            result.year + ' - '+ result.year_to + ' &nbsp;&nbsp ' + 
-                        '<strong>' + 
-                           '<a href="#" onclick="educationDelete('+ result.id + ');"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp'+
-                           '<a href="#" onclick="educationEdit('+ result.id +');"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>' + 
-                       '</p>'+
-               '</div>'+
-           '</div>'+
-           '<br/>';
-            $('#card_user_education').append(education);
+               var education = '<div  id="card_education-edit'+result.id+'">'+
+               '<div class="jobint user-delete-education'+result.id+'">'+
+									'<div class="row" id="card_education-edit'+result.id+'" id="card_education-edit'+result.id+'">'+
+									'<div class="col-md-8 col-sm-8">'+
+										'<h4><a href="#.">'+ result.school +'</a></h4>'+
+										'<div class="company"><a href="#.">'+ result.degree +'</a></div>'+
+										'<div class="jobloc"><label class="fulltime">' + result.year +' - '+result.year_to+'</label>   - <span>'+result.city.name+'</span></div>'+
+									'</div>'+
+									'<div class="col-md-3 col-sm-3">'+
+										'<a href="#." onclick="educationEdit('+result.id+');" class="applybtn">Edit</a> <a href="#." onclick="educationDelete('+ result.id +');" class="applybtn">Delete</a>'+
+									'</div>'+
+									'</div>'+
+								'</div>'+
+								'<br/>';
+            $('#user-education').append(education);
             },error : function(err){
 
                 console.log(err);

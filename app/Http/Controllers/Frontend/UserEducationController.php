@@ -318,6 +318,7 @@ class UserEducationController extends Controller
         $education->year_to = $request->year_to;
         $education->description = $request->description;
         $education->save();
+        $education['city'] = city::find($request->city);
         return response::json($education);
     }
 
@@ -366,6 +367,7 @@ class UserEducationController extends Controller
         $education->year_to = $request->year_to;
         $education->description = $request->description;
         $education->save();
+        $education['city'] = city::find($request->city);
         return response::json($education);
     }
 

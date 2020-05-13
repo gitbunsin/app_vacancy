@@ -24,23 +24,23 @@ $("#frmSkillEdit").validate({
             },
             success: function(result)
             {
-            //    console.log(result);
-            toastr.success('Success', 'item has been updated !');
                $('#ModalSkillEdit').modal('hide');
-               var skill = '<div class="card" id="card_user_new_skill'+ result.id +'">' +
-               '<div class="card-body">' +
-                   '<p class="card-text">' + 
-                       '<strong>Skill Name :</strong>' +
-                             result.name +
-                       '<strong> Experience Year : </strong> '+
-                            result.year + ',' +
-                           '<a href="#" onclick="userSkillDelete('+ result.id + ');"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp'+
-                           '<a href="#" onclick="userSkillEdit('+ result.id +');"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>' + 
-                       '</p>'+
+               var skill = '<div  id="card_skill_edit'+result.id+'">'+
+               '<div class="jobint user-delete-skill'+result.id+'">'+
+               '<div class="row">'+
+               '<div class="col-md-8 col-sm-8">'+
+                   '<h4><a href="#.">'+   result.name  +'</a></h4>'+
+                   '<div class="jobloc"><label class="fulltime">' +   result.year +'</label></div>'+
                '</div>'+
-           '</div>'+
-           '<br/>';
-            $('#card_user_new_skill'+result.id).replaceWith(skill);
+               '<div class="col-md-3 col-sm-3">'+
+                   '<a href="#." onclick="userSkillEdit('+result.id+');" class="applybtn">Edit</a> <a href="#." onclick="userSkillDelete('+result.id+');" class="applybtn">Delete</a>'+
+               '</div>'+
+               '</div>'+
+            '</div>'+
+            '<br/>';
+            $('#card_skill_edit'+result.id).replaceWith(skill);
+            toastr.success('Success', 'item has been updated !');
+
             },error : function(err){
                 console.log(err);
             }
@@ -91,7 +91,7 @@ $('#frmSkillDelete').validate({
             method: 'Delete',
             success: function (response) {
                 $('#ModalSkillDelete').modal('hide');
-                $('#card_user_new_skill'+response.id).remove();
+                $('.user-delete-skill'+response.id).remove();
                 toastr.success('Success', 'item has been deleted !');
             }, error: function (err) {
                 console.log(err);
@@ -133,20 +133,20 @@ $("#frmSkill").validate({
             {
             //    console.log(result);
                $('#ModalSkill').modal('hide');
-               var skill = '<div class="card" id="card_user_new_skill'+ result.id +'">' +
-               '<div class="card-body">' +
-                   '<p class="card-text">' + 
-                       '<strong>Skill Name :</strong>' +
-                             result.name +
-                       '<strong> Experience Year : </strong> '+
-                            result.year + ',' +
-                           '<a href="#" onclick="userSkillDelete('+ result.id + ');"><i style="color:red;" class="fa fa-1x fa-trash-o"></i></a>&nbsp'+
-                           '<a href="#" onclick="userSkillEdit('+ result.id +');"><i style="color:#008def;" class="fa fa-1x fa-edit"></i></a></strong>' + 
-                       '</p>'+
+               var skill = '<div  id="card_skill_edit'+result.id+'">'+
+               '<div class="jobint user-delete-skill'+result.id+'">'+
+               '<div class="row">'+
+               '<div class="col-md-8 col-sm-8">'+
+                   '<h4><a href="#.">'+   result.name  +'</a></h4>'+
+                   '<div class="jobloc"><label class="fulltime">' +   result.year +'</label></div>'+
                '</div>'+
-           '</div>'+
-           '<br/>';
-            $('#div_card_user_skill').append(skill);
+               '<div class="col-md-3 col-sm-3">'+
+                   '<a href="#." onclick="userSkillEdit('+result.id+');" class="applybtn">Edit</a> <a href="#." onclick="userSkillDelete('+result.id+');" class="applybtn">Delete</a>'+
+               '</div>'+
+               '</div>'+
+            '</div>'+
+            '<br/>';
+            $('#user-skill').append(skill);
             },error : function(err){
 
                 console.log(err);
