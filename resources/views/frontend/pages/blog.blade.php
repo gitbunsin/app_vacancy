@@ -38,11 +38,11 @@
                   </div>
                   <div class="col-md-7">
                     <div class="post-header">
-                      <h4><a href="{{url('blog-details')}}">{{$post->title}}</a></h4>
+                      <h4><a href="{{url('/admin/post/'.$post->id)}}">{{$post->title}}</a></h4>
                       <div class="postmeta">By : <span>Bunsin </span> Create Date : <a href="#.">{{$post->created_at->diffForHumans()}} </a></div>
                     </div>
-                    <p>{{str_limit($post->post_content, 190, '....')}}</p>
-                    <a href="{{url('blog-details')}}" class="readmore">Read More</a> </div>
+                    <p>{!! str_limit($post->post_content, 190, '....') !!}</p>
+                    <a href="{{url('/admin/post/'.$post->id)}}" class="readmore">Read More</a> </div>
                 </div>
               </li>                  
               @endforeach
@@ -81,12 +81,14 @@
               @foreach ($posts as $item)
               <ul class="papu-post">
                 <li>
-                  <div class="media-left"> <a href="#."><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/blog/1.jpg" alt="Blog Title"></a> </div>
-                  <div class="media-body"> <a class="media-heading" href="#">{{$item->title}}</a> <span>Dec 18, 2016</span> </div>
+                  <div class="media-left"> <a href="#.">
+                    <img style="width: 400px; hieght:200px;" src="{{$item->feature_image_uri}}" title="{{$item->title}}" alt="{{$item->title}}" class="img-fluid" />
+                  </a> 
+                  </div>
+                  <div class="media-body"> <a class="media-heading" href="#">{{$item->title}}</a> <span>{{date('d-m-Y', strtotime($item->created_at))}}</span> </div>
                 </li>                      
               </ul>
               @endforeach
-
             </div>
             <!-- Archives Posts -->
           </div>

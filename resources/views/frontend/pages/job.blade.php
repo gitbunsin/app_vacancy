@@ -233,7 +233,9 @@
           <li>
                 <div class="row">
                   <div class="col-md-8 col-sm-8">
-                    <div class="jobimg"><img src="{{asset('/uploads/UserCv/'.$jobs->company->company_logo)}}" alt="Job Name" /></div>
+                    <div class="jobimg">
+                      <img src="{{asset('/uploads/UserCv/'.$jobs->company->company_logo)}}" alt="Job Name" />
+                    </div>
                     <div class="jobinfo">
                       <h3><a href="{{'vacancy/detail/'.$jobs->id}}">{{$jobs->vacancy_name}}</a></h3>
                       <div class="companyName"><a href="#.">{{$jobs->company->company_name}}</a></div>

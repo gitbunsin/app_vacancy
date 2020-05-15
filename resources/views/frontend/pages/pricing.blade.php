@@ -29,25 +29,25 @@
 				<li class="plan-pages"><i class="fa fa-paper-plane" aria-hidden="true"></i>Sell Unlimited Products</li>
 				<li class="plan-pages"><i class="fa fa-paper-plane" aria-hidden="true"></i>E-Mail support available</li>
 				<li class="plan-pages"><i class="fa fa-paper-plane" aria-hidden="true"></i>Unlimited Applicants</li>
-				<li class="plan-pages"><i class="fa fa-paper-plane" aria-hidden="true"></i>Unlimited Regular Job Post</li>
+				<li class="plan-pages"><i class="fa fa-paper-plane" aria-hidden="true"></i>Unlimited Job Post</li>
 				<li class="plan-pages"><i class="fa fa-paper-plane" aria-hidden="true"></i>E-Mail support available</li>
 			  </ul>
 			</div>
 		  </li>
 		  <li class="col-md-3 col-sm-6 col-xs-12">
 			<div class="boxes">
-			  <div class="pricing-table1"> Free Package<strong>30 Days sample text</strong> </div>
+			  <div class="pricing-table1"> Free Package<strong>15 Days sample text</strong> </div>
 			  <div class="main-unit">
 				<div class="pricing-unit1">$</div>
 				<div class="pricing-unit1-1">0</div>
-				<div class="pricing-unit1-2">per <span class="pricing-unit1-3">mont</span></div>
+				<div class="pricing-unit1-2">per <span class="pricing-unit1-3">month</span></div>
 				<div class="clearfix"></div>
 			  </div>
 			  <ul class="pricing-detail">
-				<li class="plan-detail">300 GB</li>
-				<li class="plan-detail">500 GB</li>
-				<li class="plan-detail">2 Domains</li>
-				<li class="plan-detail">5 Free</li>
+				<li class="plan-detail">No Premium Job Post</li>
+				<li class="plan-detail">Unlimited Regular Job Post</li>
+				<li class="plan-detail">Unlimited Applicants</li>
+				<li class="plan-detail">No support available</li>
 				<li class="plan-detail ico"><i class="fa fa-times" aria-hidden="true"></i></li>
 				<li class="plan-detail ico"><i class="fa fa-times" aria-hidden="true"></i></li>
 				<li class="order-1"><a href="#.">order now</a></li>
@@ -60,16 +60,16 @@
 			  <div class="main-unit">
 				<div class="pricing-unit2">$</div>
 				<div class="pricing-unit2-1">10</div>
-				<div class="pricing-unit2-2">per <span class="pricing-unit2-3">mont</span></div>
+				<div class="pricing-unit2-2">per <span class="pricing-unit2-3">month</span></div>
 				<div class="clearfix"></div>
 			  </div>
 			  <ul class="pricing-detail">
-				<li class="plan-detail">300 GB</li>
-				<li class="plan-detail">500 GB</li>
-				<li class="plan-detail">2 Domains</li>
-				<li class="plan-detail">5 Free</li>
-				<li class="plan-detail1"><i class="fa fa-check" aria-hidden="true"></i></li>
-				<li class="plan-detail"><i class="fa fa-times" aria-hidden="true"></i></li>
+					<li class="plan-detail"> Premium Job Post</li>
+					<li class="plan-detail">Unlimited Regular Job Post</li>
+					<li class="plan-detail">Unlimited Applicants</li>
+					<li class="plan-detail">No support available</li>
+					<li class="plan-detail ico"><i class="fa fa-times" aria-hidden="true"></i></li>
+					<li class="plan-detail ico"><i class="fa fa-times" aria-hidden="true"></i></li>
 				<li class="order-2"><a href="#.">order now</a></li>
 			  </ul>
 			</div>
@@ -80,14 +80,14 @@
 			  <div class="main-unit">
 				<div class="pricing-unit3">$</div>
 				<div class="pricing-unit3-1">20</div>
-				<div class="pricing-unit3-2">per <span class="pricing-unit3-3">mont</span></div>
+				<div class="pricing-unit3-2">per <span class="pricing-unit3-3">month</span></div>
 				<div class="clearfix"></div>
 			  </div>
 			  <ul class="pricing-detail">
-				<li class="plan-detail">300 GB</li>
-				<li class="plan-detail">500 GB</li>
-				<li class="plan-detail">2 Domains</li>
-				<li class="plan-detail">5 Free</li>
+				<li class="plan-detail"> Premium Job Post</li>
+				<li class="plan-detail">Unlimited Regular Job Post</li>
+				<li class="plan-detail">Unlimited Applicants</li>
+				<li class="plan-detail">E-Mail support available</li>
 				<li class="plan-detail1"><i class="fa fa-check" aria-hidden="true"></i></li>
 				<li class="plan-detail1"><i class="fa fa-check" aria-hidden="true"></i></li>
 				<li class="order-3"><a href="#.">order now</a></li>

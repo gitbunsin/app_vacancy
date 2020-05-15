@@ -36,7 +36,9 @@
             <li class="{{(request()->segment(2) == 'my-profile') ? 'active' : '' }}">
               <a  href="{{url('/user/my-profile')}}"><i class="fa fa-user" aria-hidden="true"></i> My Details</a>
             </li>
-            <li><a href="#"><i class="fa fa-desktop" aria-hidden="true"></i> My Job Applications</a></li>
+            <li class="{{(request()->segment(2) == 'view-bookmark') ? 'active' : '' }}">
+              <a href="{{url('/user/view-bookmark')}}"><i class="fa fa-desktop" aria-hidden="true"></i> My Job Applications</a>
+            </li>
             <li class="{{(request()->segment(2) == 'view-profile') ? 'active' : '' }}">
                       <a href="{{url('/user/view-profile')}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> View Resume</a>
                   </li>

@@ -52,8 +52,7 @@
                       <input type="password" name="seeker_confirm_password" id="seeker_confirm_password" class="form-control" placeholder="Confirm Password">
                     </div>
                     <div class="formrow">
-                      <input type="checkbox" value="agree text" name="agree" />
-                      There are many variations of passages of Lorem Ipsum available</div>
+                      <input type="checkbox" value="agree text" name="agree" /> Accpeted term and condition ! </div>
                     <input type="submit" class="btn" value="Register">
                 </form>
               </div>
@@ -73,8 +72,7 @@
                       <input required type="password" class="form-control" name="admin_confirm_password" id="admin_confirm_password" placeholder="Confirm Password">
                     </div>
                     <div class="formrow">
-                      <input type="checkbox" value="agree text c" name="cagree" />
-                      There are many variations of passages of Lorem Ipsum available</div>
+                      <input type="checkbox" value="agree text c" name="cagree" />  Accpeted term and condition ! </div>
                     <input type="submit" class="btn" value="Register">
                 </form>
                 </div>

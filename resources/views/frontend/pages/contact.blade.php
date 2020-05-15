@@ -91,7 +91,7 @@
 		<br/>
 		<!-- Google Map -->
 		<div class="googlemap">
-			<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d193572.19492844533!2d-74.11808565615137!3d40.70556503857166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1481975053066" allowfullscreen></iframe>
+			<div id="map" style="width: 100%; height: 500px;"></div> 
 		  </div>
 	  </div>
 	</div>
@@ -102,4 +102,30 @@
 @endsection
 @section('scripts')
 	<script src="/js/backend/contact.js"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+	<script type="text/javascript">
+		function initialize() {
+		   var latlng = new google.maps.LatLng(11.562108,	104.888535);
+			var map = new google.maps.Map(document.getElementById('map'), {
+			  center: latlng,
+			  zoom: 13
+			});
+			var marker = new google.maps.Marker({
+			  map: map,
+			  position: latlng,
+			  draggable: false,
+			  anchorPoint: new google.maps.Point(0, -29)
+		   });
+			var infowindow = new google.maps.InfoWindow();   
+			google.maps.event.addListener(marker, 'click', function() {
+			  var iwContent = '<div id="iw_container">' +
+			  '<div class="iw_title"><b>Location</b> : PhnomPenh</div></div>';
+			  // including content to the infowindow
+			  infowindow.setContent(iwContent);
+			  // opening the infowindow in the current map and at the current marker location
+			  infowindow.open(map, marker);
+			});
+		}
+		google.maps.event.addDomListener(window, 'load', initialize);
+		</script>
 @endsection

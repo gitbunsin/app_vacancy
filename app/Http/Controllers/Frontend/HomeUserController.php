@@ -60,11 +60,17 @@ class HomeUserController extends Controller
         $user_cv = userCv::where('user_id',Auth::user()->id)->first();
         return view('frontend.pages.candidate.upload-resume',compact('user_cv')); 
     }
+    public function myBookmark()
+    {
+        $bookmarks = userBookmark::with(['user','vacancy'])->where('user_id',Auth::user()->id)->get();
+        // dd($bookmarks);
+        return view('frontend/pages/candidate/bookmark',compact('bookmarks')); 
+    }
     public function myResume(){
         $id = Auth::user()->id;
         $user_cv = userCv::where('user_id',$id)->first();
         $user = User::with(['hobby','reference','skill','language','traning','experience','education'])->where('id',$id)->first();
-        $user_bookmark = userBookmark::where('user_id',Auth::user()->id)->get();
+        // $user_bookmark = userBookmark::where('user_id',Auth::user()->id)->get();
         return view('frontend.pages.candidate.my-resume'); 
     }
 

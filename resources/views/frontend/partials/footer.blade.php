@@ -33,7 +33,7 @@
         <!--About Us-->
         <div class="col-md-3 col-sm-12">
           <div class="ft-logo"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/logo.png" alt="Your alt text here"></div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et consequat elit. Proin molestie eros sed urna auctor lobortis. Integer eget scelerisque arcu. Pellentesque scelerisque pellentesque nisl, sit amet aliquam mi pellentesque fringilla. Ut porta augue a libero pretium laoreet. Suspendisse sit amet massa accumsan, pulvinar augue id, tristique tortor.</p>
+          <p> is Cambodia’s leading freelancer collection and professional recruitment agency, specializing in providing human capital resources and assets Our success and expertise has led to thousands of jobseekers using our services every month to search the more than 1000+ live job ads and project that looking for freelancers.</p>
           
           <!-- Social Icons -->
           <div class="social"> <a href="#." target="_blank"> 
@@ -87,51 +87,32 @@
           <h5>Latest Articles</h5>
           <ul class="posts-list">
             <!--Article 1-->
+            @php
+                use App\Model\post; $blogs = post::orderBy('id','desc')->take(3)->get();
+            @endphp
+            @foreach ($blogs as $blog)
             <li>
               <article class="post post-list">
                 <div class="entry-content media">
-                  <div class="media-left"> <a href="#." title="" class="entry-image"> <img width="80" height="80" src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/news-1.jpg" alt="Your alt text here"> </a> </div>
+                  <div class="media-left"> <a href="#." title="" class="entry-image"> 
+                    <img style="width: 400px; hieght:200px;" src="{{$blog->feature_image_uri}}" title="{{$blog->title}}" alt="{{$blog->title}}" class="img-fluid" />
+                  </a>
+                   </div>
                   <div class="media-body">
-                    <h4 class="entry-title"> <a href="#.">Sed fermentum at lectus nec porta.</a> </h4>
+                    <h4 class="entry-title"> <a href="#.">{{$blog->title}}</a> </h4>
                     <div class="entry-content-inner">
-                      <div class="entry-meta"> <span class="entry-date">Jan 28, 2016</span> </div>
+                      <div class="entry-meta"> <span class="entry-date">{{date('d-m-Y', strtotime($blog->created_at))}}</span> </div>
                     </div>
                   </div>
                 </div>
               </article>
             </li>
+                            
+            @endforeach
             <!--Article end 1--> 
             
             <!--Article 2-->
-            <li>
-              <article class="post post-list">
-                <div class="entry-content media">
-                  <div class="media-left"> <a href="#." title="" class="entry-image"> <img width="80" height="80" src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/news-1.jpg" alt="Your alt text here"> </a> </div>
-                  <div class="media-body">
-                    <h4 class="entry-title"> <a href="#.">Sed fermentum at lectus nec porta.</a> </h4>
-                    <div class="entry-content-inner">
-                      <div class="entry-meta"> <span class="entry-date">Jan 28, 2016</span> </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            </li>
-            <!--Article end 2--> 
-            
-            <!--Article 3-->
-            <li>
-              <article class="post post-list">
-                <div class="entry-content media">
-                  <div class="media-left"> <a href="#." title="" class="entry-image"> <img width="80" height="80" src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/news-1.jpg" alt="Your alt text here"> </a> </div>
-                  <div class="media-body">
-                    <h4 class="entry-title"> <a href="#.">Sed fermentum at lectus nec porta.</a> </h4>
-                    <div class="entry-content-inner">
-                      <div class="entry-meta"> <span class="entry-date">Jan 28, 2016</span> </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            </li>
+           
             <!--Article end 3-->
           </ul>
         </div>

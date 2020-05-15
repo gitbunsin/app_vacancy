@@ -9,6 +9,7 @@
 	$country = Country::all();
 	$city = City::all();
 	use App\Model\jobTitle;
+	use App\Model\company;
 	$job_title = jobTitle::all();
 	$degree = array("Associate degree","Bachelor degree","Master degree","Doctoral degree");
 	use App\Model\Language;
@@ -62,7 +63,7 @@
 				<a  href="{{url('/user/my-profile')}}"><i class="fa fa-user" aria-hidden="true"></i> My Details</a>
 			</li>
 			<li class="{{(request()->segment(2) == 'view-bookmark') ? 'active' : '' }}">
-				<a href="{{url('/user/view-bookmark')}}"><i class="fa fa-desktop" aria-hidden="true"></i> My Job Applications</a>
+				<a href="{{url('/user/view-bookmark')}}"><i class="fa fa-desktop" aria-hidden="true"></i> My Favourite Jobs</a>
 			</li>
 			<li class="{{(request()->segment(2) == 'view-profile') ? 'active' : '' }}">
                 <a href="{{url('/user/view-profile')}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> View Resume</a>
@@ -73,7 +74,7 @@
 			<li class="{{(request()->segment(2) == 'upload-resume') ? 'active' : '' }}">
 				<a href="{{url('/user/upload-resume')}}"><i class="fa fa-paper-plane" aria-hidden="true"></i> upload Resume</a>
 			</li>
-			<li><a href="#"><i class="fa fa-commenting" aria-hidden="true"></i> Feedback</a></li>
+			<li><a href="#"><i class="fa fa-commenting" aria-hidden="true"></i> My Job Applications</a></li>
 			<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i> My Package</a></li>
             <li class="{{(request()->segment(2) == 'account-setting') ? 'active' : '' }}">
                 <a href="{{url('user/account-setting')}}"><i class="fa fa-lock" aria-hidden="true"></i> Account Setting</a>
@@ -88,22 +89,31 @@
                     <div class="formpanel">  
                       <!-- Personal Information -->
 					  
-					 	 <h1>Change Your Password Account</h1>
-						 <span>Are you sure, you want to change your account?</span><br/><br/>
-							<form action="#" id="frmUserChangePassword">
-								<input type="hidden" id="user_password" value="{{$user->id}}">
-								<input type="hidden" name="_token" value="{{ csrf_token()}}">
-										<div class="form-group">
-												<input type="password" placeholder="new password" class="form-control" id="new_password" name="new_password"/>
+					 	 <h1>Favourite Jobs</h1>
+						 <span>Here all ! Your favourite jobs </span><br/><br/>
+						 <ul class="jobslist row">
+							<!--Job start-->
+							@foreach ($bookmarks as  $bookmark)
+								@php
+									$com = vacancy::with('company')->where('company_id',$bookmark->vacancy->company_id)->first();
+									// dd($company);
+								@endphp
+								<li class="col-md-12">
+								<div class="jobint">
+									<div class="row">
+									<div class="col-md-2 col-sm-2"><img height="100px;" src="{{asset('/uploads/UserCv/'.$com->company->company_logo)}}" alt="Job Name" /></div>
+									<div class="col-md-6 col-sm-6">
+										<h4><a href="{{url('vacancy/detail/'.$bookmark->vacancy->id)}}">{{$bookmark->vacancy->vacancy_name}}</a></h4>
+										<div class="company"><a href="#.">{{$bookmark->vacancy->category->name}}</a>
 										</div>
-										<div class="form-group">
-												<input type="password" placeholder="confirm password" class="form-control" id="confirm_password" name="confirm_password"/>
-										</div>
-								<div class="buttons">
-									<button  type="submit" class="btn btn-primary" value=""> Save Change Password <i class="fa fa-save" aria-hidden="true"></i></button>
-
+										<div class="jobloc"><label class="fulltime">{{$bookmark->vacancy->jobType->name}}</label>   - <span>{{$bookmark->vacancy->province->name}}</span></div>
+									</div>
+									<div class="col-md-4 col-sm-4"><a href="{{url('vacancy/detail/'.$bookmark->vacancy->id)}}" class="applybtn"> View Details</a></div>
+									</div>
 								</div>
-							</form>
+								</li>								
+							@endforeach
+						 </ul>
                     </div>
                   </div>
                 </div>
@@ -116,16 +126,7 @@
 	
 	@endsection
 	@section('scripts')
-	<script src="{{asset('js/backend/bookmark.js')}}"></script>
-	<script src="{{asset('js/frontend/user_hobby.js')}}"></script>
-	<script src="{{asset('js/frontend/user_reference.js')}}"></script>
-	<script src="{{asset('js/frontend/user_language.js')}}"></script>
-	<script src="{{asset('js/frontend/user_experience.js')}}"></script>
-	<script src="{{asset('js/frontend/user_skill.js')}}"></script>
-	<script src="{{asset('js/frontend/user_education.js')}}"></script>
-	<script src="{{asset('js/backend/apply_job.js')}}"></script>
-	<script src="{{asset('js/backend/user_profile.js')}}"></script>
-	<script src="{{asset('js/frontend/skill.js')}}"></script>
+		<script src="{{asset('js/backend/bookmark.js')}}"></script>
 	@endsection
 	
 	

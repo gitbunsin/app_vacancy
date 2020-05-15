@@ -21,7 +21,7 @@ Route::get('/', function () {
  ************************************************************************************/
 Route::get('admin-login', 'Auth\AdminLoginController@showLoginForm');
 Route::get('news','HomeController@news');
-Route::get('blog-details','HomeController@blogDetails');
+// Route::get('blog-details/{id}','Backend\postController');
 Route::get('package','HomeController@package');
 Route::get('employee/activate/login/{token}/{id}','Auth\EmployeeLoginController@showEmployeeLoginForm');
 Route::post('employee/login','Auth\EmployeeLoginController@login');
@@ -58,6 +58,7 @@ Route::group(['middleware'=>'auth'], function(){
         Route::get('my-resume','HomeUserController@myResume');
         Route::get('my-dashboard','HomeUserController@myDashboard');
         Route::get('view-profile','HomeUserController@viewProfile');
+        Route::get('view-bookmark','HomeUserController@myBookmark');
         Route::get('account-setting','HomeUserController@accountSetting');
         Route::get('upload-resume','HomeUserController@uploadResume');
         Route::resource('education','UserEducationController');
@@ -138,8 +139,8 @@ Route::group(['namespace' => 'Backend','prefix' => 'admin'], function ($request)
    
     Route::resource('user','UserController');
     Route::post('user-cv/{id}','UserController@userCV');
-    Route::post('bookmark/{id}','UserController@bookmark');
-    Route::delete('bookmark/{id}','UserController@bookmarkDelete');
+    // Route::post('bookmark/{id}','UserController@bookmark');
+    // Route::delete('bookmark/{id}','UserController@bookmarkDelete');
     Route::get('create-resume','CandidateController@createResume');
     Route::post('user/resume/{id}','UserController@userCV');
     Route::get('user/view-resume/{id}','UserController@viewResume');
@@ -155,17 +156,6 @@ Route::get('qr-code-g', function () {
       
   });
 
-  Route::get('send-mail', function () {
-   
-    $details = [
-        'title' => 'Mail from ItSolutionStuff.com',
-        'body' => 'This is for testing email using smtp'
-    ];
-   
-    \Mail::to('bunsingit@gmail.com')->send(new \App\Mail\MyTestMail($details));
-   
-    dd("Email is Sent.");
-});
 
 Route::get('payment', 'PayPalController@payment')->name('payment');
 Route::get('cancel', 'PayPalController@cancel')->name('payment.cancel');

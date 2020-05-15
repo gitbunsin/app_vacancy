@@ -43,7 +43,7 @@ class HomeController extends Controller
     }
     public function news()
     {
-        $posts = Post::paginate(10);
+        $posts = Post::orderBy('id','desc')->paginate(10);
         return view('frontend.pages.blog',compact('posts'));
     }
     public function blogDetails(){

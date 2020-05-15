@@ -84,7 +84,9 @@ class PostController extends fc
      */
     public function show($id)
     {
-        //
+        $post = post::find($id);
+        $all_post = post::orderBy('id','desc')->get();
+        return view('frontend/pages/blog-detail',compact('post','all_post'));
     }
 
     /**

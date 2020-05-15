@@ -203,13 +203,15 @@ background-color: rgba(0, 0, 0, 0);
       <li class="col-md-6">
         <div class="jobint">
           <div class="row">
-            <div class="col-md-2 col-sm-2"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/employers/emplogo1.jpg" alt="Job Name" /></div>
-            <div class="col-md-7 col-sm-7">
+            <div class="col-md-2 col-sm-2">
+              <img src="{{asset('/uploads/UserCv/'.$jobs->company->company_logo)}}" alt="Job Name" />
+            </div>
+            <div class="col-md-6 col-sm-6">
               <h4><a href="{{url('vacancy/detail/'.$jobs->id)}}">{{$jobs->vacancy_name}}</a></h4>
               <div class="company"><a href="#.">{{$jobs->category->name}}</a></div>
               <div class="jobloc"><label class="fulltime">{{$jobs->jobType->name}}</label>   - <span>{{$jobs->province->name}}</span></div>
             </div>
-            <div class="col-md-3 col-sm-3"><a href="#." class="applybtn">Apply Now</a></div>
+            <div class="col-md-4 col-sm-4"><a href="{{url('vacancy/detail/'.$jobs->id)}}" class="applybtn">View Details</a></div>
           </div>
         </div>
       </li>           
@@ -241,13 +243,15 @@ background-color: rgba(0, 0, 0, 0);
       <li class="col-md-6">
         <div class="jobint">
           <div class="row">
-            <div class="col-md-2 col-sm-2"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/employers/emplogo1.jpg" alt="Job Name" /></div>
-            <div class="col-md-7 col-sm-7">
+            <div class="col-md-2 col-sm-2">
+              <img src="{{asset('/uploads/UserCv/'.$jobs->company->company_logo)}}" alt="Job Name" />
+            </div>
+            <div class="col-md-6 col-sm-6">
               <h4><a href="{{url('vacancy/detail/'.$jobs->id)}}">{{$jobs->vacancy_name}}</a></h4>
               <div class="company"><a href="#.">{{$jobs->category->name}}</a></div>
               <div class="jobloc"><label class="fulltime">{{$jobs->jobType->name}}</label>   - <span>{{$jobs->province->name}}</span></div>
             </div>
-            <div class="col-md-3 col-sm-3"><a href="#." class="applybtn">Apply Now</a></div>
+            <div class="col-md-4 col-sm-4"><a href="{{url('vacancy/detail/'.$jobs->id)}}" class="applybtn">View Details</a></div>
           </div>
         </div>
       </li>           
