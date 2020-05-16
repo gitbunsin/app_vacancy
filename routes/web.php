@@ -59,6 +59,7 @@ Route::group(['middleware'=>'auth'], function(){
         Route::get('my-dashboard','HomeUserController@myDashboard');
         Route::get('view-profile','HomeUserController@viewProfile');
         Route::get('view-bookmark','HomeUserController@myBookmark');
+        Route::get('my-job','HomeUserController@myJobs');
         Route::get('account-setting','HomeUserController@accountSetting');
         Route::get('upload-resume','HomeUserController@uploadResume');
         Route::resource('education','UserEducationController');

@@ -50,62 +50,14 @@ class JobController extends Controller
     }
     public function job()
     {
-        $job = vacancy::with(['company','province','category','jobType','company'])->where('status','approved')->paginate(10);
-        $popularJob = vacancy::with(['company','province','category','jobType','company'])->where('status','approved')->take(10)->get();
+        $id = '';
+        $job = vacancy::with(['company','province','category','jobType','company'])->orderBy('id','desc')->where('status','approved')->paginate(10);
         // dd($job);
-        return view('frontend/pages/job',compact('job','popularJob'));
+        $popularJob = vacancy::with(['company','province','category','jobType','company'])->where('status','approved')->take(11)->get();
+        // dd($job);
+        return view('frontend/pages/job',compact('job','popularJob','id'));
     }
 
-    // public function jobsListing(Request $request){
-        // dd('hello');
-        // $title = "Browse Jobs";
-
-
-        // $categories = Category::orderBy('category_name', 'asc')->get();
-        // $countries = Country::all();
-        // $old_country = false;
-        // if (request('country')){
-        //     $old_country = Country::find(request('country'));
-        // }
-
-
-        // $jobs = Job::active();
-
-        // if ($request->q){
-        //     $jobs = $jobs->where(function ($query) use($request){
-        //         $query->where('job_title', 'like', "%{$request->q}%")
-        //             ->orWhere('position', 'like', "%{$request->q}%")
-        //             ->orWhere('description', 'like', "%{$request->q}%");
-        //     });
-        // }
-
-        // if ($request->location){
-        //     $jobs = $jobs->where('city_name', 'like', "%{$request->location}%");
-        // }
-
-        // if ($request->gender){
-        //     $jobs = $jobs->whereGender($request->gender);
-        // }
-        // if ($request->exp_level){
-        //     $jobs = $jobs->whereExpLevel($request->exp_level);
-        // }
-        // if ($request->job_type){
-        //     $jobs = $jobs->whereJobType($request->job_type);
-        // }
-        // if ($request->country){
-        //     $jobs = $jobs->whereCountryId($request->country);
-        // }
-        // if ($request->state){
-        //     $jobs = $jobs->whereStateId($request->state);
-        // }
-        // if ($request->category){
-        //     $jobs = $jobs->whereCategoryId($request->category);
-        // }
-
-        // $jobs = $jobs->orderBy('id', 'desc')->with('employer')->paginate(20);
-
-        // return view('jobs', compact('title', 'jobs','categories', 'countries', 'old_country'));
-    // }
 
     public function vacancyDetails($id)
     {
@@ -136,15 +88,38 @@ class JobController extends Controller
     }
     public function jobsListing(Request $request)
     {
-        $job = vacancy::where('category_id','=',$request->category)->get();
-        return view('frontend/pages/job',compact('job'));
+        // $id ='';
+        if($request->job_title){
+            $job = vacancy::where('job_title_id','=',$request->job_title)->paginate('10');
+            $id = $request->id;
+        }
+        if($request->category){
+            $job = vacancy::where('category_id','=',$request->category)->paginate('10');
+            $id = $request->id;
+        }
+        if($request->province){
+            $job = vacancy::where('province_id','=',$request->province)->paginate('10');
+            $id = $request->id;
+        }
+       
+        return view('frontend/pages/job',compact('job','id'));
     }
 
     public function searchSalaryRange(Request $request)
     {
+        // dd($request->salary_Range);
         if ($request->minSalary){
             $job = vacancy::where('maxSalary', 'like', "%{$request->maxSalary}%")
             ->where('minSalary', 'like', "%{$request->minSalary}%")->get();
+        }
+        // dd($request->search_job);
+        if($request->salary_Range){
+            $job =  vacancy::whereIn('maxSalary', $request->salary_Range)
+      
+            ->paginate('10'); 
+        }
+        if($request->search_job){
+            $job =  vacancy::whereIn('job_title_id',$request->search_job)->paginate('10'); 
         }
         return view('frontend/pages/job',compact('job'));
     }

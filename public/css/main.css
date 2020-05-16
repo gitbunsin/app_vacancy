@@ -99,6 +99,7 @@ input:focus, textarea:focus{
 p {
 	line-height: 22px;
 }
+
 img {
 	max-width: 100%;
 }
@@ -418,14 +419,23 @@ h6 {
 	padding: 0 15px;
 }
 .navbar-nav>li>a {
-	text-transform: uppercase;
+	/* text-transform: uppercase; */
 	font-weight: 600;
 	padding: 16px 0;
 	/* color: #0a0a0a; */
 	border-bottom: 2px solid #fff;
 }
 .navbar-default .navbar-nav>li>a {
-    color: #0a0a0a;
+	    /* background: #263bd6; */
+    /* color: white; */
+    /* padding: 16px 15px; */
+    /* border-bottom-color: black; */
+    /* padding: 5px 25px 7px; */
+    /* background-color: #0072bc; */
+    font-weight: 400;
+    font-size: 15px;
+    color: rgba(0,0,0,.5);
+    /* margin-top: 10px; */
 }
 
 
@@ -467,26 +477,31 @@ h6 {
 .navbar-nav li.postjob a {
 	
     /* background: #263bd6; */
-    color: white;
+    /* color: white; */
     padding: 16px 15px;
     /* border-bottom-color: black; */
     padding: 5px 25px 7px;
-    background-color: #0072bc;
+    /* background-color: #0072bc; */
     font-weight: 400;
-    font-size: 14px;
-    color: #fff;
+    font-size: 15px;
+	color: rgba(0,0,0,.5);
     margin-top: 10px;
 }
 .navbar-nav li.jobseeker a {
+	color: rgb(255, 255, 255);
+    /* margin-top: 8px; */
+    background: #0072bc;
+    /* padding: 10px 18px; */
+    border-radius: 40px;
 	/* background: #263bd6; */
-    color: white;
+    /* color: white; */
     padding: 16px 15px;
     /* border-bottom-color: black; */
     padding: 5px 25px 7px;
-    background-color: red;
+    /* background-color: red; */
     font-weight: 400;
-    font-size: 14px;
-    color: #fff;
+    font-size: 15px;
+    /* color: black; */
     margin-top: 10px;
 }
 .navbar-nav li a.postjob:hover, .navbar-nav li a.jobseeker:hover {
@@ -496,7 +511,15 @@ h6 {
 }
 
 .navbar-nav>li.userbtn>a{padding:0; border:none; padding-top:8px;}
-.navbar-nav>li.userbtn img{width:36px; height:36px; border-radius:50%; border:1px solid #ddd; padding:3px;}
+.navbar-nav>li.userbtn img{
+	width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    padding: 3px;
+	/* width:36px; height:36px; border-radius:50%; border:1px solid #ddd; padding:3px; */
+
+}
 
 .navbar-nav>li.userbtn .dropdown-menu{left:auto; right:0;}
 
@@ -2462,7 +2485,7 @@ ul.orderlist li:before {
 .pricing-unit3 {
 	font-size: 57px;
 	float: left;
-	color: #56d700;
+	color: #0072bc;
 	margin-left: 20px;
 	padding-top: 80px;
 	font-weight: 300;
@@ -2470,7 +2493,7 @@ ul.orderlist li:before {
 .pricing-unit3-1 {
 	font-size: 132px;
 	font-weight: bold;
-	color: #56d700;
+	color: #0072bc;
 	float: left;
 }
 .pricing-unit3-2 {
@@ -2544,7 +2567,7 @@ ul.orderlist li:before {
 	font-weight: normal;
 }
 .pricing-table1-3 {
-	background: #56d700;
+	background: #0072bc;
 	text-align: center;
 	color: #fff;
 	font-size: 26px;
@@ -2599,7 +2622,7 @@ ul.orderlist li:before {
 	display: inline-block;
 }
 .three-plan .order-3 {
-	background: #56d700;
+	background: #0072bc;
 	font-size: 16px;
 	padding: 25px 0px;
 	font-weight: bold;

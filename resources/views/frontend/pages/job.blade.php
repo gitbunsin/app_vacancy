@@ -23,6 +23,15 @@
     color: #0072bc;
 }
 </style>
+@php
+  $arrayName = array(
+    'function' => 'Browse By Functional Area',
+    'industry' => 'Browse By Industries',
+    'location' => 'Browse By Provinces',
+    'salary' => 'Salary Range'
+  );
+  // dd($arrayName );
+@endphp
 <div class="pageTitle">
   <div class="container">
     <div class="row">
@@ -49,55 +58,53 @@
 
                   <div class="searchform">
                       <ul class="nav nav-tabs">
-                          <li class="active"><a data-toggle="tab" href="#function">Browse By Functional Area</a></li>
-                          <li><a data-toggle="tab" href="#industry">Browse By Industries</a></li>
-                          <li><a data-toggle="tab" href="#location">Browse By Provinces</a></li>
-                          <li><a data-toggle="tab" href="#salary">Salary Range</a></li>
+                        @foreach ($arrayName as $key => $item)
+                          <li class="{{ (request()->id == $key) ? 'active' : '' }}"><a data-toggle="tab" href="#{{$key}}">{{$item}}</a></li> 
+                        @endforeach
+                         
                       </ul>
 
                       <div class="tab-content">
-                          <div id="function" class="tab-pane fade in active">
+                          <div id="function" class="tab-pane fade {{ (request()->id == 'function') ? 'in active' : '' }}">
                               <ul class="row catelist">   
                                 @php
                                 use App\Model\jobTitle;  $jobTitles = jobTitle::all();
                               @endphp
-                              @foreach ($jobTitles as $jobTitle)
-                              <li class="col-md-3 col-sm-4  col-xs-6">
-                                <a href="{{route('jobs_listing', ['category' => $jobTitle->id ])}}" title="Design">{{$jobTitle->name}}<span>(1)</span></a>
-                              </li>   
-                              @endforeach  
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-                                                                                                        
+                                @foreach ($jobTitles as $jobTitle)
+                                <li class="col-md-3 col-sm-4  col-xs-6">
+                                  <a href="{{route('jobs_listing', ['job_title' => $jobTitle->id ,'id' => 'function'])}}" title="Design">{{$jobTitle->name}}<span>(1)</span></a>
+                                </li>   
+                                @endforeach                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
                               </ul>
                           </div>
-                          <div id="industry" class="tab-pane fade">
+                          <div id="industry" class="tab-pane fade  {{ (request()->id == 'industry') ? 'in active' : '' }}">
                               <ul class="row catelist">
                                 @php
                                   use App\Model\jobCategory;  $categories = jobCategory::all();
                                 @endphp
                                 @foreach ($categories as $category)
                                 <li class="col-md-3 col-sm-4  col-xs-6">
-                                  <a href="{{route('jobs_listing', ['category' => $category->id ])}}" title="Design">{{$category->name}}<span>(1)</span></a>
+                                  <a href="{{route('jobs_listing', ['category' => $category->id , 'id'=> 'industry' ])}}" title="Design">{{$category->name}}<span>(1)</span></a>
                                 </li>   
                                 @endforeach    
                              </ul>
 
                           </div>
-                          <div id="location" class="tab-pane fade">
+                          <div id="location" class="tab-pane fade {{ (request()->id == 'location') ? 'in active' : '' }}">
                               <ul class="row catelist">
                                 @php
                                     use App\Model\province; $provinces = province::all();
                                 @endphp
                                 @foreach ($provinces as $item)
                                 <li class="col-md-3 col-sm-4 col-xs-6">
-                                  <a href="https://tosjob.com/jobs?state_id%5B%5D=644" title="Phnom Penh">{{$item->name}}<span>(3)</span></a>
+                                  <a href="{{route('jobs_listing', ['province' => $item->id , 'id'=> 'location'  ])}}" title="Phnom Penh">{{$item->name}}<span>(3)</span></a>
                                 </li>
                                 @endforeach
                        
                            </ul>
 
                           </div>
-                          <div id="salary" class="tab-pane fade">
+                          <div id="salary" class="tab-pane fade {{ (request()->id == 'salary') ? 'in active' : '' }}">
                               <form action="{{url('search-salary-range')}}" method="get">
                               <!-- Salary -->
                                 <div class="widget">
@@ -145,56 +152,43 @@
       <div class="col-md-3 col-sm-6"> 
         <!-- Side Bar start -->
         <div class="sidebar"> 
+        <form action="{{url('search-salary-range')}}" method="get">
           <!-- Jobs By Title -->
           <div class="widget">
             <h4 class="widget-title">Jobs By Title</h4><hr/>
             <ul class="optionlist">
              
-              @foreach ($jobTitles as $jobTitle)
+              @foreach ($jobTitles as $key => $jobTitle)
                 <li>
-                  <input type="checkbox" name="checkname" id="{{$jobTitle->name}}" />
+                  <input value="{{$key}}" type="checkbox" name="search_job[]" id="{{$jobTitle->name}}" />
                   <label for="{{$jobTitle->name}}"></label>
                     {{$jobTitle->name}} 
                 </li>
               @endforeach
             </ul>
             <!-- title end --> 
-          </div>          
-          <!-- Jobs By Industry end --> 
-          
-          <!-- Top Companies -->
-        
-          <!-- Top Companies end --> 
-          
+          </div>                    
           <!-- Salary -->
           <div class="widget">
             <h4 class="widget-title">Salary Range</h4>
             <hr/>
+            @php
+            $salaryRange = array(
+              '100' => '0 to $100 ',
+              '200' => '$100 to $199 ',
+              '500' => '$199 to $499 ',
+              '600' => '$999 to $4999'
+            );
+            // dd($arrayName );
+          @endphp
             <ul class="optionlist">
+              @foreach ($salaryRange as $key => $salaryRanges)
               <li>
-                <input type="checkbox" name="checkname" id="price1" />
-                <label for="price1"></label>
-                0 to $100 </li>
-              <li>
-                <input type="checkbox" name="checkname" id="price2" />
-                <label for="price2"></label>
-                $100 to $199  </li>
-              <li>
-                <input type="checkbox" name="checkname" id="price3" />
-                <label for="price3"></label>
-                $199 to $499 </li>
-              <li>
-                <input type="checkbox" name="checkname" id="price4" />
-                <label for="price4"></label>
-                $499 to $999  </li>
-              <li>
-                <input type="checkbox" name="checkname" id="price5" />
-                <label for="price5"></label>
-                $999 to $4999 </li>
-              <li>
-                <input type="checkbox" name="checkname" id="price6" />
-                <label for="price6"></label>
-                Above $4999  </li>
+                <input value="{{$key}}" type="checkbox" name="salary_Range[]" id="{{$key}}" />
+                <label for="  {{$salaryRanges}}"></label>
+                {{$salaryRanges}}
+              </li>
+              @endforeach
             </ul>
           </div>
           <!-- Salary end --> 
@@ -204,7 +198,9 @@
             <button class="btn"><i class="fa fa-search" aria-hidden="true"></i> Search Jobs</button>
           </div>
           <!-- button end--> 
+        </form>
         </div>
+      
         <!-- Side Bar end --> 
       </div>
       <div class="col-md-3 col-sm-6 pull-right"> 
@@ -239,7 +235,16 @@
                     <div class="jobinfo">
                       <h3><a href="{{'vacancy/detail/'.$jobs->id}}">{{$jobs->vacancy_name}}</a></h3>
                       <div class="companyName"><a href="#.">{{$jobs->company->company_name}}</a></div>
-                      <div class="location"><label class="fulltime">{{$jobs->jobType->name}}</label>   - <span>{{$jobs->province->name}}</span></div>
+                      <div class="location">
+                        @if($jobs->jobType->id == "1")
+                           <label class="fulltime">{{$jobs->jobType->name}}</label>  
+                        @elseif($jobs->jobType->id == "2")
+                          <label class="partTime">{{$jobs->jobType->name}}</label> 
+                        @else
+                          <label class="freelance">{{$jobs->jobType->name}}</label> 
+                        @endif
+                         - <span>{{$jobs->province->name}}</span>
+                      </div>
                     </div>
                     <div class="clearfix"></div>
                   </div>
@@ -252,19 +257,12 @@
         </ul>
           <div class="pagiWrap">
             <div class="row">
-              <div class="col-md-4 col-sm-4">
-                <div class="showreslt">Showing 1-10</div>
+              <div class="col-md-5 col-sm-5">
+                <div class="showreslt">Showing Pages :  {{$job->currentPage() .' - 10 Total '. $job->total()}}</div>
               </div>
-              <div class="col-md-8 col-sm-8 text-right">
+              <div class="col-md-7 col-sm-7 text-right">
                 <ul class="pagination">
-                  <li class="active"><a href="#.">1</a></li>
-                  <li><a href="#.">2</a></li>
-                  <li><a href="#.">3</a></li>
-                  <li><a href="#.">4</a></li>
-                  <li><a href="#.">5</a></li>
-                  <li><a href="#.">6</a></li>
-                  <li><a href="#.">7</a></li>
-                  <li><a href="#.">8</a></li>
+                  <li class="active">{{$job->links()}}</li>
                 </ul>
               </div>
             </div>

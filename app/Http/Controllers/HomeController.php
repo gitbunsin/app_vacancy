@@ -32,8 +32,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $job = vacancy::with(['company','province','category','jobType','company'])->take(8)->get();
+        $job = vacancy::with(['company','province','category','jobType','company'])->take(9)->get();
         $categories = jobCategory::orderBy('name', 'asc')->get();
+        // $countCategory = vacancy::with('category')->count();
+        // dd($countCategory);
         return view('frontend/pages/home',compact('job','categories'));
     }
     public function package()

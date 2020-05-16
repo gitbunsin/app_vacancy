@@ -64,7 +64,13 @@ class HomeUserController extends Controller
     {
         $bookmarks = userBookmark::with(['user','vacancy'])->where('user_id',Auth::user()->id)->get();
         // dd($bookmarks);
-        return view('frontend/pages/candidate/bookmark',compact('bookmarks')); 
+        return view('frontend/pages/candidate/my-bookmark',compact('bookmarks')); 
+    }
+    public function myJobs()
+    {
+        $applications = userVacancy::with('vacancy')->where('user_id',Auth::user()->id)->get();
+        // dd($application);
+        return view('frontend/pages/candidate/my-job',compact('applications')); 
     }
     public function myResume(){
         $id = Auth::user()->id;

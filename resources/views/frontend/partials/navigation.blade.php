@@ -5,7 +5,7 @@
 <div class="header">
     <div class="container">
       <div class="row">
-        <div class="col-md-2 col-sm-3 col-xs-12"> <a href="index.html" class="logo"><img src="https://demo.themeregion.com/jobs/images/logo.png" alt="" /></a>
+        <div class="col-md-2 col-sm-3 col-xs-12"> <a href="index.html" class="logo"><img src="https://www.sharjeelanjum.com/demos/jobsportal-update/sitesetting_images/thumb/jobs-portal-1573969216-577.png" alt="" /></a>
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
           </div>
@@ -32,7 +32,7 @@
                   <a href="{{url('news')}}">Blog</a>
                 </li>
                 <li class="{{ (request()->segment(1) == 'contact') ? 'active' : '' }}">
-                  <a href="{{url("contact")}}">Contact</a>
+                  <a href="{{url("contact")}}">Contact Us</a>
                 </li>
                 @if (Auth::check())
                   <li class="dropdown userbtn"><a href=""><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/candidates/01.jpg" alt="" class="userimg" /></a>
@@ -45,9 +45,30 @@
                     </ul>
                 </li>
                 @else
-                  <li class="postjob"><a  href="{{url('login')}}">Post a job  </a></li> 
-                  <li class="jobseeker"><a href="{{url('register')}}">Job Seeker</a></li>
-                @endif   
+                  <li class="postjob"><a  href="{{url('login')}}">Sign in</a></li> 
+                  <li class="jobseeker"><a href="{{url('register')}}">Register</a></li>
+                @endif 
+                <li class="dropdown userbtn"><a href="https://www.sharjeelanjum.com/demos/jobsportal-update"><img src="https://www.sharjeelanjum.com/demos/jobsportal-update/images/lang.png" alt="" class="userimg"></a>
+                  <ul class="dropdown-menu">
+                   
+                    <li><a href="javascript:;" onclick="event.preventDefault(); document.getElementById('locale-form-pt-br').submit();" class="nav-link">English</a>
+                          <form id="locale-form-pt-br" action="https://www.sharjeelanjum.com/demos/jobsportal-update/set-locale" method="POST" style="display: none;">
+                              <input type="hidden" name="_token" value="6K2tdVCwrH9IhRlWs4mVi7wSZ0S3FO3bG9C5at5v">
+                              <input type="hidden" name="locale" value="pt-br">
+                              <input type="hidden" name="return_url" value="https://www.sharjeelanjum.com/demos/jobsportal-update">
+                              <input type="hidden" name="is_rtl" value="1">
+                          </form>
+                      </li>
+                                                          <li><a href="javascript:;" onclick="event.preventDefault(); document.getElementById('locale-form-utf8').submit();" class="nav-link">Khmer</a>
+                          <form id="locale-form-utf8" action="https://www.sharjeelanjum.com/demos/jobsportal-update/set-locale" method="POST" style="display: none;">
+                              <input type="hidden" name="_token" value="6K2tdVCwrH9IhRlWs4mVi7wSZ0S3FO3bG9C5at5v">
+                              <input type="hidden" name="locale" value="utf8">
+                              <input type="hidden" name="return_url" value="https://www.sharjeelanjum.com/demos/jobsportal-update">
+                              <input type="hidden" name="is_rtl" value="1">
+                          </form>
+                      </li>
+                                                      </ul>
+              </li>  
                 
               </ul>
               

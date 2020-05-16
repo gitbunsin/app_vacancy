@@ -3,7 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Model\vacancy;
 class JobCategory extends Model
 {
     protected $table = 'job_categories';
@@ -14,4 +14,8 @@ class JobCategory extends Model
     {
         return $this->belongsTo(Admin::class);
     }
+    // public function job_count()
+    // {
+    //         return $this->belongsToMany(vacancy::class)->whereStatus(1)->count();
+    // }
 }

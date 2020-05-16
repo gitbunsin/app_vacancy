@@ -31,7 +31,7 @@
                   <div class="col-md-5">
                     <div class="postimg">
                       @if($post->feature_image)
-                      <img style="width: 400px; hieght:200px;" src="{{$post->feature_image_uri}}" title="{{$post->title}}" alt="{{$post->title}}" class="img-fluid" />
+                      <img style="width: 300px; hieght:212px;" src="{{$post->feature_image_uri}}" title="{{$post->title}}" alt="{{$post->title}}" class="img-fluid" />
                         <div class="date"> 17 SEP</div>
                       @endif
                     </div>
@@ -53,19 +53,12 @@
           <!-- Pagination -->
           <div class="pagiWrap">
             <div class="row">
-              <div class="col-md-4 col-sm-6">
-                <div class="showreslt">Showing 1-10</div>
+              <div class="col-md-5 col-sm-5">
+                <div class="showreslt">Showing Pages :  {{$posts->currentPage() .' - 10 Total '. $posts->total()}}</div>
               </div>
-              <div class="col-md-8 col-sm-6 text-right">
+              <div class="col-md-7 col-sm-7 text-right">
                 <ul class="pagination">
-                  <li class="active"><a href="#.">1</a></li>
-                  <li><a href="#.">2</a></li>
-                  <li><a href="#.">3</a></li>
-                  <li><a href="#.">4</a></li>
-                  <li><a href="#.">5</a></li>
-                  <li><a href="#.">6</a></li>
-                  <li><a href="#.">7</a></li>
-                  <li><a href="#.">8</a></li>
+                  <li class="active">{{$posts->links()}}</li>
                 </ul>
               </div>
             </div>

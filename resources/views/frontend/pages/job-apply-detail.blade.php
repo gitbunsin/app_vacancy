@@ -88,8 +88,8 @@
             @else
                 <a href="#." onclick="NotLogin();" class="btn apply"><i class="fa fa-paper-plane" aria-hidden="true"></i> Apply Now</a>
             @endif
-             <a href="#." class="btn"><i class="fa fa-envelope" aria-hidden="true"></i> Email to Friend</a> 
-             <a href="#." class="btn"><i class="fa fa-black-tie" aria-hidden="true"></i> Job Aleart</a> 
+             <a href="#." class="btn"><i class="fa fa-share" aria-hidden="true"></i> Share to Friend</a> 
+             <a href="#." class="btn"><i class="fa fa-black-tie" aria-hidden="true"></i> Report Abuse</a> 
              @if(Auth::check())
                @php
                  $bookmark_vacancy = userBookmark::where('vacancy_id',$vacancy->id)->where('user_id',auth::user()->id)->count();                           

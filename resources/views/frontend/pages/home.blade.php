@@ -21,6 +21,9 @@ background-color: rgba(0, 0, 0, 0);
 }
 
 </style>
+@php
+     use App\Model\vacancy;
+@endphp
 <!-- Fav Icon -->
 <link rel="shortcut icon" href="favicon.ico">
 <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
@@ -85,8 +88,11 @@ background-color: rgba(0, 0, 0, 0);
 		  <ul class="row catelist">
         @if($categories->count())
           @foreach ($categories as $category)
+          @php
+            $count =  vacancy::where('category_id','=',$category->id)->count();
+          @endphp
             <li class="col-md-3 col-sm-3">
-              <a href="{{route('jobs_listing', ['category' => $category->id])}}">{{$category->name}} <span>{{$category->count()}}</span></a>
+              <a href="{{route('jobs_listing', ['category' => $category->id])}}">{{$category->name}} <span>({{$count}})</span></a>
             </li>         
           @endforeach
         @endif
@@ -99,40 +105,7 @@ background-color: rgba(0, 0, 0, 0);
   <!-- Popular Searches ends --> 
 <!-- Search End --> 
 
-<!-- How it Works start -->
-<div class="section howitwrap">
-  <div class="container"> 
-    <!-- title start -->
-    <div class="titleTop">
-      <div class="subtitle">Here You Can See</div>
-      <h3>How It <span>Works?</span></h3>
-    </div>
-    <!-- title end -->
-    <ul class="howlist row">
-      <!--step 1-->
-      <li class="col-md-4 col-sm-4">
-        <div class="iconcircle"><i class="fa fa-user" aria-hidden="true"></i></div>
-        <h4>Create An Account</h4>
-      </li>
-      <!--step 1 end--> 
-      
-      <!--step 2-->
-      <li class="col-md-4 col-sm-4">
-        <div class="iconcircle">
-          <i class="fa fa-graduation-cap" aria-hidden="true"></i></div>
-        <h4>Search Desired Job</h4>
-      </li>
-      <!--step 2 end--> 
-      
-      <!--step 3-->
-      <li class="col-md-4 col-sm-4">
-        <div class="iconcircle"><i class="fa fa-file-text" aria-hidden="true"></i></div>
-        <h4>Send Your Resume</h4>
-      </li>
-      <!--step 3 end-->
-    </ul>
-  </div>
-</div>
+
 <!-- How it Works Ends --> 
 
 <!-- Top Employers start -->
@@ -197,27 +170,31 @@ background-color: rgba(0, 0, 0, 0);
     
     <!--Featured Job start-->
     <ul class="jobslist row">
-      <!--Job start-->
+      <!--Job 1-->
       @if($job )
       @foreach ($job as $jobs)
-      <li class="col-md-6">
+       <li class="col-md-4 col-sm-6">
         <div class="jobint">
           <div class="row">
-            <div class="col-md-2 col-sm-2">
-              <img src="{{asset('/uploads/UserCv/'.$jobs->company->company_logo)}}" alt="Job Name" />
-            </div>
-            <div class="col-md-6 col-sm-6">
+            <div class="col-md-3 col-sm-3"><img src="{{asset('/uploads/UserCv/'.$jobs->company->company_logo)}}" alt="Job Name" /></div>
+            <div class="col-md-9 col-sm-9">
               <h4><a href="{{url('vacancy/detail/'.$jobs->id)}}">{{$jobs->vacancy_name}}</a></h4>
               <div class="company"><a href="#.">{{$jobs->category->name}}</a></div>
-              <div class="jobloc"><label class="fulltime">{{$jobs->jobType->name}}</label>   - <span>{{$jobs->province->name}}</span></div>
+              <div class="jobloc">
+                @if($jobs->jobType->id == "1")
+                           <label class="fulltime">{{$jobs->jobType->name}}</label>  
+                        @elseif($jobs->jobType->id == "2")
+                          <label class="partTime">{{$jobs->jobType->name}}</label> 
+                        @else
+                          <label class="freelance">{{$jobs->jobType->name}}</label> 
+                        @endif
+                - <span>{{$jobs->province->name}}</span></div>
             </div>
-            <div class="col-md-4 col-sm-4"><a href="{{url('vacancy/detail/'.$jobs->id)}}" class="applybtn">View Details</a></div>
           </div>
         </div>
-      </li>           
+      </li>    
       @endforeach
       @endif
-      <!--Job end--> 
     </ul>
     <!--Featured Job end--> 
     
@@ -240,27 +217,66 @@ background-color: rgba(0, 0, 0, 0);
       <!--Job 1-->
       @if($job )
       @foreach ($job as $jobs)
-      <li class="col-md-6">
+       <li class="col-md-4 col-sm-6">
         <div class="jobint">
           <div class="row">
-            <div class="col-md-2 col-sm-2">
-              <img src="{{asset('/uploads/UserCv/'.$jobs->company->company_logo)}}" alt="Job Name" />
-            </div>
-            <div class="col-md-6 col-sm-6">
+            <div class="col-md-3 col-sm-3"><img src="{{asset('/uploads/UserCv/'.$jobs->company->company_logo)}}" alt="Job Name" /></div>
+            <div class="col-md-9 col-sm-9">
               <h4><a href="{{url('vacancy/detail/'.$jobs->id)}}">{{$jobs->vacancy_name}}</a></h4>
               <div class="company"><a href="#.">{{$jobs->category->name}}</a></div>
-              <div class="jobloc"><label class="fulltime">{{$jobs->jobType->name}}</label>   - <span>{{$jobs->province->name}}</span></div>
+              <div class="jobloc">
+                @if($jobs->jobType->id == "1")
+                           <label class="fulltime">{{$jobs->jobType->name}}</label>  
+                        @elseif($jobs->jobType->id == "2")
+                          <label class="partTime">{{$jobs->jobType->name}}</label> 
+                        @else
+                          <label class="freelance">{{$jobs->jobType->name}}</label> 
+                        @endif
+                - <span>{{$jobs->province->name}}</span></div>
             </div>
-            <div class="col-md-4 col-sm-4"><a href="{{url('vacancy/detail/'.$jobs->id)}}" class="applybtn">View Details</a></div>
           </div>
         </div>
-      </li>           
+      </li>    
       @endforeach
       @endif
     </ul>
     <!--view button-->
     <!--view button end--> 
   </div>
+  <!-- How it Works start -->
+<div class="section howitwrap">
+  <div class="container"> 
+    <!-- title start -->
+    <div class="titleTop">
+      <div class="subtitle">Here You Can See</div>
+      <h3>How It <span>Works?</span></h3>
+    </div>
+    <!-- title end -->
+    <ul class="howlist row">
+      <!--step 1-->
+      <li class="col-md-4 col-sm-4">
+        <div class="iconcircle"><i class="fa fa-user" aria-hidden="true"></i></div>
+        <h4>Create An Account</h4>
+      </li>
+      <!--step 1 end--> 
+      
+      <!--step 2-->
+      <li class="col-md-4 col-sm-4">
+        <div class="iconcircle">
+          <i class="fa fa-graduation-cap" aria-hidden="true"></i></div>
+        <h4>Search Desired Job</h4>
+      </li>
+      <!--step 2 end--> 
+      
+      <!--step 3-->
+      <li class="col-md-4 col-sm-4">
+        <div class="iconcircle"><i class="fa fa-file-text" aria-hidden="true"></i></div>
+        <h4>Send Your Resume</h4>
+      </li>
+      <!--step 3 end-->
+    </ul>
+  </div>
+</div>
 </div>
 <!--Footer-->
 @include('frontend/partials/footer')
