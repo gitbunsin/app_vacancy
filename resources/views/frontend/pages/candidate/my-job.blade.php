@@ -109,7 +109,14 @@
 										<h4><a href="{{url('vacancy/detail/'.$application->vacancy->id)}}">{{$application->vacancy->vacancy_name}}</a></h4>
 										<div class="company"><a href="#.">{{$application->vacancy->category->name}}</a>
 										</div>
-										<div class="jobloc"><label class="fulltime">{{$application->vacancy->jobType->name}}</label>   - <span>{{$application->vacancy->province->name}}</span></div>
+										<div class="jobloc">
+											@if($application->vacancy->jobType->id == "1")
+											<label class="fulltime">{{$application->vacancy->jobType->name}}</label>  
+										 @elseif($application->vacancy->jobType->id == "2")
+										   <label class="partTime">{{$application->vacancy->jobType->name}}</label> 
+										 @else
+										   <label class="freelance">{{$application->vacancy->jobType->name}}</label> 
+										 @endif   - <span>{{$application->vacancy->province->name}}</span></div>
 									</div>
 									<div class="col-md-4 col-sm-4"><a href="{{url('vacancy/detail/'.$application->vacancy->id)}}" class="applybtn"> View Details</a></div>
 									</div>

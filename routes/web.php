@@ -190,6 +190,7 @@ Route::get('check/user/login','Backend\JobController@CheckUserLoginApplyJob');
 Route::post('user/applyJob/{vacancy_id}/{candidate_id}','Backend\JobController@UserApplyJob');
 Route::get('job-download-company/{filename}','Backend\JobController@getDownloadCompany');
 Route::get('pricing','HomeController@pricing');
+Route::get('report/{job_id}','HomeController@report');
 Route::get('about','HomeController@about');
 Route::get('contact','HomeController@contact');
 Route::post('contact-us', 'HomeController@contactUsPost');

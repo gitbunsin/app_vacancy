@@ -51,7 +51,7 @@
         
         <!--Quick Links-->
         <div class="col-md-2 col-sm-6">
-          <h5>Quick Links</h5>
+          <h5 id="{{__('menu.font_family_en')}}">{{__('content.quick_links')}}</h5>
           <!--Quick Links menu Start-->
           <ul class="quicklinks">
             <li><a href="#.">Career Services</a></li>
@@ -69,7 +69,7 @@
         
         <!--Jobs By Industry-->
         <div class="col-md-3 col-sm-6">
-          <h5>Jobs By Industry</h5>
+          <h5 id="{{__('menu.font_family_en')}}">{{__('content.jobs_by_industry')}}</h5>
           <!--Industry menu Start-->
           <ul class="quicklinks">
             @php
@@ -89,7 +89,7 @@
         
         <!--Latest Articles-->
         <div class="col-md-4 col-sm-12">
-          <h5>Latest Articles</h5>
+          <h5 id="{{__('menu.font_family_en')}}">{{__('content.latest_articles')}}</h5>
           <ul class="posts-list">
             <!--Article 1-->
             @php
@@ -127,7 +127,7 @@
   <!--Copyright-->
 <div class="copyright">
   <div class="container">
-    <div class="bttxt">Copyright &copy; 2020 KH-Works. All Rights Reserved. Design by: <a href="http://graphicriver.net/user/ecreativesol" target="_blank">WebDev-Company</a></div>
+    <div id="{{__('menu.font_family_en')}}" class="bttxt">{{__('content.copyright')}}</a></div>
   </div>
 </div>
   <!--Footer end--> 

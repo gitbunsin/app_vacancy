@@ -68,6 +68,12 @@ class HomeController extends Controller
             return response::json('error');
         }
     }
+    public function report($job_id)
+    {
+        // dd($job_id);
+        $report = vacancy::where('id',$job_id)->first();
+        return view('frontend.pages.report',compact('report'));
+    }
     public function register()
     {
         return view('frontend.pages.register');

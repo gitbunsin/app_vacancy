@@ -18,41 +18,38 @@
             <div class="navbar-collapse collapse" id="nav-main">
               <ul class="nav navbar-nav">
                 <li class="{{ (request()->segment(1) == 'home') ? 'active' : '' }}">  
-                  <a href="{{url('home')}}">{{__('menu.home')}}</a>
+                  <a id="{{__('menu.font_family_en')}}" href="{{url('home')}}">{{__('menu.home')}}</a>
                 </li>
-                {{-- <li class="{{ (request()->segment(1) == 'about') ? 'active' : '' }}"> 
-                  <a href="{{url('about')}}">About us</a>
-                </li> --}}
                 <li class="{{ (request()->segment(1) == 'job') ? 'active' : '' }}"> 
-                  <a href="{{url('job')}}">{{__('menu.job')}}</a>
+                  <a id="{{__('menu.font_family_en')}}" href="{{url('job')}}">{{__('menu.job')}}</a>
                 </li>
                 <li class="{{ (request()->segment(1) == 'package') ? 'active' : '' }}"> 
-                  <a href="{{url('package')}}">{{__('menu.our_package')}}</a>
+                  <a id="{{__('menu.font_family_en')}}"href="{{url('package')}}">{{__('menu.our_package')}}</a>
                 </li>
                 <li class="{{ (request()->segment(1) == 'news') ? 'active' : '' }}"> 
-                  <a href="{{url('news')}}">{{__('menu.blog')}}</a>
+                  <a id="{{__('menu.font_family_en')}}" href="{{url('news')}}">{{__('menu.blog')}}</a>
                 </li>
                 <li class="{{ (request()->segment(1) == 'contact') ? 'active' : '' }}">
-                  <a href="{{url("contact")}}">{{__('menu.contact_us')}}</a>
+                  <a id="{{__('menu.font_family_en')}}" href="{{url("contact")}}">{{__('menu.contact_us')}}</a>
                 </li>
                 @if (Auth::check())
                   <li class="dropdown userbtn"><a href=""><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/candidates/01.jpg" alt="" class="userimg" /></a>
                     <ul class="dropdown-menu">
-                      <li><a href="{{url('/user/my-dashboard')}}"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a></li>
-                      <li><a href="{{url('/user/my-profile')}}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit Profile</a></li>
-                      <li><a href="#"><i class="fa fa-briefcase" aria-hidden="true"></i> My Jobs</a></li>
+                      <li><a id="{{__('menu.font_family_en')}}" href="{{url('/user/my-dashboard')}}"><i class="fa fa-tachometer" aria-hidden="true"></i> {{__('menu.dashboard')}}</a></li>
+                      <li><a id="{{__('menu.font_family_en')}}" href="{{url('/user/my-profile')}}"><i class="fa fa-pencil" aria-hidden="true"></i> {{__('menu.my_profile')}}</a></li>
+                      <li><a id="{{__('menu.font_family_en')}}" href="#"><i class="fa fa-briefcase" aria-hidden="true"></i> {{__('menu.my_job')}}</a></li>
                       <li role="separator" class="divider"></li>
-                      <li><a href="{{url('logout')}}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+                      <li><a id="{{__('menu.font_family_en')}}" href="{{url('logout')}}"><i class="fa fa-sign-out" aria-hidden="true"></i> {{__('menu.logout')}}</a></li>
                     </ul>
                 </li>
                 @else
-                  <li class="postjob"><a  href="{{url('login')}}">Sign in</a></li> 
-                  <li class="jobseeker"><a href="{{url('register')}}">Register</a></li>
+                  <li id="{{__('menu.font_family_en')}}" class="postjob"><a  href="{{url('login')}}"> {{__('menu.sign_in')}}</a></li> 
+                  <li id="{{__('menu.font_family_en')}}" class="jobseeker"><a href="{{url('register')}}"> {{__('menu.register')}}</a></li>
                 @endif 
                 <li class="dropdown userbtn"><a href="https://www.sharjeelanjum.com/demos/jobsportal-update"><img src="https://www.sharjeelanjum.com/demos/jobsportal-update/images/lang.png" alt="" class="userimg"></a>
                   <ul class="dropdown-menu">
                    
-                    <li><a href="{{ url('/en') }}" class="nav-link">English</a></li>
+                    <li><a  href="{{ url('/en') }}" class="nav-link">English</a></li>
                     <li><a href="{{ url('/kh') }}"  class="nav-link">Khmer</a></li>
                   </ul>
               </li>  

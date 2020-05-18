@@ -123,6 +123,7 @@ class ComposerStaticInit8d8674694d2e01ac5f8f266acbc6ddab
         ),
         'J' => 
         array (
+            'Jorenvh\\Share\\' => 14,
             'JakubOnderka\\PhpConsoleHighlighter\\' => 35,
             'JakubOnderka\\PhpConsoleColor\\' => 29,
         ),
@@ -369,6 +370,10 @@ class ComposerStaticInit8d8674694d2e01ac5f8f266acbc6ddab
         'Kalnoy\\Nestedset\\' => 
         array (
             0 => __DIR__ . '/..' . '/kalnoy/nestedset/src',
+        ),
+        'Jorenvh\\Share\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src',
         ),
         'JakubOnderka\\PhpConsoleHighlighter\\' => 
         array (
@@ -2398,6 +2403,9 @@ class ComposerStaticInit8d8674694d2e01ac5f8f266acbc6ddab
         'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/Highlighter.php',
         'JobTitlesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/JobTitlesTableSeeder.php',
         'JobTypesTableDataSeeder' => __DIR__ . '/../..' . '/database/seeds/JobTypesTableDataSeeder.php',
+        'Jorenvh\\Share\\Providers\\ShareServiceProvider' => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src/Providers/ShareServiceProvider.php',
+        'Jorenvh\\Share\\Share' => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src/Share.php',
+        'Jorenvh\\Share\\ShareFacade' => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src/ShareFacade.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'Kalnoy\\Nestedset\\AncestorsRelation' => __DIR__ . '/..' . '/kalnoy/nestedset/src/AncestorsRelation.php',
         'Kalnoy\\Nestedset\\BaseRelation' => __DIR__ . '/..' . '/kalnoy/nestedset/src/BaseRelation.php',

@@ -51,10 +51,8 @@
     </div>
   </div>
   <!-- Page Title End -->
-  
   <div class="listpgWraper">
-    <div class="container"> 
-      
+    <div class="container">  
       <!-- Job Header start -->
       <div class="job-header">
         <div class="jobinfo">
@@ -68,7 +66,7 @@
               <div class="companyinfo">
                 <div class="companylogo"><img src="/uploads/UserCv/{{ $vacancy->company->company_logo }}" alt="your alt text"></div>
                 <div class="title"><a href="#.">Forum International</a></div>
-                <div class="ptext">Dubai, UAE</div>
+                <div class="ptext">{{$vacancy->province->name}}</div>
                 <div class="opening"><a href="#.">8 Current Jobs Openings</a></div>
                 <div class="clearfix"></div>
               </div>
@@ -88,8 +86,13 @@
             @else
                 <a href="#." onclick="NotLogin();" class="btn apply"><i class="fa fa-paper-plane" aria-hidden="true"></i> Apply Now</a>
             @endif
-             <a href="#." class="btn"><i class="fa fa-share" aria-hidden="true"></i> Share to Friend</a> 
-             <a href="#." class="btn"><i class="fa fa-black-tie" aria-hidden="true"></i> Report Abuse</a> 
+             <a href="https://www.facebook.com/sharer/sharer.php?u=http://sabay-merl.com/2020/05/17/tiktok/" class="btn"><i class="fa fa-share" aria-hidden="true"></i> Share to Friend</a> 
+             @if(Auth::check())
+                 <a href="{{url('report/'.$vacancy->id)}}" class="btn"><i class="fa fa-exclamation-triangle text-danger" aria-hidden="true"></i> Report Abuse</a> 
+             @else
+                 <a href="#." onclick="NotLogin();" class="btn"><i class="fa fa-exclamation-triangle text-danger" aria-hidden="true"></i> Report Abuse</a> 
+             @endif
+
              @if(Auth::check())
                @php
                  $bookmark_vacancy = userBookmark::where('vacancy_id',$vacancy->id)->where('user_id',auth::user()->id)->count();                           
@@ -224,11 +227,6 @@
               <h3>Job Detail</h3>
               <hr/>
               <ul class="jbdetail">
-                <li class="row">
-                  <div class="col-md-6 col-xs-6">Location</div>
-                  <div class="col-md-6 col-xs-6"><span>{{$vacancy->province->name}}</span></div>
-                </li><hr/>
-            
                 <li class="row">
                   <div class="col-md-6 col-xs-6">job poster </div>
                   <div class="col-md-6 col-xs-6"><a href="#.">{{ucfirst($vacancy->admin->name)}}</a></div>
@@ -378,4 +376,5 @@
    {{-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75688606-9"></script> --}}
    <script src="{{asset('js/backend/apply_job.js')}}"></script>
    <script src="{{asset('js/backend/bookmark.js')}}"></script>
+   <script src="{{ asset('js/share.js') }}"></script>
 @endsection

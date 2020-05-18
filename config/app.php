@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         'Intervention\Image\ImageServiceProvider',
+        Jorenvh\Share\Providers\ShareServiceProvider::class,
 
 
         /*
@@ -234,7 +235,8 @@ return [
         'Toast' => 'Grimthorr\LaravelToast\Facade',
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         'PayPal' => Srmklive\PayPal\Facades\PayPal::class,
-        'Image' => 'Intervention\Image\Facades\Image'
+        'Image' => 'Intervention\Image\Facades\Image',
+        'Share' => Jorenvh\Share\ShareFacade::class,
     ],
 
 ];

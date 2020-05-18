@@ -17,8 +17,22 @@ background-color: rgba(0, 0, 0, 0);
     height: 100%;
     opacity: 1;
     visibility: inherit;
+   
     
 }
+.howlist li .iconcircle_1{
+    width: 100px;
+    height: 100px;
+    /* border: 3px solid #78ceff; */
+    border-radius: 50%;
+    text-align: center;
+    line-height: 115px;
+    font-size: 50px;
+}
+/* #khmer_id {
+    font-family: -apple-system, 'Roboto', 'Koulen', sans-serif !important;
+    font-size: 30px;
+} */
 
 </style>
 @php
@@ -30,8 +44,8 @@ background-color: rgba(0, 0, 0, 0);
 
 @include('frontend.partials.style')
 	<!-- font -->
-	<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700,300' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Signika+Negative:400,300,600,700' rel='stylesheet' type='text/css'>
+	{{-- <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700,300' rel='stylesheet' type='text/css'> --}}
+	{{-- <link href='https://fonts.googleapis.com/css?family=Signika+Negative:400,300,600,700' rel='stylesheet' type='text/css'> --}}
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -77,14 +91,14 @@ background-color: rgba(0, 0, 0, 0);
 	<div class="container"> 
 	  <!-- title start -->
 	  <div class="titleTop">
-		<div class="subtitle">Here You Can See</div>
-		<h3>Popular <span>Searches</span></h3>
+		{{-- <div class="subtitle">Here You Can See</div><br/> --}}<br/><br/>
+		<h3 id="{{__('menu.font_family_en')}}">{{__('content.search')}} <span > {{__('content.job')}}</span> </h3>
 	  </div>
 	  <!-- title end -->
 	  <div class="topsearchwrap row">
 		<div class="col-md-12"> 
 		  <!--Categories start-->
-		  <h4>Browse By Categories</h4>
+		  <h4 style="text-align: center;" id="{{__('menu.font_family_en')}}">{{__('content.brow_by_category')}}</h4>
 		  <ul class="row catelist">
         @if($categories->count())
           @foreach ($categories as $category)
@@ -113,8 +127,8 @@ background-color: rgba(0, 0, 0, 0);
   <div class="container"> 
     <!-- title start -->
     <div class="titleTop">
-      <div class="subtitle">Here You Can See</div>
-      <h3>Top <span>Employers</span></h3>
+      {{-- <div class="subtitle">Here You Can See</div><br/> --}}<br/><br/>
+      <h3 id="{{__('menu.font_family_en')}}">{{__('content.top')}} <span>{{__('content.employers')}}</span></h3>
     </div>
     <!-- title end -->
     
@@ -159,30 +173,37 @@ background-color: rgba(0, 0, 0, 0);
   <div class="container"> 
     <!-- title start -->
     <div class="titleTop">
-      <div class="subtitle">Here You Can See</div>
-      <h3>How It <span>Works?</span></h3>
+      {{-- <div class="subtitle">Here You Can See</div><br/> --}}<br/><br/>
+      <h4 style="font-size:30px; font-family: -apple-system, 'Roboto', 'Koulen', sans-serif !important;">{{__('content.how_it_work')}}</h4>
     </div>
     <!-- title end -->
     <ul class="howlist row">
       <!--step 1-->
-      <li class="col-md-4 col-sm-4">
+      <li class="col-md-3 col-sm-3">
         <div class="iconcircle"><i class="fa fa-user" aria-hidden="true"></i></div>
-        <h4>Create An Account</h4>
+        <h4 style="font-size:18px; font-family: -apple-system, 'Roboto', 'Koulen', sans-serif !important;">{{__('content.create_account')}}</h4>
+     
+      </li>
+      <li class="col-md-2 col-sm-2">
+        <div class="iconcircle_1"> <i class="fa fa-long-arrow-right hidden-xs" style="color: #01a441" aria-hidden="true"></i></div>
       </li>
       <!--step 1 end--> 
-      
+      {{-- <i class="fa fa-long-arrow-right hidden-xs" style="color: #01a441" aria-hidden="true"></i> --}}
       <!--step 2-->
-      <li class="col-md-4 col-sm-4">
+      <li class="col-md-3 col-sm-3">
         <div class="iconcircle">
           <i class="fa fa-graduation-cap" aria-hidden="true"></i></div>
-        <h4>Search Desired Job</h4>
+        <h4 style="font-size:18px; font-family: -apple-system, 'Roboto', 'Koulen', sans-serif !important;">{{__('content.search_desired_job')}}</h4>
       </li>
       <!--step 2 end--> 
-      
+      <li class="col-md-2 col-sm-2">
+        <div class="iconcircle_1"> <i class="fa fa-long-arrow-right hidden-xs" style="color: #01a441" aria-hidden="true"></i></div>
+        
+      </li>
       <!--step 3-->
-      <li class="col-md-4 col-sm-4">
+      <li class="col-md-2 col-sm-2">
         <div class="iconcircle"><i class="fa fa-file-text" aria-hidden="true"></i></div>
-        <h4>Send Your Resume</h4>
+        <h4 style="font-size:18px; font-family: -apple-system, 'Roboto', 'Koulen', sans-serif !important;">{{__('content.send_your_resume')}}</h4>
       </li>
       <!--step 3 end-->
     </ul>
@@ -197,8 +218,8 @@ background-color: rgba(0, 0, 0, 0);
   <div class="container"> 
     <!-- title start -->
     <div class="titleTop">
-      <div class="subtitle">Here You Can See</div>
-      <h3>Featured <span>Jobs</span></h3>
+      {{-- <div class="subtitle">Here You Can See</div><br/> --}}<br/><br/>
+      <h3 id="{{__('menu.font_family_en')}}">{{__('content.featured')}} <span>{{__('content.job_feature')}}</span></h3>
     </div>
     <!-- title end --> 
     
@@ -242,8 +263,8 @@ background-color: rgba(0, 0, 0, 0);
   <div class="container"> 
     <!-- title start -->
     <div class="titleTop">
-      <div class="subtitle">Here You Can See</div>
-      <h3>Latest <span>Jobs</span></h3>
+      {{-- <div class="subtitle">Here You Can See</div><br/> --}}<br/><br/>
+      <h3 id="{{__('menu.font_family_en')}}">{{__('content.latest')}} <span>{{__('content.latest_job')}}</span></h3>
     </div>
     <!-- title end -->
     
@@ -279,7 +300,7 @@ background-color: rgba(0, 0, 0, 0);
   </div>
   <!-- How it Works start -->
 
-</div>
+</div><br/><br/>
 <!--Footer-->
 @include('frontend/partials/footer')
 
