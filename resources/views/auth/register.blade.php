@@ -22,7 +22,7 @@
         <div class="col-md-6 col-md-offset-3">
           <div class="userccount">
             <div class="socialLogin">
-              <h5>Login Or Register with Social</h5>
+              <h5>Login Or Register </h5>
              </div>
             {{-- <div class="alert alert-success" role="alert"><strong>Well done!</strong> Your account successfully created.</div>
             <div class="alert alert-warning" role="alert"><strong>Warning!</strong> Better check yourself, you're not looking too good.</div>

@@ -22,7 +22,7 @@
         <div class="col-md-6 col-md-offset-3">
           <div class="userccount">
             <div class="socialLogin">
-              <h5>Login Or Register with Social</h5>
+              <h5>Login Or Register</h5>
              </div>
             <div class="userbtns">
               <ul class="nav nav-tabs">

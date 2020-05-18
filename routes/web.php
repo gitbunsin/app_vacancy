@@ -201,3 +201,7 @@ Route::get('user-profile','HomeController@profileDetails');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/{locale}', function ($locale){
+    Session::put('locale', $locale);
+    return redirect()->back();
+});

@@ -71,6 +71,7 @@ return array(
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
     'App\\Http\\Middleware\\IsAdmin' => $baseDir . '/app/Http/Middleware/IsAdmin.php',
     'App\\Http\\Middleware\\IsEmployee' => $baseDir . '/app/Http/Middleware/IsEmployee.php',
+    'App\\Http\\Middleware\\Localization' => $baseDir . '/app/Http/Middleware/Localization.php',
     'App\\Http\\Middleware\\RedirectIfAuthenticated' => $baseDir . '/app/Http/Middleware/RedirectIfAuthenticated.php',
     'App\\Http\\Middleware\\StartSessionMiddleware' => $baseDir . '/app/Http/Middleware/StartSessionMiddleware.php',
     'App\\Http\\Middleware\\TrimStrings' => $baseDir . '/app/Http/Middleware/TrimStrings.php',

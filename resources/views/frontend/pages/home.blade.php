@@ -153,7 +153,41 @@ background-color: rgba(0, 0, 0, 0);
       <li data-toggle="tooltip" data-placement="top" title="" data-original-title="Company Name"><a href="company-detail.html"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/employers/emplogo1.jpg" alt="Company Name" /></a></li>
     </ul>
   </div>
+  
 </div>
+<div class="section howitwrap">
+  <div class="container"> 
+    <!-- title start -->
+    <div class="titleTop">
+      <div class="subtitle">Here You Can See</div>
+      <h3>How It <span>Works?</span></h3>
+    </div>
+    <!-- title end -->
+    <ul class="howlist row">
+      <!--step 1-->
+      <li class="col-md-4 col-sm-4">
+        <div class="iconcircle"><i class="fa fa-user" aria-hidden="true"></i></div>
+        <h4>Create An Account</h4>
+      </li>
+      <!--step 1 end--> 
+      
+      <!--step 2-->
+      <li class="col-md-4 col-sm-4">
+        <div class="iconcircle">
+          <i class="fa fa-graduation-cap" aria-hidden="true"></i></div>
+        <h4>Search Desired Job</h4>
+      </li>
+      <!--step 2 end--> 
+      
+      <!--step 3-->
+      <li class="col-md-4 col-sm-4">
+        <div class="iconcircle"><i class="fa fa-file-text" aria-hidden="true"></i></div>
+        <h4>Send Your Resume</h4>
+      </li>
+      <!--step 3 end-->
+    </ul>
+  </div>
+</div><br/>
 <!-- Top Employers ends --> 
 
 
@@ -244,39 +278,7 @@ background-color: rgba(0, 0, 0, 0);
     <!--view button end--> 
   </div>
   <!-- How it Works start -->
-<div class="section howitwrap">
-  <div class="container"> 
-    <!-- title start -->
-    <div class="titleTop">
-      <div class="subtitle">Here You Can See</div>
-      <h3>How It <span>Works?</span></h3>
-    </div>
-    <!-- title end -->
-    <ul class="howlist row">
-      <!--step 1-->
-      <li class="col-md-4 col-sm-4">
-        <div class="iconcircle"><i class="fa fa-user" aria-hidden="true"></i></div>
-        <h4>Create An Account</h4>
-      </li>
-      <!--step 1 end--> 
-      
-      <!--step 2-->
-      <li class="col-md-4 col-sm-4">
-        <div class="iconcircle">
-          <i class="fa fa-graduation-cap" aria-hidden="true"></i></div>
-        <h4>Search Desired Job</h4>
-      </li>
-      <!--step 2 end--> 
-      
-      <!--step 3-->
-      <li class="col-md-4 col-sm-4">
-        <div class="iconcircle"><i class="fa fa-file-text" aria-hidden="true"></i></div>
-        <h4>Send Your Resume</h4>
-      </li>
-      <!--step 3 end-->
-    </ul>
-  </div>
-</div>
+
 </div>
 <!--Footer-->
 @include('frontend/partials/footer')

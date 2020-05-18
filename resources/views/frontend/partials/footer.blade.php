@@ -1,4 +1,8 @@
 <!--Footer-->
+@php
+    use App\Model\jobTitle;
+
+@endphp
 <div class="footerWrap">
     <div class="container">
       <style>
@@ -53,9 +57,9 @@
             <li><a href="#.">Career Services</a></li>
             <li><a href="#.">CV Writing</a></li>
             <li><a href="#.">Career Resources</a></li>
-            <li><a href="#.">Company Listings</a></li>
+            <li><a href="{{url('job')}}">Job Listings</a></li>
             <li><a href="#.">Success Stories</a></li>
-            <li><a href="#.">Contact Us</a></li>
+            <li><a href="{{url('contact')}}">Contact Us</a></li>
             <li><a href="#.">Create Account</a></li>
             <li><a href="#.">Post a Job</a></li>
             <li><a href="#.">Contact Sales</a></li>
@@ -68,15 +72,16 @@
           <h5>Jobs By Industry</h5>
           <!--Industry menu Start-->
           <ul class="quicklinks">
-            <li><a href="#.">Information Technology Jobs</a></li>
-            <li><a href="#.">Recruitment/Employment Firms Jobs</a></li>
-            <li><a href="#.">Education/Training Jobs</a></li>
-            <li><a href="#.">Manufacturing Jobs</a></li>
-            <li><a href="#.">Call Center Jobs</a></li>
-            <li><a href="#.">N.G.O./Social Services Jobs</a></li>
-            <li><a href="#.">BPO Jobs</a></li>
-            <li><a href="#.">Textiles/Garments Jobs</a></li>
-            <li><a href="#.">Telecommunication/ISP Jobs</a></li>
+            @php
+                $categories = jobTitle::all();
+            @endphp
+            @if($categories->count())
+            @foreach ($categories as $category)
+              <li>
+                <a href="{{route('jobs_listing', ['category' => $category->id])}}">{{$category->name}} </a>
+              </li>         
+            @endforeach
+          @endif
           </ul>
           <!--Industry menu End-->
           <div class="clear"></div>

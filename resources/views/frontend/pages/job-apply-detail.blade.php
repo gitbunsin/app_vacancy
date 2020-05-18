@@ -301,7 +301,22 @@
                 </li>
               </ul>
             </div>
-          </div>        
+          </div>
+          {{-- <div class="job-header">
+
+            <div class="jobdetail">
+  
+              <h3>Google Map</h3>
+  
+              <div class="gmap">
+  
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3908.61004688208!2d104.89129181530693!3d11.579787891779509!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109517869e06c01%3A0x9452379e4ed405a5!2sInstinct%20Institute!5e0!3m2!1sen!2skh!4v1571889488979!5m2!1sen!2skh" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+  
+              </div>
+  
+            </div>
+  
+          </div>         --}}
         </div>
       </div>
     </div>
@@ -360,6 +375,7 @@
 
 @endsection
 @section('scripts')
+   {{-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75688606-9"></script> --}}
    <script src="{{asset('js/backend/apply_job.js')}}"></script>
    <script src="{{asset('js/backend/bookmark.js')}}"></script>
 @endsection

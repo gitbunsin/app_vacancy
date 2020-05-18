@@ -24,6 +24,7 @@
 }
 </style>
 @php
+   use App\Model\vacancy;
   $arrayName = array(
     'function' => 'Browse By Functional Area',
     'industry' => 'Browse By Industries',
@@ -71,8 +72,11 @@
                                 use App\Model\jobTitle;  $jobTitles = jobTitle::all();
                               @endphp
                                 @foreach ($jobTitles as $jobTitle)
+                                @php
+                                     $count =  vacancy::where('job_title_id','=',$jobTitle->id)->count();
+                                @endphp
                                 <li class="col-md-3 col-sm-4  col-xs-6">
-                                  <a href="{{route('jobs_listing', ['job_title' => $jobTitle->id ,'id' => 'function'])}}" title="Design">{{$jobTitle->name}}<span>(1)</span></a>
+                                  <a href="{{route('jobs_listing', ['job_title' => $jobTitle->id ,'id' => 'function'])}}" title="Design">{{$jobTitle->name}}<span>({{$count}})</span></a>
                                 </li>   
                                 @endforeach                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
                               </ul>
@@ -83,8 +87,11 @@
                                   use App\Model\jobCategory;  $categories = jobCategory::all();
                                 @endphp
                                 @foreach ($categories as $category)
+                                @php
+                                     $count =  vacancy::where('category_id','=',$category->id)->count();
+                                @endphp
                                 <li class="col-md-3 col-sm-4  col-xs-6">
-                                  <a href="{{route('jobs_listing', ['category' => $category->id , 'id'=> 'industry' ])}}" title="Design">{{$category->name}}<span>(1)</span></a>
+                                  <a href="{{route('jobs_listing', ['category' => $category->id , 'id'=> 'industry' ])}}" title="Design">{{$category->name}}<span>({{$count}})</span></a>
                                 </li>   
                                 @endforeach    
                              </ul>
@@ -96,8 +103,11 @@
                                     use App\Model\province; $provinces = province::all();
                                 @endphp
                                 @foreach ($provinces as $item)
+                                @php
+                                   $count =  vacancy::where('province_id','=',$item->id)->count();
+                                @endphp
                                 <li class="col-md-3 col-sm-4 col-xs-6">
-                                  <a href="{{route('jobs_listing', ['province' => $item->id , 'id'=> 'location'  ])}}" title="Phnom Penh">{{$item->name}}<span>(3)</span></a>
+                                  <a href="{{route('jobs_listing', ['province' => $item->id , 'id'=> 'location'  ])}}" title="Phnom Penh">{{$item->name}}<span>({{$count}})</span></a>
                                 </li>
                                 @endforeach
                        
@@ -249,7 +259,7 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="col-md-4 col-sm-4">
-                    <div class="listbtn"><a href="#.">Apply Now</a></div>
+                    <div class="listbtn"><a href="{{'vacancy/detail/'.$jobs->id}}">Apply Now</a></div>
                   </div>
                 </div>
           </li>
