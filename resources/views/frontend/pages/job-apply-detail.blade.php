@@ -42,10 +42,10 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-sm-6">
-          <h1 class="page-heading">Job Details</h1>
+          <h1 id="{{__('menu.font_family_en')}}" class="page-heading">{{__('content.job_detail')}}</h1>
         </div>
         <div class="col-md-6 col-sm-6">
-          <div class="breadCrumb"><a href="#.">Home</a> / <span>Job Name</span></div>
+          <div class="breadCrumb"><a id="{{__('menu.font_family_en')}}" href="#.">{{__('content.home')}}</a> / <span id="{{__('menu.font_family_en')}}">{{__('content.job_detail')}}</span></div>
         </div>
       </div>
     </div>
@@ -58,7 +58,7 @@
         <div class="jobinfo">
           <div class="row">
             <div class="col-md-8">
-              <h2>{{$vacancy->vacancy_name}}</h2>
+              <h2 id="{{__('menu.font_family_en')}}">{{$vacancy->vacancy_name}}</h2>
               <div class="ptext">Date Posted: {{$vacancy->closingDate}}</div>
               <div class="salary">Monthly Salary: <strong>{{$vacancy->minSalary .' - '. $vacancy->maxSalary.' $' }}</strong></div>
             </div>
@@ -82,15 +82,15 @@
             @if(Auth::check() && $candidate_vacancy > 0)
              <a href="#." class="btn report"><i class="fa fa-paper-plane" aria-hidden="true"></i> Apply Applied</a>
             @elseif(Auth::check())
-             <a href="#." data-candidate_id={{auth::user()->id}} onclick="ApplyJob({{$vacancy->id}});" class="btn apply"><i class="fa fa-paper-plane" aria-hidden="true"></i> Apply Now</a>
+             <a href="#." data-candidate_id={{auth::user()->id}} onclick="ApplyJob({{$vacancy->id}});" class="btn apply"><i class="fa fa-paper-plane" aria-hidden="true"></i><span id="{{__('menu.font_family_en')}}"> {{__('content.apply_now')}}</span></a>
             @else
-                <a href="#." onclick="NotLogin();" class="btn apply"><i class="fa fa-paper-plane" aria-hidden="true"></i> Apply Now</a>
+                <a href="#." onclick="NotLogin();" class="btn apply"><i class="fa fa-paper-plane" aria-hidden="true"></i> <span id="{{__('menu.font_family_en')}}"> {{__('content.apply_now')}}</span></a>
             @endif
-             <a href="https://www.facebook.com/sharer/sharer.php?u=http://sabay-merl.com/2020/05/17/tiktok/" class="btn"><i class="fa fa-share" aria-hidden="true"></i> Share to Friend</a> 
+             <a href="https://www.facebook.com/sharer/sharer.php?u=http://sabay-merl.com/2020/05/17/tiktok/" class="btn"><i class="fa fa-share" aria-hidden="true"></i><span id="{{__('menu.font_family_en')}}"> {{__('content.share_to_friend')}}</span></a> 
              @if(Auth::check())
-                 <a href="{{url('report/'.$vacancy->id)}}" class="btn"><i class="fa fa-exclamation-triangle text-danger" aria-hidden="true"></i> Report Abuse</a> 
+                 <a href="{{url('report/'.$vacancy->id)}}" class="btn"><i class="fa fa-exclamation-triangle text-danger" aria-hidden="true"></i><span id="{{__('menu.font_family_en')}}"> {{__('content.report_abuse')}}</span> </a> 
              @else
-                 <a href="#." onclick="NotLogin();" class="btn"><i class="fa fa-exclamation-triangle text-danger" aria-hidden="true"></i> Report Abuse</a> 
+                 <a href="#." onclick="NotLogin();" class="btn"><i class="fa fa-exclamation-triangle text-danger" aria-hidden="true"></i> <span id="{{__('menu.font_family_en')}}"> {{__('content.report_abuse')}}</span></a> 
              @endif
 
              @if(Auth::check())
@@ -99,12 +99,12 @@
                @endphp
              @endif 
              @if(Auth::check() &&  $bookmark_vacancy > 0)
-                <a href=""  class="btn report  not-active"><i class="fa fa-floppy-o" aria-hidden="true"></i> Bookmarked</a> 
+                <a href=""  class="btn report  not-active"><i class="fa fa-floppy-o" aria-hidden="true"></i> <span id="{{__('menu.font_family_en')}}"> {{__('content.bookmark')}}</span></a> 
 
              @elseif(Auth::check())
-              <a href="#." onclick="Bookmark({{$vacancy->id}});" class="btn not-active"><i class="fa fa-floppy-o" aria-hidden="true"></i> Bookmark</a> 
+              <a href="#." onclick="Bookmark({{$vacancy->id}});" class="btn not-active"><i class="fa fa-floppy-o" aria-hidden="true"></i> <span id="{{__('menu.font_family_en')}}"> {{__('content.bookmark')}}</span></a> 
              @else
-              <a href="#." onclick="notBookmark();"  class="btn not-active"><i class="fa fa-floppy-o" aria-hidden="true"></i> Bookmark </a> 
+              <a href="#." onclick="notBookmark();"  class="btn not-active"><i class="fa fa-floppy-o" aria-hidden="true"></i> <span id="{{__('menu.font_family_en')}}"> {{__('content.bookmark')}}</span> </a> 
              @endif
         </div>
       </div>
@@ -115,17 +115,17 @@
           <!-- Job Description start -->
           <div class="job-header">
             <div class="contentbox">
-              <h3>Job Description</h3>
+              <h3 id="{{__('menu.font_family_en')}}">{{__('content.job_description')}}</h3>
               <hr/>
                 <p> {!! $vacancy->job_description !!}</p>
-              <h3>Job Requirements</h3>
+              <h3 id="{{__('menu.font_family_en')}}">{{__('content.job_requirements')}}</h3>
               <hr/>
                 <p>{!! $vacancy->job_requirement!!} </p>
             </div>
             
           </div>
           <div class="relatedJobs">
-            <h3>Contact Information</h3>
+            <h3 id="{{__('menu.font_family_en')}}">{{__('content.contact_info')}}</h3>
             <ul class="searchList">
               <!-- Job start -->
               <li>
@@ -157,7 +157,7 @@
           
           <!-- related jobs start -->
           <div class="relatedJobs">
-            <h3>Related Jobs</h3>
+            <h3 id="{{__('menu.font_family_en')}}">{{__('content.related_jobs')}}</h3>
             <ul class="searchList">
               <!-- Job start -->
               <li>
@@ -224,31 +224,31 @@
           <!-- Job Detail start -->
           <div class="job-header">
             <div class="jobdetail">
-              <h3>Job Detail</h3>
+              <h3 id="{{__('menu.font_family_en')}}">{{__('content.job_detail')}}</h3>
               <hr/>
               <ul class="jbdetail">
                 <li class="row">
-                  <div class="col-md-6 col-xs-6">job poster </div>
+                  <div id="{{__('menu.font_family_en')}}" class="col-md-6 col-xs-6"> {{__('content.job_poster')}}</div>
                   <div class="col-md-6 col-xs-6"><a href="#.">{{ucfirst($vacancy->admin->name)}}</a></div>
                 </li><hr/>
               
                 <li class="row">
-                  <div class="col-md-6 col-xs-6">Type</div>
+                  <div id="{{__('menu.font_family_en')}}" class="col-md-6 col-xs-6">{{__('content.type')}}</div>
                   <div class="col-md-6 col-xs-6"><span>{{$vacancy->jobTitle->name}}</span></div>
                 </li><hr/>
                 
                 <li class="row">
-                  <div class="col-md-6 col-xs-6">Employment Type</div>
+                  <div id="{{__('menu.font_family_en')}}" class="col-md-6 col-xs-6"> {{__('content.employments_type')}}</div>
                   <div class="col-md-6 col-xs-6"><span class="permanent">{{$vacancy->category->name}}</></div>
                 </li><hr/>
 
                 <li class="row">
-                  <div class="col-md-6 col-xs-6">Career Level</div>
+                  <div id="{{__('menu.font_family_en')}}" class="col-md-6 col-xs-6"> {{__('content.career_level')}}</div>
                   <div class="col-md-6 col-xs-6"><span>Experience</span></div>
                 </li><hr/>
              
                 <li class="row">
-                  <div class="col-md-6 col-xs-6">Experience</div>
+                  <div id="{{__('menu.font_family_en')}}" class="col-md-6 col-xs-6">{{__('content.experience')}}</div>
                   <div class="col-md-6 col-xs-6"><span>2 Years</span></div>
                 </li>
               
@@ -257,40 +257,40 @@
           </div>
           <div class="job-header">
             <div class="jobdetail">
-              <h3>Company Info</h3>
+              <h3 id="{{__('menu.font_family_en')}}">{{__('content.company_info')}}</h3>
               <hr/>
               <ul class="jbdetail">
                 <li class="row">
-                  <div class="col-md-6 col-xs-6">Company Name</div>
+                  <div id="{{__('menu.font_family_en')}}" class="col-md-6 col-xs-6">{{__('content.company_name')}}</div>
                   <div class="col-md-6 col-xs-6"><a target="blank" href="{{$vacancy->company->website_link}}"><span class="freelance">{{$vacancy->company->company_name}}</span></a></div>
                 </li><hr/>
             
                 <li class="row">
-                  <div class="col-md-6 col-xs-6">Compnay SIze </div>
+                  <div id="{{__('menu.font_family_en')}}" class="col-md-6 col-xs-6"> {{__('content.company_size')}}</div>
                   <div class="col-md-6 col-xs-6"><a href="#.">2k Employee</a></div>
                 </li><hr/>
               
                 <li class="row">
-                  <div class="col-md-6 col-xs-6">Industry</div>
+                  <div id="{{__('menu.font_family_en')}}" class="col-md-6 col-xs-6">{{__('content.industry')}}</div>
                   <div class="col-md-6 col-xs-6"><span>{{$vacancy->category->name}}</span></div>
                 </li><hr/>
                 
                 <li class="row">
-                  <div class="col-md-6 col-xs-6">Phone</div>
+                  <div id="{{__('menu.font_family_en')}}" class="col-md-6 col-xs-6">{{__('content.phone')}}</div>
                   <div class="col-md-6 col-xs-6"><span class="permanent"><a href="tel:">{{$vacancy->company->phone}}</a></div>
                 </li><hr/>
              
                 <li class="row">
-                  <div class="col-md-3 col-xs-3">Email</div>
+                  <div id="{{__('menu.font_family_en')}}" class="col-md-3 col-xs-3">{{__('content.email')}}</div>
                   <div class="col-md-9 col-xs-9"><span><a href="mailto:">{{$vacancy->company->email}}</a></span></div>
                 </li><hr/>
              
                 <li class="row">
-                  <div class="col-md-3 col-xs-3">Website</div>
+                  <div id="{{__('menu.font_family_en')}}" class="col-md-3 col-xs-3"> {{__('content.website')}}</div>
                   <div class="col-md-9 col-xs-9"><span><a target="_blank" href="{{$vacancy->company->website_link}}">{{$vacancy->company->website_link}}</a></span></div>
                 </li><hr/>
                 <li class="row">
-                  <div class="col-md-3 col-xs-3">Social</div>
+                  <div id="{{__('menu.font_family_en')}}" class="col-md-3 col-xs-3"> {{__('content.social')}}</div>
                   <div class="col-md-9 col-xs-9"><span>
                     <a target="_blank" class="social-company" href="{{$vacancy->company->facebook_link}}"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
                     <a target="_blank" class="social-company" href="{{$vacancy->company->linkedIn_link}}"> <i class="fa fa-linkedin-square" aria-hidden="true"></i></a>

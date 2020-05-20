@@ -68,7 +68,7 @@ background-color: rgba(0, 0, 0, 0);
           In your Area</div>
         <div class="caption lfb large-title tp-resizeme sliderpara" data-x="left" data-y="200" data-speed="600" data-start="2800">I never dreamed about success. I worked for it.<br />
           Choose a job you love, and you will never have to work a day in your life</div>
-        <div class="caption lfl large-title tp-resizeme slidertext5" data-x="left" data-y="280" data-speed="600" data-start="3500"><a href="#.">Contact Us</a></div>
+        <div class="caption lfl large-title tp-resizeme slidertext5" data-x="left" data-y="280" data-speed="600" data-start="3500"><a href="{{url('contact')}}">Contact Us</a></div>
       </li>
       <!--Slide end--> 
       <!--Slide-->
@@ -77,7 +77,7 @@ background-color: rgba(0, 0, 0, 0);
           Find Job</div>
         <div class="caption lfb large-title tp-resizeme sliderpara" data-x="left" data-y="200" data-speed="600" data-start="2800">Here You Can See<br />
           Explore The Right Job</div>
-        <div class="caption lfl large-title tp-resizeme slidertext5" data-x="left" data-y="280" data-speed="600" data-start="3500"><a href="#.">Contact Us</a></div>
+        <div class="caption lfl large-title tp-resizeme slidertext5" data-x="left" data-y="280" data-speed="600" data-start="3500"><a href="{{url('contact')}}">Contact Us</a></div>
       </li>
       <!--Slide end-->
       

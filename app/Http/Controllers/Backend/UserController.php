@@ -59,6 +59,14 @@ class UserController extends Controller
         $user->save();
         return response::json($user);
    }
+   public function resetAdminPassword(Request $request , $id)
+   {
+        DB::table('admins')->where('id', $id)->update(
+            array('password' => Hash::make($request->password),
+            )
+        );
+        return response::json('success');
+   }
     public function updateAdminProfile(Request $request , $id )
    {
     // $user =  Admin::findOrFail($id);
@@ -102,14 +110,7 @@ class UserController extends Controller
     return response::json( $user );
 
    }
-    public function resetAdminPassword(Request $request , $id)
-   {
-        DB::table('admins')->where('id', $id)->update(
-            array('password' => Hash::make($request->password),
-            )
-        );
-        return response::json('success');
-   }
+   
 
     /**
      * Show the form for creating a new resource.

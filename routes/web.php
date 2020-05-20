@@ -35,7 +35,7 @@ Route::post('/login', '\App\Http\Controllers\Auth\LoginController@login');
 Route::post('/register/checkemail','\App\Http\Controllers\Auth\RegisterController@Checkemail');
 Route::get('/register/activate/email/{id}/{token}','\App\Http\Controllers\Auth\RegisterController@verifyUserMail');
 Route::get('/register/activate/admin/email/{id}/{token}','\App\Http\Controllers\Auth\RegisterController@verifyAdminMail');
-Route::get('password/admin/reset','Auth\PasswordController@showFormAdminReset'); 
+Route::get('password/admin/reset','App\Http\Controllers\Auth\ForgotPasswordController@showFormAdminReset');  
 Route::get('password/reset','App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm');  
 Route::post('password/reset','App\Http\Controllers\Auth\ForgotPasswordController@updateLinkRequestForm');  
 

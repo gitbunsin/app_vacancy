@@ -23,24 +23,55 @@
     color: #0072bc;
 }
 </style>
-@php
+
+    
+
+<?php //echo __('content.browse_by_functional_area')?>
+<?php
+    ob_start(); //Start output buffer
+       echo __('content.browse_by_functional_area');
+       $id = ob_get_contents(); //Grab output
+    ob_end_clean(); //
+    // function hello() {
+    //    echo __('content.browse_by_functional_area');
+    // }
+    ob_start(); //Start output buffer
+       echo __('content.browse_by_functional_area');
+       $function = ob_get_contents(); //Grab output
+    ob_end_clean(); //
+    ob_start(); //Start output buffer
+       echo __('content.browse_by_industries');
+       $industries = ob_get_contents(); //Grab output
+    ob_end_clean(); //
+    ob_start(); //Start output buffer
+       echo __('content.browse_by_provinces');
+       $province = ob_get_contents(); //Grab output
+    ob_end_clean(); 
+    ob_start(); //Start output buffer
+       echo __('content.salary_range');
+       $salary = ob_get_contents(); //Grab output
+    ob_end_clean(); 
+
+  // echo $output;
    use App\Model\vacancy;
+  //  $function =  hello();
+  //  echo $function;
   $arrayName = array(
-    'function' => 'Browse By Functional Area',
-    'industry' => 'Browse By Industries',
-    'location' => 'Browse By Provinces',
-    'salary' => 'Salary Range'
+    'function' =>  $function,
+    'industry' =>  $industries,
+    'location' => $province,
+    'salary' => $salary 
   );
   // dd($arrayName );
-@endphp
+  ?>
 <div class="pageTitle">
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-sm-6">
-        <h1 class="page-heading">Job Listing</h1>
+        <h1 class="page-heading"><span id="{{__('menu.font_family_en')}}"> {{__('menu.job')}}</span></h1>
       </div>
       <div class="col-md-6 col-sm-6">
-        <div class="breadCrumb"><a href="#.">Home</a> / <a href="#.">Job Search</a> / <span>Job Name</span></div>
+        <div class="breadCrumb"><a   id="{{__('menu.font_family_en')}}" href="#.">{{__('content.home')}}</a> / <a  id="{{__('menu.font_family_en')}}" href="#.">{{__('content.search_job')}}</a></div>
       </div>
     </div>
   </div>
@@ -60,15 +91,15 @@
                   <div class="searchform">
                       <ul class="nav nav-tabs">
                         @foreach ($arrayName as $key => $item)
-                          <li class="{{ (request()->id == $key) ? 'active' : '' }}"><a data-toggle="tab" href="#{{$key}}">{{$item}}</a></li> 
+                          <li id="{{__('menu.font_family_en')}}" class="{{ (request()->id == $key) ? 'active' : '' }}"><a data-toggle="tab" href="#{{$key}}">{{$item}}</a></li> 
                         @endforeach
                          
                       </ul>
-
                       <div class="tab-content">
                           <div id="function" class="tab-pane fade {{ (request()->id == 'function') ? 'in active' : '' }}">
                               <ul class="row catelist">   
                                 @php
+                                
                                 use App\Model\jobTitle;  $jobTitles = jobTitle::all();
                               @endphp
                                 @foreach ($jobTitles as $jobTitle)
@@ -122,17 +153,17 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <input class="form-control" id="minSalary" placeholder="min Salary" name="minSalary" type="number">
+                                                <input id="{{__('menu.font_family_en')}}" class="form-control" placeholder="{{__('content.min_salary')}}" name="minSalary" type="number">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <input class="form-control" id="maxSalary" placeholder="max Salary" name="maxSalary" type="number">
+                                                <input id="{{__('menu.font_family_en')}}" class="form-control"  placeholder="{{__('content.max_salary')}}" name="maxSalary" type="number">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <!-- button -->
-                                            <button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i> Search Jobs</button>
+                                            <button  id="{{__('menu.font_family_en')}}" type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i> {{__('content.search_job')}}</button>
                                             <!-- button end-->
                                         </div>
                                         <div class="col-md-3">
@@ -165,7 +196,7 @@
         <form action="{{url('search-salary-range')}}" method="get">
           <!-- Jobs By Title -->
           <div class="widget">
-            <h4 class="widget-title">Jobs By Title</h4><hr/>
+            <h6 class="widget-title"><span id="{{__('menu.font_family_en')}}">{{__('content.search_job_title')}}</span></h6><hr/>
             <ul class="optionlist">
              
               @foreach ($jobTitles as $key => $jobTitle)
@@ -180,7 +211,7 @@
           </div>                    
           <!-- Salary -->
           <div class="widget">
-            <h4 class="widget-title">Salary Range</h4>
+            <h6 class="widget-title"> <span id="{{__('menu.font_family_en')}}">{{__('content.salary_range')}}</span></h6>
             <hr/>
             @php
             $salaryRange = array(
@@ -205,7 +236,7 @@
           
           <!-- button -->
           <div class="searchnt">
-            <button class="btn"><i class="fa fa-search" aria-hidden="true"></i> Search Jobs</button>
+            <button id="{{__('menu.font_family_en')}}" class="btn"><i class="fa fa-search" aria-hidden="true"></i> {{__('content.salary_range')}}</button>
           </div>
           <!-- button end--> 
         </form>
@@ -223,7 +254,7 @@
         
         <!-- Sponsord By -->
         <div class="sidebar">
-          <h4 class="widget-title">Sponsord By</h4>
+          <h4 class="widget-title"> <span id="{{__('menu.font_family_en')}}" >{{__('content.sponsord_by')}}</span></h4>
           <div class="gad"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/googlead.jpg" alt="your alt text" /></div>
           <div class="gad"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/googlead.jpg" alt="your alt text" /></div>
           <div class="gad"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/googlead.jpg" alt="your alt text" /></div>
@@ -268,7 +299,7 @@
           <div class="pagiWrap">
             <div class="row">
               <div class="col-md-5 col-sm-5">
-                <div class="showreslt">Showing Pages :  {{$job->currentPage() .' - 10 Total '. $job->total()}}</div>
+                <div id="{{__('menu.font_family_en')}}" class="showreslt">{{__('content.showing_page')}} :  {{$job->currentPage() . ' - '. $job->perPage() }} {{__('content.total')}} {{$job->total()}}</div>
               </div>
               <div class="col-md-7 col-sm-7 text-right">
                 <ul class="pagination">

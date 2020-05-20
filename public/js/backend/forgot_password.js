@@ -5,7 +5,7 @@ $("#frmForgotCandidatePassword").validate({
        },
     }, submitHandler: function (form) {
  
-       var id  = $('#language_id_edit').val();
+       var email = $('#email').val();
        $.ajaxSetup({
            headers: {
                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -15,7 +15,7 @@ $("#frmForgotCandidatePassword").validate({
            url: "/password/reset",
            method: 'POST',
            data: {
-            "_token": "{{ csrf_token() }}",
+            "email " : email
            },
            success: function (result) {
              //console.log(result);

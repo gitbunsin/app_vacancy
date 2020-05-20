@@ -11,8 +11,8 @@
         {
             // var url = 'login';
             // console.log('login');
-            $email = $('#email').val();
-            $password = $('#password').val()
+            $email = $('.email').val();
+            $password = $('.password').val()
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -60,8 +60,8 @@
             }
         },submitHandler: function(form) 
         {
-            $email = $('#admin_email_login').val();
-            $password = $('#admin_password_login').val()
+            $email = $('.admin_email_login').val();
+            $password = $('.admin_password_login').val()
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

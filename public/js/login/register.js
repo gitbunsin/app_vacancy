@@ -12,7 +12,7 @@ $("#frmEmployerLogin").validate({
            minlength : 6
        }, admin_confirm_password : {
             minlength : 6,
-            equalTo : "#admin_password"
+            equalTo : ".admin_password"
        }
     }, submitHandler: function (form) {
  
@@ -26,9 +26,9 @@ $("#frmEmployerLogin").validate({
            url: "/admin-register",
            method: 'POST',
            data: {
-                "admin_username" : $('#admin_user_name').val(),
-                "admin_email" : $('#admin_email').val(),
-                "admin_password" : $('#admin_password').val()
+                "admin_username" : $('.admin_user_name').val(),
+                "admin_email" : $('.admin_email').val(),
+                "admin_password" : $('.admin_password').val()
            },
            beforeSend:function(){
             $.LoadingOverlay("show");
@@ -71,7 +71,7 @@ $("#frmSeekerRegister").validate({
            minlength : 6
        }, seeker_confirm_password : {
             minlength : 6,
-            equalTo : "#seeker_password"
+            equalTo : ".seeker_password"
        }
     }, submitHandler: function (form) {
  
@@ -85,10 +85,10 @@ $("#frmSeekerRegister").validate({
            url: "/register",
            method: 'POST',
            data: {
-                "seeker_first_name" : $('#seeker_first_name').val(),
-                "seeker_last_name" : $('#seeker_last_name').val(),
-                "seeker_email" : $('#seeker_email').val(),
-                "seeker_password" : $('#seeker_password').val()
+                "seeker_first_name" : $('.seeker_first_name').val(),
+                "seeker_last_name" : $('.seeker_last_name').val(),
+                "seeker_email" : $('.seeker_email').val(),
+                "seeker_password" : $('.seeker_password').val()
            },
            beforeSend:function(){
             $.LoadingOverlay("show");

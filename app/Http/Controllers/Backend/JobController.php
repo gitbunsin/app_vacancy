@@ -61,6 +61,10 @@ class JobController extends Controller
 
     public function vacancyDetails($id)
     {
+        $check = vacancy::where('id',$id)->first();
+        if ( !$check){
+            abort(404);
+        }
         // dd($id);
         $vacancy = vacancy::with(['admin','employee','province','jobTitle','category','jobType','company','skill'])->where('id',$id)->first();
         $relatedVacancy = vacancy::where('company_id',$vacancy->company_id)->whereNotIn('id', [$id])->get();

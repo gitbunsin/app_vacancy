@@ -85,6 +85,9 @@ class PostController extends fc
     public function show($id)
     {
         $post = post::find($id);
+        if ( ! $post ){
+            abort(404);
+        }
         $all_post = post::orderBy('id','desc')->get();
         return view('frontend/pages/blog-detail',compact('post','all_post'));
     }
@@ -99,6 +102,9 @@ class PostController extends fc
     {
         $title = trans('app.post_edit');
         $post = Post::find($id);
+        if ( ! $post ){
+            abort(404);
+        }
         return view('backend/pages/admin/post/edit',compact('title','post'));
         // return view('admin.post_edit', compact('title', 'post'));
     }

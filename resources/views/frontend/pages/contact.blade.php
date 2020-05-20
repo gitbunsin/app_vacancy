@@ -5,10 +5,10 @@
 	<div class="container">
 	  <div class="row">
 		<div class="col-md-6 col-sm-6">
-		  <h1 class="page-heading">Contact Us</h1>
+		  <h1 id="{{__('menu.font_family_en')}}" class="page-heading">{{__('contact.contact_us')}}</h1>
 		</div>
 		<div class="col-md-6 col-sm-6">
-		  <div class="breadCrumb"><a href="#.">Home</a> / <span>Contact Us</span></div>
+		  <div class="breadCrumb"><a href="#.">Home</a> / <span id="{{__('menu.font_family_en')}}">{{__('contact.contact_us')}}</span></div>
 		</div>
 	  </div>
 	</div>
@@ -22,10 +22,10 @@
 	  <div class="contact-wrap">
 		<div class="row">
 		  <div class="col-md-12 column">
-			<div class="title"> <span>We Are Here For Your Help</span>
-			  <h2>GET IN TOUCH FAST</h2>
-			  <p>Vestibulum at magna tellus. Vivamus sagittis nunc aliquet. Vivamin orci aliquam<br>
-				eros vel saphicula. Donec eget ultricies ipsmconsequat.</p>
+			<div class="title"> <span id="{{__('menu.font_family_en')}}">{{__('contact.we_are_here_for_your_help')}}</span><br/><br/>
+			  <h2 id="{{__('menu.font_family_en')}}">{{__('contact.get_in_touch_fast')}}</h2>
+			  {{-- <p>Vestibulum at magna tellus. Vivamus sagittis nunc aliquet. Vivamin orci aliquam<br>
+				eros vel saphicula. Donec eget ultricies ipsmconsequat.</p> --}}
 			</div>
 		  </div>
 		  
@@ -33,20 +33,20 @@
 		  <div class="col-md-4 column">
 			<div class="contact-now">
 			  <div class="contact"> <span><i class="fa fa-home"></i></span>
-				<div class="information"> <strong>Address:</strong>
+				<div class="information"> <strong id="{{__('menu.font_family_en')}}">{{__('contact.address')}}</strong>
 				  <p>8500 lorem, New Ispum, Dolor amet sit 12301</p>
 				</div>
 			  </div>
 			  <!-- Contact Info -->
 			  <div class="contact"> <span><i class="fa fa-envelope"></i></span>
-				<div class="information"> <strong>Email Address:</strong>
+				<div class="information"> <strong id="{{__('menu.font_family_en')}}">{{__('contact.email_address')}}</strong>
 				  <p>bunsin.toeng@gmail.com</p>
 				  <p>bunsin.toeng@kh-work.com</p>
 				</div>
 			  </div>
 			  <!-- Contact Info -->
 			  <div class="contact"> <span><i class="fa fa-phone"></i></span>
-				<div class="information"> <strong>Phone No:</strong>
+				<div class="information"> <strong id="{{__('menu.font_family_en')}}">{{__('contact.phone_no')}}</strong>
 				  <p>+885 0962711117</p>
 				  <p>+885 0962711117</p>
 				</div>
@@ -68,19 +68,19 @@
 				@endif
 				<div class="row">
 				  <div class="col-md-6">
-					<input type="text" id="name" name="name"  required="required" placeholder="Full Name">
+					<input  type="text" id="{{__('menu.font_family_en')}}" name="name"  required="required" placeholder="{{__('contact.full_name')}}">
 				  </div>
 				  <div class="col-md-6">
-					<input type="email" id="contact_email" name="contact_email"  required="required" placeholder="Email Address">
+					<input type="email" id="{{__('menu.font_family_en')}}" name="contact_email"  required="required" placeholder="{{__('contact.email_address')}}">
 				  </div>
 				  <div class="col-md-12">
-					<input type="text" id="subject"  required="required" placeholder="Subject">	
+					<input type="text" id="{{__('menu.font_family_en')}}" required="required" placeholder="{{__('contact.subject')}}">	
 				  </div>
 				  <div class="col-md-12">
-					<textarea name="message" id="message"  required="required" rows="6" placeholder="Message"></textarea>	
+					<textarea name="message" id="{{__('menu.font_family_en')}}" required="required" rows="6" placeholder="{{__('contact.message')}}"></textarea>	
 				  </div>
 				  <div class="col-md-12">
-					<button type="submit">Submit</button>
+					<button type="submit">{{__('contact.submit')}}</button>
 				  </div>
 				</div>
 			  </form>

@@ -23,7 +23,7 @@ class ForgotPasswordController extends Controller
 
     public function showLinkRequestForm()
     {
-        return view('backend/auth/passwords/email');
+        return view('frontend/auth/passwords/email');
     }
     public function updateLinkRequestForm(){
 
@@ -32,9 +32,7 @@ class ForgotPasswordController extends Controller
 
     public function showFormAdminReset()
     {
-        // dd('hello');
-
-        return view('backend/auth/passwords/admin_password_blade.php');
+        return view('backend/auth/passwords/admin_password');
     }
     /**
      * Create a new controller instance.
