@@ -62,7 +62,7 @@
                                                                <tbody>
                                                                   <tr>
                                                                      <td align="center" width="100%">
-                                                                        <h1 style="padding:0;margin:0;color:#ffffff;font-weight:500;font-size:20px;line-height:24px">Invitation to Active Your Account </h1>
+                                                                        <h1 style="padding:0;margin:0;color:#ffffff;font-weight:500;font-size:20px;line-height:24px"> Reset Password for Candidate Account </h1>
                                                                      </td>
                                                                   </tr>
                                                                </tbody>
@@ -75,9 +75,9 @@
                                                                <tbody>
                                                                   <tr>
                                                                      <td align="center" width="100%" style="padding: 0 15px;text-align: justify;color: rgb(76, 76, 76);font-size: 12px;line-height: 18px;">
-                                                                        <h3 style="font-weight: 600; padding: 0px; margin: 0px; font-size: 16px; line-height: 24px; text-align: center;" class="title-color">Hi {{$user_mail->name}},</h3>
-                                                                        <p style="margin: 20px 0 30px 0;font-size: 13px;text-align: center;">Help us secure your SrolanhJob account by verifying your email address <br/><a href="{{url('Register/activate/email/'.$admin_mail->id.'/'.$admin_mail->email_token)}}">{{url('Register/activate/email/'.$admin_mail->id.'/'.$admin_mail->email_token)}}</a></p>
-                                                                        <div style="font-weight: 200; text-align: center; margin: 25px;"><a href="{{url('Register/activate/email/'.$admin_mail->id.'/'.$admin_mail->email_token)}}" style="padding:0.6em 1em;border-radius:600px;color:#ffffff;font-size:14px;text-decoration:none;font-weight:bold" class="button-color">Verify Email Address</a></div>
+                                                                        <h3 style="font-weight: 600; padding: 0px; margin: 0px; font-size: 16px; line-height: 24px; text-align: center;" class="title-color">Hi ,</h3>
+                                                                        <p style="margin: 20px 0 30px 0;font-size: 13px;text-align: center;">Help us secure your SrolanhJob account by verifying your email address <br/><a href="{{url('reset/candidate/password/'.$candidate->email)}}">{{url('reset/candidate/password/'.$candidate->email)}}</a></p>
+                                                                        <div style="font-weight: 200; text-align: center; margin: 25px;"><a href="{{url('Register/activate/email/')}}" style="padding:0.6em 1em;border-radius:600px;color:#ffffff;font-size:14px;text-decoration:none;font-weight:bold" class="button-color">Verify Email Address</a></div>
                                                                      </td>
                                                                   </tr>
                                                                </tbody>

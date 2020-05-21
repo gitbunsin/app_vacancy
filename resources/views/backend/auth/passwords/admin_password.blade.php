@@ -1,56 +1,47 @@
 
-
 @extends('frontend.layouts.template')
 @section('content')
-<div class="tr-breadcrumb bg-image section-before">
-		<div class="container">
-			<div class="breadcrumb-info text-center">
-				<div class="page-title">
-					<h1>Reset Password for Employer Account</h1>
-				</div>		
-				<ol class="breadcrumb">
-					<li><a href="index.html">Home</a></li>
-					<li class="active">Passwords</li>
-				</ol>			
-			</div>
-		</div><!-- /.container -->
-	</div><!-- /.tr-breadcrumb -->
-
-	<div class="page-content">
-		<div class="container">
-			{{-- <div class="tr-map">
-				<div id="gmap"></div>
-			</div><!-- /.tr-map --> --}}
-			<div class="contact-section">
-				<div class="row">
-					<div class="col-md-10">
-						<div class="section">
-							<span class="tr-title">Reset Password For Employer Account</span>
-							<p>There are many variations of passages of lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words</p>
-                        <form  id="frmForgotCandidatePassword">
-                                <meta name="csrf-token" content="{{ csrf_token() }}">
-                            <div class="form-group row">
-                                <label for="email" class="col-md-2 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-                                <div class="col-md-8">
-                                    <input id="email" type="email" class="form-control" name="email">
-                            </span>
-                                
-                        </div>
-                            </div>
-                            <br/>
-                            <div class="form-group row mb-0 ">
-                                <div class="col-md-2 offset-md-2">
-                                    <button style=""  type="submit" class="btn btn-primary">Send Password Reset Link</button>
-                                </div>
-                            </div>
-                        </form>
-						</div>
-					</div>
-					
-				</div>
-			</div>			
-		</div><!-- /.container -->
-	</div><!-- /.page-content -->    
+<div class="pageTitle">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-sm-6">
+          <h1 class="page-heading">Reset Password for Employers Account</h1>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <div class="breadCrumb"><a href="#.">Home</a> / <span> Change Your Password </span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page Title End -->
+  
+  <div class="listpgWraper">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="userccount">
+            <div class="formpanel"> 
+          <form id="frmAdPassword">
+            <input type="hidden" id="cdEmail" value="" name="cdEmail">
+            <meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}">
+              <!-- Job Information -->
+              <h5>Reset Password for Employers Account</h5>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="formrow">
+                    <input id="email" type="email" class="form-control" name="email" placeholder="email">
+                  </div>
+                </div>
+              </div>
+              <br>
+              <input type="submit" class="btn" value="Save">
+         </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection
 @section('scripts')
     <script src="/js/backend/forgot_password.js"></script>

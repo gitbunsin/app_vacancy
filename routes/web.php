@@ -35,10 +35,19 @@ Route::post('/login', '\App\Http\Controllers\Auth\LoginController@login');
 Route::post('/register/checkemail','\App\Http\Controllers\Auth\RegisterController@Checkemail');
 Route::get('/register/activate/email/{id}/{token}','\App\Http\Controllers\Auth\RegisterController@verifyUserMail');
 Route::get('/register/activate/admin/email/{id}/{token}','\App\Http\Controllers\Auth\RegisterController@verifyAdminMail');
-Route::get('password/admin/reset','App\Http\Controllers\Auth\ForgotPasswordController@showFormAdminReset');  
-Route::get('password/reset','App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm');  
-Route::post('password/reset','App\Http\Controllers\Auth\ForgotPasswordController@updateLinkRequestForm');  
 
+//cd
+Route::get('password/admin/reset','Auth\ForgotPasswordController@showFormAdminReset');  
+Route::get('password/reset','App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm');  
+Route::post('password/user-reset','Auth\ForgotPasswordController@updateLinkRequestForm');  
+Route::get('reset/candidate/password/{email}','Auth\ForgotPasswordController@showFromCandidateResetPassword');  
+Route::post('reset/cd-reset/{email}','Auth\ForgotPasswordController@cdResetPassword'); 
+
+//ad 
+Route::post('reset/ad-reset/password','Auth\ForgotPasswordController@showFormAdminReset'); 
+Route::post('password/admin-reset','Auth\ForgotPasswordController@updateAdLinkRequestForm');  
+Route::get('reset/ad-reset/{email}','Auth\ForgotPasswordController@adResetPassword'); 
+Route::post('reset/ad-reset/{email}','Auth\ForgotPasswordController@adReset'); 
 //Admin Access Only 
 Route::group(['middleware'=>'is_admin'], function(){
     Route::group(['namespace' => 'Backend','prefix' => 'admin'], function(){
