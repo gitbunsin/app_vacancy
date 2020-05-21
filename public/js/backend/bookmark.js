@@ -11,6 +11,7 @@ function Bookmark(vacancy_id)
 $('#frmVacancyBookmark').validate({
     submitHandler: function (form) {
         var id = $('#vacancy_bookmark_id').val();
+        console.log(id);
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -59,7 +60,7 @@ $('#frmVacancyBookmark').validate({
             },  
             success: function (response) {
                 $('#userBookmarkDelete').modal('hide');
-                $('.remove-item' + response.id).remove();
+                $('.remove-bookmark' + response.id).remove();
                 toastr.success('Success', 'item has been Deleted !');           
             }, error: function (err) {
                 console.log(err);

@@ -67,5 +67,8 @@ return [
     'apply_now' => 'Apply Now',
     'share_to_friend' => 'Share to Friend',
     'bookmark' => 'Bookmark',
+    'bookmarked' => 'bookmarked',
+    'date_posted' => 'Date Posted',
+    'monthly_salary' => 'Monthly Salary',
     'report_abuse' => 'Report Abuse'
 ];

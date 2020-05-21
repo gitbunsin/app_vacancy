@@ -101,17 +101,19 @@
 									$com = vacancy::with('company')->where('company_id',$bookmark->vacancy->company_id)->first();
 									// dd($company);
 								@endphp
-								<li class="col-md-12">
+								<li class="col-md-12 remove-bookmark{{$bookmark->id}}">
 								<div class="jobint">
 									<div class="row">
 									<div class="col-md-2 col-sm-2"><img height="100px;" src="{{asset('/uploads/UserCv/'.$com->company->company_logo)}}" alt="Job Name" /></div>
-									<div class="col-md-6 col-sm-6">
+									<div class="col-md-7 col-sm-7">
 										<h4><a href="{{url('vacancy/detail/'.$bookmark->vacancy->id)}}">{{$bookmark->vacancy->vacancy_name}}</a></h4>
 										<div class="company"><a href="#.">{{$bookmark->vacancy->category->name}}</a>
 										</div>
 										<div class="jobloc"><label class="fulltime">{{$bookmark->vacancy->jobType->name}}</label>   - <span>{{$bookmark->vacancy->province->name}}</span></div>
 									</div>
-									<div class="col-md-4 col-sm-4"><a href="{{url('vacancy/detail/'.$bookmark->vacancy->id)}}" class="applybtn"> View Details</a></div>
+									<div class="col-md-2 col-sm-2">
+										<a href="#" onclick="bookmarkDelete({{$bookmark->id}});"  class="btn btn-primary">Delete</a>
+									</div>
 									</div>
 								</div>
 								</li>								
@@ -126,6 +128,33 @@
 	  </div>
 	</div>
   </div>
+  <div id="userBookmarkDelete" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="frmVacancyBookmarkDelete">
+                <input type="hidden" id="user_bookmark_id_delete" value="">
+                @if (Auth::check())
+                 <input type="hidden" id="candidate_id" value="{{auth::user()->id}}">
+               
+                @endif  
+                <meta name="csrf-token" content="{{ csrf_token() }}">
+                <div  class="modal-header theme-bg" style="background-color:#008def" >
+                        <h4 class="modal-title" style="color:white;"> Favourite Jobs</h4>
+                            {{-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> --}}
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label> Do u want to deleted this Favourite Jobs ? </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input  type="button" class="btn btn-danger" data-dismiss="modal" value="No">
+                            <input type="submit" class="btn btn-primary" value="Yes">
+                        </div>
+                </form>
+        </div>
+    </div>
+</div>
 	
 	@endsection
 	@section('scripts')

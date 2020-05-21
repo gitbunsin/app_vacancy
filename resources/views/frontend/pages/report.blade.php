@@ -20,11 +20,11 @@
         <div class="col-md-8 col-md-offset-2">
           <div class="userccount">
             <div class="formpanel"> 
-          <form action="post">
+          <form action="post" id="frmReportVacancy">
+              <input type="hidden" id="job_id" name="job_id" value="{{$report->id}}">
               <!-- Job Information -->
               <h5>Report Abuse Job Information</h5>
               <div class="row">
-                
                 <div class="col-md-12">
                     <div class="formrow">
                       <input value="http://localhost:8000/vacancy/detail/{{$report->vacancy_name}}" disabled type="text" name="jobtitle" class="form-control">
@@ -32,12 +32,12 @@
                   </div>
                 <div class="col-md-12">
                   <div class="formrow">
-                    <input required type="text" name="jobtitle" class="form-control" placeholder="Subject">
+                    <input id="subject"  type="text" name="subject" class="form-control" placeholder="Subject">
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="formrow">
-                    <textarea required class="form-control" name="jobdetail" placeholder="Message"></textarea>
+                    <textarea id="message"  class="form-control" name="message" placeholder="Message"></textarea>
                   </div>
                 </div>
               </div>
@@ -50,6 +50,7 @@
       </div>
     </div>
   </div>
-  
-
+@endsection
+@section('scripts')
+    <script src="/js/backend/forgot_password.js"></script>
 @endsection

@@ -3,6 +3,7 @@
 @php
     use App\Model\UserVacancy;
     use App\Model\userBookmark;
+    use App\Model\vacancy;
 @endphp
 <style>
   .social-company{
@@ -59,15 +60,27 @@
           <div class="row">
             <div class="col-md-8">
               <h2 id="{{__('menu.font_family_en')}}">{{$vacancy->vacancy_name}}</h2>
-              <div class="ptext">Date Posted: {{$vacancy->closingDate}}</div>
-              <div class="salary">Monthly Salary: <strong>{{$vacancy->minSalary .' - '. $vacancy->maxSalary.' $' }}</strong></div>
+              <div id="{{__('menu.font_family_en')}}" class="ptext">{{__('content.date_posted')}}: {{date('d-m-Y', strtotime($vacancy->created_at))}}</div>
+              <div id="{{__('menu.font_family_en')}}" class="salary">{{__('content.monthly_salary')}} : 
+                <strong> {{$vacancy->minSalary .' - '. $vacancy->maxSalary.' $' }}
+                  @if($vacancy->negotiation == "1")
+                      <span> /  negotiation </span>
+                  @endif
+                </strong>
+              </div>
             </div>
             <div class="col-md-4">
               <div class="companyinfo">
-                <div class="companylogo"><img src="/uploads/UserCv/{{ $vacancy->company->company_logo }}" alt="your alt text"></div>
-                <div class="title"><a href="#.">Forum International</a></div>
+                <div class="companylogo"><img src="{{asset('/uploads/UserCv/'.$vacancy->company->company_logo)}}" alt="your alt text"></div>
+                <div class="title"><a href="#.">{{$vacancy->company->company_name}}</a></div>
                 <div class="ptext">{{$vacancy->province->name}}</div>
-                <div class="opening"><a href="#.">8 Current Jobs Openings</a></div>
+                <div class="opening"><a href="#">
+                  @php
+                     $count =  vacancy::where('company_id','=',$vacancy->company->id)->count();
+                  @endphp
+                  <strong>{{ $count}}</strong> Current Jobs Openings</a>
+                
+                </div>
                 <div class="clearfix"></div>
               </div>
             </div>
@@ -99,7 +112,7 @@
                @endphp
              @endif 
              @if(Auth::check() &&  $bookmark_vacancy > 0)
-                <a href=""  class="btn report  not-active"><i class="fa fa-floppy-o" aria-hidden="true"></i> <span id="{{__('menu.font_family_en')}}"> {{__('content.bookmark')}}</span></a> 
+                <a href="#"  class="btn report  not-active"><i class="fa fa-floppy-o" aria-hidden="true"></i> <span id="{{__('menu.font_family_en')}}"> {{__('content.bookmarked')}}</span></a> 
 
              @elseif(Auth::check())
               <a href="#." onclick="Bookmark({{$vacancy->id}});" class="btn not-active"><i class="fa fa-floppy-o" aria-hidden="true"></i> <span id="{{__('menu.font_family_en')}}"> {{__('content.bookmark')}}</span></a> 
@@ -142,13 +155,35 @@
                   <div class="jobinfo">
                     <h3><a href="#.">{{$vacancy->employee->last_name . ' ' .$vacancy->employee->first_name  }}</a></h3>
                     <div class="companyName"><a href="#."><b>{{$vacancy->employee->mobile}} </b> <b>/</b>  <b> {{$vacancy->employee->work_telephone}} </b></a></div>
-                    <div class="location"><label class="fulltime">{{$vacancy->employee->work_email}}</label>   - <span>New York</span></div>
+                    <div class="location"><label class="fulltime">{{$vacancy->employee->work_email}}</label>   <span></span></div>
                   </div>
                   <div class="clearfix"></div>
                 </div>
                 <div class="col-md-4 col-sm-4">
                   <div class="listbtn"><a href="#.">Contact HR</a></div>
                 </div>
+              </div>
+            </li>
+            </ul>
+          </div>
+          <div class="relatedJobs">
+            <h3 id="{{__('menu.font_family_en')}}">How to Apply</h3>
+            <ul class="searchList">
+              <!-- Job start -->
+              <li>
+              <div class="row">
+                <div class="col-md-12 col-sm-12">
+                  <div class="jobinfo">
+                    <div class="companyName">
+                      <p>
+                        <b>1. </b> Please register CamHR Account<br/>
+                        <b>2.</b> Apply for a job by clicking the 'Apply Now' button, please click Create CV， After create your CV, employers will review your CV online, Increase your job opportunities. Click Now Here，Learn how to register and post your CV!
+                      </p>
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+                
               </div>
             </li>
             </ul>
@@ -160,61 +195,28 @@
             <h3 id="{{__('menu.font_family_en')}}">{{__('content.related_jobs')}}</h3>
             <ul class="searchList">
               <!-- Job start -->
-              <li>
-              <div class="row">
-                <div class="col-md-8 col-sm-8">
-                  <div class="jobimg"><img src="{{asset('images/jobs/jobimg.jpg')}}" alt="Job Name"></div>
-                  <div class="jobinfo">
-                    <h3><a href="#.">Technical Database Engineer</a></h3>
-                    <div class="companyName"><a href="#.">Datebase Management Company</a></div>
-                    <div class="location"><label class="fulltime">Full Time</label>   - <span>New York</span></div>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                  <div class="listbtn"><a href="#.">Apply Now</a></div>
-                </div>
-              </div>
-            </li>
-              <!-- Job end --> 
               
-              <!-- Job start -->
-              <li>
-              <div class="row">
-                <div class="col-md-8 col-sm-8">
-                  <div class="jobimg"><img src="{{asset('images/jobs/jobimg.jpg')}}" alt="Job Name"></div>
-                  <div class="jobinfo">
-                    <h3><a href="#.">Technical Database Engineer</a></h3>
-                    <div class="companyName"><a href="#.">Datebase Management Company</a></div>
-                    <div class="location"><label class="partTime">Part Time</label>   - <span>New York</span></div>
+              @foreach ($relatedVacancy as $relate_jobs)
+                <li>
+                  <div class="row">
+                    <div class="col-md-8 col-sm-8">
+                      <div class="jobimg">
+                        <img src="{{asset('/uploads/UserCv/'.$relate_jobs->company->company_logo)}}" alt="Job Name" />
+                      </div>
+                      <div class="jobinfo">
+                        <h3><a href="{{url('vacancy/detail/'.$relate_jobs->id)}}">{{$relate_jobs->vacancy_name}}</a></h3>
+                        <div class="companyName"><a href="#.">{{$relate_jobs->vacancy_name}}</a></div>
+                        <div class="location"><label class="fulltime">{{$relate_jobs->jobType->name}}</label> - <span>{{$relate_jobs->province->name}}</span></div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                      <div class="listbtn"><a href="{{url('vacancy/detail/'.$relate_jobs->id)}}">Apply Now</a></div>
+                    </div>
                   </div>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                  <div class="listbtn"><a href="#.">Apply Now</a></div>
-                </div>
-              </div>
-            </li>
-              <!-- Job end --> 
-              
-              <!-- Job start -->
-              <li>
-              <div class="row">
-                <div class="col-md-8 col-sm-8">
-                  <div class="jobimg"><img src="{{asset('images/jobs/jobimg.jpg')}}" alt="Job Name"></div>
-                  <div class="jobinfo">
-                    <h3><a href="#.">Technical Database Engineer</a></h3>
-                    <div class="companyName"><a href="#.">Datebase Management Company</a></div>
-                    <div class="location"><label class="freelance">Freelance</label>   - <span>New York</span></div>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                  <div class="listbtn"><a href="#.">Apply Now</a></div>
-                </div>
-              </div>
-            </li>
-              <!-- Job end -->
+                </li>                 
+            @endforeach
+            <!-- Job end --> 
             </ul>
           </div>
         </div>

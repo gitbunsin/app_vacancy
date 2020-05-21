@@ -77,6 +77,8 @@ Route::group(['middleware'=>'auth'], function(){
         Route::resource('skill', 'UserTraningSkillController');
         Route::get('generate-docx/{id}', 'UserEducationController@generateDocx');
         Route::get('list-company', 'UserEducationController@listCompany');
+        Route::post('send-report/{job_id}','HomeUserController@reportVacancy'); 
+
     });
 });
 
@@ -149,8 +151,8 @@ Route::group(['namespace' => 'Backend','prefix' => 'admin'], function ($request)
    
     Route::resource('user','UserController');
     Route::post('user-cv/{id}','UserController@userCV');
-    // Route::post('bookmark/{id}','UserController@bookmark');
-    // Route::delete('bookmark/{id}','UserController@bookmarkDelete');
+    Route::post('bookmark/{id}','UserController@bookmark');
+    Route::delete('bookmark/{id}','UserController@bookmarkDelete');
     Route::get('create-resume','CandidateController@createResume');
     Route::post('user/resume/{id}','UserController@userCV');
     Route::get('user/view-resume/{id}','UserController@viewResume');

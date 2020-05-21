@@ -255,11 +255,11 @@
         <!-- Sponsord By -->
         <div class="sidebar">
           <h4 class="widget-title"> <span id="{{__('menu.font_family_en')}}" >{{__('content.sponsord_by')}}</span></h4>
-          <div class="gad"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/googlead.jpg" alt="your alt text" /></div>
-          <div class="gad"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/googlead.jpg" alt="your alt text" /></div>
-          <div class="gad"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/googlead.jpg" alt="your alt text" /></div>
-          <div class="gad"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/googlead.jpg" alt="your alt text" /></div>
-        </div>
+            <img src="https://tpc.googlesyndication.com/simgad/3092116571683652112" alt="your alt text" />
+            <hr/>
+            <img src="https://tpc.googlesyndication.com/simgad/8180027987819859227" alt="your alt text" />
+        
+          </div>
       </div>
       <div class="col-md-6 col-sm-12"> 
         <!-- Search List -->

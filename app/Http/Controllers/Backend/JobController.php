@@ -67,7 +67,7 @@ class JobController extends Controller
         }
         // dd($id);
         $vacancy = vacancy::with(['admin','employee','province','jobTitle','category','jobType','company','skill'])->where('id',$id)->first();
-        $relatedVacancy = vacancy::where('company_id',$vacancy->company_id)->whereNotIn('id', [$id])->get();
+        $relatedVacancy = vacancy::with(['admin','employee','province','jobTitle','category','jobType','company','skill'])->where('company_id',$vacancy->company_id)->get();
         // dd($relatedVacancy);   
         // $file = jobAttachment::with(['job'])->where('job_id',$id)->first();
         return view('frontend/pages/job-apply-detail',compact('vacancy','relatedVacancy'));

@@ -1,4 +1,54 @@
+ //cd-reset
+ $('#frmReportVacancy').validate({
+    rules:{
+        subject : {
+            required : true
+        },
+        message : {
+            required : true,
+        }
+    },submitHandler:function(form){
+        var id = $('#job_id').val();
+        // console.log($('#message').val());
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        
+        jQuery.ajax({
+            url: "/user/send-report/" + id,
+            method: 'POST',
+            data : {
+                "subject" : $('#subject').val(),
+                "message" : $('#message').val()
+            },
+            beforeSend:function(){
+                $.LoadingOverlay("show");
+            },
+            success: function (result) {
+                // console.log(result);
+                if(result =="success"){
+                    $.LoadingOverlay("hide");
+                    toastr.success('Success', 'Report has been send !');
+                   }else{
+                    $.LoadingOverlay("hide");
+                    toastr.error('Success' , 'email wrong !');
+                   }
+                   var delay = 3000; 
+                    setTimeout(function()
+                    {               
+                        location.reload();
+                    }, delay);
+                
+                // console.log(response);
+            }, error: function (err) {
+                console.log(err);
+            }
+        });
 
+    }
+});
 
  //cd-reset
  $('#frmAdResetPassword').validate({

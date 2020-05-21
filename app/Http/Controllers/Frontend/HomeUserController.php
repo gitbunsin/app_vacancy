@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\vacancy;
+use Illuminate\Support\Facades\Mail;
 use App\Model\jobAttachment;
 use App\Model\skill;
 use App\Admin;
@@ -29,6 +30,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Input;
 use App\Model\candidate_vacancy;
 use App\Model\userBookmark;
+use App\Mail\JbReport;
 class HomeUserController extends Controller
 {
     /**
@@ -78,6 +80,13 @@ class HomeUserController extends Controller
         $user = User::with(['hobby','reference','skill','language','traning','experience','education'])->where('id',$id)->first();
         // $user_bookmark = userBookmark::where('user_id',Auth::user()->id)->get();
         return view('frontend.pages.candidate.my-resume'); 
+    }
+
+    public function reportVacancy(Request $request , $id)
+    {
+        $jobs = vacancy::where('id',$id)->first();
+        Mail::to("bunsin.toeng@gmail.com")->send(new JbReport($jobs));
+        return response::json('success');    
     }
 
     /**

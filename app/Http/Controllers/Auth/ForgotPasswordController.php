@@ -98,7 +98,7 @@ class ForgotPasswordController extends Controller
             return response::json('error');   
         }    
     }
-
+    
     /**
      * Create a new controller instance.
      *

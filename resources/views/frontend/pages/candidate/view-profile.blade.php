@@ -123,11 +123,9 @@
                 </div>
                 
                 <!-- Buttons -->
-                <div class="jobButtons"> <a href="#." class="btn apply">
-                  <i class="fa fa-paper-plane" aria-hidden="true"></i> Hire Me</a>
-                  <a href="{{url("user/generate-docx/".$user->id)}}" class="btn"><i class="fa fa-download" aria-hidden="true">
-                  </i> Download CV</a> <a href="#." class="btn">
-                    <i class="fa fa-envelope" aria-hidden="true"></i> Send Message</a> 
+                <div class="jobButtons">
+                  <a href="{{url("user/generate-docx/".$user->id)}}" class="btn apply"><i class="fa fa-download" aria-hidden="true">
+                  </i> Download CV</a> 
                    
     </div>
               </div>
