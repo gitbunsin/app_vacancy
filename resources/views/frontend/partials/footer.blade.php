@@ -36,7 +36,7 @@
       <div class="row"> 
         <!--About Us-->
         <div class="col-md-3 col-sm-12">
-          <div class="ft-logo"><img src="https://www.sharjeelanjum.com/html/jobs-portal/demo/images/logo.png" alt="Your alt text here"></div>
+          <div class="ft-logo"><img src="" alt="Your alt text here"></div>
           <p> is Cambodia’s leading freelancer collection and professional recruitment agency, specializing in providing human capital resources and assets Our success and expertise has led to thousands of jobseekers using our services every month to search the more than 1000+ live job ads and project that looking for freelancers.</p>
           
           <!-- Social Icons -->

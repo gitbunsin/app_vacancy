@@ -15,7 +15,7 @@ class JobCategoryController extends BaseController
     public function index()
     {
         $jobCategory = JobCategory::all();
-        return $this->sendResponse($jobCategory->toArray(), 'JobCategory retrieved successfully.'); 
+        return $this->sendResponse($jobCategory->toArray(), 'JobCategory retrieved successfully.');
     }
 
     /**
@@ -36,7 +36,11 @@ class JobCategoryController extends BaseController
      */
     public function store(Request $request)
     {
-        //
+        $jobCategory = JobCategory::create([
+                'admin_id' => $request->admin_id,
+                'name' =>  $request->name,
+                ]);
+         return $this->sendResponse($jobCategory->toArray(), 'JobCategory created successfully.');
     }
 
     /**
@@ -70,7 +74,14 @@ class JobCategoryController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        //
+//     return response()->json([
+//         'name' => $request->name,
+//     ]);
+         $jobCategory = JobCategory::where("id",$id)->update([
+                       'admin_id' => 1,
+                       'name' =>  $request->name,
+                       ]);
+         return $this->sendResponse($jobCategory->toArray(), 'JobCategory updated successfully.');
     }
 
     /**
@@ -81,6 +92,8 @@ class JobCategoryController extends BaseController
      */
     public function destroy($id)
     {
-        //
+       $jobCategory = JobCategory::findOrFail($id);
+       $jobCategory->delete();
+       return $this->sendResponse($jobCategory->toArray(), 'JobCategory deleted successfully.');
     }
 }

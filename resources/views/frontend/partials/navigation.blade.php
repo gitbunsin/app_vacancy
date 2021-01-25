@@ -6,7 +6,7 @@
 <div class="header">
     <div class="container">
       <div class="row">
-        <div class="col-md-2 col-sm-3 col-xs-12"> <a href="index.html" class="logo"><img src="https://www.sharjeelanjum.com/demos/jobsportal-update/sitesetting_images/thumb/jobs-portal-1573969216-577.png" alt="" /></a>
+        <div class="col-md-2 col-sm-3 col-xs-12"> <a href="index.html" class="logo"><img src="" alt="" /></a>
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
           </div>

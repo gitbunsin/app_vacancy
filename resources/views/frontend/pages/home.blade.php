@@ -6,7 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Online Job Portal HTML</title>
+
 <style>
+
+
 .tp-bgimg defaultimg{
 background-color: rgba(0, 0, 0, 0);
     background-repeat: no-repeat;
@@ -174,7 +177,7 @@ background-color: rgba(0, 0, 0, 0);
     <!-- title start -->
     <div class="titleTop">
       {{-- <div class="subtitle">Here You Can See</div><br/> --}}<br/><br/>
-      <h4 style="font-size:30px; font-family: -apple-system, 'Roboto', 'Koulen', sans-serif !important;">{{__('content.how_it_work')}}</h4>
+      <h3 style="font-size:30px; font-family: -apple-system, 'Roboto', 'Koulen', sans-serif !important;">{{__('content.how_it_work')}} <span> {{__('content.how')}}</span></h3>
     </div>
     <!-- title end -->
     <ul class="howlist row">
