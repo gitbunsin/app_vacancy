@@ -28,7 +28,7 @@ class CandidateController extends Controller
         //
         $candidate = candidate::with('vacancy')->where('admin_id',auth()->guard('admin')->user()->id)->get();
         // dd($candidate);
-        return view('Backend/pages/candidate/index',compact('candidate'));
+        return view('backend/pages/candidate/index',compact('candidate'));
 
     }
     public function createResume()
@@ -119,7 +119,7 @@ class CandidateController extends Controller
     {
         $candidate = candidate::with(['vacancy','interview','candidateAttachment','candidateHistory'])->where('id',$id)->first();
        
-        return view('Backend/pages/candidate/edit',compact('candidate'));
+        return view('backend/pages/candidate/edit',compact('candidate'));
     }
 
     public function editCandidateResume( $id)

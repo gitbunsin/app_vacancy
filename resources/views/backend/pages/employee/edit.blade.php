@@ -274,7 +274,7 @@
                                                                                         <label> Job Title  </label>
                                                                                         <select class="form-control"  name="employee_job_title_id" id="employee_job_title_id">
                                                                                             <option value="" required > -- plz select job titles -- </option>
-                                                                                            @php use App\Model\jobTitle;$jobTitle = jobTitle::all();@endphp
+                                                                                            @php use App\Model\JobTitle;$jobTitle = JobTitle::all();@endphp
                                                                                             @foreach($jobTitle as $jobTitles)
                                                                                                  <option value="{{ $jobTitles->id }}" {{ ( $jobTitles->id == $employee->job_title_id) ? 'selected' : '' }}> {{ $jobTitles->name }} </option>
                                                                                             @endforeach
@@ -295,7 +295,7 @@
                                                                                         <label> Job Category  </label>
                                                                                         <select class="form-control"  name="employee_job_category_id" id="employee_job_category_id">
                                                                                             <option value="" required > -- plz select Category -- </option>
-                                                                                            @php use App\Model\jobCategory;$jobCategory = jobCategory::all(); @endphp
+                                                                                            @php use App\Model\JobCategory;$jobCategory = JobCategory::all(); @endphp
                                                                                             @foreach($jobCategory as $jobCategories)
                                                                                                  <option value="{{ $jobCategories->id }}" {{ ( $jobCategories->id == $employee->job_category_id) ? 'selected' : '' }}> {{ $jobCategories->name }} </option>
                                                                                             @endforeach
@@ -1935,7 +1935,7 @@
                                             <select class="form-control" required id="paygrade_id_edit" name="paygrade_id_edit">
                                                 <option value="">  -- Pleae Select paygrade -- </option>
                                                 @php
-                                                    use App\Model\paygrade ;$paygrade = paygrade::all();
+                                                    use App\Model\PayGrade ;$paygrade = PayGrade::all();
                                                 @endphp
                                                 @foreach ($paygrade as $paygrades)
                                                 <option value="{{$paygrades->id}}"> {{$paygrades->name}}</option>                                     

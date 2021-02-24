@@ -372,7 +372,7 @@
                         <label> Employee  </label>
                         <select class="form-control select2" multiple="multiple"  name="employee" id="employee">
                             <option value="" required > -- plz select employee  -- </option>
-                            @php use App\Model\Employee;$employee = Employee::all();@endphp
+                            @php use App\Model\employee;$employee = Employee::all();@endphp
                             @foreach($employee as $employees)
                                 <option value="{{$employees->id}}">{{$employees->first_name}}  {{$employees->last_name}}</option>
                             @endforeach

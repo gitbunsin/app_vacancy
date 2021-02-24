@@ -4,8 +4,8 @@ namespace App\Http\Controllers\backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\jobTitle;
-use App\Model\payGrade;
+use App\Model\JobTitle;
+use App\Model\PayGrade;
 use DB; 
 use App\Model\vacancy;
 use App\Model\vacancyAttachment;

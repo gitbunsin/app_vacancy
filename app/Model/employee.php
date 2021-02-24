@@ -19,7 +19,7 @@ class employee extends Model
     }
     public function supervisor()
     {
-        return $this->belongsToMany(reportingMethod::class);
+        return $this->belongsToMany(ReportingMethod::class);
     }
     public function terminate()
     {
@@ -27,7 +27,7 @@ class employee extends Model
     }
     public function jobTitle()
     {
-        return $this->belongsTo(jobTitle::class);
+        return $this->belongsTo(JobTitle::class);
     }
     public function workShift()
     {

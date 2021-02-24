@@ -11,7 +11,7 @@ use App\Model\pricing;
 use App\Model\vacancy;
 use App\Model\contact;
 use App\Model\post;
-use App\Model\jobCategory;
+use App\Model\JobCategory;
 use Illuminate\Support\Facades\Response;
 class HomeController extends Controller
 {
@@ -33,7 +33,7 @@ class HomeController extends Controller
     public function index()
     {
         $job = vacancy::with(['company','province','category','jobType','company'])->take(9)->get();
-        $categories = jobCategory::orderBy('name', 'asc')->get();
+        $categories = JobCategory::orderBy('name', 'asc')->get();
         // $countCategory = vacancy::with('category')->count();
         // dd($countCategory);
         return view('frontend/pages/home',compact('job','categories'));

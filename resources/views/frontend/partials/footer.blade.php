@@ -1,6 +1,6 @@
 <!--Footer-->
 @php
-    use App\Model\jobTitle;
+    use App\Model\JobTitle;
 
 @endphp
 <div class="footerWrap">

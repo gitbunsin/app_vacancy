@@ -1,6 +1,9 @@
 
 @extends('frontend.layouts.template')
 @section('content')
+@php
+  use App\Model\JobTitle;
+@endphp
 <style>
   .pageSearch .searchform {
     background-color: white;
@@ -100,7 +103,7 @@
                               <ul class="row catelist">   
                                 @php
                                 
-                                use App\Model\jobTitle;  $jobTitles = jobTitle::all();
+                                  $jobTitles = JobTitle::all();
                               @endphp
                                 @foreach ($jobTitles as $jobTitle)
                                 @php

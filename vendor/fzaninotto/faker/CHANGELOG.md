@@ -197,7 +197,7 @@ This will the last minor release in the `1.x` cycle.
 
 - Added more Ukrainian banks [\#1271](https://github.com/fzaninotto/Faker/pull/1271) ([iamraccoon](https://github.com/iamraccoon))
 - Hotfix/failing unit tests [\#1269](https://github.com/fzaninotto/Faker/pull/1269) ([zachflower](https://github.com/zachflower))
-- Lock Travis-CI environment to Ubuntu Precise [\#1268](https://github.com/fzaninotto/Faker/pull/1268) ([zachflower](https://github.com/zachflower))
+- Lock Travis-CI environment to Open Sans Precise [\#1268](https://github.com/fzaninotto/Faker/pull/1268) ([zachflower](https://github.com/zachflower))
 - Added Ukrainian job title [\#1267](https://github.com/fzaninotto/Faker/pull/1267) ([iamraccoon](https://github.com/iamraccoon))
 - Add compliant en\_US SSN generator [\#1266](https://github.com/fzaninotto/Faker/pull/1266) ([zachflower](https://github.com/zachflower))
 - Added more Ukrainian streets and removed irrelevant names. Added more Ukrainian mobile formats [\#1265](https://github.com/fzaninotto/Faker/pull/1265) ([iamraccoon](https://github.com/iamraccoon))

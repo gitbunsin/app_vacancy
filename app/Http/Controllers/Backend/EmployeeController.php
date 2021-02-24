@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Model\Employee;
+use App\Model\employee;
 use App\Model\EmployeeAttachment;
 use App\Model\EmployeeEmergencyContacts;
 use App\Model\role;
@@ -17,7 +17,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
-use App\Model\jobTitle;
+use App\Model\JobTitle;
 use App\Model\EmployeeContract;
 use App\Model\employeeLicense;
 use DB;
@@ -41,7 +41,7 @@ class EmployeeController extends Controller
             $admin_id = auth()->guard('employee')->user()->admin_id;
         }
         // dd(auth()->guard('employee')->user());
-        $employee = Employee::with(['supervisor','jobTitle'])->where('admin_id',$admin_id)->get();
+        $employee = employee::with(['supervisor','jobTitle'])->where('admin_id',$admin_id)->get();
         // dd($employee);
         return view('backend/pages/employee/index',compact('employee'));
     }

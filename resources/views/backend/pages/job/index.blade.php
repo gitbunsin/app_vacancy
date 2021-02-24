@@ -17,7 +17,7 @@
     use App\Model\skill;
     use App\Model\location;
     use App\Model\company;
-    use App\Model\jobTitle;
+    use App\Model\JobTitle;
     use App\Model\province;
     use App\Model\payment;
     $user = auth()->guard('admin')->user();

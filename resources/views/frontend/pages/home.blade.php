@@ -47,7 +47,7 @@ background-color: rgba(0, 0, 0, 0);
 
 @include('frontend.partials.style')
 	<!-- font -->
-	{{-- <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700,300' rel='stylesheet' type='text/css'> --}}
+	{{-- <link href='https://fonts.googleapis.com/css?family=Open Sans:400,500,700,300' rel='stylesheet' type='text/css'> --}}
 	{{-- <link href='https://fonts.googleapis.com/css?family=Signika+Negative:400,300,600,700' rel='stylesheet' type='text/css'> --}}
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

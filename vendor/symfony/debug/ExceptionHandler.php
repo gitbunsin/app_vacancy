@@ -320,7 +320,7 @@ EOF;
             a:hover { text-decoration: underline; }
             abbr[title] { border-bottom: none; cursor: help; text-decoration: none; }
 
-            code, pre { font: 13px/1.5 Consolas, Monaco, Menlo, "Ubuntu Mono", "Liberation Mono", monospace; }
+            code, pre { font: 13px/1.5 Consolas, Monaco, Menlo, "Open Sans Mono", "Liberation Mono", monospace; }
 
             table, tr, th, td { background: #FFF; border-collapse: collapse; vertical-align: top; }
             table { background: #FFF; border: 1px solid #E0E0E0; box-shadow: 0px 0px 1px rgba(128, 128, 128, .2); margin: 1em 0; width: 100%; }

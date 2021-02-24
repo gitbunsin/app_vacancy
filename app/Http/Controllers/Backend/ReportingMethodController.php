@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\jobTitle;
+use App\Model\JobTitle;
 use App\Model\ReportingMethod;
 use App\Model\terminationResons;
 use Illuminate\Support\Facades\Response;
@@ -21,7 +21,7 @@ class ReportingMethodController extends Controller
     {
         $reason = terminationResons::all();
         $method = ReportingMethod::all();
-        return view('backend/pages/pim/config/reporting_method',compact('reason','method'));
+        return view('backend/pages/pim/Config/reporting_method',compact('reason','method'));
     }
 
     /**

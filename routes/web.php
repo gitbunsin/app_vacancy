@@ -114,10 +114,10 @@ Route::group(['namespace' => 'Backend','prefix' => 'admin'], function ($request)
     /* -- Basic Salary -- */
     Route::resource('basicSalary','EmployeeBasicSalaryController');
     Route::get('app','AppController@index');
-    Route::get('invoice/{id}','paymentController@invoice');
-    Route::get('confim/payment/{id}','paymentController@confirmPayment');
-    Route::resource('payment','paymentController');
-    Route::get('list/payment','paymentController@listAllPayment');
+    Route::get('invoice/{id}','PaymentController@invoice');
+    Route::get('confim/payment/{id}','PaymentController@confirmPayment');
+    Route::resource('payment','PaymentController');
+    Route::get('list/payment','PaymentController@listAllPayment');
     Route::resource('company','CompanyController');
     Route::post('company-update/{id}','CompanyController@updateCompany');
     Route::resource('subUnit','SubUnitController');
@@ -129,7 +129,7 @@ Route::group(['namespace' => 'Backend','prefix' => 'admin'], function ($request)
     Route::post('candidate/update-resume/{id}','CandidateController@UpdateCandidateResume');
     Route::post('candidate/update/{id}','CandidateController@updateCandidate');
     Route::get('candidate_vacancy/edit/{canidate_id}/{vacancy_id}','CandidateController@EditCandidateVacancy');
-    Route::resource('vacancy','vacancyController');
+    Route::resource('vacancy','VacancyController');
     Route::resource('jobTitle','jobTitleController');
     Route::resource('jobCategory','jobCategoryController');
     Route::resource('method','ReportingMethodController');

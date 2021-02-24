@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class currency extends Model
+class Currency extends Model
 {
     protected $table = "currencies";
     public  $guarded = ['id'];
