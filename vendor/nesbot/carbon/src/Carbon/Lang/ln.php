@@ -11,7 +11,7 @@
 
 /*
  * Authors:
- * - Open Sans René Manassé GALEKWA renemanasse@gmail.com
+ * - Ubuntu René Manassé GALEKWA renemanasse@gmail.com
  */
 return array_replace_recursive(require __DIR__.'/en.php', [
     'formats' => [

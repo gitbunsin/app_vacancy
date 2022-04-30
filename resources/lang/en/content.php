@@ -33,7 +33,7 @@ return [
     'quick_links' => 'Quick Links',
     'jobs_by_industry' => 'Jobs By Industry',
     'latest_articles' =>  'Latest Articles',
-    'copyright' => 'Copyright © 2020 KH-Works. All Rights Reserved. Design by: WebDev-Company',
+    'copyright' => 'Copyright © 2021 Bunsin. All Rights Reserved. Design by: Bunsin',
     'candidate' => 'Candidate',
     'employers_login' => 'Employers',
     'email'  => 'Email',

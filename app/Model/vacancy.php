@@ -3,7 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Admin;
+// use App\Model\Admin;;
 class vacancy extends Model
 {
     protected $table = 'vacancies';

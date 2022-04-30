@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 use App\Model\userCv;
 use App\User;
 use DB;
-use App\Admin;
+// use App\Model\Admin;;
 use App\Model\employee;
 use App\userEmployee;
 use App\Model\userBookmark;

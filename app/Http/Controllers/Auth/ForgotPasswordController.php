@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use DB;
 use App\User;
-use App\Admin;
+// use App\Model\Admin;
 use Illuminate\Support\Facades\Hash;
 use App\Mail\ResetCandidatePassword;
 use App\Mail\ResetAdminPassword;

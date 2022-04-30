@@ -21,5 +21,5 @@ Not obligatory, but suggest an idea for implementing addition or change.
 Include as many relevant details about the environment you experienced the bug in and how to reproduce it.
 
 * Version used (e.g. Laravel v5.6, SweetAlert2 v7.18.0):
-* Operating system and version (e.g. Open Sans 16.04, Windows 7):
+* Operating system and version (e.g. Ubuntu 16.04, Windows 7):
 * Link to your project:

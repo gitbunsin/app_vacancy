@@ -8,7 +8,7 @@ use App\Model\vacancy;
 use Illuminate\Support\Facades\Mail;
 use App\Model\jobAttachment;
 use App\Model\skill;
-use App\Admin;
+// use App\Model\Admin;;
 use App\Model\jobType;
 use App\Model\userCv;
 use App\Model\UserJob;

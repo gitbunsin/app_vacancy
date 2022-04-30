@@ -32,7 +32,6 @@ If you don't use auto-discovery, add the ServiceProvider to the providers array 
 ```php
 // config/app.php
 'providers' => [
-    ...
     Jorenvh\Share\Providers\ShareServiceProvider::class,
 ];
 ```
@@ -42,7 +41,6 @@ And optionally add the facade in config/app.php
 ```php
 // config/app.php
 'aliases' => [
-    ...
     'Share' => Jorenvh\Share\ShareFacade::class,
 ];
 ```
@@ -62,14 +60,14 @@ This will publish the ```laravel-share.php``` config file to your config folder,
 Since this package relies on Fontawesome, you will have to require it's css, js & fonts in your app.
 You can do that by requesting a embed code [via their website](http://fontawesome.io/get-started/) or by installing it locally in your project.
 
-Laravel share supports Font Awesome v4 and v5, by default v4 is used. You can specify the version you want to use in ```config/laravel-share.php```
+Laravel share supports Font Awesome v5. For Font Awsome 4 support use version [3](https://github.com/jorenvh/laravel-share/tree/3.3.1) of this package. 
 
 ### Javascript
 
 Load jquery.min.js & share.js by adding the following lines to your template files.
 
 ```html
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
 <script src="{{ asset('js/share.js') }}"></script>
 ```
 
@@ -145,14 +143,54 @@ This will generate the following html
 	</ul>
 </div>
 ```
+
+### Getting the raw links
+
+In some cases you may only need the raw links without any html, you can get these by calling the `getRawLinks` method.
+
+**A single link**
+```php
+Share::page('http://jorenvanhocht.be', 'Share title')
+	->facebook()
+	->getRawLinks();
+```
+
+Outputs:
+
+```html 
+https://www.facebook.com/sharer/sharer.php?u=http://jorenvanhocht.be
+```
+
+**Multiple links**
+
+```php
+Share::page('http://jorenvanhocht.be', 'Share title')
+	->facebook()
+	->twitter()
+	->linkedin('Extra linkedin summary can be passed here')
+	->whatsapp()
+    ->getRawLinks();
+```
+
+Outputs:
+
+```
+[
+  "facebook" => "https://www.facebook.com/sharer/sharer.php?u=http://jorenvanhocht.be",
+  "twitter" => "https://twitter.com/intent/tweet?text=Share+title&url=http://jorenvanhocht.be",
+  "linkedin" => "http://www.linkedin.com/shareArticle?mini=true&url=http://jorenvanhocht.be&title=Share+title&summary=Extra+linkedin+summary+can+be+passed+here",
+  "whatsapp" => "https://wa.me/?text=http://jorenvanhocht.be",
+]
+```
+
 ### Optional parameters
 
 #### Add extra classes, id's or titles to the social buttons
 
-You can simply add extra class(es), id('s) or title(s) by passing an array as the third parameter on the page method.
+You can simply add extra class(es), id('s), title(s) or relationship(s) by passing an array as the third parameter on the page method.
 
 ```php
-Share::page('http://jorenvanhocht.be', null, ['class' => 'my-class', 'id' => 'my-id', 'title' => 'my-title'])
+Share::page('http://jorenvanhocht.be', null, ['class' => 'my-class', 'id' => 'my-id', 'title' => 'my-title', 'rel' => 'nofollow noopener noreferrer'])
     ->facebook();
 ```
 
@@ -161,7 +199,7 @@ Which will result in the following html
 ```html
 <div id="social-links">
 	<ul>
-		<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://jorenvanhocht.be" class="social-button my-class" id="my-id"><span class="fa fa-facebook-official"></span></a></li>
+		<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://jorenvanhocht.be" class="social-button my-class" id="my-id" rel="nofollow noopener noreferrer"><span class="fa fa-facebook-official"></span></a></li>
 	</ul>
 </div>
 ```

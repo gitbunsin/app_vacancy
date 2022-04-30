@@ -41,7 +41,7 @@
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         @php
-                        // use App\Admin; $admin = auth()->guard('admin')->user();
+                        // use App\Model\Admin;; $admin = auth()->guard('admin')->user();
                     @endphp
                         {{-- @if($admin->profile) --}}
                         {{-- <img class="img-responsive img-circle"  src="{{url('uploads/UserCv/'.$admin->profile)}}" width="50px" height="50px"/><br/> --}}

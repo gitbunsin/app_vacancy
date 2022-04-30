@@ -5,7 +5,7 @@ namespace App\Http\Controllers\backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\jobTitle;
-use App\Model\Admin;
+// use App\Model\Admin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 class JobTitleController extends Controller

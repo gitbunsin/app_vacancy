@@ -1,5 +1,6 @@
 <?php
 
+// use App\Model\Admin;;
 use App\Admin;
 use Illuminate\Database\Seeder;
 

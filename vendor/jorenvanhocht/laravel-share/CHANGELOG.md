@@ -44,3 +44,23 @@ All Notable changes to `laravel-share` will be documented in this file
 
 ## 3.2.0 - 2019-12-30
 - Add support for the title attribute. (credit to Bogdan Cismariu)
+
+## 3.3.0 - 2020-09-11
+- Add `getRawLinks` method to only return the raw links
+
+## 3.3.1 - 2020-09-19
+- use `Arr::first` instead of `array_first` helper
+
+## 4.0.0 - 2021-01-09
+Breaking changes:
+
+- The minimum required php version is now php 7.3
+- Dropped out of the box support for Font Awesome 4
+- Upgraded phpunit unit version to v9.4
+
+Other changes:
+- Updated the Linkedin base url to the 2020 version
+- Updated the Pintreset base url to use https 
+
+## 4.1.0 - 2021-08-09
+- Added support for "rel" attribute on the generated share links

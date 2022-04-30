@@ -34,7 +34,7 @@ return [
     'quick_links' => 'តំណ​ភ្ជាប់​រហ័ស',
     'jobs_by_industry' => 'ការងារទៅតាមតួនាទី',
     'latest_articles' =>  'អត្ថបទថ្មីៗ',
-    'copyright' => 'រក្សាសិទ្ធិ © 2020 KH-Works by Web-Dev Innovation. រក្សាសិទ្ធគ្រប់យ៉ាង. រៀបចំដោយ: Web-Dev',
+    'copyright' => 'រក្សាសិទ្ធិ © 2021 KH-Works Bunsin . រក្សាសិទ្ធគ្រប់យ៉ាង. រៀបចំដោយ: Bunsin',
     'candidate' => 'សម្រាប់បុគ្គលិក',
     'employers_login' => 'សម្រាប់និយោជក',
     'email'  => ' អុីម៉េល',

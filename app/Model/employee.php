@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Model;
-use App\Admin;
+// use App\Model\Admin;;
 use Illuminate\Database\Eloquent\Model;
 class employee extends Model
 {
